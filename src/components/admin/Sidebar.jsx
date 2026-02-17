@@ -4,12 +4,18 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { 
-  LayoutDashboard, 
+  LayoutDashboard,
+  Wrench , 
+  Package ,
+  Lightbulb ,
   Briefcase, 
   Image as ImageIcon, 
   Users, 
   Settings, 
+  Mail,
+  MessageSquare ,
   LogOut, 
+  HelpCircle,
   Menu, 
   X 
 } from 'lucide-react'
@@ -19,11 +25,14 @@ import { cn } from '@/lib/utils'
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Services', href: '/admin/services', icon: Briefcase },
-  { name: 'Products', href: '/admin/products', icon: ImageIcon },
-  { name: 'Solutions', href: '/admin/solutions', icon: ImageIcon },
+  { name: 'Services', href: '/admin/services', icon: Wrench  },
+  { name: 'Products', href: '/admin/products', icon: Package },
+  { name: 'Solutions', href: '/admin/solutions', icon: Lightbulb },
   { name: 'Teams', href: '/admin/teams', icon: Users },
   { name: 'Careers', href: '/admin/careers', icon: Briefcase },
+  { name: 'Subscribers', href: '/admin/subscribers', icon: Mail },
+  { name: 'Feedbacks', href: '/admin/feedbacks', icon: MessageSquare },
+  { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 
