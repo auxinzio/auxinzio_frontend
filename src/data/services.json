@@ -1,0 +1,112 @@
+{
+    "services":[
+    {
+      "title": "Web & Mobile App Development",
+      "img":"/assets/img/services/web.jpg",
+      "description":{
+          "short_description_title":"Full-Stack Development",
+          "long_description_title":"Comprehensive Development Solutions",
+          "short_description":"From concept to launch, we deliver seamless digital experiences across all devices using the latest technologies.",
+          "long_description":"We specialize in creating custom web applications that are secure, scalable, and easy to maintain. ~ Our mobile development team builds intuitive apps for iOS and Android that drive user engagement and retention. ~ We utilize agile methodologies to ensure faster time-to-market without compromising on code quality or performance."
+      },
+      "features":[
+        "Custom Web Apps",
+        "iOS Development",
+        "Android Development",
+        "Cross-Platform (Flutter/React Native)",
+        "Progressive Web Apps (PWA)",
+        "E-commerce Solutions"
+      ]
+    },
+    {
+      "title": "Custom Software Development",
+      "img":"/assets/img/services/software.jpg",
+      "description":{
+          "short_description_title":"Enterprise-Grade Solutions",
+          "long_description_title":"End-to-End Software Engineering",
+          "short_description":"We move beyond off-the-shelf limitations to build software that fits your workflow perfectly, enhancing efficiency and productivity.",
+          "long_description":"Our team analyzes your specific business requirements to architect software that integrates seamlessly with your existing infrastructure. ~ We focus on automation, data centralization, and scalability to future-proof your business operations. ~ Whether you need a CRM, ERP, or a specialized internal tool, we deliver secure and reliable software ecosystems."
+      },
+      "features":[
+        "Enterprise Resource Planning (ERP)",
+        "CRM Development",
+        "SaaS Product Development",
+        "API Integration",
+        "Legacy System Modernization",
+        "Cloud Migration"
+      ]
+    },
+    {
+      "title": "Cybersecurity Solutions",
+      "img":"/assets/img/services/security.jpg",
+      "description":{
+          "short_description_title":"Advanced Threat Defense",
+          "long_description_title":"Total Security Management",
+          "short_description":"We provide rigorous security assessments, real-time monitoring, and compliance solutions to keep your business secure 24/7.",
+          "long_description":"Our experts conduct vulnerability assessments and penetration testing to identify weak points before hackers can exploit them. ~ We implement multi-layered security protocols including firewalls, encryption, and endpoint protection to ensure zero-trust security. ~ In the event of an incident, our rapid response team minimizes downtime and ensures data integrity and recovery."
+      },
+      "features":[
+        "Network Security",
+        "Penetration Testing",
+        "Data Encryption",
+        "Compliance Audits",
+        "Incident Response",
+        "Threat Monitoring"
+      ]
+    },
+    {
+      "title": "IT Consulting & Support",
+      "img":"/assets/img/services/consulting.jpg",
+      "description": {
+        "short_description_title":"Digital Transformation",
+        "long_description_title":"Your Technology Partner",
+        "short_description":"Optimize your IT infrastructure and reduce downtime with our strategic consulting and managed support services.",
+        "long_description":"We help you navigate the complex technology landscape by creating a roadmap for digital transformation and cloud adoption. ~ Our dedicated support team resolves technical issues swiftly, ensuring your operations run smoothly without interruption. ~ We analyze your current IT setup to reduce costs, improve efficiency, and implement best practices for hardware and software management."
+      },
+      "features":[
+        "IT Strategy",
+        "Cloud Consulting",
+        "Infrastructure Management",
+        "Security Assessment",
+        "Performance Optimization",
+        "Disaster Recovery"
+      ]
+    },
+    {
+      "title": "UI/UX Design",
+      "img":"/assets/img/services/uiux.jpg",
+      "description": {
+        "short_description_title":"User-Centric Design",
+        "long_description_title":"Digital Experience Optimization",
+        "short_description":"We create intuitive, engaging, and visually appealing interfaces that enhance user satisfaction and productivity.",
+        "long_description":"Our team combines modern design principles with user research to deliver interfaces that are not only visually stunning but also intuitive and accessible. ~ We focus on creating seamless user experiences across all devices, ensuring that your audience finds your brand easy to navigate and engaging. ~ Our design process includes wireframing, prototyping, and user testing to refine the final product and ensure it meets your business goals."
+      },
+      "features":[
+        "User-Centric Design",
+        "Digital Experience Optimization",
+        "Wireframing",
+        "Prototyping",
+        "User Testing",
+        "Visual Design"
+      ]
+    },
+    {
+      "title": "Marketing & Growth",
+      "img":"/assets/img/services/marketing.jpg",
+      "description": {
+        "short_description_title":"Data-Driven Marketing",
+        "long_description_title":"Digital Experience Optimization",
+        "short_description":"We create intuitive, engaging, and visually appealing interfaces that enhance user satisfaction and productivity.",
+        "long_description":"Our team combines modern design principles with user research to deliver interfaces that are not only visually stunning but also intuitive and accessible. ~ We focus on creating seamless user experiences across all devices, ensuring that your audience finds your brand easy to navigate and engaging. ~ Our design process includes wireframing, prototyping, and user testing to refine the final product and ensure it meets your business goals."
+      },
+      "features":[
+        "Data-Driven Marketing",
+        "Digital Experience Optimization",
+        "Wireframing",
+        "Prototyping",
+        "User Testing",
+        "Visual Design"
+      ]
+    }
+    ]
+}

@@ -1,0 +1,88 @@
+{
+    "teams":[
+        {
+            "name":"Nithin Aadhityan",
+            "position":"Operation Manager",
+            "image":"/assets/img/team/OM.webp",
+            "leadership":true,
+            "role_description":"",
+            "social":{
+                "email" :"nithin@gmail.com",
+                "linkedin":"https://www.linkedin.com/in/nithin-aadhityan-om/",
+                "github":"https://github.com/nithin-aadhityan"
+            }
+        },
+        {
+            "name":"Thanga Subha",
+            "position":"HR",
+            "image":"/assets/img/team/HR.webp",
+            "leadership":true,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/thanga-subha/",
+                "github":"https://github.com/thanga-subha"
+            }
+        },
+        {
+            "name":"Arifullah",
+            "position":"Software Developer",
+            "image":"/assets/img/team/5.webp",
+            "leadership":false,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/arifullah-om/",
+                "github":"https://github.com/arifullah-om"
+            }
+        },
+        {
+            "name":"Nishanth",
+            "position":"Software Developer",
+            "image":"/assets/img/team/4.webp",
+            "leadership":false,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/nishanth-om/",
+                "github":"https://github.com/nishanth-om"
+            }
+        },
+        {
+            "name":"Rahul Sarathi",
+            "position":"Software Developer",
+            "image":"/assets/img/team/6.webp",
+            "leadership":false,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/rahul-sarathi-om/",
+                "github":"https://github.com/rahul-sarathi-om"
+            }
+        },
+        {
+            "name":"Christofor John",
+            "position":"Software Developer",
+            "image":"/assets/img/team/2.webp",
+            "leadership":false,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/christofor-john-om/",
+                "github":"https://github.com/christofor-john-om"
+            }
+        },
+        {
+            "name":"Anas Ahamed",
+            "position":"Software Developer",
+            "image":"/assets/img/team/3.webp",
+            "leadership":false,
+            "role_description":"",
+            "social":{
+                "email" :"[EMAIL_ADDRESS]",
+                "linkedin":"https://www.linkedin.com/in/anas-ahamed-om/",
+                "github":"https://github.com/anas-ahamed-om"
+            }
+        }
+    ]
+}

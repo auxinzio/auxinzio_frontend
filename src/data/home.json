@@ -1,0 +1,44 @@
+{
+    "commitment":[
+        {
+            "title": "Innovation at Core",
+            "description": "We harness AI, cloud, and analytics to future-proof your business with intuitive apps and bold solutions.",
+            "icon": "Zap"
+        },
+        {
+            "title": "Excellence in Execution",
+            "description": "Rigorous testing and DevOps deliver zero-downtime deployments for confident launches and effortless scaling.",
+            "icon": "Cpu"
+        },
+        {
+            "title": "Transparency & Trust",
+            "description": "Real-time updates and dashboards keep you in control of every milestone and security measure.",
+            "icon": "ShieldCheck"
+        },
+        {
+            "title": "Sustainability First",
+            "description": "Eco-friendly designs optimize cloud and code, reducing your footprint without sacrificing innovation.",
+            "icon": "Leaf"
+        },
+        {
+            "title": "Continuous Learning",
+            "description": "Ongoing training in serverless and zero-trust tech keeps your projects cutting-edge and agile.",
+            "icon": "BookOpen"
+        },
+        {
+            "title": "Security by Design",
+            "description": "Proactive protocols protect apps and cloud from threats, safeguarding your operations.",
+            "icon": "Code"
+        }
+    ],
+    "clients": [
+    "zoho.png",
+    "Capitaland.png", 
+    "WoltersKluwers.png",
+    "VarunBevarages.png",
+    "Crompton.png",
+    "Wavetrance.png",
+    "proqol.png",
+    "dot.png"
+  ]
+}

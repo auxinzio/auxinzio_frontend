@@ -1,0 +1,38 @@
+{
+    "tag":" About Our Company",
+    "title": "About Us",
+    "description": "We deliver reliable, secure, and forward-thinking IT solutions that empower businesses to operate efficiently and grow with confidence. By combining strategic IT consulting, scalable cloud solutions, and proactive managed IT services, we help organizations optimize performance, enhance security, and reduce operational risk.",
+    "skills": [
+        {
+            "label": "IT Consulting & Support",
+            "percentage": 90
+        },
+        {
+            "label": "Cloud Solutions",
+            "percentage": 85
+        },
+        {
+            "label": "Custom Software Development",
+            "percentage": 85
+        },
+        {
+            "label": "Marketing & Growth",
+            "percentage": 90
+        },
+        {
+            "label": "Design & Branding",
+            "percentage": 95
+        }
+    ],
+    "images": [
+        {
+            "src": "/assets/img/aboutus1.jpg",
+            "alt": "Digital Innovation"
+        },
+        {
+            "src": "/assets/img/aboutus2.jpg",
+            "alt": "Team Collaboration"
+        }
+    ],
+    "experience": "3 + Years of Experience"
+}
