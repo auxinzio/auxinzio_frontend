@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { cmsApi } from '@/lib/cms-api';
-import Table from '../../components/Table';
+import Table from '../../../../components/admin/Table';
 
 
 export default function TeamsPage() {
@@ -24,6 +24,8 @@ export default function TeamsPage() {
             page: currentPage,
             limit: ITEMS_PER_PAGE
           });
+
+          // console.log(response.data);
 
           // Update state with backend response
           if (response && response.data) {

@@ -3,7 +3,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { cmsApi } from '@/lib/cms-api';
-import Table from '../../components/Table';
+import Table from '../../../../components/admin/Table';
 
 
 export default function ProductsPage() {
@@ -26,12 +26,14 @@ export default function ProductsPage() {
             limit: ITEMS_PER_PAGE
           });
 
+          // console.log(response.data);
+
           // Update state with backend response
           if (response && response.data) {
             setData({
               productList: response.data.productsList || [],
-              totalCount: response.data.count || 0,
-              totalPages: Math.ceil((response.data.count || 0) / ITEMS_PER_PAGE) || 1
+              totalCount: response.data.totalCount || 0,
+              totalPages: Math.ceil((response.data.totalCount || 0) / ITEMS_PER_PAGE) || 1
             });
           } else {
             setData({ productList: [], totalCount: 0, totalPages: 1 });
