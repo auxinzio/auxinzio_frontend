@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { cmsApi } from '@/lib/cms-api';
-import Table from '../../components/Table';
+import Table from '../../../../components/admin/Table';
 
 export default function ServicesPage() {
   const [data, setData] = useState({ serviceList: [], totalCount: 0, totalPages: 1 });
