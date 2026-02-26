@@ -17,7 +17,9 @@ export default function SettingProvider({children}){
         .then(res=>res.json())
         .then(data=>setSettings(data.data))
     },[]);
-        
+
+    console.log(settings);
+
     return(
         <>
             <SettingContext.Provider value={{settings}}>
