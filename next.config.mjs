@@ -6,10 +6,10 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "https",
+        protocol: "http",
         // hostname: "instructorless-colouristic-judith.ngrok-free.dev",
         // hostname: "tqflfdhd-5000.inc1.devtunnels.ms",
-        hostname : "15.235.192.119:8080"
+        hostname : "15.235.192.119"
       },
     ],
   },
