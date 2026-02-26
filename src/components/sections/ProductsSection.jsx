@@ -7,7 +7,6 @@ import { useSettings } from "@/app/Context/SettingsContext";
 
 export default function ProductsSection({product}) {
     const {settings} = useSettings();
-
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
 
@@ -15,45 +14,17 @@ export default function ProductsSection({product}) {
     const recruitmentImage = "/assets/img/products/Asset.jpeg";
     const attendXImage = "/assets/img/products/Hospital.jpeg";
 
-    const products = [
-        {
-            id: 'attendx',
-            title: 'AttendX',
-            category: 'Identity & Access Management',
-            description: 'The Auxinzio AttendX is a powerful, enterprise-ready HRMS platform engineered to deliver accurate, automated, and transparent workforce attendance management. It enables organizations to efficiently track employee presence, manage complex shift structures, and align attendance data seamlessly with payroll and compliance frameworks.',
-            image: attendXImage,
-            accentColor: 'text-emerald-500 bg-emerald-50'
-        },
-        {
-            id: 'payroll',
-            title: 'PayRoll Pro',
-            category: 'Payroll & Compliance',
-            description: 'Streamline your payroll processes with automated tax calculations, direct deposits, and real-time compliance checks ensuring your workforce is paid accurately and on time. Eliminate errors and reduce administrative overhead with our intelligent processing engine.',
-            image: payrollImage,
-            accentColor: 'text-blue-500 bg-blue-50'
-        },
-        {
-            id: 'talent',
-            title: 'TalentFlow',
-            category: 'Recruitment & Onboarding',
-            description: 'Accelerate your hiring pipeline with AI-driven candidate sourcing, intuitive tracking systems, and seamless onboarding workflows designed for modern HR teams. Build a stronger workforce faster with data-driven recruitment insights.',
-            image: recruitmentImage,
-            accentColor: 'text-purple-500 bg-purple-50'
-        }
-    ];
-    
+    const nextSlide = () => {
+        setDirection(1);
+        setCurrentIndex((prev) => (prev + 1) % product?.length);
+    };
 
-    // const nextSlide = () => {
-    //     setDirection(1);
-    //     setCurrentIndex((prev) => (prev + 1) % product.length);
-    // };
+    const prevSlide = () => {
+        setDirection(-1);
+        setCurrentIndex((prev) => (prev - 1 + product?.length) % product?.length);
+    };
 
-    // const prevSlide = () => {
-    //     setDirection(-1);
-    //     setCurrentIndex((prev) => (prev - 1 + product.length) % product.length);
-    // };
-
-    // const currentProduct = product[currentIndex];
+    const currentProduct = product[currentIndex];
 
     const variants = {
         enter: (number) => ({
@@ -151,7 +122,7 @@ export default function ProductsSection({product}) {
                         </button>
                         
                         <div className="flex gap-2">
-                            {products.map((_, idx) => (
+                            {product?.map((_, idx) => (
                             <div 
                                 key={idx} 
                                 className={cn(
