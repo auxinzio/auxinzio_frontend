@@ -1,12 +1,25 @@
 "use client";
-
 import Link from "next/link";
 import { Twitter, Linkedin, Instagram, Facebook } from "lucide-react";
 import { useSettings } from "@/app/Context/SettingsContext";
-
+import { useState, useEffect } from "react";
 
 export function Footer() {
-  const {settings} = useSettings();
+  const { settings } = useSettings();
+  const [service, setService] = useState("");
+  const [product, setProduct] = useState("");
+
+  useEffect(() => {
+    fetch(`${settings.backend_api_url}/api/services/servicesList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+      .then(res => res.json())
+      .then(data => setService(data))
+  }, [settings]);
+
+  useEffect(() => {
+    fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+      .then(res => res.json())
+      .then(data => setProduct(data))
+  }, [settings]);
 
   return (
     <footer className="bg-muted/30 border-t border-border">
@@ -16,9 +29,9 @@ export function Footer() {
           <div className="space-y-4 col-span-2">
             <Link href="/" className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src="/assets/img/logo.png" 
-                alt="Auxinz Logo" 
+              <img
+                src="/assets/img/logo.png"
+                alt="Auxinz Logo"
                 className="h-8 w-auto object-contain brightness-100 hover:opacity-100 transition-opacity"
               />
             </Link>
@@ -40,38 +53,39 @@ export function Footer() {
               </Link>
             </div>
           </div>
-
-
           <div>
             <h3 className="font-semibold mb-6">Company</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Careers</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
+              <li><Link href="/about" className="text-sm text-muted-foreground hover:text-primary transition-colors">About Us</Link></li>
+              <li><Link href="/careers" className="text-sm text-muted-foreground hover:text-primary transition-colors">Careers</Link></li>
+              <li><Link href="/contact" className="text-sm text-muted-foreground hover:text-primary transition-colors">Contact</Link></li>
             </ul>
           </div>
-
           {/* Links */}
           <div>
             <h3 className="font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Web Development</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Mobile Apps</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">UI/UX Design</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Digital Marketing</Link></li>
+              {service?.data?.serviceList?.map((item) => (
+                <li key={item.id}>
+                  <Link href={`/services/${item.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-
           <div>
-            <h3 className="font-semibold mb-6">Services</h3>
+            <h3 className="font-semibold mb-6">Products</h3>
             <ul className="space-y-3">
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Web Development</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Mobile Apps</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">UI/UX Design</Link></li>
-              <li><Link href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors">Digital Marketing</Link></li>
+              {product?.data?.productsList?.map((item) => (
+                <li key={item.id}>
+                  <Link href={`/products/${item.slug}`} className="text-sm text-muted-foreground hover:text-primary transition-colors">
+                    {item.product_name}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-
           <div>
             <h3 className="font-semibold mb-6">Legal</h3>
             <ul className="space-y-3">
@@ -81,7 +95,6 @@ export function Footer() {
             </ul>
           </div>
         </div>
-        
         <div className="border-t border-border mt-16 pt-8 text-center text-sm text-muted-foreground">
           © {new Date().getFullYear()} Auxinz. All rights reserved.
         </div>
