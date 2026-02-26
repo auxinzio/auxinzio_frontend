@@ -1,146 +1,215 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, BarChart3, Code, Cpu, Globe, Layout, ShieldCheck } from "lucide-react";
-import { Button } from "@/components/ui/Button";
-import { useState, useEffect } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { 
+  ArrowRight, 
+  BarChart3, 
+  Code, 
+  Cpu, 
+  Globe, 
+  Layout, 
+  ShieldCheck,
+  Zap,
+  Sparkles,
+  Command,
+  Layers,
+  Activity,
+  ChevronRight
+} from "lucide-react";
+import { useState, useEffect, useRef } from "react";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Image from "next/image";
 
 export default function Services() {
-
   const [service, setService] = useState("");
-  const {settings} = useSettings();
+  const { settings } = useSettings();
   const serviceData = service?.data?.serviceList || [];
+  const containerRef = useRef(null);
 
+  useEffect(() => {
+    if (settings?.backend_api_url) {
+      fetch(`${settings.backend_api_url}/api/services/servicesList`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({})
+      })
+      .then(res => res.json())
+      .then(data => setService(data))
+      .catch(err => console.error("Error fetching services:", err));
+    }
+  }, [settings]);
 
-  useEffect(()=>{
-      fetch(`${settings.backend_api_url}/api/services/servicesList`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({})})
-      .then(res=>res.json())
-      .then(data=>setService(data))
-    },[settings]);
-
-  const services = [
+  // Fallback services if API is empty for design demonstration
+  const displayServices = serviceData.length > 0 ? serviceData : [
     {
-      title: "Web & Mobile App Development",
-      description: "Custom, high-performance websites and mobile applications tailored to your needs. We build scalable solutions that grow with your business.",
-      icon: <Globe className="w-12 h-12 text-primary" />,
-      features: ["Custom Web Apps", "iOS & Android Development", "PWA (Progressive Web Apps)", "E-commerce Solutions"],
+      title: "Digital Synthesis",
+      description: { short_description: "We combine aesthetic excellence with technical precision to create world-class digital ecosystems." },
+      features: ["Experience Design", "Identity Systems", "Digital Strategy"],
+      main_logo: ""
     },
     {
-      title: "Custom Software Development",
-      description: "Scalable software solutions designed to streamline your business operations. We turn complex requirements into intuitive software.",
-      icon: <Code className="w-12 h-12 text-primary" />,
-      features: ["Enterprise Software", "API Integration", "Cloud Solutions", "Legacy System Modernization"],
-    },
-    {
-      title: "Cybersecurity Solutions",
-      description: "Comprehensive security strategies to protect your digital assets and data. Safeguard your business against evolving cyber threats.",
-      icon: <ShieldCheck className="w-12 h-12 text-primary" />,
-      features: ["Security Audits", "Penetration Testing", "Compliance Management", "Incident Response"],
-    },
-    {
-      title: "IT Consulting & Support",
-      description: "Expert guidance and support to optimize your IT infrastructure and strategy. Leverage our expertise to make informed technology decisions.",
-      icon: <Cpu className="w-12 h-12 text-primary" />,
-      features: ["IT Strategy", "Infrastructure Planning", "Cloud Migration", "24/7 Support"],
-    },
-    {
-      title: "UI/UX Design",
-      description: "User-centric designs that ensure engaging and intuitive digital experiences. We create interfaces that users love to interact with.",
-      icon: <Layout className="w-12 h-12 text-primary" />,
-      features: ["User Research", "Wireframing & Prototyping", "Visual Design", "Usability Testing"],
-    },
-    {
-      title: "Marketing & Growth",
-      description: "Data-driven marketing strategies to increase your reach and drive growth. Reach your target audience effectively.",
-      icon: <BarChart3 className="w-12 h-12 text-primary" />,
-      features: ["SEO & SEM", "Social Media Marketing", "Content Strategy", "Analytics & Reporting"],
-    },
+      title: "Scalable Architecture",
+      description: { short_description: "Building the foundation of tomorrow's web with robust, high-performance infrastructure." },
+      features: ["Cloud Systems", "Microservices", "Data Intelligence"],
+      main_logo: ""
+    }
   ];
 
   return (
-    <div className="flex flex-col min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="py-24 bg-primary/5">
-        <div className="container px-4 md:px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-3xl mx-auto space-y-6"
-          >
-            <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-              Our <span className="text-primary">Services</span>
-            </h1>
-            <p className="text-xl text-muted-foreground">
-              Comprehensive digital solutions tailored to your unique business needs. From development to design, we have you covered.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Services List */}
-      <section className="py-24">
-        <div className="container px-4 md:px-6 space-y-24">
-          {serviceData.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6 }}
-              className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-12 items-center`}
+    <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden" ref={containerRef}>
+      
+      {/* --- HERO: THE ARCHITECTURAL BLUEPRINT --- */}
+      <section className="relative pt-40 pb-24 lg:pt-56 lg:pb-32 px-6">
+        <div className="mx-auto max-w-[1600px] relative">
+          <div className="grid lg:grid-cols-12 gap-12 items-end">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              className="lg:col-span-8"
             >
-              <div className="flex-1 space-y-6">
-                {/* <div className="p-4 rounded-xl bg-primary/10 w-fit text-primary mb-4">
-                  {service.icon}
-                </div> */}
-                <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{service.title}</h2>
-                <p className="text-muted-foreground text-lg leading-relaxed">
-                  {service.description?.short_description}
-                </p>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-muted-foreground">
-                      <div className="w-2 h-2 rounded-full bg-primary" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="gap-2 mt-4" size="lg">
-                  Learn More <ArrowRight className="w-4 h-4" />
-                </Button>
+              <div className="flex items-center gap-4 mb-8">
+                 <div className="w-12 h-px bg-[#14b8a6]" />
+                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Engineering Excellence</span>
               </div>
-              <div className="flex-1 w-full relative h-[300px] md:h-[400px] bg-muted/40 rounded-3xl border border-border flex items-center justify-center p-8 overflow-hidden group">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="relative text-muted-foreground/20 group-hover:text-primary/20 transition-colors duration-500">
-                      {/* Abstract placeholder visual */}
-                      <Image 
-                          src={`${settings.backend_api_url}/${service.main_logo}`} 
-                          alt={service.title} 
-                          width={500}
-                          height={500}
-                          className="group-hover:scale-110 transition-all duration-300"
-                      />
-                      {/* <service.icon.type size={180} strokeWidth={0.5} /> */}
-                  </div>
-              </div>
+              <h1 className="text-7xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
+                Our <span className="italic font-medium text-[#14b8a6]">Capabilities</span><br/>
+                <span className="font-medium text-gray-200">Explained.</span>
+              </h1>
             </motion.div>
-          ))}
+            
+            <motion.div 
+               initial={{ opacity: 0, scale: 0.9 }}
+               animate={{ opacity: 1, scale: 1 }}
+               transition={{ duration: 1, delay: 0.3 }}
+               className="lg:col-span-4 pb-4"
+            >
+               <p className="text-xl text-gray-500 leading-relaxed border-l-2 border-gray-100 pl-8 max-w-sm">
+                 {`We don't just build features. We synthesize digital experiences that resonate with human logic and emotion.`}
+               </p>
+            </motion.div>
+          </div>
+        </div>
+        
+        {/* Background Decorative Element */}
+        <div className="absolute right-0 top-0 w-1/3 h-full bg-gray-50/50 -z-10 blur-3xl opacity-50" />
+      </section>
+
+      {/* --- SERVICES: THE ARCHITECTURAL LEDGER --- */}
+      <section className="relative py-24 px-6 overflow-hidden">
+        {/* Central Vertical Connector */}
+        <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 hidden lg:block" />
+        
+        <div className="mx-auto max-w-[1600px] relative">
+          <div className="space-y-32 lg:space-y-64">
+            {displayServices.map((srv, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-32`}
+              >
+                {/* Visual Block */}
+                <div className="lg:w-1/2 relative">
+                   <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group">
+                      {srv.main_logo ? (
+                        <Image 
+                           src={`${settings.backend_api_url}/${srv.main_logo}`} 
+                           alt={srv.title} 
+                           fill
+                           className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                           <Layers className="w-32 h-32 text-gray-200" strokeWidth={0.5} />
+                        </div>
+                      )}
+                      
+                      {/* Floating Meta Tag */}
+                      <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
+                         <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">Service Block {idx + 1}</p>
+                      </div>
+                   </div>
+                   
+                   {/* Architectural Dot on Connector */}
+                   <div className={`absolute top-1/2 ${idx % 2 === 0 ? '-right-[84px]' : '-left-[84px]'} w-4 h-4 rounded-full bg-white border-2 border-[#14b8a6] z-10 hidden lg:block`} />
+                </div>
+
+                {/* Content Block */}
+                <div className="lg:w-1/2 py-8">
+                   <span className="text-6xl lg:text-8xl font-black text-gray-50 mb-8 block select-none">0{idx + 1}</span>
+                   <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
+                      {srv.title.split(' ').map((word, i) => (
+                         <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b8a6]"}>
+                            {word}{' '}
+                         </span>
+                      ))}
+                   </h2>
+                   <p className="text-xl text-gray-500 leading-relaxed mb-12 max-w-lg">
+                      {srv.description?.short_description || srv.description}
+                   </p>
+                   
+                   <div className="grid sm:grid-cols-2 gap-6 mb-12">
+                      {srv.features?.map((feature, fidx) => (
+                         <div key={fidx} className="flex items-center gap-3">
+                            <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
+                            <span className="text-sm font-bold text-gray-800 uppercase tracking-tight">{feature}</span>
+                         </div>
+                      ))}
+                   </div>
+                   
+                   <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
+                      <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Inquire Details</span>
+                      <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                         <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      </div>
+                   </button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 bg-muted/30">
-        <div className="container px-4 text-center max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold mb-6">Need a custom solution?</h2>
-          <p className="text-muted-foreground mb-8 text-lg">
-            We understand that every business is unique. Contact us today to discuss your specific requirements.
-          </p>
-          <Button size="lg" className="px-8">Get in Touch</Button>
-        </div>
+      {/* --- CTA: THE SYNTHESIS INVITATION --- */}
+      <section className="py-32 px-6">
+         <div className="mx-auto max-w-[1200px]">
+            <motion.div 
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="bg-gray-900 rounded-[4rem] p-12 lg:p-24 text-center relative overflow-hidden group shadow-2xl"
+            >
+               {/* Background Glow */}
+               <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#14b8a6] rounded-full blur-[120px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
+               <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
+
+               <div className="relative z-10">
+                  <p className="text-[10px] tracking-[0.5em] uppercase text-[#14b8a6] font-bold mb-10">Next Evolution</p>
+                  <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
+                     Ready to <span className="italic">synthesize</span><br/>your next venture?
+                  </h2>
+                  <button className="group relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
+                     <span className="relative z-10 flex items-center gap-4">
+                        Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                     </span>
+                     <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
+                     <span className="absolute inset-0 flex items-center justify-center text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-bold">
+                        {`Let's Begin`}
+                     </span>
+                  </button>
+               </div>
+            </motion.div>
+         </div>
       </section>
+
+      {/* --- FOOTER DIVIDER --- */}
+      <div className="py-24 flex flex-col items-center">
+         <div className="w-px h-32 bg-gray-100 mb-8" />
+         <div className="w-2 h-2 rounded-full border-2 border-[#14b8a6]" />
+      </div>
+
     </div>
   );
 }

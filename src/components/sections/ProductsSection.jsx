@@ -15,16 +15,20 @@ export default function ProductsSection({product}) {
     const attendXImage = "/assets/img/products/Hospital.jpeg";
 
     const nextSlide = () => {
+        if (!product?.length) return;
         setDirection(1);
-        setCurrentIndex((prev) => (prev + 1) % product?.length);
+        setCurrentIndex((prev) => (prev + 1) % product.length);
     };
 
     const prevSlide = () => {
+        if (!product?.length) return;
         setDirection(-1);
-        setCurrentIndex((prev) => (prev - 1 + product?.length) % product?.length);
+        setCurrentIndex((prev) => (prev - 1 + product.length) % product.length);
     };
 
-    const currentProduct = product[currentIndex];
+    const currentProduct = product?.[currentIndex];
+
+    console.log(product);
 
     const variants = {
         enter: (number) => ({
@@ -70,13 +74,13 @@ export default function ProductsSection({product}) {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
                                 >
-                                {currentProduct.product_name}
+                                {currentProduct?.product_name}
                                 </motion.h1>
                                 <span className={cn(
                                 "px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase",
-                                currentProduct.accentColor
+                                currentProduct?.accentColor
                                 )}>
-                                {currentProduct.category_name}
+                                {currentProduct?.category_name}
                                 </span>
                             </div>
 
@@ -86,7 +90,7 @@ export default function ProductsSection({product}) {
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.2 }}
                             >
-                                {currentProduct.description}
+                                {currentProduct?.description}
                             </motion.p>
                             </div>
 
@@ -166,13 +170,13 @@ export default function ProductsSection({product}) {
                                 <div className="w-3 h-3 rounded-full bg-green-400/80" />
                                 </div>
                                 <div className="px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full text-xs font-semibold text-slate-500 shadow-sm">
-                                {currentProduct.product_name} Dashboard
+                                {currentProduct?.product_name} Dashboard
                                 </div>
                             </div>
                             
                             <Image 
-                                src={`${settings.backend_api_url}/${currentProduct.image}`} 
-                                alt={`${currentProduct.product_name} Illustration`} 
+                                src={`${settings.backend_api_url}/${currentProduct?.image}`} 
+                                alt={`${currentProduct?.product_name} Illustration`} 
                                 width={1000}
                                 height={1000}
                                 className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"

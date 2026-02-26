@@ -162,7 +162,7 @@ export default function Home() {
       <ServiceSection service={service}/>
       
       {/*Products Section*/}
-      {/* <ProductsSection product={product?.data?.productsList}/> */}
+      <ProductsSection product={product?.data?.productsList}/>
 
 
       {/* CTA Section */}
