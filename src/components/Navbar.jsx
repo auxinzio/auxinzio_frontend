@@ -52,12 +52,12 @@ export function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-sm font-medium hover:text-green-500 transition-colors text-muted-foreground"
+              className="text-md font-light hover:text-green-500 transition-colors text-muted-foreground"
             >
               {link.name}
             </Link>
           ))}
-          <Button variant="gradi" size="md" onClick={() => setIsModalOpen(true)} className="font-bold text-base">Get Demo</Button>
+          <Button variant="gradi" size="md" onClick={() => setIsModalOpen(true)} className="font-light text-base">Get Demo</Button>
         </div>
 
         {/* Mobile Toggle */}
@@ -77,13 +77,13 @@ export function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
-                className="text-lg font-medium py-2 border-b border-border/50 last:border-0"
+                className="text-lg font-light py-2 border-b border-border/50 last:border-0"
                 onClick={() => setIsOpen(false)}
               >
                 {link.name}
               </Link>
             ))}
-            <Button className="w-full mt-4 text-lg font-medium" variant="gradi" size="md" onClick={() => setIsOpen(false)}>
+            <Button className="w-full mt-4 text-lg font-light" variant="gradi" size="md" onClick={() => setIsOpen(false)}>
               Get Demo
             </Button>
           </div>

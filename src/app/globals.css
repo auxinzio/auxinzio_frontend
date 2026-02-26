@@ -84,40 +84,6 @@
   --radius: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: 224 71% 4%;
-    --foreground: 210 20% 98%;
-    
-    --card: 224 71% 7%;
-    --card-foreground: 210 20% 98%;
-    
-    --popover: 224 71% 4%;
-    --popover-foreground: 210 20% 98%;
-    
-    /* Primary mapped to Cyan 500 (#06b6d4 -> 189 94% 43%) */
-    --primary: 189 94% 43%;
-    --primary-foreground: 224 71% 4%;
-    
-    /* Secondary dark mode */
-    --secondary: 189 30% 15%; 
-    --secondary-foreground: 210 20% 98%;
-    
-    --muted: 189 30% 15%;
-    --muted-foreground: 215 20% 65%;
-    
-    --accent: 189 30% 15%;
-    --accent-foreground: 210 20% 98%;
-    
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    
-    --border: 189 30% 15%;
-    --input: 189 30% 15%;
-    --ring: 189 94% 43%;
-  }
-}
-
 @layer base {
   * {
     @apply border-border;
@@ -162,7 +128,7 @@
   display: flex;
   flex-shrink: 0;
   align-items: center;
-  animation: caro 15s linear infinite;
+  animation: caro 35s linear infinite;
 }
 
 .clients .carousel:hover > div {

@@ -334,9 +334,6 @@ export default function AboutSection2() {
           </div>
         </div>
       </section>
-
-      {/* Bottom spacer */}
-      <div className="h-20 bg-gray-50"></div>
     </div>
   );
 }

@@ -3,8 +3,23 @@
 import { motion } from "framer-motion";
 import { ArrowRight, BarChart3, Code, Cpu, Globe, Layout, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { useState, useEffect } from "react";
+import { useSettings } from "@/app/Context/SettingsContext";
+import Image from "next/image";
 
 export default function Services() {
+
+  const [service, setService] = useState("");
+  const {settings} = useSettings();
+  const serviceData = service?.data?.serviceList || [];
+
+
+  useEffect(()=>{
+      fetch(`${settings.backend_api_url}/api/services/servicesList`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({})})
+      .then(res=>res.json())
+      .then(data=>setService(data))
+    },[settings]);
+
   const services = [
     {
       title: "Web & Mobile App Development",
@@ -68,7 +83,7 @@ export default function Services() {
       {/* Services List */}
       <section className="py-24">
         <div className="container px-4 md:px-6 space-y-24">
-          {services.map((service, index) => (
+          {serviceData.map((service, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
@@ -78,12 +93,12 @@ export default function Services() {
               className={`flex flex-col ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"} gap-12 items-center`}
             >
               <div className="flex-1 space-y-6">
-                <div className="p-4 rounded-xl bg-primary/10 w-fit text-primary mb-4">
+                {/* <div className="p-4 rounded-xl bg-primary/10 w-fit text-primary mb-4">
                   {service.icon}
-                </div>
+                </div> */}
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">{service.title}</h2>
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  {service.description}
+                  {service.description?.short_description}
                 </p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
                   {service.features.map((feature, idx) => (
@@ -101,7 +116,14 @@ export default function Services() {
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                   <div className="relative text-muted-foreground/20 group-hover:text-primary/20 transition-colors duration-500">
                       {/* Abstract placeholder visual */}
-                      <service.icon.type size={180} strokeWidth={0.5} />
+                      <Image 
+                          src={`${settings.backend_api_url}/${service.main_logo}`} 
+                          alt={service.title} 
+                          width={500}
+                          height={500}
+                          className="group-hover:scale-110 transition-all duration-300"
+                      />
+                      {/* <service.icon.type size={180} strokeWidth={0.5} /> */}
                   </div>
               </div>
             </motion.div>

@@ -374,7 +374,8 @@ export default function Careers() {
       </section>
 
       {/* Open Positions - List Structure */}
-      <section ref={positionsRef} className="py-24 bg-gray-50">
+      {openings.length>0 && (
+        <section ref={positionsRef} className="py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
@@ -488,8 +489,8 @@ export default function Careers() {
             ))}
           </motion.div>
         </div>
-      </section>
-
+        </section>
+      )}
     </div>
   );
 }

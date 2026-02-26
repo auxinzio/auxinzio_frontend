@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import Image from 'next/image';
 import { useState } from 'react';
+import { useSettings } from "@/app/Context/SettingsContext";
 
 export default function ProductsSection({product}) {
+    const {settings} = useSettings();
 
     const [currentIndex, setCurrentIndex] = useState(0);
     const [direction, setDirection] = useState(0);
@@ -41,17 +43,17 @@ export default function ProductsSection({product}) {
     ];
     
 
-    const nextSlide = () => {
-        setDirection(1);
-        setCurrentIndex((prev) => (prev + 1) % products.length);
-    };
+    // const nextSlide = () => {
+    //     setDirection(1);
+    //     setCurrentIndex((prev) => (prev + 1) % product.length);
+    // };
 
-    const prevSlide = () => {
-        setDirection(-1);
-        setCurrentIndex((prev) => (prev - 1 + products.length) % products.length);
-    };
+    // const prevSlide = () => {
+    //     setDirection(-1);
+    //     setCurrentIndex((prev) => (prev - 1 + product.length) % product.length);
+    // };
 
-    const currentProduct = products[currentIndex];
+    // const currentProduct = product[currentIndex];
 
     const variants = {
         enter: (number) => ({
@@ -71,6 +73,7 @@ export default function ProductsSection({product}) {
 
     return (
         <>
+        {product?.length > 0 && (
             <section className="relative">
                 <div className="flex-1 flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 relative">
                     <div className="max-w-7xl w-full mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -96,13 +99,13 @@ export default function ProductsSection({product}) {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.1 }}
                                 >
-                                {currentProduct.title}
+                                {currentProduct.product_name}
                                 </motion.h1>
                                 <span className={cn(
                                 "px-4 py-1.5 rounded-full text-xs font-bold tracking-wide uppercase",
                                 currentProduct.accentColor
                                 )}>
-                                {currentProduct.category}
+                                {currentProduct.category_name}
                                 </span>
                             </div>
 
@@ -192,13 +195,13 @@ export default function ProductsSection({product}) {
                                 <div className="w-3 h-3 rounded-full bg-green-400/80" />
                                 </div>
                                 <div className="px-3 py-1 bg-white/80 backdrop-blur-sm rounded-full text-xs font-semibold text-slate-500 shadow-sm">
-                                {currentProduct.title} Dashboard
+                                {currentProduct.product_name} Dashboard
                                 </div>
                             </div>
                             
                             <Image 
-                                src={currentProduct.image} 
-                                alt={`${currentProduct.title} Illustration`} 
+                                src={`${settings.backend_api_url}/${currentProduct.image}`} 
+                                alt={`${currentProduct.product_name} Illustration`} 
                                 width={1000}
                                 height={1000}
                                 className="w-full h-full object-cover object-center transform group-hover:scale-105 transition-transform duration-700"
@@ -235,6 +238,8 @@ export default function ProductsSection({product}) {
                 {/* <div className="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-b from-blue-50/50 to-transparent -z-0 pointer-events-none" />
                 <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-emerald-50/30 to-transparent -z-0 pointer-events-none rounded-full blur-3xl" />        */}
             </section>     
+                )
+            }
         </>
     );
 }

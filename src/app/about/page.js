@@ -2,9 +2,8 @@
 
 import { motion } from "framer-motion";
 import { BookOpen, Code, Cpu, Leaf, ShieldCheck, Zap } from "lucide-react";
-import { AboutSection } from "@/components/sections/AboutSection";
 import Commitments from "@/components/sections/Commitments";
-import { StatsOrganic } from "@/components/sections/StatsOrganic";
+import StatsOrganic2 from "@/components/sections/StatsOrganic2";
 import CTASection from "@/components/sections/CTASection";
 import Teams from "@/components/sections/Teams";
 import {teams} from "@/data/teams.json";
@@ -27,7 +26,7 @@ export default function About() {
       <AboutSection2 />
 
       {/* Stats Section */}
-      <StatsOrganic/>
+      <StatsOrganic2/>
 
       {/* CTA Section */}
       <section>

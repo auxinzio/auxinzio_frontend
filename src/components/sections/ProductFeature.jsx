@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
 import { ArrowRight, Zap, Shield, Cpu, Cloud, Database, LineChart } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const products = [
   {
@@ -131,7 +132,8 @@ export function ProductFeature() {
               </div>
 
               {/* CTA */}
-              <motion.button
+              <Link href={`/products/${product.slug}`}>
+                <motion.button
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7 }}
@@ -142,6 +144,7 @@ export function ProductFeature() {
                 View Details
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
+              </Link>
             </div>
 
             {/* Right side - Mockup */}

@@ -9,6 +9,7 @@ export default function Teams({teams, data}) {
 
     return(
         <>
+          {teamData && (
             <section id="teams" className="py-24 bg-background ">
                 <div className="w-[75%] mx-auto px-4 md:px-6">
                     <div className="text-center mb-12">
@@ -31,6 +32,8 @@ export default function Teams({teams, data}) {
                     </div>
                 </div>
             </section>
+          )}
+            
         </>
     );
 }

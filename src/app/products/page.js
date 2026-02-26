@@ -3,8 +3,20 @@ import { ProductExperience } from '@/components/sections/ProductExperience';
 import { ProductFeature } from '@/components/sections/ProductFeature';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
+import { useSettings } from '@/app/Context/SettingsContext';
+import { useState,useEffect } from 'react';
 
 export default function Products() {
+    const {settings} = useSettings();
+    const [product,setProduct] = useState([]);
+
+      useEffect(()=>{
+        fetch(`${settings.backend_api_url}/api/products/productsList`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({})})
+        .then(res=>res.json())
+        .then(data=>setProduct(data))
+      },[settings]);
+    
+
     return(
         <>
            {/* Product Hero Section */}
