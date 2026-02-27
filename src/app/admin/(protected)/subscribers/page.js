@@ -25,8 +25,6 @@ export default function SubscribersPage() {
             limit: ITEMS_PER_PAGE
           });
           
-          // console.log(response.data);
-
           // Update state with backend response
           if (response && response.data) {
             setData({

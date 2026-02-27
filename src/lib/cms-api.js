@@ -11,10 +11,21 @@ async function handleResponse(response) {
     throw new Error('Unauthorized');
   }
 
-  const data = await response.json();
+  const text = await response.text();
+  let data;
+  
+  try {
+    data = text ? JSON.parse(text) : {};
+  } catch (err) {
+    console.error('Failed to parse response as JSON:', text);
+    if (!response.ok) {
+      throw new Error(`Server returned an error (${response.status}): ${text.slice(0, 100) || response.statusText}`);
+    }
+    throw new Error(`Invalid JSON response from server: ${text.slice(0, 100)}`);
+  }
 
   if (!response.ok) {
-    const error = (data && data.message) || response.statusText;
+    const error = (data && data.message) || response.statusText || `Error ${response.status}`;
     throw new Error(error);
   }
 
@@ -38,10 +49,12 @@ export const cmsApi = {
 
   post: async (endpoint, body) => {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
+    const isFormData = body instanceof FormData;
+
     const response = await fetch(`/api/cms/${path}`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
+      headers: isFormData ? {} : { 'Content-Type': 'application/json' },
+      body: isFormData ? body : JSON.stringify(body),
     });
     return handleResponse(response);
   },

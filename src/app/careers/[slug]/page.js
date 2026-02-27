@@ -130,7 +130,6 @@ export default function JobDetailsPage() {
         const result = await response.json();
 
         const careerData = result.data?.careers;
-        console.log(careerData);
         setCareer(careerData);
       } catch (err) {
         console.error("Fetch error:", err);
