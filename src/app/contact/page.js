@@ -1,11 +1,11 @@
 'use client';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Clock, 
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
   Send,
   Twitter,
   Linkedin,
@@ -20,8 +20,10 @@ import {
   Link2
 } from 'lucide-react';
 import Image from 'next/image';
+import { useSettings } from "@/app/Context/SettingsContext";
 
 export default function Contact() {
+  const { settings } = useSettings();
   const [formState, setFormState] = useState({
     fullName: '',
     email: '',
@@ -43,108 +45,109 @@ export default function Contact() {
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
+  console.log(settings);
 
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
-      
+
       {/* --- HERO: MINIMALIST OVERTURE --- */}
       <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px] relative z-10">
-            <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
             className="flex flex-col items-center text-center"
           >
             <div className="flex items-center gap-3 mb-8">
-               <div className="w-2 h-2 rounded-full bg-[#14b8a6] animate-pulse" />
-               <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Syncing with our team (24/7)</span>
-              </div>
+              <div className="w-2 h-2 rounded-full bg-[#14b8a6] animate-pulse" />
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Syncing with our team (24/7)</span>
+            </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Get in <span className="italic font-normal text-[#14b8a6]">Touch.</span>
-              </h1>
+            </h1>
             <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
               {`Synthesize your vision with our technical expertise. We're ready to explore new digital frontiers together.`}
             </p>
-            </motion.div>
+          </motion.div>
         </div>
 
         {/* Background Decorative Text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none">
-           <p className="text-[20vw] font-black tracking-tighter leading-none text-center">SYNTHESIS</p>
+          <p className="text-[20vw] font-black tracking-tighter leading-none text-center">SYNTHESIS</p>
         </div>
       </section>
 
       {/* --- CHANNELS: HORIZONTAL CONNECTIVITY BAR --- */}
       <section className="py-6 border-y border-gray-100 bg-gray-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
-           <div className="flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-8">
-              {[
-                { label: 'Electronic Mail', value: 'hello@auxinz.io', icon: Mail },
-                { label: 'Voice Communication', value: '+1 (555) 000-0000', icon: Phone },
-                { label: 'Digital Network', value: '@auxinzio', icon: Globe },
-                { label: 'Current Location', value: 'Chennai, India', icon: MapPin }
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 group cursor-pointer">
-                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all">
-                    <item.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
+          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-8">
+            {[
+              { label: 'Electronic Mail', value: settings?.email, icon: Mail },
+              { label: 'Voice Communication', value: settings?.phone, icon: Phone },
+              { label: 'Digital Network', value: settings?.social_links?.twitter, icon: Globe },
+              { label: 'Current Location', value: settings?.address, icon: MapPin }
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 group cursor-pointer">
+                <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all">
+                  <item.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
                 </div>
                 <div>
-                    <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">{item.label}</p>
-                    <p className="text-sm font-bold text-gray-900 group-hover:text-[#14b8a6] transition-colors">{item.value}</p>
-                  </div>
+                  <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">{item.label}</p>
+                  <p className="text-sm font-bold text-gray-900 group-hover:text-[#14b8a6] transition-colors">{item.value}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
+        </div>
       </section>
 
       {/* --- MAIN INQUIRY: MODERN FORM EXPERIENCE --- */}
       <section className="py-32 px-6 bg-gray-50/30">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-12 gap-24 items-start">
-            
+
             {/* Left: Heading & Process */}
             <div className="lg:col-span-4 lg:sticky lg:top-32">
-               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
-                Start our <br/>
+              <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
+                Start our <br />
                 <span className="italic font-medium text-[#14b8a6]">Inquiry Protocol.</span>
-               </h2>
-               
-               <p className="text-gray-500 mb-16 leading-relaxed">
-                Provide the essential details of your project or inquiry. Our strategy team will review and respond with potential next steps.
-               </p>
+              </h2>
 
-               <div className="space-y-12">
-                  {[
-                    { title: 'Project Discovery', desc: 'Initial review of requirements and scope alignment.' },
-                    { title: 'Technical Audit', desc: 'Detailed breakdown of necessary stacks and solutions.' },
-                    { title: 'Strategic Proposal', desc: 'Comprehensive roadmap and delivery timeline.' }
-                  ].map((step, i) => (
-                    <div key={i} className="flex gap-6">
-                       <span className="text-[10px] font-bold text-[#14b8a6] w-6 h-6 rounded-full bg-[#14b8a6]/10 flex items-center justify-center flex-shrink-0">
-                        {i + 1}
-                       </span>
-                       <div>
-                         <h4 className="text-sm font-bold text-gray-900 mb-1 uppercase tracking-tight">{step.title}</h4>
-                         <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
-                       </div>
+              <p className="text-gray-500 mb-16 leading-relaxed">
+                Provide the essential details of your project or inquiry. Our strategy team will review and respond with potential next steps.
+              </p>
+
+              <div className="space-y-12">
+                {[
+                  { title: 'Project Discovery', desc: 'Initial review of requirements and scope alignment.' },
+                  { title: 'Technical Audit', desc: 'Detailed breakdown of necessary stacks and solutions.' },
+                  { title: 'Strategic Proposal', desc: 'Comprehensive roadmap and delivery timeline.' }
+                ].map((step, i) => (
+                  <div key={i} className="flex gap-6">
+                    <span className="text-[10px] font-bold text-[#14b8a6] w-6 h-6 rounded-full bg-[#14b8a6]/10 flex items-center justify-center flex-shrink-0">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-900 mb-1 uppercase tracking-tight">{step.title}</h4>
+                      <p className="text-sm text-gray-400 leading-relaxed">{step.desc}</p>
                     </div>
-                  ))}
-               </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Right: The Form Card (Preserving logic as requested) */}
             <div className="lg:col-span-8">
-              <motion.div 
-                 initial={{ opacity: 0, y: 30 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 className="bg-white border border-gray-100 rounded-[3rem] p-8 lg:p-20 shadow-2xl relative overflow-hidden"
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white border border-gray-100 rounded-[3rem] p-8 lg:p-20 shadow-2xl relative overflow-hidden"
               >
                 {/* Visual Accent */}
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gray-50/50 rounded-bl-[4rem] -mr-8 -mt-8 flex items-center justify-center">
-                   <Send className="w-8 h-8 text-gray-200" />
+                  <Send className="w-8 h-8 text-gray-200" />
                 </div>
 
                 {!isSubmitted ? (
@@ -218,11 +221,11 @@ export default function Contact() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="py-24 flex flex-col items-center justify-center text-center"
                   >
-                     <div className="w-24 h-24 rounded-full bg-[#14b8a6]/10 flex items-center justify-center mb-10">
-                       <CheckCircle2 className="w-12 h-12 text-[#14b8a6]" />
-                     </div>
-                     <h3 className="text-4xl font-light text-gray-900 mb-6">Inquiry Dispatched.</h3>
-                     <p className="text-gray-400 max-w-sm text-lg">One of our specialists will reach out to your provided coordinates within 24 hours.</p>
+                    <div className="w-24 h-24 rounded-full bg-[#14b8a6]/10 flex items-center justify-center mb-10">
+                      <CheckCircle2 className="w-12 h-12 text-[#14b8a6]" />
+                    </div>
+                    <h3 className="text-4xl font-light text-gray-900 mb-6">Inquiry Dispatched.</h3>
+                    <p className="text-gray-400 max-w-sm text-lg">One of our specialists will reach out to your provided coordinates within 24 hours.</p>
                   </motion.div>
                 )}
               </motion.div>
@@ -242,18 +245,18 @@ export default function Contact() {
             allowFullScreen
             loading="lazy"
           ></iframe>
-          
+
           {/* Floating Badge on Map */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-             <div className="w-8 h-8 bg-[#14b8a6] rounded-full animate-ping opacity-20" />
-             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b8a6] rounded-full border-2 border-white shadow-xl" />
+            <div className="w-8 h-8 bg-[#14b8a6] rounded-full animate-ping opacity-20" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b8a6] rounded-full border-2 border-white shadow-xl" />
           </div>
         </div>
       </section>
 
       {/* --- FINAL DECORATIVE LINE --- */}
       <div className="py-20 flex justify-center bg-white">
-         <div className="w-px h-24 bg-gradient-to-b from-[#14b8a6] to-transparent" />
+        <div className="w-px h-24 bg-gradient-to-b from-[#14b8a6] to-transparent" />
       </div>
 
     </div>

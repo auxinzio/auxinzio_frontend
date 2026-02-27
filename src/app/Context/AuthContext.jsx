@@ -7,8 +7,8 @@ const AuthContext = createContext({
   user: null,
   isAuthenticated: false,
   isLoading: true,
-  login: async () => {},
-  logout: async () => {},
+  login: async () => { },
+  logout: async () => { },
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -65,20 +65,18 @@ export function AuthProvider({ children }) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
-      
+
       const data = await res.json();
 
-      if (res.ok && data.success) {
-        // Extract user object if nested (e.g. { token, user: {...} })
+      if (res.ok && data.statuscode == 200) {
         const userData = data.data;
         setUser(userData.user || userData);
-        
         router.push('/admin/dashboard');
         return { success: true };
       } else {
-        return { 
-          success: false, 
-          message: data.message || 'Login failed' 
+        return {
+          success: false,
+          message: data.message || 'Login failed'
         };
       }
     } catch (error) {
