@@ -4,11 +4,11 @@ import { API_URL } from "@/lib/constants";
 export async function POST(request) {
   try {
     const body = await request.json();
-    
+
     // Call external backend
     // Assuming API_URL is valid, otherwise use logic to set base URL
     const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
-    
+
     const res = await fetch(`${apiUrl}/api/auth/login`, {
       method: 'POST',
       headers: {
@@ -21,13 +21,13 @@ export async function POST(request) {
 
     // Look for token in common places
     const token = data.data?.token;
-    
+
     if (res.ok && token) {
-      const response = NextResponse.json({ 
-        success: true, 
+      const response = NextResponse.json({
+        success: true,
         message: 'Logged in successfully',
         status: 200,
-        data: data.data || data.user 
+        data: data.data || data.user
       });
 
       // Set token in cookie
@@ -36,7 +36,7 @@ export async function POST(request) {
         value: token,
         httpOnly: true,
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         sameSite: 'lax',
         maxAge: 60 * 60 * 24, // 1 day
       });
@@ -45,30 +45,30 @@ export async function POST(request) {
       // Extract user info, excluding the token itself if it's inside
       const userInfo = { ...data.data };
       delete userInfo.token; // Ensure we don't duplicate token storage
-      
+
       response.cookies.set({
         name: 'user_info',
         value: JSON.stringify(userInfo),
         httpOnly: true,
         path: '/',
-        secure: process.env.NODE_ENV === 'production',
+        secure: false,
         sameSite: 'lax',
         maxAge: 60 * 60 * 24, // 1 day
       });
 
       return response;
     }
-    
+
     // If not successful or token missing, return error status
     // Use 401 if original status was 200 but token missing
     const errorStatus = (res.ok && !token) ? 401 : res.status;
-    
+
     return NextResponse.json(
-      { 
-        success: false, 
-        message: data.message || 'Invalid credentials or Token missing', 
-        status: errorStatus, 
-        data: data 
+      {
+        success: false,
+        message: data.message || 'Invalid credentials or Token missing',
+        status: errorStatus,
+        data: data
       },
       { status: errorStatus }
     );
