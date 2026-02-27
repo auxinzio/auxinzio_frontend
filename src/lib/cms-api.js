@@ -12,7 +12,7 @@ async function handleResponse(response) {
   }
 
   const data = await response.json();
-  
+
   if (!response.ok) {
     const error = (data && data.message) || response.statusText;
     throw new Error(error);
@@ -29,7 +29,7 @@ export const cmsApi = {
   get: async (endpoint) => {
     // Strip leading slash if present to avoid double slash
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    const response = await fetch(`/api/${path}`, {
+    const response = await fetch(`/api/cms/${path}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -46,25 +46,6 @@ export const cmsApi = {
     return handleResponse(response);
   },
 
-  put: async (endpoint, body) => {
-    const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    const response = await fetch(`/api/cms/${path}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    });
-    return handleResponse(response);
-  },
-
-  delete: async (endpoint) => {
-    const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    const response = await fetch(`/api/cms/${path}`, {
-      method: 'DELETE',
-      headers: { 'Content-Type': 'application/json' },
-    });
-    return handleResponse(response);
-  },
-  
   // Custom fetch wrapper for file uploads or special headers
   request: async (endpoint, options = {}) => {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;

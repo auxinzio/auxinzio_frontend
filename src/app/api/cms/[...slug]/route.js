@@ -8,22 +8,22 @@ async function handler(req, { params }) {
     return NextResponse.json({ success: false, message: 'Unauthorized' }, { status: 401 });
   }
 
-  const { slug } = await params; 
+  const { slug } = await params;
   const path = slug.join('/'); // e.g. "users" or "services/123"
   const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
-  const targetUrl = `${apiUrl}/api/${path}${req.nextUrl.search}`; // Append query params
-
+  const targetUrl = `${apiUrl}/api/${path}`; // Append query params
+  console.log(targetUrl);
   try {
     // Forward headers (except host/cookie/content-length/etc provided by browser automatically?)
     // Actually just create new headers with Authorization
     const headers = new Headers();
     headers.set('Authorization', `Bearer ${token}`);
-    
+
     const contentType = req.headers.get('content-type');
     if (contentType) {
       headers.set('Content-Type', contentType);
     }
-    
+
     // Read body if method has body
     const body = ['GET', 'HEAD'].includes(req.method) ? undefined : await req.text();
 
@@ -37,8 +37,8 @@ async function handler(req, { params }) {
     // Safer to just proxy the text/json.
     // However, some endpoints return blobs/files.
     // For CMS usually JSON.
-    
-    const responseData = await res.json().catch(() => ({})); 
+
+    const responseData = await res.json().catch(() => ({}));
 
     if (res.status === 401) {
       // Token expired? Clear cookie?
