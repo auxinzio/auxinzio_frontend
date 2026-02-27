@@ -1,63 +1,115 @@
+"use client";
+
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ChevronRight, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSettings } from "@/app/Context/SettingsContext";
 
-export default function ServiceSection({service}) {
-  const {settings} = useSettings();
+export default function ServiceSection({ service }) {
+  const { settings } = useSettings();
   const serviceData = service?.data?.serviceList || [];
 
-    return(
-        <>
-        { service && serviceData.length > 0 && (
-            <section id="services" className="py-24 bg-muted/30">
-              <div className="container px-4 md:px-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  className="text-center mb-16 space-y-4"
-                >
-                  <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Services</h2>
-                  <p className="mx-auto max-w-[600px] text-muted-foreground md:text-lg">
-                    Comprehensive digital solutions tailored to your unique business needs.
-                  </p>
-                </motion.div>
+  return (
+    <>
+      {service && serviceData.length > 0 && (
+        <section id="services" className="py-24 lg:py-40 bg-gray-50/50 relative overflow-hidden">
+          <div className="max-w-[1600px] mx-auto px-6">
+            
+            {/* Header: Focused Scale */}
+            <div className="grid lg:grid-cols-12 gap-12 items-end mb-24 lg:mb-32">
+               <motion.div 
+                 initial={{ opacity: 0, x: -30 }}
+                 whileInView={{ opacity: 1, x: 0 }}
+                 viewport={{ once: true }}
+                 className="lg:col-span-8"
+               >
+                  <div className="flex items-center gap-4 mb-8">
+                     <div className="w-12 h-px bg-[#14b8a6]" />
+                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Synthesized Delivery</span>
+                  </div>
+                  <h2 className="text-6xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
+                    Transformative <br/>
+                    <span className="font-medium text-gray-200">Digital</span><br/>
+                    <span className="italic font-normal text-[#14b8a6]">Ecosystems.</span>
+                  </h2>
+               </motion.div>
+               
+               <motion.div 
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+                 transition={{ delay: 0.3 }}
+                 className="lg:col-span-4 lg:pb-4 text-right"
+               >
+                  <Link href="/services">
+                     <button className="group flex items-center justify-end gap-6 w-full lg:w-auto ml-auto">
+                        <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Manifesto of Services</span>
+                        <div className="w-12 h-12 rounded-full border border-gray-100 bg-white flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500 shadow-sm">
+                           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                     </button>
+                  </Link>
+               </motion.div>
+            </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {serviceData?.map((service, index) => (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, scale: 0.95 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex flex-col p-6 rounded-xl bg-background hover:shadow-xl transition-all duration-300 group"
-                    >
-                      <div className="mb-4 overflow-hidden">
-                        <Image 
-                              src={`${settings.backend_api_url}/${service.main_logo}`} 
-                              alt={service.title} 
-                              width={500}
-                              height={500}
-                              className="group-hover:scale-110 transition-all duration-300"
-                          />
-                      </div>
-                      <h3 className="text-xl font-bold mb-2 transition-colors">{service.title}</h3>
-                      {/* <p className="text-muted-foreground flex-grow">{service.description.short_description}</p> */}
-                      <Link href={`/services/${service.slug}`}>
-                      <div className="mt-4 pt-4 border-t border-border flex items-center text-gradi-500 font-medium text-sm group-hover:translate-x-1 transition-transform cursor-pointer">
-                        Learn More <ArrowRight size={15} className="ms-2 mt-1 text-green-500"/>
-                      </div>
-                      </Link>
-                    </motion.div>
-                  ))}
-                </div>
-              </div>
-            </section>
-        ) }
-        </>
-    )
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100 border border-gray-100 rounded-[3rem] overflow-hidden shadow-2xl">
+              {serviceData?.map((srv, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="group relative bg-white p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-500 min-h-[450px] flex flex-col"
+                >
+                  {/* Service Index */}
+                  <span className="absolute top-12 right-12 text-6xl font-black text-gray-50 group-hover:text-[#14b8a6]/5 transition-colors select-none">0{index + 1}</span>
+                  
+                  <div className="relative z-10 flex-grow">
+                     <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b8a6]/10 transition-colors">
+                        {srv.main_logo ? (
+                           <Image 
+                              src={`${settings.backend_api_url}/${srv.main_logo}`} 
+                              alt={srv.title} 
+                              width={32}
+                              height={32}
+                              className="grayscale group-hover:grayscale-0 transition-all duration-500"
+                           />
+                        ) : (
+                           <Layers className="w-6 h-6 text-gray-400 group-hover:text-[#14b8a6]" />
+                        )}
+                     </div>
+                     
+                     <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight group-hover:text-[#14b8a6] transition-colors leading-tight">
+                        {srv.title}
+                     </h3>
+                     
+                     <p className="text-gray-500 leading-relaxed max-w-[280px]">
+                        Architecting high-performance digital solutions tailored to the specific logical demands of your industry.
+                     </p>
+                  </div>
+
+                  <Link href={`/services/${srv.slug}`}>
+                    <div className="pt-10 flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-gray-900 group-hover:text-[#14b8a6] transition-colors group/btn">
+                       Structural Details 
+                       <ChevronRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
+                    </div>
+                  </Link>
+                  
+                  {/* Hover Architectural Accent */}
+                  <div className="absolute top-0 left-0 w-1 h-0 bg-[#14b8a6] group-hover:h-full transition-all duration-700" />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Background Decorative Grid */}
+          <div className="absolute inset-0 -z-10 opacity-[0.03] pointer-events-none" 
+               style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        </section>
+      )}
+    </>
+  );
 }
     

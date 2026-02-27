@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { MapPin, Clock, Briefcase, ArrowLeft, IndianRupee, Home, GraduationCap, Users, CheckCircle2, Send, } from 'lucide-react';
+import { MapPin, Clock, Briefcase, ArrowLeft, IndianRupee, Home, GraduationCap, Users, CheckCircle2, Send, CloudCheck, } from 'lucide-react';
 import { useEffect } from 'react';
 import { useSettings } from "@/app/Context/SettingsContext";
 
@@ -436,14 +436,13 @@ export default function JobDetailsPage() {
                   <h3 className="text-lg font-bold text-gray-900 mb-4">What We Offer</h3>
                   <div className="space-y-3">
                     {careerData?.requirements?.experience?.map((item, index) => {
-                      const Icon = item.icon;
                       return (
                         <div key={index} className="flex items-center gap-3">
                           <div
                             className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{ backgroundColor: `${item.color}15` }}
                           >
-                            {/* <Icon className="w-4 h-4" style={{ color: item.color }} /> */}
+                            <CloudCheck className="w-5 h-5 text-[#22c55e]"/>
                           </div>
                           <span className="text-gray-700">{item}</span>
                         </div>
