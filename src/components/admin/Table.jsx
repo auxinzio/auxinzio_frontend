@@ -192,62 +192,128 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const tempData = {
-            ...formData,
-            service_item: formData.service_item?.split('~') || [],
-            description: {
-                short_description: formData.short_description,
-                long_description: formData.long_description,
-                short_description_title: formData.short_description_title,
-                long_description_title: formData.long_description_title,
-            }
+        let dataToSave = { ...formData };
+
+        // Structure data based on the section title
+        if (title === "Services") {
+            dataToSave = {
+                ...formData,
+                name: formData.title,
+                service_item: formData.service_item?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                description: {
+                    short_description: formData.short_description,
+                    long_description: formData.long_description,
+                    short_description_title: formData.short_description_title,
+                    long_description_title: formData.long_description_title,
+                }
+            };
+            // Remove flattened fields that are now nested
+            ['short_description', 'status', 'short_description_title', 'long_description', 'long_description_title'].forEach(f => delete dataToSave[f]);
+        } 
+        else if (title === "Products") {
+            dataToSave = {
+                ...formData,
+                key_feature: formData.key_feature?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                benefit: {
+                    time_benefits: formData.time_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                    cloud_benefits: formData.cloud_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                    growth_benefits: formData.growth_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                    communication_benefits: formData.communication_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                }
+            };
+            ['time_benefits', 'cloud_benefits', 'growth_benefits', 'communication_benefits'].forEach(f => delete dataToSave[f]);
         }
-        const {
-            short_description,
-            short_description_title,
-            long_description,
-            long_description_title,
-            ...newData
-        } = tempData;
-        console.log("Submitting:", modalMode, newData, title);
-        // Here you would typically call an API or a prop function to save data
-        await handleSave(modalMode, formData, title);
-        handleModalClose();
+        else if (title === "Solutions") {
+            dataToSave = {
+                ...formData,
+                key_point: formData.key_point?.split('~').map(s => s.trim()).filter(Boolean) || [],
+            };
+        }
+        else if (title === "Teams") {
+            dataToSave = {
+                ...formData,
+                social_link: {
+                    email: formData.email,
+                    linkedin: formData.linkedin,
+                    github: formData.github,
+                }
+            };
+            ['email', 'linkedin', 'github'].forEach(f => delete dataToSave[f]);
+        }
+        else if (title === "Careers") {
+            dataToSave = {
+                ...formData,
+                requirements: {
+                    experience: formData.experience?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                    skill: formData.skill?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                    extra: formData.extra?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                }
+            };
+            ['experience', 'skill', 'extra'].forEach(f => delete dataToSave[f]);
+        }
+        // console.log("Submitting:", modalMode, dataToSave, title);
+        await handleSave(modalMode, dataToSave, title);
     };
+
+    // const handleDelete = async (id) => {
+
+    //     handleSave('delete', id, title);
+
+    // };
 
     const getApiEndpoint = (mode, title) => {
         switch (title) {
             case 'Services':
-                return mode === 'add' ? '/services/create' : '/services/update';
+                return mode === 'add' ? '/services/create' : mode=== 'delete' ? '/services/delete' : '/services/update';
             case 'Products':
-                return mode === 'add' ? '/products/create' : '/products/update';
+                return mode === 'add' ? '/products/create' : mode=== 'delete' ? '/products/delete' : '/products/update';
             case 'Solutions':
-                return mode === 'add' ? '/solutions/create' : '/solutions/update';
+                return mode === 'add' ? '/solutions/create' : mode=== 'delete' ? '/solutions/delete' : '/solutions/update';
             case 'Teams':
-                return mode === 'add' ? '/teams/create' : '/teams/update';
+                return mode === 'add' ? '/teams/create' : mode=== 'delete' ? '/teams/delete' : '/teams/update';
             case 'Careers':
-                return mode === 'add' ? '/careers/create' : '/careers/update';
+                return mode === 'add' ? '/careers/create' : mode=== 'delete' ? '/careers/delete' : '/careers/update';
             default:
                 return '';
         }
     };
 
-    const handleSave = async (mode, formData, title) => {
+    const handleSave = async (mode, data, title) => {
         try {
-
             const apiEndpoint = getApiEndpoint(mode, title);
-            const response = await cmsApi.post(apiEndpoint, formData);
-            console.log(response);
-            if (response.status === 200 || response.status === 201) {
+            
+            // Always use FormData for submission
+            const submissionData = new FormData();
+            
+            Object.keys(data).forEach(key => {
+                const value = data[key];
+                if (value !== undefined && value !== null) {
+                    if (value instanceof File) {
+                        submissionData.append(key, value);
+                    } else if (Array.isArray(value)) {
+                        // Handle arrays (like service_item or benefits)
+                        value.forEach(item => submissionData.append(`${key}[]`, item));
+                    } else if (typeof value === 'object') {
+                        // Handle nested objects by stringifying them
+                        submissionData.append(key, JSON.stringify(value));
+                    } else {
+                        submissionData.append(key, value);
+                    }
+                }
+            });
+
+            const result = await cmsApi.post(apiEndpoint, submissionData);
+            
+            if (result && (result.success !== false && !result.error)) {
                 toast.success(`${title} ${mode === 'add' ? 'added' : 'updated'} successfully!`);
                 handleModalClose();
-                fetch();
+                if (fetch) fetch();
             } else {
-                toast.error(`Failed to save ${title}`);
+                toast.error(`Failed to save ${title}: ${result?.message || result?.error || 'Unknown error'}`);
             }
         } catch (error) {
             console.error(`Error saving ${title}:`, error);
-            toast.error(`Failed to save ${title}`);
+            toast.error(error.message || `Failed to save ${title}`);
         }
     };
 
@@ -432,7 +498,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             className="p-2 text-gray-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-all">
                                                             <Edit size={16} />
                                                         </button>
-                                                        <button className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all">
+                                                        <button className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" onClick={() => handleDelete(item.id)}>
                                                             <Trash2 size={16} />
                                                         </button>
                                                     </div>

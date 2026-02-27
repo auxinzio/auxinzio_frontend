@@ -25,8 +25,6 @@ export default function CareersPage() {
             limit: ITEMS_PER_PAGE
           });
           
-          // console.log(response.data);
-
           // Update state with backend response
           if (response && response.data) {
             setData({
@@ -67,7 +65,7 @@ export default function CareersPage() {
     
   return (
     <>
-    <Table title="Careers" searchTerm={searchTerm} handleSearchChange={handleSearchChange} totalCount={data.totalCount} loading={loading} error={error} dataLength={data.careersList.length} dataArray={data.careersList}  currentPage={currentPage} totalPages={data.totalPages} fetch={fetchCareers} handlePageChange={handlePageChange}/>
+      <Table title="Careers" searchTerm={searchTerm} handleSearchChange={handleSearchChange} totalCount={data.totalCount} loading={loading} error={error} dataLength={data.careersList.length} dataArray={data.careersList}  currentPage={currentPage} totalPages={data.totalPages} fetch={fetchCareers} handlePageChange={handlePageChange}/>
     </>
   )
 }

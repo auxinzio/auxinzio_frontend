@@ -12,7 +12,6 @@ async function handler(req, { params }) {
   const path = slug.join('/'); // e.g. "users" or "services/123"
   const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
   const targetUrl = `${apiUrl}/api/${path}`; // Append query params
-  console.log(targetUrl);
   try {
     // Forward headers (except host/cookie/content-length/etc provided by browser automatically?)
     // Actually just create new headers with Authorization
@@ -27,18 +26,28 @@ async function handler(req, { params }) {
     // Read body if method has body
     const body = ['GET', 'HEAD'].includes(req.method) ? undefined : await req.text();
 
+    console.log(body);
+
     const res = await fetch(targetUrl, {
       method: req.method,
       headers: headers,
       body: body,
     });
 
-    // Stream the response back? Or await json?
-    // Safer to just proxy the text/json.
-    // However, some endpoints return blobs/files.
-    // For CMS usually JSON.
-
-    const responseData = await res.json().catch(() => ({}));
+    // Read raw text first so we can handle non-JSON responses
+    // (e.g. HTML crash pages from the backend on 500 errors).
+    const responseText = await res.text();
+    let responseData;
+    try {
+      responseData = JSON.parse(responseText);
+    } catch {
+      // Backend returned HTML or non-JSON (e.g. a server crash page).
+      console.error(`[CMS Proxy] Non-JSON response from backend for ${req.method} ${path} (${res.status}):`, responseText.slice(0, 600));
+      responseData = {
+        success: false,
+        message: `Backend error (${res.status}): ${res.statusText || 'Internal Server Error'}`,
+      };
+    }
 
     if (res.status === 401) {
       // Token expired? Clear cookie?
