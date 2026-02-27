@@ -3,49 +3,13 @@ import { useState } from 'react';
 import { ArrowRight, Zap, Shield, Cpu, Cloud, Database, LineChart } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSettings } from '@/app/Context/SettingsContext';
 
-const products = [
-  {
-    id: 1,
-    name: 'Auxinz Analytics Pro',
-    slug: 'analytics-pro',
-    tagline: 'Transform data into actionable insights with AI-powered analytics',
-    benefits: [
-      { icon: LineChart, text: 'Real-time data visualization' },
-      { icon: Cpu, text: 'AI-driven predictions' },
-      { icon: Cloud, text: 'Cloud-native infrastructure' },
-    ],
-    img:"/assets/img/products/Enterprise.jpeg"
-  },
-  {
-    id: 2,
-    name: 'Auxinz Secure Cloud',
-    slug: 'secure-cloud',
-    tagline: 'Enterprise-grade cloud infrastructure with military-level security',
-    benefits: [
-      { icon: Shield, text: 'End-to-end encryption' },
-      { icon: Database, text: 'Automated backups' },
-      { icon: Zap, text: '99.99% uptime SLA' },
-    ],
-    img:"/assets/img/products/attendx.jpeg"
-  },
-  {
-    id: 3,
-    name: 'Auxinz Workflow Engine',
-    slug: 'workflow-engine',
-    tagline: 'Automate complex business processes with intelligent orchestration',
-    benefits: [
-      { icon: Zap, text: 'No-code automation' },
-      { icon: Cloud, text: 'Seamless integrations' },
-      { icon: Cpu, text: 'Smart routing logic' },
-    ],
-    img:"/assets/img/products/Hospital.jpeg"
-  },
-];
-
-export function ProductFeature() {
+export function ProductFeature({ products }) {
   const [activeProduct, setActiveProduct] = useState(0);
-  const product = products[activeProduct];
+  const productsList = products?.data?.productsList || [];
+  const product = productsList[activeProduct];
+  const { settings } = useSettings();
 
   return (
     <section className="relative py-24 lg:py-32 px-6 overflow-hidden bg-white">
@@ -68,17 +32,16 @@ export function ProductFeature() {
 
           {/* Minimal Tab System */}
           <div className="flex flex-wrap gap-4 border-b border-gray-100 pb-2">
-            {products.map((prod, index) => (
+            {productsList.map((prod, index) => (
               <button
                 key={prod.id}
                 onClick={() => setActiveProduct(index)}
-                className={`px-4 py-2 text-sm tracking-widest uppercase transition-all duration-300 relative ${
-                  activeProduct === index
-                    ? 'text-gray-900'
-                    : 'text-gray-400 hover:text-gray-600'
-                }`}
+                className={`px-4 py-2 text-sm tracking-widest uppercase transition-all duration-300 relative ${activeProduct === index
+                  ? 'text-gray-900'
+                  : 'text-gray-400 hover:text-gray-600'
+                  }`}
               >
-                {prod.name.split(' ').slice(1).join(' ')}
+                {prod?.product_name}
                 {activeProduct === index && (
                   <motion.div
                     layoutId="activeTab"
@@ -109,16 +72,16 @@ export function ProductFeature() {
                   className="h-px bg-[#06b6d4]"
                 />
                 <h3 className="text-3xl lg:text-4xl font-light text-gray-900 leading-tight">
-                  {product.name}
+                  {product?.product_name}
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
-                  {product.tagline}
+                  {product?.tag?.[0]}
                 </p>
               </div>
 
               {/* Benefits with minimalist icons */}
               <div className="grid gap-6">
-                {product.benefits.map((benefit, index) => (
+                {product?.key_feature?.map((feature, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, x: -10 }}
@@ -127,11 +90,11 @@ export function ProductFeature() {
                     className="flex items-start gap-4 group"
                   >
                     <div className="mt-1">
-                      <benefit.icon className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
+                      <Zap className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
                     </div>
                     <div>
                       <span className="text-gray-900 font-medium tracking-tight block mb-1">
-                        {benefit.text}
+                        {feature}
                       </span>
                       <div className="w-0 group-hover:w-8 h-px bg-[#22c55e]/30 transition-all duration-300" />
                     </div>
@@ -141,7 +104,7 @@ export function ProductFeature() {
 
               {/* Action */}
               <div className="pt-6">
-                <Link href={`/products/${product.slug || '#'}`}>
+                <Link href={`/products/${product?.slug}`}>
                   <motion.button
                     whileHover={{ x: 5 }}
                     className="flex items-center gap-4 text-sm font-medium tracking-[0.2em] uppercase text-gray-900 group"
@@ -173,12 +136,14 @@ export function ProductFeature() {
                   </div>
                 </div>
                 <div className="relative aspect-video lg:aspect-square overflow-hidden bg-white">
-                  <Image 
-                    src={product.img} 
-                    alt={product.name} 
-                    fill
-                    className="object-cover opacity-90 transition-opacity duration-700 group-hover:opacity-100"
-                  />
+                  {product?.image && (
+                    <Image
+                      src={`${settings?.backend_api_url}/${product.image}`}
+                      fill
+                      alt={product.product_name}
+                      className="object-cover opacity-90 transition-opacity duration-700 group-hover:opacity-100"
+                    />
+                  )}
                   {/* Subtle grid overlay on image */}
                   <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
                     style={{
@@ -188,7 +153,7 @@ export function ProductFeature() {
                   />
                 </div>
               </motion.div>
-              
+
               {/* Floating Architectural Element */}
               <div className="absolute -right-4 -bottom-4 w-24 h-24 border-r border-b border-[#14b8a6]/20 hidden lg:block" />
             </div>

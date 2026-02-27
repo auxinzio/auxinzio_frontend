@@ -4,20 +4,20 @@ import { ProductFeature } from '@/components/sections/ProductFeature';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import { useSettings } from '@/app/Context/SettingsContext';
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Products() {
-    const {settings} = useSettings();
-    const [product,setProduct] = useState([]);
+    const { settings } = useSettings();
+    const [product, setProduct] = useState([]);
 
-      useEffect(()=>{
-        fetch(`${settings.backend_api_url}/api/products/productsList`,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({})})
-        .then(res=>res.json())
-        .then(data=>setProduct(data))
-      },[settings]);
-    
+    useEffect(() => {
+        fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+            .then(res => res.json())
+            .then(data => setProduct(data))
+    }, [settings]);
 
-    return(
+    console.log(product);
+    return (
         <>
             {/* Product Hero Section — Matching AboutSection2 Tone */}
             <section className="relative py-24 lg:py-32 px-6 overflow-hidden bg-white">
@@ -75,7 +75,7 @@ export default function Products() {
                                             </pattern>
                                         </defs>
                                         <rect width="400" height="500" fill="url(#grid-products)" />
-                                        
+
                                         {/* Abstract tech nodes matching products theme */}
                                         <motion.path
                                             d="M 100 100 L 300 100 L 300 400 L 100 400 Z"
@@ -98,11 +98,11 @@ export default function Products() {
                                         />
                                         {/* Animated dots representing product data */}
                                         {[
-                                            {x: 100, y: 100, color: "#14b8a6"},
-                                            {x: 300, y: 100, color: "#06b6d4"},
-                                            {x: 300, y: 400, color: "#22c55e"},
-                                            {x: 100, y: 400, color: "#14b8a6"},
-                                            {x: 200, y: 250, color: "#06b6d4"}
+                                            { x: 100, y: 100, color: "#14b8a6" },
+                                            { x: 300, y: 100, color: "#06b6d4" },
+                                            { x: 300, y: 400, color: "#22c55e" },
+                                            { x: 100, y: 400, color: "#14b8a6" },
+                                            { x: 200, y: 250, color: "#06b6d4" }
                                         ].map((node, i) => (
                                             <motion.circle
                                                 key={i}
@@ -201,10 +201,10 @@ export default function Products() {
                         </motion.div>
                     </div>
                 </div>
-            </section> 
+            </section>
 
             {/* Product Features Section */}
-            <ProductFeature />
+            <ProductFeature products={product} />
 
             {/* Product Experience Section */}
             <ProductExperience />

@@ -12,13 +12,12 @@ export default function ServiceDetailPage({ params }) {
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { settings } = useSettings();
 
-    const {settings} = useSettings();
-    
     useEffect(() => {
         const fetchServiceDetail = async () => {
             if (!settings.backend_api_url) return;
-            
+
             try {
                 setLoading(true);
                 const response = await fetch(`${settings.backend_api_url}/api/services/servicesShow`, {
@@ -34,8 +33,7 @@ export default function ServiceDetailPage({ params }) {
                 }
 
                 const result = await response.json();
-                const serviceData = result.data?.[0] || result.data || result;
-                setService(serviceData);
+                setService(result.data.service);
             } catch (err) {
                 console.error("Fetch error:", err);
                 setError(err.message);
@@ -87,44 +85,33 @@ export default function ServiceDetailPage({ params }) {
             <section className="relative pt-32 pb-20 overflow-hidden">
                 <div className="absolute inset-0 bg-primary/5 -z-10" />
                 <div className="container px-4 md:px-6">
-                    <Link href="/services" className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:gap-3 transition-all mb-8">
-                        <ArrowLeft className="w-4 h-4" /> Back to All Services
-                    </Link>
-                    
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div className="space-y-6">
                             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
                                 <Star className="w-4 h-4 fill-current" />
-                                <span>Premium Expertise</span>
+                                <span>{service.description?.short_description_title || "Premium Expertise"}</span>
                             </div>
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight">
                                 {service.title}
                             </h1>
                             <p className="text-xl text-muted-foreground leading-relaxed">
-                                {service.description?.short_description || "Empowering your business with cutting-edge digital solutions tailored to your unique goals."}
+                                {service.description?.short_description}
                             </p>
                             <div className="flex flex-wrap gap-4 pt-4">
-                                <Button size="lg" className="h-12 px-8">Get Started</Button>
-                                <Button size="lg" variant="outline" className="h-12 px-8">Consultations</Button>
+                                <Link href={`/products`}>
+                                    <Button size="lg" className="h-12 px-8">Get Started</Button>
+                                </Link>
+                                <Link href={`tel:${settings.phone}`}>
+                                    <Button size="lg" variant="outline" className="h-12 px-8">Consultations</Button>
+                                </Link>
                             </div>
                         </div>
-                        
+
                         <div className="relative aspect-video lg:aspect-square rounded-3xl overflow-hidden shadow-2xl border border-border bg-muted">
-                            {
-                                !loading && (
-                                    <Image 
-                                    src={`${settings.backend_api_url}/${service.service.main_logo}`} 
-                                    alt={service.service.title} 
-                                    fill
-                                    className="object-cover"
-                                    priority
-                                />
-                                )
-                            }
-                            {/* {service.main_logo ? (
-                                <Image 
-                                    src={`${API_URL}${service.service.main_logo}`} 
-                                    alt={service.title} 
+                            {service.main_logo ? (
+                                <Image
+                                    src={`${settings.backend_api_url}/${service.main_logo}`}
+                                    alt={service.title}
                                     fill
                                     className="object-cover"
                                     priority
@@ -133,7 +120,7 @@ export default function ServiceDetailPage({ params }) {
                                 <div className="w-full h-full flex items-center justify-center">
                                     <Shield className="w-24 h-24 text-muted-foreground/20" />
                                 </div>
-                            )} */}
+                            )}
                         </div>
                     </div>
                 </div>
@@ -145,13 +132,23 @@ export default function ServiceDetailPage({ params }) {
                     <div className="grid md:grid-cols-3 gap-12">
                         <div className="md:col-span-2 space-y-12">
                             <div>
-                                <h2 className="text-3xl font-bold mb-6 text-foreground">Overview</h2>
-                                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground text-lg leading-relaxed">
-                                    <p>{service.description?.long_description || "Our comprehensive approach ensures every aspect of your business needs is addressed with precision and innovation. We leverage the latest technologies to deliver results that exceed expectations."}</p>
+                                <h2 className="text-3xl font-bold mb-6 text-foreground">{service.description?.long_description_title || "Overview"}</h2>
+                                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground text-lg leading-relaxed flex flex-col gap-4">
+                                    {(service.description?.long_description || "").split('~').map((part, i) => (
+                                        <p key={i}>{part.trim()}</p>
+                                    ))}
                                 </div>
                             </div>
 
-                            <div className="grid sm:grid-cols-2 gap-6">
+                            <div>
+                                <h2 className="text-3xl font-bold mb-6 text-foreground">{service.description?.short_description_title || "Overview"}</h2>
+                                <div className="prose prose-lg dark:prose-invert max-w-none text-muted-foreground text-lg leading-relaxed flex flex-col gap-4">
+                                    {(service.description?.short_description || "").split('~').map((part, i) => (
+                                        <p key={i}>{part.trim()}</p>
+                                    ))}
+                                </div>
+                            </div>
+                            {/* <div className="grid sm:grid-cols-2 gap-6">
                                 <div className="p-6 rounded-2xl bg-muted/30 border border-border space-y-4">
                                     <div className="p-3 rounded-xl bg-primary/10 w-fit text-primary">
                                         <Clock className="w-6 h-6" />
@@ -166,34 +163,47 @@ export default function ServiceDetailPage({ params }) {
                                     <h3 className="text-xl font-bold">Quality Guaranteed</h3>
                                     <p className="text-muted-foreground">Rigorous testing and best practices followed throughout the development cycle.</p>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
 
                         <div className="space-y-8">
                             <div className="p-8 rounded-3xl bg-primary text-primary-foreground space-y-6">
                                 <h3 className="text-2xl font-bold">Ready to Elevate?</h3>
                                 <p className="opacity-90">Book a discovery call with our experts to discuss how we can help you achieve your business objectives.</p>
-                                <Button variant="secondary" className="w-full h-12 text-primary font-bold">
-                                    Book a Call
-                                </Button>
+                                <Link href={`tel:${settings.phone}`}>
+                                    <Button variant="secondary" className="w-full h-12 text-primary font-bold">
+                                        Book a Call
+                                    </Button>
+                                </Link>
                                 <p className="text-xs text-center opacity-70">No commitment required for the first session.</p>
                             </div>
-                            
+
                             <div className="p-8 rounded-3xl border border-border bg-muted/20 space-y-4">
-                                <h4 className="font-bold">Summary</h4>
+                                <h4 className="font-bold">Service Item</h4>
                                 <ul className="space-y-3 text-sm text-muted-foreground">
-                                    <li className="flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        Expert Consultation
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        Custom Implementation
-                                    </li>
-                                    <li className="flex items-center gap-2">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                                        Ongoing Support
-                                    </li>
+                                    {service.service_item && service.service_item.length > 0 ? (
+                                        service.service_item.map((item, i) => (
+                                            <li key={i} className="flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                {item}
+                                            </li>
+                                        ))
+                                    ) : (
+                                        <>
+                                            <li className="flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                Expert Consultation
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                Custom Implementation
+                                            </li>
+                                            <li className="flex items-center gap-2">
+                                                <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                                                Ongoing Support
+                                            </li>
+                                        </>
+                                    )}
                                 </ul>
                             </div>
                         </div>
