@@ -190,8 +190,8 @@ export default function Services() {
                   <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
                      Ready to <span className="italic">synthesize</span><br/>your next venture?
                   </h2>
-                  <button className="group relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
-                     <span className="relative z-10 flex items-center gap-4">
+                  <button className="group cursor-pointer relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
+                     <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
                         Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                      </span>
                      <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />

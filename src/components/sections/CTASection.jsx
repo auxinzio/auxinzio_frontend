@@ -1,130 +1,86 @@
 "use client";
-import { Phone, Mail, ArrowRight, ChevronRight } from 'lucide-react';
-import Image from 'next/image';
+
+import { Phone, Mail, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function CTASection() {
     return (
-        <>
-            <div className="relative w-full min-h-screen flex items-center justify-center overflow-hidden bg-slate-900 font-sans">
-                {/* Background Image with Parallax-like feel (static for now but layered) */}
-                <div className="absolute inset-0 z-0">
-                    <Image
-                        src="/assets/img/bg.png"
-                        alt="Modern Corporate Glass Building"
-                        fill
-                        className="w-full h-full object-cover scale-105"
-                    />
-                    {/* Primary Gradient Overlay: Blue -> Indigo */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-900/95 via-indigo-900/90 to-slate-900/95 mix-blend-multiply" />
-                    {/* Secondary subtle blur overlay for depth */}
-                    <div className="absolute inset-0 backdrop-blur-[2px] bg-blue-950/30" />
-                </div>
-                {/* Floating Animated Particles */}
-                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-                    {[...Array(5)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            className="absolute rounded-full bg-blue-400/20 blur-3xl"
-                            initial={{
-                                x: Math.random() * 100 - 50 + "%",
-                                y: Math.random() * 100 - 50 + "%",
-                                scale: 0.5,
-                                opacity: 0.3
-                            }}
-                            animate={{
-                                y: [null, Math.random() * -100 + "%"],
-                                scale: [0.5, 1, 0.5],
-                                opacity: [0.2, 0.5, 0.2]
-                            }}
-                            transition={{
-                                duration: 15 + Math.random() * 10,
-                                repeat: Infinity,
-                                ease: "linear",
-                                repeatType: "reverse"
-                            }}
-                            style={{
-                                width: `${Math.random() * 400 + 200}px`,
-                                height: `${Math.random() * 400 + 200}px`,
-                                left: `${Math.random() * 100}%`,
-                                top: `${Math.random() * 100}%`,
-                            }}
-                        />
-                    ))}
-                </div>
-                {/* Main Content Container */}
-                <div className="relative z-10 max-w-5xl w-full mx-auto px-6 py-20 md:py-32 flex flex-col items-center text-center">
-                    {/* Badge */}
-                    <motion.div
-                        initial={{ opacity: 0, y: -20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6, ease: "easeOut" }}
-                        className="mb-8"
-                    >
-                        <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-200 text-sm font-semibold tracking-wide backdrop-blur-md shadow-lg shadow-cyan-900/20 hover:bg-cyan-500/20 transition-colors cursor-default">
-                            Want to work with us?
-                        </span>
-                    </motion.div>
-                    {/* Headline */}
-                    <motion.h1
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 drop-shadow-sm"
-                    >
-                        Digitally Transform & <br className="hidden md:block" />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-200 via-cyan-200 to-white">
-                            Grow Your Business
-                        </span>
-                    </motion.h1>
-                    {/* Supporting Paragraph */}
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-                        className="text-lg md:text-xl text-blue-100/80 max-w-2xl leading-relaxed font-medium mb-10"
-                    >
-                        Digitally transforming your business is key to staying competitive.
-                        We help you leverage the latest technologies to streamline operations,
-                        enhance customer experiences, and boost growth.
-                    </motion.p>
-                    {/* CTA Buttons */}
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
-                        className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
-                    >
-                        {/* Primary CTA */}
-                        <motion.a
-                            href="mailto:bsanthoshkumar10@gmail.com"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="group relative inline-flex items-center justify-center w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-bold text-lg shadow-xl shadow-blue-500/20 hover:shadow-blue-500/40 transition-all overflow-hidden"
-                        >
-                            <span className="relative z-10 flex items-center justify-center gap-2">
-                                Contact us
-                                <Mail className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </span>
-                            {/* Shine effect on hover */}
-                            <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out transform skew-x-12" />
-                        </motion.a>
-
-                        {/* Secondary CTA */}
-                        <motion.a
-                            href="tel:+15551234567"
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className="w-full sm:w-auto px-8 py-4 rounded-xl backdrop-blur-md bg-white/5 border border-white/20 text-white font-semibold text-lg hover:bg-white/10 hover:border-white/40 transition-all flex items-center justify-center gap-2 shadow-lg shadow-black/10"
-                        >
-                            <Phone className="w-5 h-5" />
-                            Call now
-                        </motion.a>
-                    </motion.div>
-                </div>
-                {/* Bottom fade for smooth transition to next section if added later */}
-                <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-900 to-transparent z-10" />
+        <section className="relative py-32 lg:py-48 bg-gray-900 border-t border-white/5 overflow-hidden">
+            {/* Background Architectural Elements */}
+            <div className="absolute inset-0 z-0">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_#14b8a610_0%,_transparent_50%)] blur-[100px]" />
+                
+                {/* Vertical Scanning Line */}
+                <motion.div 
+                   animate={{ x: ['-100%', '100%'] }}
+                   transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
+                   className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#14b8a620] to-transparent z-10"
+                />
             </div>
-        </>
-    )
+
+            <div className="relative z-10 max-w-[1600px] mx-auto px-6">
+                <div className="grid lg:grid-cols-12 gap-16 items-center">
+                    
+                    {/* Left: Headline & Purpose */}
+                    <div className="lg:col-span-8">
+                        <motion.div
+                            initial={{ opacity: 0, x: -30 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className="flex items-center gap-4 mb-10">
+                                <div className="w-12 h-px bg-[#14b8a6]" />
+                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Convergence</span>
+                            </div>
+                            
+                            <h2 className="text-6xl lg:text-[10rem] font-light text-white leading-[0.8] tracking-tighter mb-12">
+                                Ready to <br/>
+                                <span className="italic font-medium text-[#14b8a6]">Synthesize?</span>
+                            </h2>
+                            
+                            <p className="text-xl lg:text-2xl text-white/40 font-light leading-relaxed max-w-xl">
+                                Translate your enterprise vision into high-performance architectural reality. Start the synthesis today.
+                            </p>
+                        </motion.div>
+                    </div>
+
+                    {/* Right: Interaction Nexus */}
+                    <div className="lg:col-span-4 lg:pl-12">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                            className="bg-white/5 backdrop-blur-3xl p-10 lg:p-16 rounded-[4rem] border border-white/10 shadow-2xl relative group overflow-hidden"
+                        >
+                            {/* Inner Glow */}
+                            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#14b8a6]/20 rounded-full blur-[60px] group-hover:bg-[#14b8a6]/40 transition-all duration-700" />
+                            
+                            <div className="relative z-10 space-y-12">
+                                <div className="space-y-4">
+                                    <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Direct Nexus</h4>
+                                    <div className="flex flex-col gap-4">
+                                        <a href="mailto:bsanthoshkumar10@gmail.com" className="group/link flex items-center gap-6 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                            Hello <ArrowUpRight className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                                        </a>
+                                        <a href="tel:+15551234567" className="group/link flex items-center gap-6 text-2xl lg:text-3xl font-light text-white/40 hover:text-white transition-colors">
+                                            Voice <ArrowUpRight className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform opacity-40 group-hover/link:opacity-100" />
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <button className="w-full py-8 bg-[#14b8a6] text-white rounded-[2rem] text-sm font-bold uppercase tracking-[0.3em] shadow-xl shadow-[#14b8a6]/20 hover:shadow-[#14b8a6]/40 hover:scale-[1.02] transition-all duration-500">
+                                    Initiate Prototype
+                                </button>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Background Decorative Mesh */}
+            <div className="absolute inset-0 -z-10 opacity-[0.02] pointer-events-none" 
+                 style={{ backgroundImage: 'linear-gradient(rgba(20, 184, 166, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(20, 184, 166, 0.1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        </section>
+    );
 }

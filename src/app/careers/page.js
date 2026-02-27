@@ -312,7 +312,7 @@ export default function Careers() {
                   Join our<br/><span className="text-[#14b8a6] italic font-medium">collective.</span>
                 </h2>
                 
-                <div className="flex flex-col gap-2">
+                <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                   {filters.map((filter) => (
                     <button
                       key={filter}
@@ -342,7 +342,7 @@ export default function Careers() {
                     <p className="text-sm font-medium text-gray-400 animate-pulse">Scanning opportunities...</p>
                   </div>
                 ) : filteredJobs.length > 0 ? (
-                  <AnimatePresence mode="popLayout">
+                  <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                     {filteredJobs.map((job, index) => (
                       <motion.div
                         key={job.id}
@@ -356,7 +356,7 @@ export default function Careers() {
                           href={`/careers/${job.slug}`}
                           className="group block bg-white border border-gray-100 rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:border-[#14b8a6] hover:shadow-[0_20px_60px_-15px_rgba(20,184,166,0.1)] relative overflow-hidden"
                         >
-                          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-8 relative z-10">
+                          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1 relative z-10">
                             <div className="max-w-xl">
                               <div className="flex items-center gap-3 mb-4">
                                 <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#14b8a6] py-1 px-3 bg-[#14b8a6]/5 rounded-full">
@@ -371,12 +371,12 @@ export default function Careers() {
                               <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:translate-x-1 transition-transform duration-300">
                                 {job.title}
                               </h3>
-                              <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
+                              {/* <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
                                 {job.description}
-                              </p>
+                              </p> */}
                             </div>
                             
-                            <div className="flex items-center gap-6">
+                            <div className="flex items-center gap-6 w-[40%] justify-end">
                                <div className="hidden sm:block text-right">
                                   <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
                                   <p className="text-sm font-bold text-gray-700">{job.type}</p>
@@ -392,7 +392,7 @@ export default function Careers() {
                         </Link>
                       </motion.div>
                     ))}
-                  </AnimatePresence>
+                  </div>
                 ) : (
                   <div className="bg-gray-50 rounded-[2rem] p-20 flex flex-col items-center text-center">
                     <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border border-gray-100">

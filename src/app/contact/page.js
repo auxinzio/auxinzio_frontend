@@ -83,7 +83,7 @@ export default function Contact() {
                 { label: 'Electronic Mail', value: 'hello@auxinz.io', icon: Mail },
                 { label: 'Voice Communication', value: '+1 (555) 000-0000', icon: Phone },
                 { label: 'Digital Network', value: '@auxinzio', icon: Globe },
-                { label: 'Current Location', value: 'San Francisco / Chennai', icon: MapPin }
+                { label: 'Current Location', value: 'Chennai, India', icon: MapPin }
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-4 group cursor-pointer">
                   <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all">
