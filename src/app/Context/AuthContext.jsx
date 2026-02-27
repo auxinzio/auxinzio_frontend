@@ -68,7 +68,10 @@ export function AuthProvider({ children }) {
 
       const data = await res.json();
 
-      // console.log(data);
+      console.log(data);
+      console.log(res);
+      console.log(res.ok);
+      console.log(data.success);
       console.log(res.ok && data.success);
 
       if (res.ok && data.success) {
