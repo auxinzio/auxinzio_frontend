@@ -31,6 +31,7 @@ export function AuthProvider({ children }) {
       try {
         const res = await fetch('/api/auth/me', {
           method: 'POST',
+          credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
         });
         if (res.ok) {
@@ -62,11 +63,13 @@ export function AuthProvider({ children }) {
     try {
       const res = await fetch('/api/auth/login', {
         method: 'POST',
+        credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json();
+      console.log(data);
 
       if (res.ok && data.statuscode == 200) {
         const userData = data.data;
