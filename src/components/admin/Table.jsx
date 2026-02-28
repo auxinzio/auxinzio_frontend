@@ -2,10 +2,10 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Search, Plus, Edit, Trash2, Loader2, ChevronLeft, ChevronRight, X, Save } from "lucide-react";
+import { Search, Plus, Edit, Trash2, Loader2, ChevronLeft, ChevronRight, X, Save, Eye } from "lucide-react";
 import Image from "next/image";
 import { useSettings } from "@/app/Context/SettingsContext";
-import Modal from "./Modal";
+import Modal, { ApplicationModal } from "./Modal";
 import { cmsApi } from "@/lib/cms-api";
 import { toast } from "react-toastify";
 
@@ -15,6 +15,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const { settings } = useSettings();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [modalMode, setModalMode] = useState('add');
+    const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
     const [formData, setFormData] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
@@ -110,6 +111,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "extra", label: "Additional Responsibilities ('~' separated)", type: "textarea", placeholder: "Enter additional responsibilities" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
+            case "Applications":
+                return [
+                    { name: "applicant_name", label: "Applicant Name", type: "text", placeholder: "Enter Name" },
+                    { name: "email", label: "Applicant Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "phone", label: "Applicant Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "resume", label: "Resume", type: "file", placeholder: "Upload Resume" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                ];
             case "Teams":
                 return [
                     { name: "name", label: "Member Name", type: "text", placeholder: "Enter Name" },
@@ -169,10 +178,29 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             initialData.status = item.status === 1 || item.status === true ? "Active" : "Inactive";
 
             setFormData(initialData);
+        } else if (mode === "view") {
+            openApplicationModal(item, 'view');
         } else {
             setFormData({});
         }
         setIsModalOpen(true);
+    };
+
+    const openApplicationModal = (item) => {
+        const initialData = { ...item };
+        setIsApplicationModalOpen(true);
+        if (title === "Applications") {
+            initialData.linkedin = item.social_link?.linkedin;
+            initialData.portfolio = item.social_link?.portfolio;
+        }
+        setFormData(initialData);
+    };
+
+
+    const handleApplicationModalClose = () => {
+        setIsApplicationModalOpen(false);
+        setFormData({});
+        setSelectedItem(null);
     };
 
     const handleModalClose = () => {
@@ -443,7 +471,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                     <thead className="bg-gray-50 border-b border-gray-100">
                                         <tr>
                                             {
-                                                title !== "FAQ" && (
+                                                title !== "FAQ" && title !== "Applications" && (
                                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">{title === "Subscribers" ? "Subscribers Email" : title === "Settings" ? "Key" : `${title} Name`}</th>
                                                 )
                                             }
@@ -499,6 +527,17 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     </>
                                                 )
                                             }
+                                            {
+                                                title === "Applications" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job ID</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Department</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Phone</th>
+                                                    </>
+                                                )
+                                            }
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase text-right">Actions</th>
                                         </tr>
@@ -513,7 +552,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 className="hover:bg-gray-50 transition-colors"
                                             >
                                                 {
-                                                    title !== "FAQ" && (
+                                                    title !== "FAQ" && title !== "Applications" && (
                                                         <td className="px-6 py-4">
                                                             <div>
                                                                 <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name || item.key}</div>
@@ -629,32 +668,80 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         </>
                                                     )
                                                 }
-                                                <td className="px-6 py-4">
-                                                    <button
-                                                        onClick={() => handleStatusToggle(item)}
-                                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${item.status ? 'bg-green-500' : 'bg-gray-200'
-                                                            }`}
-                                                    >
-                                                        <motion.span
-                                                            layout
-                                                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                                                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${item.status ? 'translate-x-6' : 'translate-x-1'
-                                                                }`}
-                                                        />
-                                                    </button>
-                                                </td>
-                                                <td className="px-6 py-4 text-right">
-                                                    <div className="flex justify-end gap-2">
-                                                        <button
-                                                            onClick={() => handleModalOpen('edit', item)}
-                                                            className="p-2 text-gray-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-all">
-                                                            <Edit size={16} />
-                                                        </button>
-                                                        <button className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" onClick={() => handleDelete(item.id)}>
-                                                            <Trash2 size={16} />
-                                                        </button>
-                                                    </div>
-                                                </td>
+                                                {
+                                                    title === "Applications" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.job_id}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.designation}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.applicant_name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.phone}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Applications" ? (
+                                                        <td className="px-6 py-4">
+                                                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md" onChange={(e) => handleStatusChange(item, e.target.value)} value={item.status}>
+                                                                <option value="">Select</option>
+                                                                <option value="pending" selected={item.status === "pending"}>Pending</option>
+                                                                <option value="approved" selected={item.status === "approved"}>Approved</option>
+                                                                <option value="schedule" selected={item.status === "schedule"}>Schedule</option>
+                                                                <option value="on_hold" selected={item.status === "on_hold"}>On Hold</option>
+                                                                <option value="rejected" selected={item.status === "rejected"}>Rejected</option>
+                                                            </select>
+                                                        </td>
+                                                    ) : (
+                                                        <td className="px-6 py-4">
+                                                            <button
+                                                                onClick={() => handleStatusToggle(item)}
+                                                                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${item.status ? 'bg-green-500' : 'bg-gray-200'
+                                                                    }`}
+                                                            >
+                                                                <motion.span
+                                                                    layout
+                                                                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                                                    className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${item.status ? 'translate-x-6' : 'translate-x-1'
+                                                                        }`}
+                                                                />
+                                                            </button>
+                                                        </td>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Applications" ? (
+                                                        <td className="px-6 py-4">
+                                                            <div className="">
+                                                                <button onClick={() => openApplicationModal(item)} className="p-2 text-gray-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-all">
+                                                                    <Eye size={16} />
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    ) : (
+                                                        <td className="px-6 py-4 text-right">
+                                                            <div className="flex justify-end gap-2">
+                                                                <button
+                                                                    onClick={() => handleModalOpen('edit', item)}
+                                                                    className="p-2 text-gray-400 hover:text-green-500 hover:bg-green-50 rounded-lg transition-all">
+                                                                    <Edit size={16} />
+                                                                </button>
+                                                                <button className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-all" onClick={() => handleDelete(item.id)}>
+                                                                    <Trash2 size={16} />
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    )
+                                                }
                                             </motion.tr>
                                         ))}
                                     </tbody>
@@ -859,7 +946,52 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                         </button>
                     </div>
                 </form>
+
             </Modal>
+
+            <ApplicationModal
+                isOpen={isApplicationModalOpen}
+                onClose={handleApplicationModalClose}
+                title="Application Details"
+            >
+                <div className="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
+                    <table className="flex flex-col gap-4">
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Name</td>
+                            <td className="text-gray-900">{formData.applicant_name}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Email</td>
+                            <td className="text-gray-900">{formData.email}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Phone</td>
+                            <td className="text-gray-900">{formData.phone}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Position</td>
+                            <td className="text-gray-900">{formData.designation}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Cover Letter</td>
+                            <td className="text-gray-900">{formData.cover_letter}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Social Links</td>
+                            <td className="text-gray-900">{formData.linkedin + " ," + formData.portfolio}</td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Resume</td>
+                            <td className="text-gray-900"><a href={settings?.backend_api_url + "/" + formData.resume} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:underline">Download</a></td>
+                        </tr>
+                        <tr className="flex items-center gap-2">
+                            <td className="text-sm font-medium text-gray-700">Status</td>
+                            <td className="text-gray-900">{formData.status}</td>
+                        </tr>
+                    </table>
+                </div>
+                {/* Application details will be displayed here */}
+            </ApplicationModal>
         </>
     )
 }

@@ -4,80 +4,10 @@ import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { MapPin, Clock, Briefcase, ArrowLeft, IndianRupee, Home, GraduationCap, Users, CheckCircle2, Send, CloudCheck, } from 'lucide-react';
+import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useSettings } from "@/app/Context/SettingsContext";
 
-// Job data (in real app, fetch by ID)
-/* const jobData = {
-  'senior-frontend-engineer': {
-    title: 'Senior Frontend Engineer',
-    team: 'Engineering',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '$140k - $180k',
-    description:
-      'We are looking for an experienced Senior Frontend Engineer to join our growing team. You will be responsible for building beautiful, performant user interfaces that delight our customers.',
-    responsibilities: [
-      'Build and maintain high-quality React applications',
-      'Collaborate with designers to implement pixel-perfect UIs',
-      'Write clean, maintainable, and well-tested code',
-      'Mentor junior engineers and contribute to code reviews',
-      'Optimize application performance and user experience',
-      'Participate in architectural decisions and technical planning',
-    ],
-    requirements: [
-      '5+ years of professional frontend development experience',
-      'Expert-level knowledge of React, TypeScript, and modern JavaScript',
-      'Strong understanding of web performance optimization',
-      'Experience with state management libraries (Redux, Zustand, etc.)',
-      'Excellent communication and collaboration skills',
-      'Portfolio of production applications you\'ve built',
-    ],
-    niceToHave: [
-      'Experience with Next.js or other React frameworks',
-      'Knowledge of design systems and component libraries',
-      'Backend development experience',
-      'Open source contributions',
-    ],
-  },
-  'product-designer': {
-    title: 'Product Designer',
-    team: 'Design',
-    location: 'Remote',
-    type: 'Full-time',
-    salary: '$120k - $160k',
-    description:
-      'Join our design team to create beautiful, intuitive experiences that help our users achieve their goals.',
-    responsibilities: [
-      'Design user-centered interfaces for web and mobile',
-      'Create wireframes, prototypes, and high-fidelity mockups',
-      'Conduct user research and usability testing',
-      'Collaborate with engineers and product managers',
-      'Maintain and evolve our design system',
-      'Present designs and advocate for users',
-    ],
-    requirements: [
-      '4+ years of product design experience',
-      'Strong portfolio demonstrating UI/UX expertise',
-      'Proficiency in Figma and design tools',
-      'Understanding of design systems and patterns',
-      'Excellent visual design skills',
-      'Strong communication and presentation skills',
-    ],
-    niceToHave: [
-      'Experience with motion design and animation',
-      'Front-end development skills (HTML/CSS)',
-      'Experience in SaaS products',
-      'Knowledge of accessibility standards',
-    ],
-  },
-}; */
-// Related jobs
-const relatedJobs = [
-  { id: 'backend-engineer', title: 'Backend Engineer', team: 'Engineering' },
-  { id: 'devops-engineer', title: 'DevOps Engineer', team: 'Engineering' },
-  { id: 'marketing-lead', title: 'Marketing Lead', team: 'Marketing' },
-];
 export default function JobDetailsPage() {
   const { slug } = useParams();
   const [careerData, setCareer] = useState(null);
@@ -87,25 +17,85 @@ export default function JobDetailsPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const [formData, setFormData] = useState({
-    fullName: '',
+    applicant_name: '',
     email: '',
     phone: '',
     linkedin: '',
     portfolio: '',
-    coverLetter: '',
+    cover_letter: '',
+    resume: '',
+    job_id: '',
+    designation: '',
   });
-
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
-    // In real app, send to backend
+    setIsSubmitted(false);
+    const data = {
+      job_id: careerData?.job_id,
+      applicant_name: formData.applicant_name,
+      email: formData.email,
+      phone: formData.phone,
+      designation: careerData?.department,
+      social_link: {
+        linkedin: formData.linkedin,
+        portfolio: formData.portfolio,
+      },
+      cover_letter: formData.cover_letter,
+      resume: formData.resume,
+    };
+    console.log(data);
+    handleSave(data, 'Career');
+  };
+  const handleSave = async (data, title) => {
+    try {
+      const applyApi = `${settings.backend_api_url}/api/applications/apply`;
+      const hasFiles = Object.values(data).some(value => value instanceof File);
+      let result;
+
+      if (hasFiles) {
+        const submissionData = new FormData();
+        Object.keys(data).forEach(key => {
+          const value = data[key];
+          if (typeof value === 'object' && value !== null && !(value instanceof File)) {
+            submissionData.append(key, JSON.stringify(value));
+          } else {
+            submissionData.append(key, value);
+          }
+        });
+        result = await fetch(applyApi, {
+          method: "POST",
+          body: submissionData,
+        });
+      } else {
+        result = await fetch(applyApi, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+      }
+
+      const responseData = await result.json();
+
+      if (result.ok && (responseData.success !== false && !responseData.error)) {
+        toast.success(`${title} Applied successfully!`);
+        setIsSubmitted(true);
+      } else {
+        toast.error(`Failed to apply ${title}: ${responseData?.message || responseData?.error || 'Unknown error'}`);
+      }
+    } catch (error) {
+      console.error(`Error applying ${title}:`, error);
+      toast.error(error.message || `Failed to apply ${title}`);
+    }
   };
 
   const handleChange = (e) => {
+    const { name, value, type, files } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: type === 'file' ? files[0] : value,
     });
   };
 
@@ -280,9 +270,9 @@ export default function JobDetailsPage() {
                         </label>
                         <input
                           type="text"
-                          name="fullName"
+                          name="applicant_name"
                           required
-                          value={formData.fullName}
+                          value={formData.applicant_name}
                           onChange={handleChange}
                           className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
                           style={{ '--tw-ring-color': '#06b6d4' }}
@@ -351,12 +341,25 @@ export default function JobDetailsPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Resume *
+                      </label>
+                      <input
+                        type="file"
+                        name="resume"
+                        required
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
+                        style={{ '--tw-ring-color': '#06b6d4' }}
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">
                         Cover Letter *
                       </label>
                       <textarea
-                        name="coverLetter"
+                        name="cover_letter"
                         required
-                        value={formData.coverLetter}
+                        value={formData.cover_letter}
                         onChange={handleChange}
                         rows={6}
                         className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all resize-none"
@@ -441,7 +444,7 @@ export default function JobDetailsPage() {
                             className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
                             style={{ backgroundColor: `${item.color}15` }}
                           >
-                            <CloudCheck className="w-5 h-5 text-[#22c55e]"/>
+                            <CloudCheck className="w-5 h-5 text-[#22c55e]" />
                           </div>
                           <span className="text-gray-700">{item}</span>
                         </div>
