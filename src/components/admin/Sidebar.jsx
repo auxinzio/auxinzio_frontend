@@ -3,21 +3,22 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { 
+import {
   LayoutDashboard,
-  Wrench , 
-  Package ,
-  Lightbulb ,
-  Briefcase, 
-  Image as ImageIcon, 
-  Users, 
-  Settings, 
+  Wrench,
+  Package,
+  Lightbulb,
+  Briefcase,
+  Image as ImageIcon,
+  Users,
+  Settings,
   Mail,
-  MessageSquare ,
-  LogOut, 
+  MessageSquare,
+  LogOut,
   HelpCircle,
-  Menu, 
-  X 
+  Menu,
+  FileUser,
+  X
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/app/Context/AuthContext'
@@ -25,11 +26,12 @@ import { cn } from '@/lib/utils'
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
-  { name: 'Services', href: '/admin/services', icon: Wrench  },
+  { name: 'Services', href: '/admin/services', icon: Wrench },
   { name: 'Products', href: '/admin/products', icon: Package },
   { name: 'Solutions', href: '/admin/solutions', icon: Lightbulb },
   { name: 'Teams', href: '/admin/teams', icon: Users },
   { name: 'Careers', href: '/admin/careers', icon: Briefcase },
+  { name: 'Applications', href: '/admin/applications', icon: FileUser },
   { name: 'Subscribers', href: '/admin/subscribers', icon: Mail },
   { name: 'Feedbacks', href: '/admin/feedbacks', icon: MessageSquare },
   { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
@@ -87,17 +89,17 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
                 href={item.href}
                 className={cn(
                   "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 group text-sm font-medium",
-                  isActive 
-                    ? "bg-green-50 text-green-600" 
+                  isActive
+                    ? "bg-green-50 text-green-600"
                     : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
                 )}
               >
-                <item.icon 
-                  size={20} 
+                <item.icon
+                  size={20}
                   className={cn(
                     "transition-colors",
                     isActive ? "text-green-500" : "text-gray-400 group-hover:text-gray-600"
-                  )} 
+                  )}
                 />
                 {item.name}
               </Link>

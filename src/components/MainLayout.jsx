@@ -3,6 +3,8 @@
 import { usePathname } from "next/navigation";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function MainLayout({ children }) {
   const pathname = usePathname();
@@ -11,6 +13,7 @@ export default function MainLayout({ children }) {
 
   return (
     <>
+      <ToastContainer />
       {!isAdmin && <Navbar />}
       {children}
       {!isAdmin && <Footer />}
