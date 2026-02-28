@@ -10,21 +10,50 @@ import { cmsApi } from "@/lib/cms-api";
 import { toast } from "react-toastify";
 
 
-export default function Table({ title, searchTerm, handleSearchChange, totalCount, loading, error, dataLength, dataArray, currentPage, handlePageChange, fetch, totalPages }) {
+export default function Table({ title, searchTerm, handleSearchChange, totalCount, loading, error, dataLength, dataArray, currentPage, handlePageChange, fetch, totalPages, product }) {
 
     const { settings } = useSettings();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [modalMode, setModalMode] = useState('add'); // 'add' or 'edit'
+    const [modalMode, setModalMode] = useState('add');
     const [formData, setFormData] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
-
-    // Dynamic Form Configuration based on Title
+    const [productList, setProductList] = useState([]);
+    useEffect(() => {
+        if (product && Array.isArray(product)) {
+            setProductList(product.map((item) => ({
+                id: item.id,
+                name: item.product_name
+            })));
+        }
+    }, [product]);
     const getFormFields = (type) => {
         switch (type) {
+            case "Settings":
+                return [
+                    { name: "key", label: "Key", type: "text", placeholder: "Enter key" },
+                    { name: "value", label: "Value", type: "text", placeholder: "Enter value" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                ];
+            case "FAQ":
+                return [
+                    { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
+                    { name: "question", label: "Question", type: "text", placeholder: "Enter question" },
+                    { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter answer" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                ];
             case "Subscribers":
                 return [
                     { name: "email", label: "Email Address", type: "email", placeholder: "Enter email" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                ];
+            case "Feedbacks":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
+                    { name: "content", label: "Content", type: "textarea", placeholder: "Enter content" },
+                    { name: "rating", label: "Rating", type: "number", placeholder: "Enter rating" },
+                    { name: "location", label: "Location", type: "text", placeholder: "Enter location" },
+                    { name: "image", label: "Image", type: "image", placeholder: "Upload image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
                 ];
             case "Services":
@@ -137,6 +166,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 initialData.skill = Array.isArray(item.requirements?.skill) ? item.requirements.skill.join('~') : item.requirements?.skill || '';
                 initialData.extra = Array.isArray(item.requirements?.extra) ? item.requirements.extra.join('~') : item.requirements?.extra || '';
             }
+            initialData.status = item.status === 1 || item.status === true ? "Active" : "Inactive";
 
             setFormData(initialData);
         } else {
@@ -281,6 +311,12 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return mode === 'add' ? '/careers/create' : mode === 'delete' ? '/careers/delete' : '/careers/update';
             case 'Subscribers':
                 return mode === 'add' ? '/subscribers/create' : mode === 'delete' ? '/subscribers/delete' : '/subscribers/update';
+            case 'Feedbacks':
+                return mode === 'add' ? '/feedbacks/create' : mode === 'delete' ? '/feedbacks/delete' : '/feedbacks/update';
+            case 'FAQ':
+                return mode === 'add' ? '/faq/create' : mode === 'delete' ? '/faq/delete' : '/faq/update';
+            case 'Settings':
+                return mode === 'add' ? '/settings/create' : mode === 'delete' ? '/settings/delete' : '/settings/update';
             default:
                 return '';
         }
@@ -336,7 +372,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const handleStatusToggle = async (item) => {
         try {
             const apiEndpoint = `/${title.toLowerCase()}/updateStatus`;
-            const result = await cmsApi.post(apiEndpoint, { id: item.id });
+            const result = await cmsApi.post(apiEndpoint, { id: item.id, status: item.status ? false : true });
 
             if (result && (result.success !== false && !result.error)) {
                 toast.success("Status updated successfully!");
@@ -347,7 +383,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             toast.error("Failed to update status");
         }
     };
-
+    console.log(dataArray);
     return (
         <>
             <div className="space-y-6">
@@ -406,9 +442,11 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                 <table className="w-full text-left">
                                     <thead className="bg-gray-50 border-b border-gray-100">
                                         <tr>
-                                            <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">{
-                                                title === "Subscribers" ? "Subscribers Email" : `${title} Name`
-                                            }</th>
+                                            {
+                                                title !== "FAQ" && (
+                                                    <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">{title === "Subscribers" ? "Subscribers Email" : title === "Settings" ? "Key" : `${title} Name`}</th>
+                                                )
+                                            }
                                             {
                                                 (title === "Products" || title === "Solutions" || title === "Services") && (
                                                     <>
@@ -435,6 +473,32 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     </>
                                                 )
                                             }
+                                            {
+                                                title === "Feedbacks" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Content</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Rating</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Location</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Image</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "Settings" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Value</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "FAQ" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Question</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Answer</th>
+                                                    </>
+                                                )
+                                            }
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase text-right">Actions</th>
                                         </tr>
@@ -448,11 +512,15 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 transition={{ delay: index * 0.05 }}
                                                 className="hover:bg-gray-50 transition-colors"
                                             >
-                                                <td className="px-6 py-4">
-                                                    <div>
-                                                        <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name}</div>
-                                                    </div>
-                                                </td>
+                                                {
+                                                    title !== "FAQ" && (
+                                                        <td className="px-6 py-4">
+                                                            <div>
+                                                                <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name || item.key}</div>
+                                                            </div>
+                                                        </td>
+                                                    )
+                                                }
                                                 {
                                                     (title === "Products" || title === "Solutions" || title === "Services") && (
                                                         <>
@@ -507,6 +575,56 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                                 <span className="px-2 py-1">
                                                                     <Image src={`${settings?.backend_api_url}/${item.image}`} alt="team image" className="w-10 mx-auto rounded-full" width={100} height={100} />
                                                                 </span>
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Feedbacks" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
+                                                                    {item.content}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
+                                                                    {item.rating}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
+                                                                    {item.location}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1">
+                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt="feedback image" className="w-10 mx-auto rounded-full" width={100} height={100} />
+                                                                </span>
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Settings" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.value}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "FAQ" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.product_id || item.product_name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.question}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.answer}
                                                             </td>
                                                         </>
                                                     )
@@ -626,8 +744,10 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                         className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 appearance-none pr-10"
                                     >
                                         <option value="">Select {field.label}</option>
-                                        {field.options.map((opt) => (
-                                            <option key={opt} value={opt}>{opt}</option>
+                                        {field.options && field.options.map((opt) => (
+                                            <option key={typeof opt === 'object' ? opt.id : opt} value={typeof opt === 'object' ? opt.id : opt}>
+                                                {typeof opt === 'object' ? opt.name : opt}
+                                            </option>
                                         ))}
                                     </select>
                                     <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
