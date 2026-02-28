@@ -58,6 +58,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 ];
             case "Solutions":
                 return [
+                    { name: "name", label: "Solution Name", type: "text", placeholder: "Enter solution name" },
                     { name: "title", label: "Solution Title", type: "text", placeholder: "Enter solution title" },
                     { name: "slug", label: "Solution Slug", type: "text", placeholder: "Enter solution slug" },
                     { name: "key_point", label: "Solution Keypoints ('~' separated)", type: "textarea", placeholder: "Enter solution keypoints" },
@@ -112,6 +113,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             }
 
             if (title === "Products") {
+                initialData.description = Array.isArray(item.description) ? item.description.join('~') : item.description || '';
                 initialData.key_feature = item.key_feature?.join('~');
                 initialData.time_benefits = item.benefit.time_benefits?.join('~');
                 initialData.cloud_benefits = item.benefit.cloud_benefits?.join('~');
@@ -127,15 +129,13 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 initialData.email = item.social_link?.email;
                 initialData.linkedin = item.social_link?.linkedin;
                 initialData.github = item.social_link?.github;
+                initialData.designation_flag = item.designation_flag === 1 || item.designation_flag === true ? "True" : "False";
             }
 
             if (title === "Careers") {
-                // initialData.experience = item.requirements.experience?.join('~');
-                // initialData.skill = item.requirements.skill?.join('~');
-                // initialData.extra = item.requirements.extra?.join('~');
-                initialData.experience = item.requirements.experience;
-                initialData.skill = item.requirements.skill;
-                initialData.extra = item.requirements.extra;
+                initialData.experience = Array.isArray(item.requirements?.experience) ? item.requirements.experience.join('~') : item.requirements?.experience || '';
+                initialData.skill = Array.isArray(item.requirements?.skill) ? item.requirements.skill.join('~') : item.requirements?.skill || '';
+                initialData.extra = Array.isArray(item.requirements?.extra) ? item.requirements.extra.join('~') : item.requirements?.extra || '';
             }
 
             setFormData(initialData);
@@ -209,10 +209,11 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             };
             // Remove flattened fields that are now nested
             ['short_description', 'status', 'short_description_title', 'long_description', 'long_description_title'].forEach(f => delete dataToSave[f]);
-        } 
+        }
         else if (title === "Products") {
             dataToSave = {
                 ...formData,
+                description: formData.description,
                 key_feature: formData.key_feature?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 benefit: {
                     time_benefits: formData.time_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
@@ -221,37 +222,42 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     communication_benefits: formData.communication_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 }
             };
-            ['time_benefits', 'cloud_benefits', 'growth_benefits', 'communication_benefits'].forEach(f => delete dataToSave[f]);
+            ['time_benefits', 'status', 'cloud_benefits', 'growth_benefits', 'communication_benefits'].forEach(f => delete dataToSave[f]);
         }
         else if (title === "Solutions") {
+            console.log(formData);
             dataToSave = {
                 ...formData,
+                name: formData.title,
                 key_point: formData.key_point?.split('~').map(s => s.trim()).filter(Boolean) || [],
             };
+            ['status'].forEach(f => delete dataToSave[f]);
         }
         else if (title === "Teams") {
             dataToSave = {
                 ...formData,
+                designation_flag: formData.designation_flag === "True" ? 1 : 0,
                 social_link: {
                     email: formData.email,
                     linkedin: formData.linkedin,
                     github: formData.github,
                 }
             };
-            ['email', 'linkedin', 'github'].forEach(f => delete dataToSave[f]);
+            ['email', 'linkedin', 'github', 'status'].forEach(f => delete dataToSave[f]);
         }
         else if (title === "Careers") {
             dataToSave = {
                 ...formData,
+                name: formData.title,
                 requirements: {
                     experience: formData.experience?.split('~').map(s => s.trim()).filter(Boolean) || [],
                     skill: formData.skill?.split('~').map(s => s.trim()).filter(Boolean) || [],
                     extra: formData.extra?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 }
             };
-            ['experience', 'skill', 'extra'].forEach(f => delete dataToSave[f]);
+            ['experience', 'skill', 'extra', 'status'].forEach(f => delete dataToSave[f]);
         }
-        // console.log("Submitting:", modalMode, dataToSave, title);
+        console.log("Submitting:", modalMode, dataToSave, title);
         await handleSave(modalMode, dataToSave, title);
     };
 
@@ -264,15 +270,17 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const getApiEndpoint = (mode, title) => {
         switch (title) {
             case 'Services':
-                return mode === 'add' ? '/services/create' : mode=== 'delete' ? '/services/delete' : '/services/update';
+                return mode === 'add' ? '/services/create' : mode === 'delete' ? '/services/delete' : '/services/update';
             case 'Products':
-                return mode === 'add' ? '/products/create' : mode=== 'delete' ? '/products/delete' : '/products/update';
+                return mode === 'add' ? '/products/create' : mode === 'delete' ? '/products/delete' : '/products/update';
             case 'Solutions':
-                return mode === 'add' ? '/solutions/create' : mode=== 'delete' ? '/solutions/delete' : '/solutions/update';
+                return mode === 'add' ? '/solutions/create' : mode === 'delete' ? '/solutions/delete' : '/solutions/update';
             case 'Teams':
-                return mode === 'add' ? '/teams/create' : mode=== 'delete' ? '/teams/delete' : '/teams/update';
+                return mode === 'add' ? '/teams/create' : mode === 'delete' ? '/teams/delete' : '/teams/update';
             case 'Careers':
-                return mode === 'add' ? '/careers/create' : mode=== 'delete' ? '/careers/delete' : '/careers/update';
+                return mode === 'add' ? '/careers/create' : mode === 'delete' ? '/careers/delete' : '/careers/update';
+            case 'Subscribers':
+                return mode === 'add' ? '/subscribers/create' : mode === 'delete' ? '/subscribers/delete' : '/subscribers/update';
             default:
                 return '';
         }
@@ -281,29 +289,37 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const handleSave = async (mode, data, title) => {
         try {
             const apiEndpoint = getApiEndpoint(mode, title);
-            
-            // Always use FormData for submission
-            const submissionData = new FormData();
-            
+
+            // Pre-process data: stringify arrays and objects because backend expects it
+            const processedData = {};
             Object.keys(data).forEach(key => {
                 const value = data[key];
                 if (value !== undefined && value !== null) {
                     if (value instanceof File) {
-                        submissionData.append(key, value);
-                    } else if (Array.isArray(value)) {
-                        // Handle arrays (like service_item or benefits)
-                        value.forEach(item => submissionData.append(`${key}[]`, item));
-                    } else if (typeof value === 'object') {
-                        // Handle nested objects by stringifying them
-                        submissionData.append(key, JSON.stringify(value));
+                        processedData[key] = value;
+                    } else if (Array.isArray(value) || (typeof value === 'object' && value !== null)) {
+                        processedData[key] = JSON.stringify(value);
                     } else {
-                        submissionData.append(key, value);
+                        processedData[key] = value;
                     }
                 }
             });
 
-            const result = await cmsApi.post(apiEndpoint, submissionData);
-            
+            // Automatically determine content type
+            const hasFiles = Object.values(processedData).some(value => value instanceof File);
+            let result;
+
+            if (hasFiles) {
+                const submissionData = new FormData();
+                Object.keys(processedData).forEach(key => {
+                    submissionData.append(key, processedData[key]);
+                });
+                result = await cmsApi.post(apiEndpoint, submissionData);
+            } else {
+                // Send as JSON if no files are present
+                result = await cmsApi.post(apiEndpoint, processedData);
+            }
+
             if (result && (result.success !== false && !result.error)) {
                 toast.success(`${title} ${mode === 'add' ? 'added' : 'updated'} successfully!`);
                 handleModalClose();
@@ -314,6 +330,21 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         } catch (error) {
             console.error(`Error saving ${title}:`, error);
             toast.error(error.message || `Failed to save ${title}`);
+        }
+    };
+
+    const handleStatusToggle = async (item) => {
+        try {
+            const apiEndpoint = `/${title.toLowerCase()}/updateStatus`;
+            const result = await cmsApi.post(apiEndpoint, { id: item.id });
+
+            if (result && (result.success !== false && !result.error)) {
+                toast.success("Status updated successfully!");
+                if (fetch) fetch();
+            }
+        } catch (error) {
+            console.error("Status update error:", error);
+            toast.error("Failed to update status");
         }
     };
 
@@ -379,11 +410,6 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 title === "Subscribers" ? "Subscribers Email" : `${title} Name`
                                             }</th>
                                             {
-                                                title === "Subscribers" && (
-                                                    <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
-                                                )
-                                            }
-                                            {
                                                 (title === "Products" || title === "Solutions" || title === "Services") && (
                                                     <>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Description</th>
@@ -409,6 +435,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     </>
                                                 )
                                             }
+                                            <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -426,13 +453,6 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name}</div>
                                                     </div>
                                                 </td>
-                                                {
-                                                    title === "Subscribers" && (
-                                                        <td className="px-6 py-4">
-                                                            <span className="py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">{item.status ? "Active" : "Inactive"}</span>
-                                                        </td>
-                                                    )
-                                                }
                                                 {
                                                     (title === "Products" || title === "Solutions" || title === "Services") && (
                                                         <>
@@ -491,6 +511,20 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         </>
                                                     )
                                                 }
+                                                <td className="px-6 py-4">
+                                                    <button
+                                                        onClick={() => handleStatusToggle(item)}
+                                                        className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none ${item.status ? 'bg-green-500' : 'bg-gray-200'
+                                                            }`}
+                                                    >
+                                                        <motion.span
+                                                            layout
+                                                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${item.status ? 'translate-x-6' : 'translate-x-1'
+                                                                }`}
+                                                        />
+                                                    </button>
+                                                </td>
                                                 <td className="px-6 py-4 text-right">
                                                     <div className="flex justify-end gap-2">
                                                         <button
