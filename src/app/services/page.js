@@ -114,13 +114,14 @@ export default function Services() {
                      >
                         {/* Visual Block */}
                         <div className="lg:w-1/2 relative">
-                           <div className="relative aspect-[4/5] rounded-[3rem] overflow-hidden shadow-2xl group">
+                           <div className="relative rounded-[3rem] overflow-hidden shadow-2xl group">
                               {srv.main_logo ? (
                                  <Image
                                     src={`${settings.backend_api_url}/${srv.main_logo}`}
                                     alt={srv.title}
-                                    fill
-                                    className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110"
+                                    width={500}
+                                    height={300}
+                                    className="object-cover w-full transition-all duration-1000 group-hover:scale-110"
                                  />
                               ) : (
                                  <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">

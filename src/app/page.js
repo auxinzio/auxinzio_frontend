@@ -206,43 +206,148 @@ export default function Home() {
       {/* Teams Section */}
       <Teams teams={teams} data={team.data} />
 
-      {/* --- CLIENTS: THE TRUST ARCHITECTURE --- */}
-      <section className="py-24 lg:py-40 bg-white border-t border-gray-100 px-6">
-        <div className="mx-auto max-w-[1600px]">
-          <div className="grid lg:grid-cols-12 gap-12 items-end mb-20">
-            <div className="lg:col-span-8">
-              <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-px bg-[#14b8a6]" />
-                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Global Ecosystem</span>
-              </div>
-              <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-none">
-                Trusted by <span className="italic font-medium text-[#14b8a6]">Industry</span> <br />Leaders.
-              </h2>
-            </div>
-          </div>
+      {/* --- CLIENTS: THE INTERACTIVE CONSTELLATION --- */}
+      <section className="relative py-32 lg:py-64 bg-white overflow-hidden group/constellation">
+        {/* Panning Background Text */}
+        <div className="absolute top-1/4 left-0 w-full opacity-[0.02] select-none pointer-events-none whitespace-nowrap overflow-hidden">
+          <motion.h1 
+            animate={{ x: [0, -1000] }}
+            transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
+            className="text-[20vw] font-black tracking-tighter"
+          >
+            GLOBAL PARTNERSHIPS & ALLIANCES SYNERGY ENGINE
+          </motion.h1>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 border-l border-t border-gray-50">
-            {[...clients].map((client, index) => (
+        <div className="mx-auto max-w-[1600px] px-6">
+          <div className="grid lg:grid-cols-12 gap-20 items-center">
+            
+            {/* Left: Editorial Header */}
+            <div className="lg:col-span-5 relative z-10">
               <motion.div
-                key={index}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="aspect-video relative group border-r border-b border-gray-50 flex items-center justify-center p-12 hover:bg-gray-50/50 transition-colors"
+                transition={{ duration: 1 }}
               >
-                <Image
-                  src={`/assets/img/client/${client}`}
-                  alt="Client Logo"
-                  width={160}
-                  height={80}
-                  className="object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all duration-700"
-                />
-
-                {/* Hover Corner Accent */}
-                <div className="absolute top-0 right-0 w-0 h-0 border-t-2 border-r-2 border-[#14b8a6] opacity-0 group-hover:opacity-100 group-hover:w-4 group-hover:h-4 transition-all duration-500" />
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-px bg-[#14b8a6]" />
+                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Neural Network</span>
+                </div>
+                <h2 className="text-6xl lg:text-[8rem] font-light text-gray-900 tracking-tighter leading-[0.8] mb-12">
+                  Our <br />
+                  <span className="italic font-normal text-[#14b8a6]">Global</span> <br />
+                  Impact.
+                </h2>
+                <div className="space-y-6 max-w-sm mb-12">
+                  <p className="text-xl text-gray-400 font-light leading-relaxed">
+                    We don&apos;t just provide services; we build long-term value for the world&apos;s most ambitious organizations.
+                  </p>
+                  <p className="text-sm text-gray-400 border-l-2 border-[#14b8a6]/20 pl-6 italic">
+                    Scaling enterprises through architectural precision and digital sovereignty.
+                  </p>
+                </div>
+                
+                <Link href="/contact">
+                  <button className="flex items-center gap-4 text-gray-900 font-bold text-xs uppercase tracking-widest group">
+                    Explore Alliances <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500"><ArrowRight className="w-4 h-4" /></div>
+                  </button>
+                </Link>
               </motion.div>
-            ))}
+            </div>
+
+            {/* Right: The Constellation Field with SVG Connections */}
+            <div className="lg:col-span-7 relative h-[600px] lg:h-[850px] flex items-center justify-center">
+              
+              {/* Central Neural Core */}
+              <div className="relative z-20">
+                <div className="w-4 h-4 bg-[#14b8a6] rounded-full shadow-[0_0_40px_rgba(20,184,166,0.6)] animate-pulse" />
+                <div className="absolute inset-0 w-20 h-20 -translate-x-1/2 -translate-y-1/2 border border-[#14b8a6]/10 rounded-full animate-ping" />
+              </div>
+
+              {/* Connecting Lines (SVG) */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
+                <defs>
+                   <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#14b8a6" stopOpacity="0" />
+                      <stop offset="50%" stopColor="#14b8a6" stopOpacity="0.1" />
+                      <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
+                   </linearGradient>
+                </defs>
+                {[...Array(8)].map((_, i) => (
+                   <motion.line
+                     key={i}
+                     x1="50%" y1="50%"
+                     x2={`${50 + (35 + i*2) * Math.cos((i * 45 * Math.PI) / 180)}%`}
+                     y2={`${50 + (35 + i*2) * Math.sin((i * 45 * Math.PI) / 180)}%`}
+                     stroke="url(#lineGrad)"
+                     strokeWidth="1"
+                     initial={{ pathLength: 0 }}
+                     whileInView={{ pathLength: 1 }}
+                     transition={{ duration: 2, delay: i * 0.1 }}
+                   />
+                ))}
+              </svg>
+
+              <div className="absolute inset-0 w-full h-full">
+                {[...clients].map((client, idx) => {
+                  const angles = [0, 45, 90, 135, 180, 225, 270, 315];
+                  const radii = [32, 42, 34, 46, 32, 42, 34, 46];
+                  const sizes = ["w-28", "w-36", "w-24", "w-32", "w-40", "w-28", "w-32", "w-28"];
+                  const labels = ["Enterprise", "Banking", "Retail", "Manufacturing", "Tech Giant", "Logistics", "Energy", "Services"];
+                  
+                  const angle = angles[idx % angles.length];
+                  const radius = radii[idx % radii.length];
+                  const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
+                  const y = 50 + radius * Math.sin((angle * Math.PI) / 180);
+
+                  return (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, scale: 0 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ 
+                        duration: 1, 
+                        delay: idx * 0.1,
+                        type: "spring",
+                        damping: 20
+                      }}
+                      style={{ 
+                        left: `${x}%`, 
+                        top: `${y}%`,
+                        position: 'absolute',
+                        transform: 'translate(-50%, -50%)' 
+                      }}
+                      className="group z-10"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.1, y: -10 }}
+                        className={`relative ${sizes[idx % sizes.length]} aspect-square bg-white rounded-full border border-gray-50 flex flex-col items-center justify-center p-6 shadow-xl transition-all duration-500 hover:border-[#14b8a6]/20 hover:shadow-[0_40px_80px_-20px_rgba(20,184,166,0.2)]`}
+                      >
+                        <Image
+                          src={`/assets/img/client/${client}`}
+                          alt="Client"
+                          width={140}
+                          height={70}
+                          className="object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
+                        />
+                        
+                        {/* Hover Pill Labels */}
+                        <div className="absolute -top-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                           <span className="bg-gray-900 text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
+                              {labels[idx % labels.length]}
+                           </span>
+                        </div>
+
+                        {/* Pulsing Border Effect */}
+                        <div className="absolute inset-0 rounded-full border border-[#14b8a6]/5 animate-ping opacity-0 group-hover:opacity-100" />
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
