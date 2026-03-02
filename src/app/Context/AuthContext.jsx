@@ -69,9 +69,9 @@ export function AuthProvider({ children }) {
       });
 
       const data = await res.json();
-      console.log(data);
+      console.log("Login API data received:", data);
 
-      if (res.ok && data.statuscode == 200) {
+      if (res.ok && data.status === 200) {
         const userData = data.data;
         setUser(userData.user || userData);
         router.push('/admin/dashboard');
