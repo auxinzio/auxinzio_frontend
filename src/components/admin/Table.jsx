@@ -9,7 +9,6 @@ import Modal, { ApplicationModal } from "./Modal";
 import { cmsApi } from "@/lib/cms-api";
 import { toast } from "react-toastify";
 
-
 export default function Table({ title, searchTerm, handleSearchChange, totalCount, loading, error, dataLength, dataArray, currentPage, handlePageChange, fetch, totalPages, product }) {
 
     const { settings } = useSettings();
@@ -20,6 +19,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
     const [productList, setProductList] = useState([]);
+
     useEffect(() => {
         if (product && Array.isArray(product)) {
             setProductList(product.map((item) => ({
@@ -28,6 +28,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             })));
         }
     }, [product]);
+
     const getFormFields = (type) => {
         switch (type) {
             case "Settings":
@@ -196,7 +197,6 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         setFormData(initialData);
     };
 
-
     const handleApplicationModalClose = () => {
         setIsApplicationModalOpen(false);
         setFormData({});
@@ -320,9 +320,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     };
 
     // const handleDelete = async (id) => {
-
     //     handleSave('delete', id, title);
-
     // };
 
     const getApiEndpoint = (mode, title) => {
@@ -411,7 +409,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             toast.error("Failed to update status");
         }
     };
-    console.log(dataArray);
+
     return (
         <>
             <div className="space-y-6">

@@ -19,9 +19,7 @@ export function AuthProvider({ children }) {
   const router = useRouter();
   const pathname = usePathname();
 
-  // Check valid session on mount
   useEffect(() => {
-    // Skip check on login page to avoid 401 error
     if (pathname === '/admin/login') {
       setIsLoading(false);
       return;
@@ -39,7 +37,6 @@ export function AuthProvider({ children }) {
           setUser(data.user);
         } else {
           setUser(null);
-          // Only redirect if trying to access a protected admin page
           if (pathname.startsWith('/admin/')) {
             router.push('/admin/login');
           }
@@ -69,7 +66,6 @@ export function AuthProvider({ children }) {
       });
 
       const data = await res.json();
-      console.log("Login API data received:", data);
 
       if (res.ok && (data.status === 200 || data.statuscode === 200 || data.status === "ok")) {
         const userData = data.data;
