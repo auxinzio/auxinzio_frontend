@@ -19,8 +19,8 @@ export async function POST(request) {
 
     const data = await res.json();
 
-    // Look for token in common places
-    const token = data.data?.token;
+    // Robust token extraction
+    const token = data.data?.token || data.token || (data.user && data.user.token);
 
     if (res.ok && token) {
       const response = NextResponse.json({
@@ -37,8 +37,7 @@ export async function POST(request) {
         httpOnly: true,
         path: '/',
         sameSite: 'lax',
-        // secure: process.env.NODE_ENV === 'production',
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24, // 1 day
       });
 
@@ -53,8 +52,7 @@ export async function POST(request) {
         httpOnly: true,
         path: '/',
         sameSite: 'lax',
-        // secure: process.env.NODE_ENV === 'production',
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 60 * 60 * 24, // 1 day
       });
 
