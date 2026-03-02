@@ -401,12 +401,27 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             const result = await cmsApi.post(apiEndpoint, { id: item.id, status: item.status ? false : true });
 
             if (result && (result.success !== false && !result.error)) {
-                toast.success("Status updated successfully!");
+                toast.success("Status Updated Successfully!");
                 if (fetch) fetch();
             }
         } catch (error) {
-            console.error("Status update error:", error);
-            toast.error("Failed to update status");
+            console.error("Status Update Error:", error);
+            toast.error("Failed to Update Status");
+        }
+    };
+
+    const handleStatusChange = async (item, status) => {
+        try {
+            const apiEndpoint = `/${title.toLowerCase()}/updateStatus`;
+            const result = await cmsApi.post(apiEndpoint, { id: item.id, status: status });
+
+            if (result && (result.success !== false && !result.error)) {
+                toast.success("Application Status Updated Successfully!");
+                if (fetch) fetch();
+            }
+        } catch (error) {
+            console.error("Application Status Update Error:", error);
+            toast.error("Failed to Update Application Status");
         }
     };
 
