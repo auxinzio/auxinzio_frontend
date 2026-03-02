@@ -521,7 +521,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             {
                                                 title === "FAQ" && (
                                                     <>
-                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product Name</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Question</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Answer</th>
                                                     </>
@@ -657,7 +657,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     title === "FAQ" && (
                                                         <>
                                                             <td className="px-6 py-4">
-                                                                {item.product_id || item.product_name}
+                                                                {item.product_name}
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 {item.question}
