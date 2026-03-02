@@ -99,7 +99,7 @@ export function AboutSection() {
                        src={about.images[0].src} 
                        alt={about.images[0].alt} 
                        fill
-                       className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                       className="object-cover transition-all duration-1000 group-hover:scale-105"
                     />
                     
                     {/* Floating Info Pod */}
@@ -121,7 +121,7 @@ export function AboutSection() {
                        src={about.images[1].src} 
                        alt={about.images[1].alt} 
                        fill
-                       className="object-cover grayscale"
+                       className="object-cover"
                     />
                  </motion.div>
               </div>
