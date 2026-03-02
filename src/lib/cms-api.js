@@ -13,7 +13,7 @@ async function handleResponse(response) {
 
   const text = await response.text();
   let data;
-  
+
   try {
     data = text ? JSON.parse(text) : {};
   } catch (err) {
@@ -40,7 +40,7 @@ export const cmsApi = {
   get: async (endpoint) => {
     // Strip leading slash if present to avoid double slash
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    const response = await fetch(`/api/cms/${path}`, {
+    const response = await fetch(`/api-proxy/cms/${path}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
@@ -51,7 +51,7 @@ export const cmsApi = {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
     const isFormData = body instanceof FormData;
 
-    const response = await fetch(`/api/cms/${path}`, {
+    const response = await fetch(`/api-proxy/cms/${path}`, {
       method: 'POST',
       headers: isFormData ? {} : { 'Content-Type': 'application/json' },
       body: isFormData ? body : JSON.stringify(body),

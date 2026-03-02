@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
 
     const checkAuth = async () => {
       try {
-        const res = await fetch('/api/auth/me', {
+        const res = await fetch('/api-proxy/auth/me', {
           method: 'POST',
           credentials: 'include',
           headers: { 'Content-Type': 'application/json' },
@@ -61,7 +61,7 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch('/api-proxy/auth/login', {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
@@ -71,7 +71,7 @@ export function AuthProvider({ children }) {
       const data = await res.json();
       console.log("Login API data received:", data);
 
-      if (res.ok && data.status === 200) {
+      if (res.ok && (data.status === 200 || data.statuscode === 200 || data.status === "ok")) {
         const userData = data.data;
         setUser(userData.user || userData);
         router.push('/admin/dashboard');
@@ -91,7 +91,7 @@ export function AuthProvider({ children }) {
 
   const logout = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
+      await fetch('/api-proxy/auth/logout', { method: 'POST' });
       setUser(null);
       router.push('/admin/login');
     } catch (error) {
