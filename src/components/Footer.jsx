@@ -12,20 +12,20 @@ export function Footer() {
   const [product, setProduct] = useState("");
 
   useEffect(() => {
-    fetch(`${settings.backend_api_url}/api/services/servicesList`, { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" }, 
-      body: JSON.stringify({}) 
+    fetch(`${settings.backend_api_url}/api/services/servicesList`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({})
     })
       .then(res => res.json())
       .then(data => setService(data))
   }, [settings]);
 
   useEffect(() => {
-    fetch(`${settings.backend_api_url}/api/products/productsList`, { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" }, 
-      body: JSON.stringify({}) 
+    fetch(`${settings.backend_api_url}/api/products/productsList`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({})
     })
       .then(res => res.json())
       .then(data => setProduct(data))
@@ -47,7 +47,7 @@ export function Footer() {
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
-          
+
           {/* Brand & Manifesto */}
           <div className="lg:col-span-5 space-y-12">
             <Link href="/" className="inline-block">
@@ -65,9 +65,9 @@ export function Footer() {
               </p>
               <div className="flex gap-4">
                 {socialLinks.map((social, idx) => (
-                  <Link 
-                    key={idx} 
-                    href={social.href} 
+                  <Link
+                    key={idx}
+                    href={social.href}
                     className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#14b8a6] hover:border-[#14b8a6] hover:text-white transition-all duration-500 group"
                   >
                     <social.icon size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
@@ -79,7 +79,7 @@ export function Footer() {
 
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
-              
+
               {/* 01 Company */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
@@ -146,7 +146,7 @@ export function Footer() {
                   {[
                     { name: "Privacy Policy", href: "/privacy-policy" },
                     { name: "Terms of Service", href: "/terms-and-conditions" },
-                    { name: "Cookie Policy", href: "#" },
+                    { name: "Cookie Policy", href: "/cookie-policy" },
                     { name: "Audit Reports", href: "#" }
                   ].map((link) => (
                     <li key={link.name}>
