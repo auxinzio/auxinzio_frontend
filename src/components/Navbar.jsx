@@ -8,12 +8,15 @@ import GetDemoModal from "@/components/sections/GetDemoModal";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { useState } from "react";
+import { useSettings } from "@/app/Context/SettingsContext";
 
 export function Navbar() {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const [settings, setSettings] = useState([]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +25,7 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
 
   const navLinks = [
     { name: "About", href: "/about" },
@@ -36,11 +40,11 @@ export function Navbar() {
       <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-700 pointer-events-none">
         <div className={cn(
           "mx-auto transition-all duration-700 flex items-center justify-between pointer-events-auto",
-          scrolled 
-            ? "max-w-[1000px] mt-6 px-8 h-16 bg-white/70 backdrop-blur-2xl rounded-2xl border border-white/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)]" 
+          scrolled
+            ? "max-w-[1000px] mt-6 px-8 h-16 bg-white/70 backdrop-blur-2xl rounded-2xl border border-white/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)]"
             : "max-w-[1600px] mt-0 px-6 h-24 bg-transparent border-transparent"
         )}>
-          
+
           {/* Logo Section */}
           <Link href="/" className="relative group">
             <Image
@@ -54,7 +58,7 @@ export function Navbar() {
               )}
             />
             {!scrolled && (
-              <motion.div 
+              <motion.div
                 layoutId="logo-accent"
                 className="absolute -right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#14b8a6] rounded-full"
               />
@@ -86,7 +90,7 @@ export function Navbar() {
                         {link.name}
                       </span>
                     </div>
-                    
+
                     {/* Architectural Underline */}
                     <AnimatePresence>
                       {isActive && (
@@ -107,10 +111,10 @@ export function Navbar() {
 
             <div className="h-4 w-px bg-gray-100 hidden lg:block" />
 
-            <Button 
-              variant="gradi" 
-              size="md" 
-              onClick={() => setIsModalOpen(true)} 
+            <Button
+              variant="gradi"
+              size="md"
+              onClick={() => setIsModalOpen(true)}
               className="rounded-xl flex items-center gap-3 px-8 group font-bold text-[10px] uppercase tracking-widest"
             >
               Get Demo <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
@@ -129,7 +133,7 @@ export function Navbar() {
         {/* Mobile Sidebar */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div 
+            <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
