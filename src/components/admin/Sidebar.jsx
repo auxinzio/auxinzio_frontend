@@ -18,7 +18,8 @@ import {
   HelpCircle,
   Menu,
   FileUser,
-  X
+  X,
+  MessageCircleHeart
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/app/Context/AuthContext'
@@ -35,6 +36,7 @@ const sidebarItems = [
   { name: 'Subscribers', href: '/admin/subscribers', icon: Mail },
   { name: 'Feedbacks', href: '/admin/feedbacks', icon: MessageSquare },
   { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
+  { name: 'Chatbot', href: '/admin/chat', icon: MessageCircleHeart },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 
