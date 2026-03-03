@@ -6,35 +6,46 @@
 
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
-  
+
   --color-card: hsl(var(--card));
   --color-card-foreground: hsl(var(--card-foreground));
-  
+
   --color-popover: hsl(var(--popover));
   --color-popover-foreground: hsl(var(--popover-foreground));
-  
+
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));
-  
+
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
-  
+
   --color-muted: hsl(var(--muted));
   --color-muted-foreground: hsl(var(--muted-foreground));
-  
+
   --color-accent: hsl(var(--accent));
   --color-accent-foreground: hsl(var(--accent-foreground));
-  
+
   --color-destructive: hsl(var(--destructive));
   --color-destructive-foreground: hsl(var(--destructive-foreground));
-  
+
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
-  
+
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
+}
+
+.animate-marquee {
+  display: flex !important;
+  width: max-content !important;
+  animation: marquee 150s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 :root {
@@ -45,42 +56,50 @@
   --gradi-cyan-600: #0891b2;
   --gradi-teal-500: #14b8a6;
   --gradi-teal-600: #0d9488;
-  --gradi-500: linear-gradient(125deg, var(--gradi-green-500), var(--gradi-cyan-500) 65%);
-  --gradi-600: linear-gradient(to right,var(--gradi-green-600), var(--gradi-cyan-600));
+  --gradi-500: linear-gradient(
+    125deg,
+    var(--gradi-green-500),
+    var(--gradi-cyan-500) 65%
+  );
+  --gradi-600: linear-gradient(
+    to right,
+    var(--gradi-green-600),
+    var(--gradi-cyan-600)
+  );
   --green: 34 197 94;
   --text-cyan-600: 8 145 178;
   --bg-cyan-100: 207 250 254;
 
   --background: 0 0% 100%;
   --foreground: 224 71.4% 4.1%;
-  
+
   --card: 0 0% 100%;
   --card-foreground: 224 71.4% 4.1%;
-  
+
   --popover: 0 0% 100%;
   --popover-foreground: 224 71.4% 4.1%;
-  
+
   /* Primary mapped to Cyan 500 (#06b6d4 -> 189 94% 43%) */
   --primary: 189 94% 43%;
   --primary-foreground: 0 0% 100%;
-  
+
   /* Secondary mapped to Teal 100/200-ish for light mode or neutral */
   --secondary: 180 20% 96%;
   --secondary-foreground: 189 94% 20%;
-  
+
   --muted: 180 20% 96%;
   --muted-foreground: 215 16% 47%;
-  
+
   --accent: 189 94% 43%; /* Matches primary */
   --accent-foreground: 0 0% 100%;
-  
+
   --destructive: 0 84.2% 60.2%;
   --destructive-foreground: 210 20% 98%;
 
   --border: 220 13% 91%;
   --input: 220 13% 91%;
   --ring: 189 94% 43%; /* Matches primary */
-  
+
   --radius: 0.75rem;
 }
 
@@ -106,25 +125,37 @@
   }
 }
 
-.text-gradi-500{
+.text-gradi-500 {
   background: var(--gradi-500);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-} 
+}
 
-.bg-gradi-500{
+.bg-gradi-500 {
   background: var(--gradi-500);
 }
 
-.clients .carousel{
+.clients .carousel {
   overflow: hidden;
   display: flex;
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
 }
 
-.clients .carousel>div{
+.clients .carousel > div {
   display: flex;
   flex-shrink: 0;
   align-items: center;
@@ -136,10 +167,10 @@
 }
 
 @keyframes caro {
-  0%{
+  0% {
     transform: translateX(0);
   }
-  100%{
+  100% {
     transform: translateX(-100%);
   }
 }

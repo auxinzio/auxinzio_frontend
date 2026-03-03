@@ -144,7 +144,7 @@ export default function Home() {
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover transition-all duration-1000"
+                className="w-full h-full object-cover rounded-[4rem] transition-all duration-1000"
               >
                 <source src="/assets/video/bgg.mp4" type="video/mp4" />
               </video>
@@ -177,13 +177,17 @@ export default function Home() {
 
       {/* Hero Marquee Strip */}
       <div className="py-6 border-y border-gray-100 bg-white overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.4em] text-[9px] items-center">
-          {[...Array(15)].map((_, i) => (
-            <span key={i} className="flex items-center gap-6">
-              Artificial Intelligence <Zap className="w-3 h-3 text-[#14b8a6]" />
-              Cloud Infrastructure <Zap className="w-3 h-3 text-[#14b8a6]" />
-              Experience Design <Zap className="w-3 h-3 text-[#14b8a6]" />
-            </span>
+        <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.4em] text-[12px] items-center">
+          {[...Array(2)].map((_, outerIndex) => (
+            <div key={outerIndex} className="flex items-center gap-12">
+              {[...Array(10)].map((_, i) => (
+                <span key={i} className="flex items-center gap-6">
+                  Artificial Intelligence <Zap className="w-3 h-3 text-[#14b8a6]" />
+                  Cloud Infrastructure <Zap className="w-3 h-3 text-[#14b8a6]" />
+                  Experience Design <Zap className="w-3 h-3 text-[#14b8a6]" />
+                </span>
+              ))}
+            </div>
           ))}
         </div>
       </div>
