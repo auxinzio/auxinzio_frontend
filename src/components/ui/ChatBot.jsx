@@ -4,9 +4,11 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { useSettings } from "@/app/Context/SettingsContext";
 
 export const ChatBot = () => {
     const pathname = usePathname();
+    const { settings } = useSettings();
     const [isOpen, setIsOpen] = useState(false);
 
     const [messages, setMessages] = useState([
@@ -26,20 +28,26 @@ export const ChatBot = () => {
 
     const handleSend = () => {
         if (!input.trim()) return;
-        
+
         const userMsg = { id: Date.now(), type: "user", text: input };
         setMessages([...messages, userMsg]);
         setInput("");
-
-        // Simulate bot response
-        setTimeout(() => {
-            const botMsg = { 
-                id: Date.now() + 1, 
-                type: "bot", 
-                text: "I'm currently in static mode. My engineers are working on integrating my neural core for full conversation capability!" 
-            };
-            setMessages(prev => [...prev, botMsg]);
-        }, 1000);
+        fetch(`${settings.backend_api_url}/api/chatbot/query`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: input }),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const botMsg = {
+                    id: Date.now() + 1,
+                    type: "bot",
+                    text: data.answer
+                };
+                setMessages(prev => [...prev, botMsg]);
+            });
     };
 
     return (
@@ -66,7 +74,7 @@ export const ChatBot = () => {
                                     </div>
                                 </div>
                             </div>
-                            <button 
+                            <button
                                 onClick={() => setIsOpen(false)}
                                 className="text-gray-400 hover:text-white transition-colors"
                             >
@@ -75,7 +83,7 @@ export const ChatBot = () => {
                         </div>
 
                         {/* Messages */}
-                        <div 
+                        <div
                             ref={scrollRef}
                             className="flex-1 p-6 overflow-y-auto space-y-4 scrollbar-hide"
                         >
@@ -86,11 +94,10 @@ export const ChatBot = () => {
                                     animate={{ opacity: 1, x: 0 }}
                                     className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
                                 >
-                                    <div className={`max-w-[80%] p-4 rounded-2xl text-sm ${
-                                        msg.type === "user" 
-                                        ? "bg-[#14b8a6] text-white rounded-tr-none" 
+                                    <div className={`max-w-[80%] p-4 rounded-2xl text-sm ${msg.type === "user"
+                                        ? "bg-[#14b8a6] text-white rounded-tr-none"
                                         : "bg-gray-50 text-gray-600 rounded-tl-none border border-gray-100"
-                                    }`}>
+                                        }`}>
                                         {msg.text}
                                     </div>
                                 </motion.div>
@@ -108,7 +115,7 @@ export const ChatBot = () => {
                                     placeholder="Type your message..."
                                     className="w-full bg-white border border-gray-100 rounded-2xl py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-[#14b8a6]/30 focus:ring-4 focus:ring-[#14b8a6]/5 transition-all outline-none"
                                 />
-                                <button 
+                                <button
                                     onClick={handleSend}
                                     className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#14b8a6] text-white rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#14b8a6]/20"
                                 >
@@ -125,16 +132,15 @@ export const ChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`group relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 ${
-                    isOpen ? "bg-gray-900 rotate-90" : "bg-[#14b8a6]"
-                }`}
+                className={`group relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 ${isOpen ? "bg-gray-900 rotate-90" : "bg-[#14b8a6]"
+                    }`}
             >
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
                     <MessageCircle className="w-6 h-6 text-white" />
                 )}
-                
+
                 {/* Decorative Ring */}
                 {!isOpen && (
                     <div className="absolute inset-0 rounded-full border-2 border-[#14b8a6] animate-ping opacity-20" />
