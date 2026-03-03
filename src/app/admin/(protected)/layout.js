@@ -33,7 +33,7 @@ export default function AdminLayout({ children }) {
       {/* Main Content */}
       <div className="flex flex-col flex-1 md:pl-64 transition-all duration-300">
         <AdminHeader setIsOpen={setIsSidebarOpen} />
-        
+
         <main className="flex-1 p-6 overflow-y-auto">
           {children}
         </main>

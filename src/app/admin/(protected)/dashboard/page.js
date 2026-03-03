@@ -7,6 +7,7 @@ import { useAuth } from '@/app/Context/AuthContext'
 import { cmsApi } from '@/lib/cms-api';
 import Link from 'next/link';
 import { useSettings } from '@/app/Context/SettingsContext';
+import Image from 'next/image';
 
 export default function AdminDashboard() {
   const { user } = useAuth()
@@ -21,7 +22,9 @@ export default function AdminDashboard() {
     },
     recentApplications: [],
     recentProducts: [],
-    recentCareers: []
+    recentCareers: [],
+    recentContacts: [],
+    recentEnquiries: []
   });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -42,7 +45,9 @@ export default function AdminDashboard() {
           },
           recentApplications: response.data.recentApplications || [],
           recentProducts: response.data.recentProducts || [],
-          recentCareers: response.data.recentCareers || []
+          recentCareers: response.data.recentCareers || [],
+          recentContacts: response.data.recentContacts || [],
+          recentEnquiries: response.data.recentEnquiries || []
         });
       }
     } catch (err) {
@@ -140,12 +145,12 @@ export default function AdminDashboard() {
 
         <div className="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold text-gray-900">Careers</h3>
-            <Link href="/admin/careers" className="text-sm text-green-500 font-medium hover:text-green-600">View All</Link>
+            <h3 className="text-lg font-bold text-gray-900">Recent Contacts</h3>
+            <Link href="/admin/contact" className="text-sm text-green-500 font-medium hover:text-green-600">View All</Link>
           </div>
           <div className="space-y-4">
-            {data.recentCareers.length > 0 ? (
-              data.recentCareers.map((activity, index) => (
+            {data.recentContacts.length > 0 ? (
+              data.recentContacts.map((activity, index) => (
                 <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors">
                   <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
                     <User className="w-5 h-5 text-gray-500" />
@@ -157,23 +162,22 @@ export default function AdminDashboard() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500 py-4">No Careers</p>
+              <p className="text-center text-gray-500 py-4">No Contacts</p>
             )}
           </div>
         </div>
 
         <div className="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-lg font-bold text-gray-900">Products</h3>
-            <Link href="/admin/products" className="text-sm text-green-500 font-medium hover:text-green-600">View All</Link>
+            <h3 className="text-lg font-bold text-gray-900">Enquiries</h3>
+            <Link href="/admin/enquiry" className="text-sm text-green-500 font-medium hover:text-green-600">View All</Link>
           </div>
           <div className="space-y-4">
-            {data.recentProducts.length > 0 ? (
-              data.recentProducts.map((activity, index) => (
+            {data.recentEnquiries.length > 0 ? (
+              data.recentEnquiries.map((activity, index) => (
                 <div key={index} className="flex items-center gap-4 p-3 hover:bg-gray-50 rounded-xl transition-colors">
                   <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center">
-                    {/* <User className="w-5 h-5 text-gray-500" /> */}
-                    <img src={`${settings.base_url}${activity.logo}`} alt={`${activity.product_name} image`} className="w-5 h-5 rounded-full" />
+                    <User className="w-5 h-5 text-gray-500" />
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-900">{activity.message}</p>
@@ -182,7 +186,7 @@ export default function AdminDashboard() {
                 </div>
               ))
             ) : (
-              <p className="text-center text-gray-500 py-4">No Products</p>
+              <p className="text-center text-gray-500 py-4">No Enquiries</p>
             )}
           </div>
         </div>

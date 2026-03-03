@@ -15,8 +15,6 @@ export default function Products() {
             .then(res => res.json())
             .then(data => setProduct(data))
     }, [settings]);
-
-    console.log(product);
     return (
         <>
             {/* Product Hero Section — Matching AboutSection2 Tone */}

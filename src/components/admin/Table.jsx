@@ -138,6 +138,25 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "designation_flag", label: "Designation Flag", type: "select", options: ["True", "False"] },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
+            case "Contacts":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "title", label: "Title", type: "text", placeholder: "Enter Title" },
+                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter Description" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                ];
+            case "Enquiry":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "company", label: "Company", type: "text", placeholder: "Enter Company Name" },
+                    { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
+                    { name: "object", label: "Object", type: "text", placeholder: "Enter Object" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                ];
             default:
                 return [];
         }
@@ -345,6 +364,10 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return mode === 'add' ? '/faq/create' : '/faq/update';
             case 'Chat':
                 return mode === 'add' ? '/chat/create' : '/chat/update';
+            case 'Contacts':
+                return mode === 'add' ? '/contact/create' : '/contact/update';
+            case 'Enquiry':
+                return mode === 'add' ? '/enquire/create' : '/enquire/update';
             case 'Settings':
                 return mode === 'add' ? '/settings/create' : '/settings/update';
             default:
@@ -499,7 +522,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                     <thead className="bg-gray-50 border-b border-gray-100">
                                         <tr>
                                             {
-                                                title !== "FAQ" && title !== "Applications" && title !== "Chat" && (
+                                                title !== "FAQ" && title !== "Applications" && title !== "Chat" && title !== "Contacts" && title !== "Enquiry" && (
                                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">{title === "Subscribers" ? "Subscribers Email" : title === "Settings" ? "Key" : `${title} Name`}</th>
                                                 )
                                             }
@@ -574,6 +597,29 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     </>
                                                 )
                                             }
+                                            {
+                                                title === "Contacts" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Subject</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Message</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "Enquiry" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Company Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Object</th>
+                                                    </>
+                                                )
+                                            }
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase text-right">Actions</th>
                                         </tr>
@@ -588,7 +634,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 className="hover:bg-gray-50 transition-colors"
                                             >
                                                 {
-                                                    title !== "FAQ" && title !== "Applications" && title !== "Chat" && (
+                                                    title !== "FAQ" && title !== "Applications" && title !== "Chat" && title !== "Enquiry" && title !== "Contacts" && (
                                                         <td className="px-6 py-4">
                                                             <div>
                                                                 <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name || item.key}</div>
@@ -648,7 +694,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 <span className="px-2 py-1">
-                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt="team image" className="w-10 mx-auto rounded-full" width={100} height={100} />
+                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt={`${item.name}`} className="w-10 mx-auto rounded-full" width={100} height={100} />
                                                                 </span>
                                                             </td>
                                                         </>
@@ -712,6 +758,51 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 {item.answer}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Enquiry" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.company}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.phone}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.product_name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.object}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Contacts" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.phone}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.title || item.subject}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.description || item.message}
                                                             </td>
                                                         </>
                                                     )

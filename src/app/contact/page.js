@@ -1,5 +1,5 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Mail,
@@ -25,27 +25,33 @@ import { useSettings } from "@/app/Context/SettingsContext";
 export default function Contact() {
   const { settings } = useSettings();
   const [formState, setFormState] = useState({
-    fullName: '',
+    name: '',
     email: '',
-    subject: '',
-    message: ''
+    phone: '',
+    title: '',
+    description: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [focusedField, setFocusedField] = useState(null);
-
+  const [contact, setContact] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
+    fetch(`${settings.backend_api_url}/api/contact/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formState) })
+      .then(res => res.json())
+      .then(data => setContact(data))
+      .catch(err => console.log(err))
+      .finally(() => {
+        setIsSubmitted(true);
+      });
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormState({ fullName: '', email: '', subject: '', message: '' });
+      setFormState({ name: '', email: '', phone: '', title: '', description: '' });
     }, 5000);
   };
 
   const handleChange = (e) => {
     setFormState({ ...formState, [e.target.name]: e.target.value });
   };
-  console.log(settings);
 
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
@@ -156,8 +162,8 @@ export default function Contact() {
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Full Identity</label>
                       <input
                         type="text"
-                        name="fullName"
-                        value={formState.fullName}
+                        name="name"
+                        value={formState.name}
                         onChange={handleChange}
                         className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
                         placeholder="Ex: Alexander Wright"
@@ -176,12 +182,24 @@ export default function Contact() {
                         required
                       />
                     </div>
-                    <div className="md:col-span-2">
+                    <div className="md:col-span-1">
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Phone Number</label>
+                      <input
+                        type="text"
+                        name="phone"
+                        value={formState.phone}
+                        onChange={handleChange}
+                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
+                        placeholder="+1 (555) 123-4567"
+                        required
+                      />
+                    </div>
+                    <div className="md:col-span-1">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Subject of Inquiry</label>
                       <input
                         type="text"
-                        name="subject"
-                        value={formState.subject}
+                        name="title"
+                        value={formState.title}
                         onChange={handleChange}
                         className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
                         placeholder="Ex: Enterprise Partnership"
@@ -191,8 +209,8 @@ export default function Contact() {
                     <div className="md:col-span-2">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Detailed Briefing</label>
                       <textarea
-                        name="message"
-                        value={formState.message}
+                        name="description"
+                        value={formState.description}
                         onChange={handleChange}
                         rows={6}
                         className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors resize-none placeholder:text-gray-200 text-lg"
