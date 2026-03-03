@@ -72,10 +72,10 @@ export default function Careers() {
     if (!settings?.backend_api_url) return;
 
     let ignore = false;
-    
+
     // We don't call setIsLoading(true) here because it's already initialized to true.
     // This avoids the "cascading render" warning.
-    
+
     fetch(`${settings.backend_api_url}/api/careers/jobList`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -104,12 +104,12 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
-      
+
       {/* --- HERO SECTION: THREE-ZONE ASYMMETRICAL --- */}
       <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px]">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-            
+
             {/* Zone 1: Vertical Editorial Typography */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -141,7 +141,7 @@ export default function Careers() {
             {/* Zone 2: Architectural Divider */}
             <div className="hidden lg:block lg:col-span-1 relative">
               <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200"></div>
-              <motion.div 
+              <motion.div
                 initial={{ height: 0 }}
                 animate={{ height: "100%" }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
@@ -165,10 +165,10 @@ export default function Careers() {
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                   priority
                 />
-                
+
                 {/* Overlay Glass Panel */}
                 <div className="absolute inset-0 bg-gradient-to-tr from-gray-900/40 via-transparent to-transparent" />
-                
+
                 {/* Geometric SVG Overlay */}
                 {/* <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none" viewBox="0 0 800 500">
                   <pattern id="dot-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -209,16 +209,16 @@ export default function Careers() {
                     <ArrowRight className="w-5 h-5" />
                   </div>
                 </button>
-                
+
                 <div className="hidden md:flex gap-12">
-                   <div>
-                     <p className="text-2xl font-light text-gray-900">50+</p>
-                     <p className="text-[10px] uppercase tracking-widest text-gray-400">Team Size</p>
-                   </div>
-                   <div>
-                     <p className="text-2xl font-light text-gray-900">12</p>
-                     <p className="text-[10px] uppercase tracking-widest text-gray-400">Nationalities</p>
-                   </div>
+                  <div>
+                    <p className="text-2xl font-light text-gray-900">50+</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-400">Team Size</p>
+                  </div>
+                  <div>
+                    <p className="text-2xl font-light text-gray-900">12</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-400">Nationalities</p>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -230,11 +230,11 @@ export default function Careers() {
       <section className="py-24 bg-gray-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6">
-            
+
             {/* Bento Block 1: Intro */}
             <div className="lg:col-span-5 bg-white p-10 lg:p-16 rounded-[2.5rem] border border-gray-100 flex flex-col justify-between">
               <div>
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
@@ -243,14 +243,14 @@ export default function Careers() {
                   Culture & DNA
                 </motion.p>
                 <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight tracking-tight">
-                  We don’t just hire roles.<br/>
+                  We don’t just hire roles.<br />
                   <span className="font-medium italic">We find partners.</span>
                 </h2>
                 <p className="text-gray-600 text-lg leading-relaxed max-w-md">
                   Our culture is built on radical transparency, obsessed user-centricity, and the relentless pursuit of better solutions.
                 </p>
               </div>
-              
+
               <div className="mt-12 pt-10 border-t border-gray-100 grid grid-cols-2 gap-8">
                 {benefits.slice(0, 4).map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
@@ -281,7 +281,7 @@ export default function Careers() {
                       {val.description}
                     </p>
                   </div>
-                  
+
                   {/* Subtle Geometric Background logic from AboutSection2 style */}
                   <div className="absolute -bottom-4 -right-4 w-24 h-24 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
                     <svg viewBox="0 0 100 100" className="w-full h-full">
@@ -301,7 +301,7 @@ export default function Careers() {
       <section ref={positionsRef} className="py-24 lg:py-32 bg-white">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-16">
-            
+
             {/* Left: Sticky Filter Sidebar */}
             <div className="lg:col-span-3">
               <div className="lg:sticky lg:top-32">
@@ -309,23 +309,22 @@ export default function Careers() {
                   Current Openings
                 </p>
                 <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                  Join our<br/><span className="text-[#14b8a6] italic font-medium">collective.</span>
+                  Join our<br /><span className="text-[#14b8a6] italic font-medium">collective.</span>
                 </h2>
-                
+
                 <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
                   {filters.map((filter) => (
                     <button
                       key={filter}
                       onClick={() => setActiveFilter(filter)}
-                      className={`group flex items-center justify-between px-6 py-4 rounded-xl transition-all duration-300 ${
-                        activeFilter === filter 
-                          ? 'bg-[#14b8a6] text-white shadow-xl shadow-[#14b8a6]/20' 
-                          : 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-                      }`}
+                      className={`group flex items-center justify-between px-6 py-4 rounded-xl transition-all duration-300 ${activeFilter === filter
+                        ? 'bg-[#14b8a6] text-white shadow-xl shadow-[#14b8a6]/20'
+                        : 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                        }`}
                     >
                       <span className="text-sm font-bold tracking-tight">{filter}</span>
                       {activeFilter === filter && (
-                         <motion.div layoutId="active-dot" className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
+                        <motion.div layoutId="active-dot" className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
                       )}
                     </button>
                   ))}
@@ -375,18 +374,18 @@ export default function Careers() {
                                 {job.description}
                               </p> */}
                             </div>
-                            
+
                             <div className="flex items-center gap-6 w-[40%] justify-end">
-                               <div className="hidden sm:block text-right">
-                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
-                                  <p className="text-sm font-bold text-gray-700">{job.type}</p>
-                               </div>
-                               <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">
-                                 <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-                               </div>
+                              <div className="hidden sm:block text-right">
+                                <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
+                                <p className="text-sm font-bold text-gray-700">{job.type}</p>
+                              </div>
+                              <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">
+                                <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                              </div>
                             </div>
                           </div>
-                          
+
                           {/* Inner Decorative Accent */}
                           <div className="absolute left-0 bottom-0 top-0 w-1 bg-[#14b8a6] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
                         </Link>

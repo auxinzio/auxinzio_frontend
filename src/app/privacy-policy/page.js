@@ -4,22 +4,7 @@ import { useState, useEffect } from 'react';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 import Link from 'next/link';
-import { 
-  ShieldCheck, 
-  Lock, 
-  Eye, 
-  Database, 
-  Share2, 
-  Fingerprint, 
-  Globe, 
-  Bell,
-  ArrowRight,
-  ShieldAlert,
-  HardDrive,
-  Users,
-  Settings,
-  Mail
-} from 'lucide-react';
+import { ShieldCheck, Lock, Eye, Database, Share2, Fingerprint, Globe, Bell, ArrowRight, ShieldAlert, HardDrive, Users, Settings, Mail } from 'lucide-react';
 
 const privacyModules = [
   {
@@ -104,7 +89,7 @@ export default function PrivacyPolicy() {
               <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Data Protection Protocol</span>
               <div className="w-12 h-px bg-[#14b8a6]" />
             </div>
-            
+
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
               <span className="italic font-normal text-[#14b8a6]">Sovereignty.</span>
@@ -134,11 +119,11 @@ export default function PrivacyPolicy() {
                   <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500">
                     <module.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
-                  
+
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b8a6] mb-6">{module.summary}</h3>
                   <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                   <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
-                  
+
                   <div className="space-y-3">
                     {module.details.map((detail, i) => (
                       <div key={i} className="flex items-center gap-3">
@@ -165,33 +150,33 @@ export default function PrivacyPolicy() {
       <section className="py-24 lg:py-40 bg-gray-900 text-white overflow-hidden relative">
         <div className="mx-auto max-w-[1600px] px-6">
           <div className="grid lg:grid-cols-12 gap-20 items-start">
-            
+
             {/* Left Col: Static Branding */}
             <div className="lg:col-span-5 lg:sticky lg:top-32">
-               <div className="space-y-12">
-                  <div className="flex items-center gap-4">
-                    <ShieldCheck className="w-6 h-6 text-[#14b8a6]" />
-                    <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Compliance Standard</span>
+              <div className="space-y-12">
+                <div className="flex items-center gap-4">
+                  <ShieldCheck className="w-6 h-6 text-[#14b8a6]" />
+                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Compliance Standard</span>
+                </div>
+                <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
+                  Regulatory <br />
+                  <span className="italic font-normal text-[#14b8a6]">Architecture.</span>
+                </h2>
+                <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
+                  We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
+                </p>
+
+                <div className="pt-12 border-t border-white/10 flex flex-col gap-8">
+                  <div className="flex items-center gap-6">
+                    <p className="text-3xl font-light">100%</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Encrypted End-to-End</p>
                   </div>
-                  <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
-                    Regulatory <br />
-                    <span className="italic font-normal text-[#14b8a6]">Architecture.</span>
-                  </h2>
-                  <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
-                    We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
-                  </p>
-                  
-                  <div className="pt-12 border-t border-white/10 flex flex-col gap-8">
-                     <div className="flex items-center gap-6">
-                        <p className="text-3xl font-light">100%</p>
-                        <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Encrypted End-to-End</p>
-                     </div>
-                     <div className="flex items-center gap-6">
-                        <p className="text-3xl font-light">Zero</p>
-                        <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Third-Party Data Sales</p>
-                     </div>
+                  <div className="flex items-center gap-6">
+                    <p className="text-3xl font-light">Zero</p>
+                    <p className="text-[10px] uppercase tracking-widest text-gray-500 font-bold">Third-Party Data Sales</p>
                   </div>
-               </div>
+                </div>
+              </div>
             </div>
 
             {/* Right Col: Expanded Sections */}
@@ -219,18 +204,18 @@ export default function PrivacyPolicy() {
                       </button>
                     </div>
                   </div>
-                  
+
                   <div className="mt-20 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
                 </motion.div>
               ))}
 
               <div className="bg-white/5 p-12 lg:p-16 rounded-[3rem] border border-white/10 backdrop-blur-xl">
-                 <Mail className="w-12 h-12 text-[#14b8a6] mb-8" />
-                 <h4 className="text-2xl font-light mb-4">Request Data Audit</h4>
-                 <p className="text-gray-500 mb-10 leading-relaxed font-light">Want a full report of your data stored on our servers? Our automation engine can generate a secure report for you within 24 hours.</p>
-                 <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b8a6]/10">
-                    Initiate Audit
-                 </Button>
+                <Mail className="w-12 h-12 text-[#14b8a6] mb-8" />
+                <h4 className="text-2xl font-light mb-4">Request Data Audit</h4>
+                <p className="text-gray-500 mb-10 leading-relaxed font-light">Want a full report of your data stored on our servers? Our automation engine can generate a secure report for you within 24 hours.</p>
+                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b8a6]/10">
+                  Initiate Audit
+                </Button>
               </div>
             </div>
 
@@ -241,31 +226,31 @@ export default function PrivacyPolicy() {
       {/* --- FOOTER CTA: TRUST REINFORCED --- */}
       <section className="py-24 lg:py-40 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 text-center">
-           <div className="max-w-3xl mx-auto">
-              <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
-                 Privacy is a <br />
-                 <span className="text-[#14b8a6] italic font-normal">Human Right.</span>
-              </h2>
-              <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
-                 If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.
-              </p>
-              
-              <div className="flex flex-wrap justify-center gap-8">
-                 <Link href="/contact">
-                   <Button variant="outline" className="rounded-2xl border-gray-100 px-12 py-8 text-base font-bold transition-all">
-                      Speak with Legal
-                   </Button>
-                 </Link>
-                 <Link href="/terms-and-conditions">
-                   <Button className="rounded-2xl px-12 py-8 text-base font-bold bg-gray-900 text-white hover:bg-black transition-all">
-                      View Terms & Conditions
-                   </Button>
-                 </Link>
-              </div>
-           </div>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
+              Privacy is a <br />
+              <span className="text-[#14b8a6] italic font-normal">Human Right.</span>
+            </h2>
+            <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
+              If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.
+            </p>
+
+            <div className="flex flex-wrap justify-center gap-8">
+              <Link href="/contact">
+                <Button variant="outline" className="rounded-2xl border-gray-100 px-12 py-8 text-base font-bold transition-all">
+                  Speak with Legal
+                </Button>
+              </Link>
+              <Link href="/terms-and-conditions">
+                <Button className="rounded-2xl px-12 py-8 text-base font-bold bg-gray-900 text-white hover:bg-black transition-all">
+                  View Terms & Conditions
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
-      
+
       {/* Decorative Spacer */}
       <div className="h-20 bg-white" />
     </div>

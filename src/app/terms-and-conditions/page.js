@@ -4,13 +4,13 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 import Link from 'next/link';
-import { 
-  ShieldCheck, 
-  FileText, 
-  Settings, 
-  UserCheck, 
-  Scale, 
-  Bell, 
+import {
+  ShieldCheck,
+  FileText,
+  Settings,
+  UserCheck,
+  Scale,
+  Bell,
   HelpCircle,
   ArrowRight,
   ChevronRight,
@@ -172,8 +172,8 @@ export default function TermsAndConditions() {
         </div>
 
         {/* Decorative Grid */}
-        <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
-             style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+        <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
+          style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
         <div className="mx-auto max-w-[1600px] relative z-10">
           <div className="max-w-4xl">
@@ -214,7 +214,7 @@ export default function TermsAndConditions() {
       <section className="py-24 lg:py-40 px-6 border-t border-gray-50">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-12 gap-20 relative">
-            
+
             {/* Left: Sticky Sidebar */}
             <div className="lg:col-span-4 relative">
               <div className="lg:sticky lg:top-32 space-y-12 h-fit">
@@ -227,24 +227,21 @@ export default function TermsAndConditions() {
                       <button
                         key={section.id}
                         onClick={() => scrollToSection(section.id)}
-                        className={`group relative flex items-center gap-6 py-4 transition-all duration-500 ${
-                          activeSection === section.id ? 'translate-x-4' : 'hover:translate-x-2'
-                        }`}
+                        className={`group relative flex items-center gap-6 py-4 transition-all duration-500 ${activeSection === section.id ? 'translate-x-4' : 'hover:translate-x-2'
+                          }`}
                       >
-                        <span className={`text-[10px] font-bold transition-colors duration-500 ${
-                          activeSection === section.id ? 'text-[#14b8a6]' : 'text-gray-300'
-                        }`}>
+                        <span className={`text-[10px] font-bold transition-colors duration-500 ${activeSection === section.id ? 'text-[#14b8a6]' : 'text-gray-300'
+                          }`}>
                           0{idx + 1}
                         </span>
-                        <span className={`text-base font-medium tracking-tight transition-all duration-500 ${
-                          activeSection === section.id ? 'text-gray-900' : 'text-gray-400 group-hover:text-gray-600'
-                        }`}>
+                        <span className={`text-base font-medium tracking-tight transition-all duration-500 ${activeSection === section.id ? 'text-gray-900' : 'text-gray-400 group-hover:text-gray-600'
+                          }`}>
                           {section.title}
                         </span>
                         {activeSection === section.id && (
-                          <motion.div 
+                          <motion.div
                             layoutId="active-nav-line"
-                            className="absolute -left-4 w-1 h-1 rounded-full bg-[#14b8a6]" 
+                            className="absolute -left-4 w-1 h-1 rounded-full bg-[#14b8a6]"
                           />
                         )}
                       </button>
@@ -254,18 +251,18 @@ export default function TermsAndConditions() {
 
                 {/* Glass Card Accessory */}
                 <div className="p-10 rounded-[2.5rem] bg-gray-50/50 border border-gray-100 flex flex-col justify-between aspect-square group overflow-hidden relative">
-                   <div className="relative z-10">
+                  <div className="relative z-10">
                     <HelpCircle className="w-10 h-10 text-[#14b8a6] mb-8" />
                     <h4 className="text-2xl font-light text-gray-900 mb-4 tracking-tight">Need expert <br /><span className="italic">clarification?</span></h4>
                     <p className="text-sm text-gray-500 leading-relaxed mb-8">Our legal council is available for structured inquiries regarding these protocols.</p>
-                   </div>
-                   
-                   <Button variant="outline" className="w-fit rounded-xl border-[#14b8a6] text-[#14b8a6] hover:bg-[#14b8a6] hover:text-white transition-all group relative z-10">
-                      Inquire Legal
-                   </Button>
+                  </div>
 
-                   {/* Background Decorative */}
-                   <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#14b8a6]/5 rounded-full blur-3xl" />
+                  <Button variant="outline" className="w-fit rounded-xl border-[#14b8a6] text-[#14b8a6] hover:bg-[#14b8a6] hover:text-white transition-all group relative z-10">
+                    Inquire Legal
+                  </Button>
+
+                  {/* Background Decorative */}
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#14b8a6]/5 rounded-full blur-3xl" />
                 </div>
               </div>
             </div>
@@ -293,7 +290,7 @@ export default function TermsAndConditions() {
                       <h2 className="text-4xl lg:text-6xl font-light text-gray-900 mb-12 tracking-tighter leading-none">
                         {section.title}
                       </h2>
-                      
+
                       <div className="space-y-12">
                         <p className="text-2xl text-gray-600 leading-relaxed font-light">
                           {section.content}
@@ -301,8 +298,8 @@ export default function TermsAndConditions() {
 
                         <div className="grid sm:grid-cols-2 gap-6">
                           {section.subpoints.map((point, i) => (
-                            <motion.div 
-                              key={i} 
+                            <motion.div
+                              key={i}
                               whileHover={{ y: -5 }}
                               className="group flex flex-col p-8 rounded-3xl bg-white border border-gray-100 hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-500"
                             >
@@ -320,7 +317,7 @@ export default function TermsAndConditions() {
               ))}
 
               {/* Final Footer Monolith */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
@@ -340,7 +337,7 @@ export default function TermsAndConditions() {
                     <p className="text-gray-400 text-xl font-light leading-relaxed mb-16">
                       By participating in the Auxinzio ecosystem, you formally acknowledge and accept these regulatory standards in their entirety.
                     </p>
-                    
+
                     <div className="flex flex-wrap gap-6">
                       <Button variant="gradi" size="lg" className="rounded-2xl px-12 py-8 text-lg font-bold hover:scale-105 transition-all shadow-2xl shadow-[#14b8a6]/20">
                         <Download className="w-5 h-5 mr-3" /> Save for Records

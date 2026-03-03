@@ -319,30 +319,26 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         await handleSave(modalMode, dataToSave, title);
     };
 
-    // const handleDelete = async (id) => {
-    //     handleSave('delete', id, title);
-    // };
-
     const getApiEndpoint = (mode, title) => {
         switch (title) {
             case 'Services':
-                return mode === 'add' ? '/services/create' : mode === 'delete' ? '/services/delete' : '/services/update';
+                return mode === 'add' ? '/services/create' : '/services/update';
             case 'Products':
-                return mode === 'add' ? '/products/create' : mode === 'delete' ? '/products/delete' : '/products/update';
+                return mode === 'add' ? '/products/create' : '/products/update';
             case 'Solutions':
-                return mode === 'add' ? '/solutions/create' : mode === 'delete' ? '/solutions/delete' : '/solutions/update';
+                return mode === 'add' ? '/solutions/create' : '/solutions/update';
             case 'Teams':
-                return mode === 'add' ? '/teams/create' : mode === 'delete' ? '/teams/delete' : '/teams/update';
+                return mode === 'add' ? '/teams/create' : '/teams/update';
             case 'Careers':
-                return mode === 'add' ? '/careers/create' : mode === 'delete' ? '/careers/delete' : '/careers/update';
+                return mode === 'add' ? '/careers/create' : '/careers/update';
             case 'Subscribers':
-                return mode === 'add' ? '/subscribers/create' : mode === 'delete' ? '/subscribers/delete' : '/subscribers/update';
+                return mode === 'add' ? '/subscribers/create' : '/subscribers/update';
             case 'Feedbacks':
-                return mode === 'add' ? '/feedbacks/create' : mode === 'delete' ? '/feedbacks/delete' : '/feedbacks/update';
+                return mode === 'add' ? '/feedbacks/create' : '/feedbacks/update';
             case 'FAQ':
-                return mode === 'add' ? '/faq/create' : mode === 'delete' ? '/faq/delete' : '/faq/update';
+                return mode === 'add' ? '/faq/create' : '/faq/update';
             case 'Settings':
-                return mode === 'add' ? '/settings/create' : mode === 'delete' ? '/settings/delete' : '/settings/update';
+                return mode === 'add' ? '/settings/create' : '/settings/update';
             default:
                 return '';
         }
@@ -351,9 +347,9 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const handleSave = async (mode, data, title) => {
         try {
             const apiEndpoint = getApiEndpoint(mode, title);
-
-            // Pre-process data: stringify arrays and objects because backend expects it
             const processedData = {};
+            let result;
+
             Object.keys(data).forEach(key => {
                 const value = data[key];
                 if (value !== undefined && value !== null) {
@@ -367,10 +363,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 }
             });
 
-            // Automatically determine content type
             const hasFiles = Object.values(processedData).some(value => value instanceof File);
-            let result;
-
             if (hasFiles) {
                 const submissionData = new FormData();
                 Object.keys(processedData).forEach(key => {
@@ -378,7 +371,6 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 });
                 result = await cmsApi.post(apiEndpoint, submissionData);
             } else {
-                // Send as JSON if no files are present
                 result = await cmsApi.post(apiEndpoint, processedData);
             }
 
@@ -401,27 +393,42 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             const result = await cmsApi.post(apiEndpoint, { id: item.id, status: item.status ? false : true });
 
             if (result && (result.success !== false && !result.error)) {
-                toast.success("Status Updated Successfully!");
+                toast.success(`${title} status ${item.status === true ? 'deactivated' : 'activated'} successfully!`);
                 if (fetch) fetch();
             }
         } catch (error) {
-            console.error("Status Update Error:", error);
-            toast.error("Failed to Update Status");
+            console.error(`Status Update Error:`, error);
+            toast.error(`Failed to update ${title} status`);
         }
     };
 
-    const handleStatusChange = async (item, status) => {
+    const handleDelete = async (id) => {
+        try {
+            const apiEndpoint = `/${title.toLowerCase()}/delete`;
+            const result = await cmsApi.post(apiEndpoint, { id: id });
+
+            if (result && (result.success !== false && !result.error)) {
+                toast.success(`${title} deleted successfully!`);
+                if (fetch) fetch();
+            }
+        } catch (error) {
+            console.error(`Delete Error:`, error);
+            toast.error(`Failed to delete ${title}`);
+        }
+    }
+
+    const handleApplicationStatusChange = async (item, status) => {
         try {
             const apiEndpoint = `/${title.toLowerCase()}/updateStatus`;
             const result = await cmsApi.post(apiEndpoint, { id: item.id, status: status });
 
             if (result && (result.success !== false && !result.error)) {
-                toast.success("Application Status Updated Successfully!");
+                toast.success(`${title} status ${status} successfully!`);
                 if (fetch) fetch();
             }
         } catch (error) {
-            console.error("Application Status Update Error:", error);
-            toast.error("Failed to Update Application Status");
+            console.error(`Application Status Update Error:`, error);
+            toast.error(`Failed to update ${title} status`);
         }
     };
 
@@ -705,7 +712,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 {
                                                     title === "Applications" ? (
                                                         <td className="px-6 py-4">
-                                                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md" onChange={(e) => handleStatusChange(item, e.target.value)} value={item.status}>
+                                                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md" onChange={(e) => handleApplicationStatusChange(item, e.target.value)} value={item.status}>
                                                                 <option value="">Select</option>
                                                                 <option value="pending" selected={item.status === "pending"}>Pending</option>
                                                                 <option value="approved" selected={item.status === "approved"}>Approved</option>
@@ -968,39 +975,30 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 title="Application Details"
             >
                 <div className="space-y-4 max-h-[calc(100vh-200px)] overflow-y-auto">
-                    <table className="flex flex-col gap-4">
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Name</td>
-                            <td className="text-gray-900">{formData.applicant_name}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Email</td>
-                            <td className="text-gray-900">{formData.email}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Phone</td>
-                            <td className="text-gray-900">{formData.phone}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Position</td>
-                            <td className="text-gray-900">{formData.designation}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Cover Letter</td>
-                            <td className="text-gray-900">{formData.cover_letter}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Social Links</td>
-                            <td className="text-gray-900">{formData.linkedin + " ," + formData.portfolio}</td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Resume</td>
-                            <td className="text-gray-900"><a href={settings?.backend_api_url + "/" + formData.resume} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:underline">Download</a></td>
-                        </tr>
-                        <tr className="flex items-center gap-2">
-                            <td className="text-sm font-medium text-gray-700">Status</td>
-                            <td className="text-gray-900">{formData.status}</td>
-                        </tr>
+                    <table className="w-full">
+                        <thead>
+                            <tr className="grid grid-cols-[140px_1fr] gap-4 border-b border-gray-100 py-3">
+                                <th className="text-sm font-semibold text-gray-500 text-left">Field</th>
+                                <th className="text-sm font-semibold text-gray-900 text-left">Value</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-50">
+                            {[
+                                { label: 'Name', value: formData.applicant_name },
+                                { label: 'Email', value: formData.email },
+                                { label: 'Phone', value: formData.phone },
+                                { label: 'Position', value: formData.designation },
+                                { label: 'Cover Letter', value: formData.cover_letter },
+                                { label: 'Social Links', value: `${formData.linkedin || ''}${formData.linkedin && formData.portfolio ? ', ' : ''}${formData.portfolio || ''}` },
+                                { label: 'Resume', value: <a href={`${settings?.backend_api_url}/${formData.resume}`} target="_blank" rel="noopener noreferrer" className="text-green-500 hover:underline font-medium">Download Resume</a> },
+                                { label: 'Status', value: <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800 capitalize">{formData.status}</span> },
+                            ].map((row, idx) => (
+                                <tr key={idx} className="grid grid-cols-[140px_1fr] gap-4 py-4 items-start">
+                                    <td className="text-sm font-medium text-gray-500">{row.label}</td>
+                                    <td className="text-sm font-semibold text-gray-900 leading-relaxed whitespace-pre-wrap break-words">{row.value}</td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
                 </div>
                 {/* Application details will be displayed here */}

@@ -3,17 +3,17 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { 
-  ArrowLeft, 
-  ShieldCheck, 
-  Zap, 
-  ArrowUpRight, 
-  Github, 
-  Globe, 
-  Activity,
-  Layers,
-  Cpu,
-  Fingerprint
+import {
+    ArrowLeft,
+    ShieldCheck,
+    Zap,
+    ArrowUpRight,
+    Github,
+    Globe,
+    Activity,
+    Layers,
+    Cpu,
+    Fingerprint
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useSettings } from "@/app/Context/SettingsContext";
@@ -83,7 +83,7 @@ export default function ServiceDetailPage({ params }) {
                     </div>
                     <Link href="/services" className="inline-block">
                         <Button variant="outline" className="rounded-2xl px-8 h-12 gap-3 group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" /> 
+                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                             Return to Repository
                         </Button>
                     </Link>
@@ -103,7 +103,7 @@ export default function ServiceDetailPage({ params }) {
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-end">
                         <div className="lg:col-span-7 space-y-8 lg:space-y-12">
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex items-center gap-4"
@@ -114,7 +114,7 @@ export default function ServiceDetailPage({ params }) {
                                 <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Node Type: {service.description?.short_description_title || "Enterprise"}</span>
                             </motion.div>
 
-                            <motion.h1 
+                            <motion.h1
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
@@ -123,7 +123,7 @@ export default function ServiceDetailPage({ params }) {
                                 {service.title}<span className="text-[#14b8a6]">.</span>
                             </motion.h1>
 
-                            <motion.p 
+                            <motion.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.3 }}
@@ -134,7 +134,7 @@ export default function ServiceDetailPage({ params }) {
                         </div>
 
                         <div className="lg:col-span-5 relative">
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 40 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.4, duration: 1 }}
@@ -155,9 +155,9 @@ export default function ServiceDetailPage({ params }) {
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             </motion.div>
-                            
+
                             {/* Floating Architecture Badge */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, x: 20 }}
                                 animate={{ opacity: 1, x: 0 }}
                                 transition={{ delay: 0.8 }}
@@ -183,12 +183,12 @@ export default function ServiceDetailPage({ params }) {
             <section className="py-24 lg:py-40 relative">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-                        
+
                         {/* LEFT COLUMN: DESCRIPTION */}
                         <div className="lg:col-span-7 space-y-32">
-                            
+
                             {/* 01 Overview */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -211,7 +211,7 @@ export default function ServiceDetailPage({ params }) {
                             </motion.div>
 
                             {/* 02 Specialized Nodes */}
-                            <motion.div 
+                            <motion.div
                                 initial={{ opacity: 0, y: 30 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
@@ -240,7 +240,7 @@ export default function ServiceDetailPage({ params }) {
                         <div className="lg:col-span-1" />
                         <div className="lg:col-span-4 relative">
                             <div className="lg:sticky lg:top-40 space-y-12">
-                                <motion.div 
+                                <motion.div
                                     initial={{ opacity: 0, x: 20 }}
                                     whileInView={{ opacity: 1, x: 0 }}
                                     viewport={{ once: true }}
@@ -249,7 +249,7 @@ export default function ServiceDetailPage({ params }) {
                                     <div className="absolute top-0 right-0 p-8 opacity-10">
                                         <Zap size={80} strokeWidth={1} />
                                     </div>
-                                    
+
                                     <div className="relative z-10 space-y-8">
                                         <h3 className="text-3xl font-light tracking-tighter leading-tight">
                                             Ready to <br />
