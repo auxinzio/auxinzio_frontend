@@ -2,14 +2,14 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  X, 
-  User, 
-  Phone, 
-  Mail, 
-  Box, 
-  Calendar, 
-  MessageSquare, 
+import {
+  X,
+  User,
+  Phone,
+  Mail,
+  Box,
+  Calendar,
+  MessageSquare,
   ArrowRight,
   ShieldCheck,
   Globe,
@@ -18,8 +18,31 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { useSettings } from '@/app/Context/SettingsContext';
 
 export default function GetDemoModal({ isOpen, onClose }) {
+  const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
+  const { settings } = useSettings();
+  const [product, setProduct] = useState([]);
+
+  useEffect(() => {
+    fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+      .then(res => res.json())
+      .then(data => setProduct(data?.data?.productsList))
+  }, [settings]);
+
+
+  const [formData, setFormData] = useState({
+    company: "",
+    name: "",
+    email: "",
+    phone: "",
+    objective: "",
+    product_id: "",
+  });
   useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === "Escape") onClose();
@@ -39,9 +62,36 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
+  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
-    onClose();
+    setLoading(true);
+    setMessage("");
+    setSuccess(false);
+    setError(false);
+    fetch(`${settings.backend_api_url}/api/enquire/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) })
+      .then(res => res.json())
+      .then(data => {
+        if (data.status) {
+          setSuccess(true);
+          setMessage(data.message);
+          setFormData({
+            company: "",
+            name: "",
+            email: "",
+            phone: "",
+            objective: "",
+            product_id: "",
+          });
+        } else {
+          setError(true);
+          setMessage(data.message);
+        }
+      })
+      .finally(() => {
+        setLoading(false);
+        onClose();
+      });
   };
 
   return (
@@ -74,8 +124,8 @@ export default function GetDemoModal({ isOpen, onClose }) {
               </div>
 
               {/* Decorative SVG Grid */}
-              <div className="absolute inset-0 opacity-[0.05] pointer-events-none" 
-                   style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+              <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
+                style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8 lg:mb-16">
@@ -109,14 +159,14 @@ export default function GetDemoModal({ isOpen, onClose }) {
 
               {/* Status Indicator - Small on Mobile */}
               <div className="relative z-10 pt-6 lg:pt-16 border-t border-white/5 flex items-center gap-4 lg:gap-6">
-                 <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] animate-pulse" />
-                 <span className="text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-gray-500">Nodes Active: Online</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] animate-pulse" />
+                <span className="text-[8px] lg:text-[10px] font-bold uppercase tracking-widest text-gray-500">Nodes Active: Online</span>
               </div>
             </div>
 
             {/* --- RIGHT: THE INTERFACE (FORM) --- */}
             <div className="lg:w-3/5 bg-white p-8 lg:p-20 relative overflow-y-auto">
-              <button 
+              <button
                 onClick={onClose}
                 className="absolute top-6 right-6 lg:top-12 lg:right-12 w-10 h-10 lg:w-12 lg:h-12 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-all group z-20"
               >
@@ -126,27 +176,32 @@ export default function GetDemoModal({ isOpen, onClose }) {
               <form onSubmit={handleSubmit} className="space-y-8 lg:space-y-12 h-full flex flex-col justify-center">
                 {/* Section 01: Identification */}
                 <div className="space-y-6 lg:space-y-8">
+
                   <div className="flex items-center gap-4">
                     <span className="text-[10px] font-bold text-[#14b8a6]">01</span>
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Identification</h3>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                     <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
-                      <input 
-                        type="text" 
-                        required 
+                      <input
+                        type="text"
+                        required
                         placeholder="Organization Name"
                         className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl pr-6"
+                        value={formData.company}
+                        onChange={(e) => setFormData({ ...formData, company: e.target.value })}
                       />
                       <Box className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-focus-within:text-[#14b8a6] transition-colors" />
                     </div>
                     <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
-                      <input 
-                        type="text" 
-                        required 
+                      <input
+                        type="text"
+                        required
                         placeholder="Representative"
                         className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl pr-6"
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       />
                       <User className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-focus-within:text-[#14b8a6] transition-colors" />
                     </div>
@@ -159,41 +214,70 @@ export default function GetDemoModal({ isOpen, onClose }) {
                     <span className="text-[10px] font-bold text-[#14b8a6]">02</span>
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication</h3>
                   </div>
-                  
+
                   <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                     <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
-                      <input 
-                        type="email" 
-                        required 
+                      <input
+                        type="email"
+                        required
                         placeholder="Digital Mail"
                         className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl pr-6"
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       />
                       <Mail className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-focus-within:text-[#14b8a6] transition-colors" />
                     </div>
                     <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
-                      <input 
-                        type="tel" 
-                        required 
+                      <input
+                        type="tel"
+                        required
                         placeholder="Mobile Link"
                         className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl pr-6"
+                        value={formData.phone}
+                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                       />
                       <Phone className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-200 group-focus-within:text-[#14b8a6] transition-colors" />
                     </div>
                   </div>
                 </div>
+                {/* Section 03: Products */}
+                <div className="space-y-6 lg:space-y-8">
+                  <div className="flex items-center gap-4">
+                    <span className="text-[10px] font-bold text-[#14b8a6]">03</span>
+                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Products</h3>
+                  </div>
+                  <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
+                    <select
+                      required
+                      className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl pr-6"
+                      value={formData.product_id}
+                      onChange={(e) => setFormData({ ...formData, product_id: e.target.value })}
+                    >
+                      <option value="">Select Product</option>
+                      {product.map((product) => (
+                        <option key={product.id} value={product.id}>
+                          {product.name}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+
 
                 {/* Section 03: Protocol Needs */}
                 <div className="space-y-6 lg:space-y-8">
                   <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-bold text-[#14b8a6]">03</span>
+                    <span className="text-[10px] font-bold text-[#14b8a6]">04</span>
                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Objective</h3>
                   </div>
-                  
+
                   <div className="relative group border-b border-gray-100 focus-within:border-[#14b8a6] transition-all pb-1">
-                    <textarea 
+                    <textarea
                       placeholder="Briefly describe your infrastructural goals..."
                       rows={1}
                       className="w-full bg-transparent py-3 lg:py-4 outline-none placeholder:text-gray-300 font-light text-base lg:text-xl resize-none pr-6"
+                      value={formData.objective}
+                      onChange={(e) => setFormData({ ...formData, objective: e.target.value })}
                     />
                     <MessageSquare className="absolute right-0 top-6 w-4 h-4 text-gray-200 group-focus-within:text-[#14b8a6] transition-colors" />
                   </div>
@@ -204,9 +288,9 @@ export default function GetDemoModal({ isOpen, onClose }) {
                   <p className="text-[8px] lg:text-[10px] text-gray-400 font-bold uppercase tracking-widest max-w-[200px] text-center sm:text-left">
                     By initiating, you agree to our regulatory protocols.
                   </p>
-                  
-                  <Button 
-                    variant="gradi" 
+
+                  <Button
+                    variant="gradi"
                     className="w-full sm:w-auto rounded-xl lg:rounded-2xl px-8 lg:px-12 py-6 lg:py-8 text-xs lg:text-sm font-bold shadow-2xl shadow-[#14b8a6]/20 flex items-center justify-center gap-4 hover:scale-[1.02] transition-transform active:scale-95 group"
                   >
                     Initiate Synchronization <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

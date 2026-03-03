@@ -37,92 +37,98 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "value", label: "Value", type: "text", placeholder: "Enter value" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
                 ];
+            case "Chat":
+                return [
+                    { name: "question", label: "Question", type: "text", placeholder: "Enter Question" },
+                    { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter Answer" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                ];
             case "FAQ":
                 return [
                     { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
-                    { name: "question", label: "Question", type: "text", placeholder: "Enter question" },
-                    { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter answer" },
+                    { name: "question", label: "Question", type: "text", placeholder: "Enter Question" },
+                    { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter Answer" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
                 ];
             case "Subscribers":
                 return [
-                    { name: "email", label: "Email Address", type: "email", placeholder: "Enter email" },
+                    { name: "email", label: "Email Address", type: "email", placeholder: "Enter Email Address" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
                 ];
             case "Feedbacks":
                 return [
-                    { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
-                    { name: "content", label: "Content", type: "textarea", placeholder: "Enter content" },
-                    { name: "rating", label: "Rating", type: "number", placeholder: "Enter rating" },
-                    { name: "location", label: "Location", type: "text", placeholder: "Enter location" },
-                    { name: "image", label: "Image", type: "image", placeholder: "Upload image" },
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "content", label: "Content", type: "textarea", placeholder: "Enter Content" },
+                    { name: "rating", label: "Rating", type: "number", placeholder: "Enter Rating" },
+                    { name: "location", label: "Location", type: "text", placeholder: "Enter Location" },
+                    { name: "image", label: "Image", type: "image", placeholder: "Upload Image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
                 ];
             case "Services":
                 return [
-                    { name: "title", label: "Service Title", type: "text", placeholder: "Enter service title" },
-                    { name: "slug", label: "Service Slug", type: "text", placeholder: "Enter service slug" },
-                    { name: "service_item", label: "Service Keypoints ('~' separated)", type: "textarea", placeholder: "Enter service keypoints" },
-                    { name: "short_description_title", label: "Short Description Title", type: "text", placeholder: "Enter short description title" },
-                    { name: "short_description", label: "Short Description", type: "textarea", placeholder: "Enter short description" },
-                    { name: "long_description_title", label: "Long Description Title", type: "text", placeholder: "Enter long description title" },
-                    { name: "long_description", label: "Long Description ('~' separated)", type: "textarea", placeholder: "Enter long description" },
+                    { name: "title", label: "Service Title", type: "text", placeholder: "Enter Service Title" },
+                    { name: "slug", label: "Service Slug", type: "text", placeholder: "Enter Service Slug" },
+                    { name: "service_item", label: "Service Keypoints ('~' separated)", type: "textarea", placeholder: "Enter Service Keypoints" },
+                    { name: "short_description_title", label: "Short Description Title", type: "text", placeholder: "Enter Short Description Title" },
+                    { name: "short_description", label: "Short Description", type: "textarea", placeholder: "Enter Short Description" },
+                    { name: "long_description_title", label: "Long Description Title", type: "text", placeholder: "Enter Long Description Title" },
+                    { name: "long_description", label: "Long Description ('~' separated)", type: "textarea", placeholder: "Enter Long Description" },
                     { name: "main_logo", label: "Service Main Logo", type: "image", placeholder: "Upload Image" },
                     { name: "sub_logo", label: "Service Sub Logo", type: "image", placeholder: "Upload Image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Products":
                 return [
-                    { name: "product_name", label: "Product Name", type: "text", placeholder: "Enter product name" },
-                    { name: "slug", label: "Product Slug", type: "text", placeholder: "Enter product slug" },
-                    { name: "tag", label: "Product Tag", type: "text", placeholder: "Enter product tag" },
-                    { name: "category_name", label: "Category Name", type: "text", placeholder: "Enter category name" },
-                    { name: "description", label: "Description ('~' separated)", type: "textarea", placeholder: "Enter description" },
-                    { name: "key_feature", label: "Product Key Features ('~' separated)", type: "textarea", placeholder: "Enter product key features" },
-                    { name: "time_benefits", label: "Time Benefits ('~' separated)", type: "textarea", placeholder: "Enter time benefits" },
-                    { name: "cloud_benefits", label: "Cloud Benefits ('~' separated)", type: "textarea", placeholder: "Enter cloud benefits" },
-                    { name: "growth_benefits", label: "Growth Benefits ('~' separated)", type: "textarea", placeholder: "Enter growth benefits" },
-                    { name: "communication_benefits", label: "Communication Benefits ('~' separated)", type: "textarea", placeholder: "Enter communication benefits" },
+                    { name: "product_name", label: "Product Name", type: "text", placeholder: "Enter Product Name" },
+                    { name: "slug", label: "Product Slug", type: "text", placeholder: "Enter Product Slug" },
+                    { name: "tag", label: "Product Tag", type: "text", placeholder: "Enter Product Tag" },
+                    { name: "category_name", label: "Category Name", type: "text", placeholder: "Enter Category Name" },
+                    { name: "description", label: "Description ('~' separated)", type: "textarea", placeholder: "Enter Description" },
+                    { name: "key_feature", label: "Product Key Features ('~' separated)", type: "textarea", placeholder: "Enter Product Key Features" },
+                    { name: "time_benefits", label: "Time Benefits ('~' separated)", type: "textarea", placeholder: "Enter Time Benefits" },
+                    { name: "cloud_benefits", label: "Cloud Benefits ('~' separated)", type: "textarea", placeholder: "Enter Cloud Benefits" },
+                    { name: "growth_benefits", label: "Growth Benefits ('~' separated)", type: "textarea", placeholder: "Enter Growth Benefits" },
+                    { name: "communication_benefits", label: "Communication Benefits ('~' separated)", type: "textarea", placeholder: "Enter Communication Benefits" },
                     { name: "logo", label: "Product Logo", type: "image", placeholder: "Upload image" },
                     { name: "image", label: "Product Image", type: "image", placeholder: "Upload image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Solutions":
                 return [
-                    { name: "name", label: "Solution Name", type: "text", placeholder: "Enter solution name" },
-                    { name: "title", label: "Solution Title", type: "text", placeholder: "Enter solution title" },
-                    { name: "slug", label: "Solution Slug", type: "text", placeholder: "Enter solution slug" },
-                    { name: "key_point", label: "Solution Keypoints ('~' separated)", type: "textarea", placeholder: "Enter solution keypoints" },
-                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter description" },
+                    { name: "name", label: "Solution Name", type: "text", placeholder: "Enter Solution Name" },
+                    { name: "title", label: "Solution Title", type: "text", placeholder: "Enter Solution Title" },
+                    { name: "slug", label: "Solution Slug", type: "text", placeholder: "Enter Solution Slug" },
+                    { name: "key_point", label: "Solution Keypoints ('~' separated)", type: "textarea", placeholder: "Enter Solution Keypoints" },
+                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter Description" },
                     { name: "main_logo", label: "Solution Main Logo", type: "image", placeholder: "Upload Image" },
                     { name: "sub_logo", label: "Solution Sub Logo", type: "image", placeholder: "Upload Image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Careers":
                 return [
-                    { name: "title", label: "Job Title", type: "text", placeholder: "Enter job title" },
+                    { name: "title", label: "Job Title", type: "text", placeholder: "Enter Job Title" },
                     { name: "department", label: "Department", type: "text", placeholder: "Ex: Engineering" },
                     { name: "job_id", label: "Job ID", type: "text", placeholder: "Ex: J-101" },
                     { name: "type", label: "Job Type", type: "select", options: ["Full-time", "Part-time", "Contract"] },
                     { name: "location", label: "Location", type: "text", placeholder: "Ex: Remote, New York" },
-                    { name: "slug", label: "Job Slug", type: "text", placeholder: "Enter job slug" },
-                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter description" },
-                    { name: "experience", label: "Experience ('~' separated)", type: "textarea", placeholder: "Enter experience" },
-                    { name: "skill", label: "Skills ('~' separated)", type: "textarea", placeholder: "Enter skills" },
-                    { name: "extra", label: "Additional Responsibilities ('~' separated)", type: "textarea", placeholder: "Enter additional responsibilities" },
+                    { name: "slug", label: "Job Slug", type: "text", placeholder: "Enter Job Slug" },
+                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter Description" },
+                    { name: "experience", label: "Experience ('~' separated)", type: "textarea", placeholder: "Enter Experience" },
+                    { name: "skill", label: "Skills ('~' separated)", type: "textarea", placeholder: "Enter Skills" },
+                    { name: "extra", label: "Additional Responsibilities ('~' separated)", type: "textarea", placeholder: "Enter Additional Responsibilities" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Applications":
                 return [
-                    { name: "applicant_name", label: "Applicant Name", type: "text", placeholder: "Enter Name" },
-                    { name: "email", label: "Applicant Email", type: "text", placeholder: "Enter Email Id" },
-                    { name: "phone", label: "Applicant Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "applicant_name", label: "Applicant Name", type: "text", placeholder: "Enter Applicant Name" },
+                    { name: "email", label: "Applicant Email", type: "text", placeholder: "Enter Applicant Email" },
+                    { name: "phone", label: "Applicant Phone", type: "text", placeholder: "Enter Applicant Phone" },
                     { name: "resume", label: "Resume", type: "file", placeholder: "Upload Resume" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Teams":
                 return [
-                    { name: "name", label: "Member Name", type: "text", placeholder: "Enter Name" },
+                    { name: "name", label: "Member Name", type: "text", placeholder: "Enter Member Name" },
                     { name: "designation", label: "Role/Designation", type: "text", placeholder: "Ex: CEO, Developer" },
                     { name: "description", label: "Role Description", type: "textarea", placeholder: "Enter Role Description" },
                     { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
@@ -130,6 +136,25 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "github", label: "Github", type: "text", placeholder: "Enter Github Url" },
                     { name: "image", label: "Profile Image", type: "image", placeholder: "Upload Image" },
                     { name: "designation_flag", label: "Designation Flag", type: "select", options: ["True", "False"] },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                ];
+            case "Contacts":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "title", label: "Title", type: "text", placeholder: "Enter Title" },
+                    { name: "description", label: "Description", type: "textarea", placeholder: "Enter Description" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                ];
+            case "Enquiry":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "company", label: "Company", type: "text", placeholder: "Enter Company Name" },
+                    { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
+                    { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
+                    { name: "object", label: "Object", type: "text", placeholder: "Enter Object" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             default:
@@ -337,6 +362,12 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return mode === 'add' ? '/feedbacks/create' : '/feedbacks/update';
             case 'FAQ':
                 return mode === 'add' ? '/faq/create' : '/faq/update';
+            case 'Chat':
+                return mode === 'add' ? '/chat/create' : '/chat/update';
+            case 'Contacts':
+                return mode === 'add' ? '/contact/create' : '/contact/update';
+            case 'Enquiry':
+                return mode === 'add' ? '/enquire/create' : '/enquire/update';
             case 'Settings':
                 return mode === 'add' ? '/settings/create' : '/settings/update';
             default:
@@ -491,7 +522,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                     <thead className="bg-gray-50 border-b border-gray-100">
                                         <tr>
                                             {
-                                                title !== "FAQ" && title !== "Applications" && (
+                                                title !== "FAQ" && title !== "Applications" && title !== "Chat" && title !== "Contacts" && title !== "Enquiry" && (
                                                     <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">{title === "Subscribers" ? "Subscribers Email" : title === "Settings" ? "Key" : `${title} Name`}</th>
                                                 )
                                             }
@@ -506,10 +537,10 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             {
                                                 title === "Careers" && (
                                                     <>
-                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Location</th>
-                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Department</th>
-                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job Type</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job ID</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job Type</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Department</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Location</th>
                                                     </>
                                                 )
                                             }
@@ -548,6 +579,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 )
                                             }
                                             {
+                                                title === "Chat" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Question</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Answer</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
                                                 title === "Applications" && (
                                                     <>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job ID</th>
@@ -555,6 +594,29 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Name</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Email</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Applicant Phone</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "Contacts" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Subject</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Message</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "Enquiry" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Company Name</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Object</th>
                                                     </>
                                                 )
                                             }
@@ -572,7 +634,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 className="hover:bg-gray-50 transition-colors"
                                             >
                                                 {
-                                                    title !== "FAQ" && title !== "Applications" && (
+                                                    title !== "FAQ" && title !== "Applications" && title !== "Chat" && title !== "Enquiry" && title !== "Contacts" && (
                                                         <td className="px-6 py-4">
                                                             <div>
                                                                 <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name || item.key}</div>
@@ -601,12 +663,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         <>
                                                             <td className="px-6 py-4">
                                                                 <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
-                                                                    {item.location}
-                                                                </span>
-                                                            </td>
-                                                            <td className="px-6 py-4">
-                                                                <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
-                                                                    {item.department}
+                                                                    {item.job_id}
                                                                 </span>
                                                             </td>
                                                             <td className="px-6 py-4">
@@ -616,7 +673,12 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
-                                                                    {item.job_id}
+                                                                    {item.department}
+                                                                </span>
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1 text-xs font-medium bg-green-50 text-green-600 rounded-full">
+                                                                    {item.location}
                                                                 </span>
                                                             </td>
                                                         </>
@@ -632,7 +694,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 <span className="px-2 py-1">
-                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt="team image" className="w-10 mx-auto rounded-full" width={100} height={100} />
+                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt={`${item.name}`} className="w-10 mx-auto rounded-full" width={100} height={100} />
                                                                 </span>
                                                             </td>
                                                         </>
@@ -684,6 +746,63 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 {item.answer}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Chat" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.question}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.answer}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Enquiry" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.company}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.phone}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.product_name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.object}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Contacts" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.name}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.phone}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.title || item.subject}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.description || item.message}
                                                             </td>
                                                         </>
                                                     )
