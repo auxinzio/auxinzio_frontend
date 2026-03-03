@@ -4,9 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ShieldCheck, X, ArrowRight, Zap } from 'lucide-react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export default function CookieConsent() {
+    const pathname = usePathname();
     const [isVisible, setIsVisible] = useState(false);
+
+    // Only show on the main (home) page. 
+    const isMainPage = pathname === '/';
 
     useEffect(() => {
         // Check if user has already consented
@@ -34,7 +39,7 @@ export default function CookieConsent() {
 
     return (
         <AnimatePresence>
-            {isVisible && (
+            {isVisible && isMainPage && (
                 <motion.div
                     initial={{ y: 100, opacity: 0, scale: 0.95 }}
                     animate={{ y: 0, opacity: 1, scale: 1 }}

@@ -37,6 +37,7 @@ export const metadata = {
 import SettingProvider from "./Context/SettingsContext";
 import AuthProvider from "./Context/AuthContext";
 import CookieConsent from "@/components/CookieConsent";
+import { ChatBot } from "@/components/ui/ChatBot";
 
 export default function RootLayout({ children }) {
   return (
@@ -49,6 +50,7 @@ export default function RootLayout({ children }) {
             <MainLayout>
               {children}
             </MainLayout>
+            <ChatBot />
             <CookieConsent />
           </AuthProvider>
         </SettingProvider>
