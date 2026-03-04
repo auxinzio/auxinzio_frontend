@@ -62,7 +62,6 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);

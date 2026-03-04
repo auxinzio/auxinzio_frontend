@@ -15,14 +15,14 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: {
     template: "%s | Auxinzio",
-    default: "Auxinzio | Digital Agency - Transforming Businesses with Visionary Design",
+    default: "Auxinzio | Digital Agency - Engineering Business Excellence",
   },
-  description: "Transforming businesses with innovative digital solutions. Synthesizing technology with strategic vision and high-end experience design.",
-  keywords: ["Digital Agency", "Software Architecture", "Experience Design", "Auxinzio", "Strategic Consulting", "Global Engineering"],
+  description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions. Auxinzio combines strategic consulting, cloud services, and managed IT support to optimize performance and strengthen cybersecurity.",
+  keywords: ["Digital Agency", "Software Architecture", "Auxinzio", "Strategic Consulting", "Global Engineering"],
   metadataBase: new URL("https://auxinz.io"),
   openGraph: {
     title: "Auxinzio | Digital Agency",
-    description: "Transforming businesses with innovative digital solutions.",
+    description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions.",
     url: "https://auxinz.io",
     siteName: "Auxinzio",
     locale: "en_US",
