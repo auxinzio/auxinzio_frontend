@@ -12,14 +12,14 @@ export default function EnquiryPage() {
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const ITEMS_PER_PAGE = 2;
+    const ITEMS_PER_PAGE = 6;
 
     const fetchEnquiry = useCallback(async () => {
         setLoading(true);
         setError(null);
         try {
             // Sending search, page and limit to backend
-            const response = await cmsApi.post('/enquire', {
+            const response = await cmsApi.post('/enquiry', {
                 search: searchTerm,
                 page: currentPage,
                 limit: ITEMS_PER_PAGE

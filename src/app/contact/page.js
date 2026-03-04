@@ -32,25 +32,73 @@ export default function Contact() {
     description: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState({});
   const [focusedField, setFocusedField] = useState(null);
   const [contact, setContact] = useState([]);
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formState.name || formState.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
+    if (!formState.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) newErrors.email = 'Please enter a valid email address.';
+    if (!formState.phone || !/^\+?[\d\s-]{10,}$/.test(formState.phone)) newErrors.phone = 'Please enter a valid phone number (min 10 digits).';
+    if (!formState.title || formState.title.length < 3) newErrors.title = 'Please provide a subject.';
+    if (!formState.description || formState.description.length < 10) newErrors.description = 'Please provide a more detailed briefing (min 10 chars).';
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${settings.backend_api_url}/api/contact/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formState) })
+    if (!validate()) return;
+
+    setIsSubmitting(true);
+    fetch(`${settings.backend_api_url}/api/contacts/submit`, { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" }, 
+      body: JSON.stringify(formState) 
+    })
       .then(res => res.json())
-      .then(data => setContact(data))
-      .catch(err => console.log(err))
-      .finally(() => {
+      .then(data => {
+        setContact(data);
         setIsSubmitted(true);
+        setFormState({ name: '', email: '', phone: '', title: '', description: '' });
+      })
+      .catch(err => {
+        console.log(err);
+        setErrors({ submit: 'Transmission failed. Please try again later.' });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
+
     setTimeout(() => {
       setIsSubmitted(false);
-      setFormState({ name: '', email: '', phone: '', title: '', description: '' });
     }, 5000);
   };
 
   const handleChange = (e) => {
-    setFormState({ ...formState, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    
+    // Filter for email field: letters, numbers, dot (and @ for functionality)
+    if (name === 'phone') {
+      const numericValue = value.replace(/\D/g, '');
+      if (numericValue.length <= 15) {
+        setFormState({ ...formState, [name]: numericValue });
+      }
+    } else if (name === 'email') {
+      // Allowing only alphanumeric, dots, and the @ symbol
+      const emailValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
+      setFormState({ ...formState, [name]: emailValue });
+    } else {
+      setFormState({ ...formState, [name]: value });
+    }
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors({ ...errors, [name]: null });
+    }
   };
 
   return (
@@ -159,16 +207,18 @@ export default function Contact() {
                 {!isSubmitted ? (
                   <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-10">
                     <div className="md:col-span-1">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Full Identity</label>
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Full Name</label>
                       <input
                         type="text"
                         name="name"
                         value={formState.name}
                         onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
-                        placeholder="Ex: Alexander Wright"
+                        maxLength={50}
+                        className={`w-full bg-transparent border-b ${errors.name ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        placeholder="Your Full Name"
                         required
                       />
+                      {errors.name && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.name}</p>}
                     </div>
                     <div className="md:col-span-1">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Electronic Mail</label>
@@ -177,22 +227,27 @@ export default function Contact() {
                         name="email"
                         value={formState.email}
                         onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
-                        placeholder="alex@studio.com"
+                        className={`w-full bg-transparent border-b ${errors.email ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        placeholder="Your mail address"
                         required
                       />
+                      {errors.email && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.email}</p>}
                     </div>
                     <div className="md:col-span-1">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Phone Number</label>
                       <input
                         type="text"
                         name="phone"
+                        inputMode="numeric"
+                        pattern="[0-9]*"
+                        maxLength={15}
                         value={formState.phone}
                         onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
-                        placeholder="+1 (555) 123-4567"
+                        className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        placeholder="Your Phone Number"
                         required
                       />
+                      {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.phone}</p>}
                     </div>
                     <div className="md:col-span-1">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Subject of Inquiry</label>
@@ -201,10 +256,11 @@ export default function Contact() {
                         name="title"
                         value={formState.title}
                         onChange={handleChange}
-                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg"
-                        placeholder="Ex: Enterprise Partnership"
+                        className={`w-full bg-transparent border-b ${errors.title ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        placeholder="Subject of Inquiry"
                         required
                       />
+                      {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.title}</p>}
                     </div>
                     <div className="md:col-span-2">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Detailed Briefing</label>
@@ -213,22 +269,25 @@ export default function Contact() {
                         value={formState.description}
                         onChange={handleChange}
                         rows={6}
-                        className="w-full bg-transparent border-b border-gray-100 py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors resize-none placeholder:text-gray-200 text-lg"
+                        className={`w-full bg-transparent border-b ${errors.description ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors resize-none placeholder:text-gray-200 text-lg`}
                         placeholder="Describe your vision or specific system requirements..."
                         required
                       />
+                      {errors.description && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.description}</p>}
                     </div>
 
                     <div className="md:col-span-2 pt-10">
+                      {errors.submit && <p className="text-[10px] text-red-500 font-bold uppercase mb-4 tracking-widest">{errors.submit}</p>}
                       <button
                         type="submit"
-                        className="group flex items-center gap-8 text-gray-900 font-medium tracking-tight hover:text-[#14b8a6] transition-all"
+                        disabled={isSubmitting}
+                        className={`group flex items-center gap-8 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-gray-900 hover:text-[#14b8a6]'} font-medium tracking-tight transition-all`}
                       >
-                        <div className="w-16 h-16 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#14b8a6] group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500">
-                          <ArrowRight className="w-6 h-6" />
+                        <div className={`w-16 h-16 rounded-full border ${errors.submit ? 'border-red-200' : 'border-gray-200'} flex items-center justify-center ${isSubmitting ? 'bg-gray-100' : 'group-hover:border-[#14b8a6] group-hover:bg-[#14b8a6] group-hover:text-white'} transition-all duration-500`}>
+                          <ArrowRight className={`w-6 h-6 ${isSubmitting ? 'animate-pulse' : ''}`} />
                         </div>
                         <span className="text-2xl font-light tracking-tighter decoration-gray-200 underline-offset-[12px] group-hover:decoration-[#14b8a6] transition-all">
-                          Transmit Message
+                          {isSubmitting ? 'Syncing...' : 'Transmit Message'}
                         </span>
                       </button>
                     </div>

@@ -12,7 +12,7 @@ export default function ApplicationPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 2;
+  const ITEMS_PER_PAGE = 6;
 
   const fetchApplication = useCallback(async () => {
     setLoading(true);

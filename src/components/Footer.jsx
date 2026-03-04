@@ -38,6 +38,41 @@ export function Footer() {
     { icon: Github, href: "#" },
   ];
 
+  const [email, setEmail] = useState("");
+  const [subscribing, setSubscribing] = useState(false);
+  const [subscribeStatus, setSubscribeStatus] = useState(null);
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault();
+    setSubscribing(true);
+    setSubscribeStatus(null);
+
+    try {
+      const response = await fetch(`${settings.backend_api_url}/api/subscribers/submit`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: email }),
+      });
+
+      const data = await response.json();
+
+      console.log(data);
+      console.log(data.status || data.success);
+
+      if (data.status==='ok' || data.success) {
+        setSubscribeStatus({ success: true, message: "Subscription synchronized successfully." });
+        setEmail("");
+      } else {
+        setSubscribeStatus({ success: false, message: data.message || "Encryption error. Try again." });
+      }
+    } catch (err) {
+      setSubscribeStatus({ success: false, message: "Network synchronization failure." });
+    } finally {
+      setSubscribing(false);
+      setTimeout(() => setSubscribeStatus(null), 5000);
+    }
+  };
+
   return (
     <footer className="relative bg-gray-900 text-white overflow-hidden pt-24 pb-12">
       {/* Background Architectural Mark */}
@@ -49,7 +84,7 @@ export function Footer() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
 
           {/* Brand & Manifesto */}
-          <div className="lg:col-span-5 space-y-12">
+          <div className="lg:col-span-5 space-y-4">
             <Link href="/" className="inline-block">
               <Image
                 src="/assets/img/logo.png"
@@ -59,7 +94,7 @@ export function Footer() {
                 className="h-10 w-auto"
               />
             </Link>
-            <div className="space-y-6 max-w-md">
+            <div className="space-y-4 max-w-md">
               <p className="text-gray-400 text-lg font-light leading-relaxed">
                 Architecting the future of digital sovereignty. We synchronize high-end technology with strategic vision to empower global enterprises.
               </p>
@@ -73,6 +108,40 @@ export function Footer() {
                     <social.icon size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
                   </Link>
                 ))}
+              </div>
+
+              {/* Newsletter synchronization */}
+              <div className="space-y-6 pt-4">
+                <div className="flex items-center gap-3">
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">05</span>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Stay Synchronized</h3>
+                </div>
+                <form onSubmit={handleSubscribe} className="relative max-w-sm group">
+                  <input
+                    type="email"
+                    required
+                    placeholder="Protocol mail address"
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-[#14b8a6] transition-all placeholder:text-gray-600 font-light"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value.replace(/[^a-zA-Z0-9.@]/g, ''))}
+                  />
+                  <button
+                    type="submit"
+                    disabled={subscribing}
+                    className="absolute right-2 top-2 bottom-2 px-4 bg-[#14b8a6] hover:bg-[#14b8a6]/80 text-white rounded-lg transition-all flex items-center justify-center group/btn disabled:opacity-50"
+                  >
+                    <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </button>
+                </form>
+                {subscribeStatus && (
+                  <motion.p 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className={`text-[10px] font-bold uppercase tracking-widest ${subscribeStatus.success ? 'text-[#14b8a6]' : 'text-red-400'}`}
+                  >
+                    {subscribeStatus.message}
+                  </motion.p>
+                )}
               </div>
             </div>
           </div>
@@ -163,7 +232,7 @@ export function Footer() {
         </div>
 
         {/* Global Footer Bottom */}
-        <div className="mt-32 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-20 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
             © {new Date().getFullYear()} Auxinzio Digital Ecosystem. All Rights Reserved.
           </div>
