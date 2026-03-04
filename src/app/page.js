@@ -178,13 +178,11 @@ export default function Home() {
       {/* Hero Marquee Strip */}
       <div className="py-6 border-y border-gray-100 bg-white overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.4em] text-[12px] items-center">
-          {[...Array(2)].map((_, outerIndex) => (
+          {[...Array(6)].map((_, outerIndex) => (
             <div key={outerIndex} className="flex items-center gap-12">
-              {[...Array(10)].map((_, i) => (
-                <span key={i} className="flex items-center gap-6">
-                  Artificial Intelligence <Zap className="w-3 h-3 text-[#14b8a6]" />
-                  Cloud Infrastructure <Zap className="w-3 h-3 text-[#14b8a6]" />
-                  Experience Design <Zap className="w-3 h-3 text-[#14b8a6]" />
+              {service?.data?.serviceList?.map((item, index) => (
+                <span className="flex items-center gap-6" key={index}>
+                  {item.title} <Zap className="w-3 h-3 text-[#14b8a6]" />
                 </span>
               ))}
             </div>
@@ -214,7 +212,7 @@ export default function Home() {
       <section className="relative py-32 lg:py-64 bg-white overflow-hidden group/constellation">
         {/* Panning Background Text */}
         <div className="absolute top-1/4 left-0 w-full opacity-[0.02] select-none pointer-events-none whitespace-nowrap overflow-hidden">
-          <motion.h1 
+          <motion.h1
             animate={{ x: [0, -1000] }}
             transition={{ duration: 100, repeat: Infinity, ease: "linear" }}
             className="text-[20vw] font-black tracking-tighter"
@@ -225,7 +223,7 @@ export default function Home() {
 
         <div className="mx-auto max-w-[1600px] px-6">
           <div className="grid lg:grid-cols-12 gap-20 items-center">
-            
+
             {/* Left: Editorial Header */}
             <div className="lg:col-span-5 relative z-10">
               <motion.div
@@ -251,7 +249,7 @@ export default function Home() {
                     Scaling enterprises through architectural precision and digital sovereignty.
                   </p>
                 </div>
-                
+
                 <Link href="/contact">
                   <button className="flex items-center gap-4 text-gray-900 font-bold text-xs uppercase tracking-widest group">
                     Explore Alliances <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500"><ArrowRight className="w-4 h-4" /></div>
@@ -262,7 +260,7 @@ export default function Home() {
 
             {/* Right: The Constellation Field with SVG Connections */}
             <div className="lg:col-span-7 relative h-[600px] lg:h-[850px] flex items-center justify-center">
-              
+
               {/* Central Neural Core */}
               <div className="relative z-20">
                 <div className="w-4 h-4 bg-[#14b8a6] rounded-full shadow-[0_0_40px_rgba(20,184,166,0.6)] animate-pulse" />
@@ -272,24 +270,24 @@ export default function Home() {
               {/* Connecting Lines (SVG) */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-visible">
                 <defs>
-                   <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#14b8a6" stopOpacity="0" />
-                      <stop offset="50%" stopColor="#14b8a6" stopOpacity="0.1" />
-                      <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
-                   </linearGradient>
+                  <linearGradient id="lineGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                    <stop offset="0%" stopColor="#14b8a6" stopOpacity="0" />
+                    <stop offset="50%" stopColor="#14b8a6" stopOpacity="0.1" />
+                    <stop offset="100%" stopColor="#14b8a6" stopOpacity="0" />
+                  </linearGradient>
                 </defs>
                 {[...Array(8)].map((_, i) => (
-                   <motion.line
-                     key={i}
-                     x1="50%" y1="50%"
-                     x2={`${50 + (35 + i*2) * Math.cos((i * 45 * Math.PI) / 180)}%`}
-                     y2={`${50 + (35 + i*2) * Math.sin((i * 45 * Math.PI) / 180)}%`}
-                     stroke="url(#lineGrad)"
-                     strokeWidth="1"
-                     initial={{ pathLength: 0 }}
-                     whileInView={{ pathLength: 1 }}
-                     transition={{ duration: 2, delay: i * 0.1 }}
-                   />
+                  <motion.line
+                    key={i}
+                    x1="50%" y1="50%"
+                    x2={`${50 + (35 + i * 2) * Math.cos((i * 45 * Math.PI) / 180)}%`}
+                    y2={`${50 + (35 + i * 2) * Math.sin((i * 45 * Math.PI) / 180)}%`}
+                    stroke="url(#lineGrad)"
+                    strokeWidth="1"
+                    initial={{ pathLength: 0 }}
+                    whileInView={{ pathLength: 1 }}
+                    transition={{ duration: 2, delay: i * 0.1 }}
+                  />
                 ))}
               </svg>
 
@@ -299,7 +297,7 @@ export default function Home() {
                   const radii = [32, 42, 34, 46, 32, 42, 34, 46];
                   const sizes = ["w-28", "w-36", "w-24", "w-32", "w-40", "w-28", "w-32", "w-28"];
                   const labels = ["Enterprise", "Banking", "Retail", "Manufacturing", "Tech Giant", "Logistics", "Energy", "Services"];
-                  
+
                   const angle = angles[idx % angles.length];
                   const radius = radii[idx % radii.length];
                   const x = 50 + radius * Math.cos((angle * Math.PI) / 180);
@@ -311,17 +309,17 @@ export default function Home() {
                       initial={{ opacity: 0, scale: 0 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       viewport={{ once: true }}
-                      transition={{ 
-                        duration: 1, 
+                      transition={{
+                        duration: 1,
                         delay: idx * 0.1,
                         type: "spring",
                         damping: 20
                       }}
-                      style={{ 
-                        left: `${x}%`, 
+                      style={{
+                        left: `${x}%`,
                         top: `${y}%`,
                         position: 'absolute',
-                        transform: 'translate(-50%, -50%)' 
+                        transform: 'translate(-50%, -50%)'
                       }}
                       className="group z-10"
                     >
@@ -336,12 +334,12 @@ export default function Home() {
                           height={70}
                           className="object-contain opacity-60 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700"
                         />
-                        
+
                         {/* Hover Pill Labels */}
                         <div className="absolute -top-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
-                           <span className="bg-gray-900 text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
-                              {labels[idx % labels.length]}
-                           </span>
+                          <span className="bg-gray-900 text-white text-[8px] font-bold uppercase tracking-widest px-3 py-1 rounded-full whitespace-nowrap">
+                            {labels[idx % labels.length]}
+                          </span>
                         </div>
 
                         {/* Pulsing Border Effect */}
