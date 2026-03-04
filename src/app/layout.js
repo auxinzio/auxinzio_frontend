@@ -20,6 +20,11 @@ export const metadata = {
   description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions. Auxinzio combines strategic consulting, cloud services, and managed IT support to optimize performance and strengthen cybersecurity.",
   keywords: ["Digital Agency", "Software Architecture", "Auxinzio", "Strategic Consulting", "Global Engineering"],
   metadataBase: new URL("https://auxinz.io"),
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/favicon.ico",
+  },
   openGraph: {
     title: "Auxinzio | Digital Agency",
     description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions.",
