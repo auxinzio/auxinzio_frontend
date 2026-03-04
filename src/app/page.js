@@ -93,7 +93,7 @@ export default function Home() {
               <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
                 Engineering <br />
                 <span className="italic font-normal text-[#14b8a6]">Business</span> <br />
-                <span className="font-medium">Excellence.</span>
+                <span className="font-medium">Excellence</span>
               </h1>
             </motion.div>
 
@@ -104,7 +104,7 @@ export default function Home() {
               className="max-w-xl space-y-10"
             >
               <p className="text-xl text-gray-500 leading-relaxed font-light">
-                {`We translate complex technical infrastructure into high-impact digital value. Elevating enterprise ecosystems through architectural precision.`}
+                {`delivers scalable solutions, streamlined workflows, and innovation to drive sustainable enterprise growth.`}
               </p>
 
               <div className="flex flex-wrap items-center gap-8">
