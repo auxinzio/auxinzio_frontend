@@ -63,19 +63,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  const validate = () => {
-    const newErrors = {};
-    if (!formData.company || formData.company.length < 2) newErrors.company = "Organization name is required.";
-    if (!formData.name || formData.name.length < 2) newErrors.name = "Representative name is required.";
-    if (!formData.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) newErrors.email = "Valid protocol mail is required.";
-    if (!formData.phone || formData.phone.length < 10) newErrors.phone = "Valid mobile link is required (min 10 digits).";
-    if (!formData.product_id) newErrors.product_id = "Please select a target system.";
-    if (!formData.objective || formData.objective.length < 10) newErrors.objective = "Please describe your objective (min 10 chars).";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
+  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;

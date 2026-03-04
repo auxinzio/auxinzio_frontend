@@ -222,13 +222,14 @@ export default function ServiceDetailPage({ params }) {
                                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Specialized Nodes</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
+                                    {console.log(service.service_item)}
                                     {(service.service_item && service.service_item.length > 0 ? service.service_item : ["Expert Consultation", "Custom Implementation", "Ongoing Support"]).map((item, i) => (
                                         <div key={i} className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 group hover:bg-[#14b8a6] transition-all duration-500">
                                             <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
                                                 {i % 3 === 0 ? <Fingerprint size={20} /> : i % 3 === 1 ? <Cpu size={20} /> : <Layers size={20} />}
                                             </div>
                                             <h4 className="text-xl font-bold mb-4 group-hover:text-white transition-colors">{item}</h4>
-                                            <p className="text-gray-400 text-sm font-light group-hover:text-white/80 transition-colors">Implemented via high-end synchronization protocols for maximum enterprise efficiency.</p>
+                                            {/* <p className="text-gray-400 text-sm font-light group-hover:text-white/80 transition-colors">Implemented via high-end synchronization protocols for maximum enterprise efficiency.</p> */}
                                         </div>
                                     ))}
                                 </div>

@@ -60,7 +60,7 @@ export default function ServiceSection({ service }) {
                            className="group relative bg-white p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-500 min-h-[450px] flex flex-col"
                         >
                            {/* Service Index */}
-                           <span className="absolute top-12 right-12 text-6xl font-black text-gray-50 group-hover:text-[#14b8a6]/5 transition-colors select-none">0{index + 1}</span>
+                           <span className="absolute top-12 right-12 text-6xl font-black text-gray-50 group-hover:text-[#14b8a6]/40 transition-colors select-none">0{index + 1}</span>
                            <div className="relative z-10 flex-grow">
                               <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b8a6]/10 transition-colors">
                                  <Layers className="w-6 h-6 text-gray-400 group-hover:text-[#14b8a6]" />
@@ -69,7 +69,7 @@ export default function ServiceSection({ service }) {
                                  {srv.title}
                               </h3>
                               <p className="text-gray-500 leading-relaxed max-w-[280px]">
-                                 Architecting high-performance digital solutions tailored to the specific logical demands of your industry.
+                                 {srv.description.short_description}
                               </p>
                            </div>
                            <Link href={`/services/${srv.slug}`}>
