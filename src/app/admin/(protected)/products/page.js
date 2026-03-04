@@ -13,7 +13,7 @@ export default function ProductsPage() {
     const [error, setError] = useState(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const ITEMS_PER_PAGE = 2;
+    const ITEMS_PER_PAGE = 6;
 
     const fetchProducts = useCallback(async () => {
         setLoading(true);

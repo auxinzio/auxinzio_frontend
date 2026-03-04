@@ -44,7 +44,6 @@ export default function JobDetailsPage() {
       cover_letter: formData.cover_letter,
       resume: formData.resume,
     };
-    console.log(data);
     handleSave(data, 'Career');
   };
   const handleSave = async (data, title) => {

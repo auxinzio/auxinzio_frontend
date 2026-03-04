@@ -12,7 +12,7 @@ export default function TeamsPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 2;
+  const ITEMS_PER_PAGE = 6;
 
   const fetchTeams = useCallback(async () => {
     setLoading(true);
