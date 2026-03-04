@@ -13,8 +13,7 @@ async function handler(req, { params }) {
   const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
   const targetUrl = `${apiUrl}/api/${path}`; // Append query params
   try {
-    // Forward headers (except host/cookie/content-length/etc provided by browser automatically?)
-    // Actually just create new headers with Authorization
+    // Forward headers
     const headers = new Headers();
     headers.set('Authorization', `Bearer ${token}`);
 
@@ -23,44 +22,51 @@ async function handler(req, { params }) {
       headers.set('Content-Type', contentType);
     }
 
-    // Read body if method has body
-    const body = ['GET', 'HEAD'].includes(req.method) ? undefined : await req.text();
+    // Use the raw body stream instead of reading it as text.
+    // This is much more efficient for file uploads (images) and avoids
+    // the 413 error if it was triggered by buffering large strings in memory.
+    const body = ['GET', 'HEAD'].includes(req.method) ? undefined : req.body;
 
-    console.log(body);
+    // console.log(`[CMS Proxy] Forwarding ${req.method} to ${targetUrl} (Content-Type: ${contentType || 'none'})`);
 
     const res = await fetch(targetUrl, {
       method: req.method,
       headers: headers,
       body: body,
+      // @ts-ignore - 'duplex' is required for streaming bodies in undici/fetch (used by Next.js)
+      duplex: 'half',
     });
 
-    // Read raw text first so we can handle non-JSON responses
-    // (e.g. HTML crash pages from the backend on 500 errors).
+    // Handle responses
     const responseText = await res.text();
+    
+    if (res.status === 413) {
+      console.error(`[CMS Proxy] 413 Payload Too Large from backend for ${req.method} ${path}`);
+    }
+
     let responseData;
     try {
       responseData = JSON.parse(responseText);
     } catch {
-      // Backend returned HTML or non-JSON (e.g. a server crash page).
-      console.error(`[CMS Proxy] Non-JSON response from backend for ${req.method} ${path} (${res.status}):`, responseText.slice(0, 600));
+      if (res.status >= 400) {
+        console.error(`[CMS Proxy] Error ${res.status} from backend for ${req.method} ${path}:`, responseText.slice(0, 1000));
+      }
       responseData = {
         success: false,
         message: `Backend error (${res.status}): ${res.statusText || 'Internal Server Error'}`,
+        rawResponse: responseText.slice(0, 1000)
       };
-    }
-
-    if (res.status === 401) {
-      // Token expired? Clear cookie?
-      // const response = NextResponse.json(responseData, { status: 401 });
-      // response.cookies.delete('auth_token');
-      // return response;
     }
 
     return NextResponse.json(responseData, { status: res.status });
 
   } catch (error) {
-    console.error(`Proxy Error for ${path}:`, error);
-    return NextResponse.json({ success: false, message: 'Proxy Error' }, { status: 500 });
+    console.error(`[CMS Proxy] Error for ${path}:`, error);
+    return NextResponse.json({ 
+      success: false, 
+      message: 'Proxy Error', 
+      details: error.message 
+    }, { status: 500 });
   }
 }
 

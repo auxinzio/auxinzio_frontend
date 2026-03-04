@@ -12,14 +12,14 @@ export default function ContactPage() {
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 2;
+  const ITEMS_PER_PAGE = 6;
 
   const fetchContacts = useCallback(async () => {
     setLoading(true);
     setError(null);
     try {
       // Sending search, page and limit to backend
-      const response = await cmsApi.post('/contact', {
+      const response = await cmsApi.post('/contacts', {
         search: searchTerm,
         page: currentPage,
         limit: ITEMS_PER_PAGE

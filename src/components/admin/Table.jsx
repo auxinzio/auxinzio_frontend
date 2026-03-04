@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Search, Plus, Edit, Trash2, Loader2, ChevronLeft, ChevronRight, X, Save, Eye } from "lucide-react";
 import Image from "next/image";
@@ -18,15 +18,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const [formData, setFormData] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
-    const [productList, setProductList] = useState([]);
-
-    useEffect(() => {
+    const productList = useMemo(() => {
         if (product && Array.isArray(product)) {
-            setProductList(product.map((item) => ({
+            return product.map((item) => ({
                 id: item.id,
                 name: item.product_name
-            })));
+            }));
         }
+        return [];
     }, [product]);
 
     const getFormFields = (type) => {
@@ -81,7 +80,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return [
                     { name: "product_name", label: "Product Name", type: "text", placeholder: "Enter Product Name" },
                     { name: "slug", label: "Product Slug", type: "text", placeholder: "Enter Product Slug" },
-                    { name: "tag", label: "Product Tag", type: "text", placeholder: "Enter Product Tag" },
+                    { name: "tag", label: "Product Tag ('~' separated)", type: "text", placeholder: "Enter Product Tag" },
                     { name: "category_name", label: "Category Name", type: "text", placeholder: "Enter Category Name" },
                     { name: "description", label: "Description ('~' separated)", type: "textarea", placeholder: "Enter Description" },
                     { name: "key_feature", label: "Product Key Features ('~' separated)", type: "textarea", placeholder: "Enter Product Key Features" },
@@ -145,7 +144,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
                     { name: "title", label: "Title", type: "text", placeholder: "Enter Title" },
                     { name: "description", label: "Description", type: "textarea", placeholder: "Enter Description" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                    // { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Enquiry":
                 return [
@@ -155,7 +154,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
                     { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
                     { name: "object", label: "Object", type: "text", placeholder: "Enter Object" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
+                    // { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             default:
                 return [];
@@ -178,6 +177,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
 
             if (title === "Products") {
                 initialData.description = Array.isArray(item.description) ? item.description.join('~') : item.description || '';
+                initialData.tag = Array.isArray(item.tag) ? item.tag.join('~') : item.tag || '';
                 initialData.key_feature = item.key_feature?.join('~');
                 initialData.time_benefits = item.benefit.time_benefits?.join('~');
                 initialData.cloud_benefits = item.benefit.cloud_benefits?.join('~');
@@ -297,6 +297,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             dataToSave = {
                 ...formData,
                 description: formData.description,
+                tag:formData.tag?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 key_feature: formData.key_feature?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 benefit: {
                     time_benefits: formData.time_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
@@ -305,10 +306,9 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     communication_benefits: formData.communication_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 }
             };
-            ['time_benefits', 'status', 'cloud_benefits', 'growth_benefits', 'communication_benefits'].forEach(f => delete dataToSave[f]);
+            ['time_benefits', 'faqs', 'status', 'cloud_benefits', 'growth_benefits', 'communication_benefits'].forEach(f => delete dataToSave[f]);
         }
         else if (title === "Solutions") {
-            console.log(formData);
             dataToSave = {
                 ...formData,
                 name: formData.title,
@@ -340,6 +340,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             };
             ['experience', 'skill', 'extra', 'status'].forEach(f => delete dataToSave[f]);
         }
+        dataToSave.status = dataToSave.status === "Active" ? 1 : 0;
         console.log("Submitting:", modalMode, dataToSave, title);
         await handleSave(modalMode, dataToSave, title);
     };
@@ -365,9 +366,9 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             case 'Chat':
                 return mode === 'add' ? '/chat/create' : '/chat/update';
             case 'Contacts':
-                return mode === 'add' ? '/contact/create' : '/contact/update';
+                return mode === 'add' ? '/contacts/create' : '/contacts/update';
             case 'Enquiry':
-                return mode === 'add' ? '/enquire/create' : '/enquire/update';
+                return mode === 'add' ? '/enquiry/create' : '/enquiry/update';
             case 'Settings':
                 return mode === 'add' ? '/settings/create' : '/settings/update';
             default:
@@ -471,12 +472,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                         <h1 className="text-2xl font-bold text-gray-900">{title} Management</h1>
                         <p className="text-gray-500">View and manage your agency {title.toLowerCase()}</p>
                     </div>
-                    <button
-                        onClick={() => handleModalOpen('add')}
-                        className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition-all shadow-lg shadow-green-500/20">
-                        <Plus size={18} />
-                        Add {title}
-                    </button>
+                    {title !== "Applications" && (
+                        <button
+                            onClick={() => handleModalOpen('add')}
+                            className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg text-sm font-medium hover:bg-green-600 transition-all shadow-lg shadow-green-500/20">
+                            <Plus size={18} />
+                            Add {title}
+                        </button>
+                    )}
                 </div>
 
                 <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
@@ -620,7 +623,11 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     </>
                                                 )
                                             }
-                                            <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
+                                            {
+                                                (title !== "Enquiry" && title !== "Contacts") && (
+                                                    <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Status</th>
+                                                )
+                                            }
                                             <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase text-right">Actions</th>
                                         </tr>
                                     </thead>
@@ -831,16 +838,26 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 {
                                                     title === "Applications" ? (
                                                         <td className="px-6 py-4">
-                                                            <select className="w-full px-3 py-2 border border-gray-300 rounded-md" onChange={(e) => handleApplicationStatusChange(item, e.target.value)} value={item.status}>
-                                                                <option value="">Select</option>
-                                                                <option value="pending" selected={item.status === "pending"}>Pending</option>
-                                                                <option value="approved" selected={item.status === "approved"}>Approved</option>
-                                                                <option value="schedule" selected={item.status === "schedule"}>Schedule</option>
-                                                                <option value="on_hold" selected={item.status === "on_hold"}>On Hold</option>
-                                                                <option value="rejected" selected={item.status === "rejected"}>Rejected</option>
-                                                            </select>
+                                                            <div className="relative">
+                                                                <select
+                                                                    className="w-full px-3 py-2 border border-gray-200 rounded-md appearance-none bg-white focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                                                                    onChange={(e) => handleApplicationStatusChange(item, e.target.value)}
+                                                                    value={item.status}
+                                                                >
+                                                                    <option value="">Select</option>
+                                                                    <option value="pending">Pending</option>
+                                                                    <option value="approved">Approved</option>
+                                                                    <option value="schedule">Schedule</option>
+                                                                    <option value="on_hold">On Hold</option>
+                                                                    <option value="rejected">Rejected</option>
+                                                                </select>
+                                                                {/* Custom arrow */}
+                                                                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                                                    <svg className="fill-current h-4 w-4" viewBox="0 0 20 20"><path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" /></svg>
+                                                                </div>
+                                                            </div>
                                                         </td>
-                                                    ) : (
+                                                    ) : (title !== "Enquiry" && title !== "Contacts") && (
                                                         <td className="px-6 py-4">
                                                             <button
                                                                 onClick={() => handleStatusToggle(item)}
@@ -943,7 +960,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             <Modal
                 isOpen={isModalOpen}
                 onClose={handleModalClose}
-                title={`${modalMode === 'add' ? 'Add New' : 'Edit'} ${title.slice(0, -1)}`} // Remove 's' from title for singular
+                title={`${modalMode === 'add' ? 'Add New' : 'Edit'}`}
             >
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {getFormFields(title).map((field) => (
