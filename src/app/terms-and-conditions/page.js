@@ -1,26 +1,22 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 import Link from 'next/link';
 import {
   ShieldCheck,
-  FileText,
   Settings,
   UserCheck,
   Scale,
   Bell,
   HelpCircle,
-  ArrowRight,
-  ChevronRight,
-  ClipboardList,
   Lock,
   Globe,
-  Database,
   Copyright,
   Download
 } from 'lucide-react';
+import ProgressBar from '@/components/ui/ProgressBar';
 
 const termsSections = [
   {
@@ -159,10 +155,7 @@ export default function TermsAndConditions() {
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
       {/* Progress Bar */}
-      <motion.div
-        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#14b8a6] to-[#06b6d4] z-[60] origin-left"
-        style={{ scaleX }}
-      />
+      <ProgressBar />
 
       {/* --- HERO SECTION: EDITORIAL TYPOGRAPHY --- */}
       <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-40 px-6 overflow-hidden bg-white">

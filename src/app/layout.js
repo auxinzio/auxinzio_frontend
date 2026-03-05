@@ -43,6 +43,7 @@ import SettingProvider from "./Context/SettingsContext";
 import AuthProvider from "./Context/AuthContext";
 import CookieConsent from "@/components/CookieConsent";
 import { ChatBot } from "@/components/ui/ChatBot";
+import Loader from "@/components/ui/Loader";
 
 export default function RootLayout({ children }) {
   return (
@@ -50,6 +51,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased selection:bg-primary/20 selection:text-primary relative overflow-x-hidden`}
       >
+        <Loader />
         <SettingProvider>
           <AuthProvider>
             <MainLayout>

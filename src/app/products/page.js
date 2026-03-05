@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, Play } from 'lucide-react';
 import { useSettings } from '@/app/Context/SettingsContext';
 import { useState, useEffect } from 'react';
+import ProgressBar from '@/components/ui/ProgressBar';
 
 export default function Products() {
     const { settings } = useSettings();
@@ -17,6 +18,8 @@ export default function Products() {
     }, [settings]);
     return (
         <>
+            {/* Progress Bar */}
+            <ProgressBar />
             {/* Product Hero Section — Matching AboutSection2 Tone */}
             <section className="relative py-24 lg:py-32 lg:pb-0 pb-0 px-6 overflow-hidden bg-white">
                 <div className="mx-auto max-w-[1600px]">
@@ -171,8 +174,8 @@ export default function Products() {
                                     className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-gray-900 group"
                                 >
                                     <a href="#product-feature" className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-gray-900 group">
-                                    Explore Products
-                                    <ArrowRight className="w-4 h-4 text-[#14b8a6] group-hover:translate-x-1 transition-transform" />
+                                        Explore Products
+                                        <ArrowRight className="w-4 h-4 text-[#14b8a6] group-hover:translate-x-1 transition-transform" />
                                     </a>
                                 </motion.button>
                                 <div className="w-px h-6 bg-gray-200 mx-2 hidden sm:block"></div>
@@ -181,8 +184,8 @@ export default function Products() {
                                     className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-gray-500 hover:text-gray-900 transition-colors group"
                                 >
                                     <a href="#product-experience" className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-gray-500 hover:text-gray-900 transition-colors group">
-                                    Watch Intro
-                                    <Play className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
+                                        Watch Intro
+                                        <Play className="w-4 h-4 fill-current group-hover:scale-110 transition-transform" />
                                     </a>
                                 </motion.button>
                             </div>

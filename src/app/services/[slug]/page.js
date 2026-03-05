@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import { useSettings } from "@/app/Context/SettingsContext";
 import { motion, AnimatePresence } from "framer-motion";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function ServiceDetailPage({ params }) {
     const { slug } = React.use(params);
@@ -94,6 +95,8 @@ export default function ServiceDetailPage({ params }) {
 
     return (
         <div className="min-h-screen bg-white selection:bg-[#14b8a6] selection:text-white">
+            {/* Progress Bar */}
+            <ProgressBar />
             {/* MONOLITH HERO */}
             <section className="relative pt-28 pb-20 lg:pb-32 overflow-hidden border-b border-gray-50">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none">

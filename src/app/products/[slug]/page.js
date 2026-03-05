@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useSettings } from '@/app/Context/SettingsContext';
 import GetDemoModal from "@/components/sections/GetDemoModal";
 import { Zap, Shield, Users, BarChart3, Clock, MessageSquare, TrendingUp, Cloud } from "lucide-react";
-
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function App({ params }) {
   const { settings } = useSettings();
@@ -34,6 +34,8 @@ export default function App({ params }) {
   const descriptionParts = product.description?.split('~').map(part => part.trim()) || [];
   return (
     <>
+      {/* Progress Bar */}
+      <ProgressBar />
       <div className="min-h-screen bg-white mt-20">
         {/* Section 1 - Vertical Product Introduction Panel */}
         <section className="flex flex-col lg:flex-row min-h-[600px]">

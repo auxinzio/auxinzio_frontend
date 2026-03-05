@@ -16,7 +16,6 @@ export function Navbar() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [settings, setSettings] = useState([]);
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -46,7 +45,13 @@ export function Navbar() {
         )}>
 
           {/* Logo Section */}
-          <Link href="/" className="relative group">
+          <Link
+            href="/"
+            className={cn(
+              "relative group",
+              pathname === "/" && "pointer-events-none cursor-default"
+            )}
+          >
             <Image
               src="/assets/img/logo.png"
               alt="Auxinz Logo"
@@ -68,15 +73,12 @@ export function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className="relative group py-2"
+                    className={cn(
+                      "relative group py-2",
+                      isActive && "pointer-events-none cursor-default"
+                    )}
                   >
                     <div className="flex items-start gap-1">
-                      {/* <span className={cn(
-                        "text-[8px] font-bold tracking-tighter transition-colors duration-500",
-                        isActive ? "text-[#14b8a6]" : "text-gray-300 group-hover:text-[#14b8a6]"
-                      )}>
-                        0{idx + 1}
-                      </span> */}
                       <span className={cn(
                         "text-xs font-bold uppercase tracking-[0.2em] transition-all duration-500",
                         isActive ? "text-gray-900" : "text-gray-500 group-hover:text-gray-900"
@@ -140,20 +142,25 @@ export function Navbar() {
               </div>
 
               <div className="flex-grow flex flex-col px-8 py-4 gap-6">
-                {navLinks.map((link, idx) => (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-between group border-b border-gray-50"
-                  >
-                    <div className="flex flex-col">
-                      {/* <span className="text-[10px] font-bold text-[#14b8a6] tracking-[0.3em] mb-1">0{idx + 1}</span> */}
-                      <span className="text-3xl font-light text-gray-900 tracking-tighter group-hover:italic transition-all">{link.name}</span>
-                    </div>
-                    <ArrowRight className="text-gray-200 group-hover:text-[#14b8a6] transition-colors" />
-                  </Link>
-                ))}
+                {navLinks.map((link, idx) => {
+                  const isActive = pathname === link.href || (link.href !== "/" && pathname.startsWith(link.href));
+                  return (
+                    <Link
+                      key={link.name}
+                      href={link.href}
+                      onClick={() => setIsOpen(false)}
+                      className={cn(
+                        "flex items-center justify-between group border-b border-gray-50",
+                        isActive && "pointer-events-none cursor-default"
+                      )}
+                    >
+                      <div className="flex flex-col">
+                        <span className="text-3xl font-light text-gray-900 tracking-tighter group-hover:italic transition-all">{link.name}</span>
+                      </div>
+                      <ArrowRight className="text-gray-200 group-hover:text-[#14b8a6] transition-colors" />
+                    </Link>
+                  );
+                })}
               </div>
 
               <div className="p-8">
