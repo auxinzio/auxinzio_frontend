@@ -166,7 +166,7 @@ export default function AdminLogin() {
           </form>
 
           <p className="mt-8 text-center text-gray-500 text-sm">
-            Powered by <span className="text-gray-300 font-semibold italic">Auxinzio</span>
+            Developed by <span className="text-gray-300 font-semibold italic">Auxinzio</span>
           </p>
         </div>
 
