@@ -1,26 +1,12 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import {
-   ArrowRight,
-   BarChart3,
-   Code,
-   Cpu,
-   Globe,
-   Layout,
-   ShieldCheck,
-   Zap,
-   Sparkles,
-   Command,
-   Layers,
-   Activity,
-   ChevronRight
-} from "lucide-react";
+import { motion } from "framer-motion";
+import { ArrowRight, Layers, ChevronRight } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Image from "next/image";
 import Link from "next/link";
-import { slugify } from "@/lib/utils";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function Services() {
    const [service, setService] = useState("");
@@ -59,7 +45,8 @@ export default function Services() {
 
    return (
       <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden" ref={containerRef}>
-
+         {/* Progress Bar */}
+         <ProgressBar />
          {/* --- HERO: THE ARCHITECTURAL BLUEPRINT --- */}
          <section className="relative pt-40 pb-24 lg:pt-30 lg:pb-12 px-6">
             <div className="mx-auto max-w-[1600px] relative">

@@ -16,6 +16,7 @@ import { useEffect, useState, useContext } from "react";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Link from "next/link";
 import servicesData from "@/data/services.json";
+import ProgressBar from "@/components/ui/ProgressBar";
 
 export default function Home() {
 
@@ -68,7 +69,8 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden">
-
+      {/* Progress Bar */}
+      <ProgressBar />
       {/* --- HERO: THE ARCHITECTURAL MONOLITH --- */}
       <section className="relative h-screen lg:min-h-[850px] min-h-[1100px] flex items-center pt-30 px-6 lg:px-12 bg-gray-50/30">
 
@@ -205,13 +207,13 @@ export default function Home() {
       <ProductsSection product={product?.data?.productsList} />
 
       {/* Teams Section */}
-      <Teams data={team.data} />
+      {/* <Teams data={team.data} /> */}
 
       {/* --- CLIENTS: THE GLOBAL SYNERGY GRID --- */}
       <section className="relative py-24 lg:py-40 bg-white overflow-hidden">
         {/* Background Panning Text */}
         <div className="absolute top-1/2 left-0 w-full opacity-[0.02] select-none pointer-events-none -translate-y-1/2">
-          <motion.h1 
+          <motion.h1
             animate={{ x: [0, -1200] }}
             transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
             className="text-[25vw] font-black tracking-tighter whitespace-nowrap"
@@ -222,7 +224,7 @@ export default function Home() {
 
         <div className="mx-auto max-w-[1600px] px-6 relative z-10">
           <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
-            
+
             {/* Left: Editorial Content */}
             <div className="lg:col-span-5">
               <motion.div
@@ -248,7 +250,7 @@ export default function Home() {
                   <p className="text-sm text-gray-400 border-l-2 border-[#14b8a6]/20 pl-6 italic">
                     Driving global impact through architectural precision and high-fidelity technological integration.
                   </p>
-                  
+
                   <div className="pt-8">
                     <Link href="/contact">
                       <button className="group flex items-center gap-6">
@@ -284,7 +286,7 @@ export default function Home() {
                           className="object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-90 group-hover:scale-110"
                         />
                       </div>
-                      
+
                       {/* Interactive Architectural Accent */}
                       <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-gray-100 group-hover:bg-[#14b8a6] group-hover:scale-150 transition-all duration-500" />
                       <div className="absolute bottom-6 left-6 w-8 h-px bg-gray-100 group-hover:bg-[#14b8a6] group-hover:w-16 transition-all duration-700" />

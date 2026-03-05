@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
-
+import ProgressBar from '@/components/ui/ProgressBar';
 // Values for the bento grid
 const careerValues = [
   {
@@ -104,7 +104,8 @@ export default function Careers() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
-
+      {/* Progress Bar */}
+      <ProgressBar />
       {/* --- HERO SECTION: THREE-ZONE ASYMMETRICAL --- */}
       <section className="relative pt-32  pb-10 lg:pt-40 lg:pb-22 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px]">

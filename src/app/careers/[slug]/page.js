@@ -7,6 +7,7 @@ import { MapPin, Clock, Briefcase, ArrowLeft, IndianRupee, Home, GraduationCap, 
 import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 import { useSettings } from "@/app/Context/SettingsContext";
+import ProgressBar from '@/components/ui/ProgressBar';
 
 export default function JobDetailsPage() {
   const { slug } = useParams();
@@ -136,6 +137,8 @@ export default function JobDetailsPage() {
   return (
     <>
       <div className="min-h-screen bg-gray-50/50 pt-24 pb-20 selection:bg-[#14b8a6]/10">
+        {/* Progress Bar */}
+        <ProgressBar />
         {/* Header */}
         <div className="bg-white border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
@@ -180,10 +183,10 @@ export default function JobDetailsPage() {
         {/* Main Content */}
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
-            
+
             {/* Left Column: Job Details */}
             <div className="lg:col-span-2 space-y-16">
-              
+
               {/* About the Role */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
@@ -342,7 +345,7 @@ export default function JobDetailsPage() {
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <div className="space-y-3">
+                      <div className="space-y-3">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Artifact Portfolio</label>
                         <input
                           type="url"
@@ -381,7 +384,7 @@ export default function JobDetailsPage() {
                       className="w-full group relative overflow-hidden py-5 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-4 transition-transform group-hover:scale-105 duration-500">
-                         Establish Sync Protocol <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        Establish Sync Protocol <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </span>
                       <div className="absolute inset-0 bg-[#14b8a6] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
@@ -389,7 +392,7 @@ export default function JobDetailsPage() {
                 )}
               </motion.section>
             </div>
-            
+
             {/* Right Column: Sticky Summary Card */}
             <div className="lg:col-span-1">
               <motion.div
@@ -400,7 +403,7 @@ export default function JobDetailsPage() {
                 {/* Protocol Card */}
                 <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100 overflow-hidden relative">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b8a6]/5 rounded-bl-[100%] pointer-events-none" />
-                  
+
                   <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.3em] mb-10 pb-4 border-b border-gray-50">Role Protocol</h3>
                   <div className="space-y-8 mb-10">
                     <div className="flex items-start gap-4">
@@ -431,7 +434,7 @@ export default function JobDetailsPage() {
                       </div>
                     </div>
                   </div>
-                  
+
                   <p className="text-[10px] text-gray-400 text-center leading-relaxed">
                     Questions regarding this protocol? <br />
                     <a href="mailto:talent@auxinzio.com" className="text-[#14b8a6] font-bold hover:underline">{settings?.email}</a>

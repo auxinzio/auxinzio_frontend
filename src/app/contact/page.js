@@ -1,26 +1,10 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import {
-  Mail,
-  Phone,
-  MapPin,
-  Clock,
-  Send,
-  Twitter,
-  Linkedin,
-  Github,
-  CheckCircle2,
-  Calendar,
-  ArrowRight,
-  Globe,
-  Zap,
-  MessageSquare,
-  Sparkles,
-  Link2
-} from 'lucide-react';
+import { Send, CheckCircle2, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
+import ProgressBar from '@/components/ui/ProgressBar';
 
 export default function Contact() {
   const { settings } = useSettings();
@@ -102,7 +86,8 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
-
+      {/* Progress Bar */}
+      <ProgressBar />
       {/* --- HERO: MINIMALIST OVERTURE --- */}
       <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-20 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px] relative z-10">

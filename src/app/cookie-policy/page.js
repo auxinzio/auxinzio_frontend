@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 import Link from 'next/link';
 import {
@@ -10,14 +9,10 @@ import {
     Settings,
     Activity,
     Fingerprint,
-    Globe,
     ArrowRight,
     ShieldAlert,
-    HardDrive,
-    Users,
     Search,
-    Zap,
-    Mail
+    Zap
 } from 'lucide-react';
 
 const cookieModules = [
@@ -69,20 +64,10 @@ const expandedSections = [
 ];
 
 export default function CookiePolicy() {
-    const { scrollYProgress } = useScroll();
-    const scaleX = useSpring(scrollYProgress, {
-        stiffness: 100,
-        damping: 30,
-        restDelta: 0.001
-    });
-
     return (
         <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
             {/* Progress Bar */}
-            <motion.div
-                className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#14b8a6] to-[#06b6d4] z-[60] origin-left"
-                style={{ scaleX }}
-            />
+            <ProgressBar />
 
             {/* --- HERO: THE ARCHITECTURAL MARK --- */}
             <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden bg-gray-50/20">
