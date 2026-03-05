@@ -44,7 +44,7 @@ export default function Contact() {
     if (!formState.phone || !/^\+?[\d\s-]{10,}$/.test(formState.phone)) newErrors.phone = 'Please enter a valid phone number (min 10 digits).';
     if (!formState.title || formState.title.length < 3) newErrors.title = 'Please provide a subject.';
     if (!formState.description || formState.description.length < 10) newErrors.description = 'Please provide a more detailed briefing (min 10 chars).';
-    
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -54,10 +54,10 @@ export default function Contact() {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    fetch(`${settings.backend_api_url}/api/contacts/submit`, { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" }, 
-      body: JSON.stringify(formState) 
+    fetch(`${settings.backend_api_url}/api/contacts/submit`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formState)
     })
       .then(res => res.json())
       .then(data => {
@@ -79,7 +79,7 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    
+
     // Filter for email field: letters, numbers, dot (and @ for functionality)
     if (name === 'phone') {
       const numericValue = value.replace(/\D/g, '');
@@ -104,7 +104,7 @@ export default function Contact() {
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
 
       {/* --- HERO: MINIMALIST OVERTURE --- */}
-      <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-40 pb-20 lg:pt-56 lg:pb-20 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px] relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -131,32 +131,8 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* --- CHANNELS: HORIZONTAL CONNECTIVITY BAR --- */}
-      {/* <section className="py-6 border-y border-gray-100 bg-gray-50/50">
-        <div className="max-w-[1600px] mx-auto px-6">
-          <div className="flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-8">
-            {[
-              { label: 'Electronic Mail', value: settings?.email, icon: Mail },
-              { label: 'Voice Communication', value: settings?.phone, icon: Phone },
-              { label: 'Digital Network', value: settings?.website, icon: Globe },
-              { label: 'Current Location', value: settings?.address, icon: MapPin }
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all">
-                  <item.icon className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
-                </div>
-                <div>
-                  <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">{item.label}</p>
-                  <p className="text-sm font-bold text-gray-900 group-hover:text-[#14b8a6] transition-colors whitespace-pre-wrap">{item.value}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> */}
-
       {/* --- MAIN INQUIRY: MODERN FORM EXPERIENCE --- */}
-      <section className="py-32 px-6 bg-gray-50/30">
+      <section className="py-32 lg:pt-10 px-6 bg-gray-50/30">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-12 gap-24 items-start">
 
@@ -314,9 +290,9 @@ export default function Contact() {
       <section className="py-14 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-            
+
             {/* Map Container */}
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -330,7 +306,7 @@ export default function Contact() {
                 allowFullScreen
                 loading="lazy"
               ></iframe>
-              
+
               {/* Subtle Indicator */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
                 <div className="w-10 h-10 bg-[#14b8a6] rounded-full animate-ping opacity-10" />
@@ -358,6 +334,18 @@ export default function Contact() {
 
               <div className="grid sm:grid-cols-2 gap-10">
                 <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Email Address</h4>
+                  <p className="text-gray-900 font-medium">
+                    {settings?.email}
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone Number</h4>
+                  <p className="text-gray-900 font-medium leading-relaxed">
+                    {settings?.phone}
+                  </p>
+                </div>
+                <div className="space-y-4">
                   <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Headquarters</h4>
                   <p className="text-gray-900 font-medium leading-relaxed">
                     {settings?.address}
@@ -366,16 +354,16 @@ export default function Contact() {
                 <div className="space-y-4">
                   <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Working Hours</h4>
                   <p className="text-gray-900 font-medium">
-                    Monday — Friday <br />
+                    Monday — Saturday <br />
                     <span className="text-gray-500">09:00 AM – 06:00 PM (IST)</span>
                   </p>
                 </div>
               </div>
 
               <div className="pt-8 border-t border-gray-100">
-                <a 
-                  href="https://maps.google.com" 
-                  target="_blank" 
+                <a
+                  href="https://maps.app.goo.gl/sg7CJEzcGQR3QrKaA"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-gray-900 hover:text-[#14b8a6] transition-colors group"
                 >
