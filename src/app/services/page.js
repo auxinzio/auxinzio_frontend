@@ -131,7 +131,7 @@ export default function Services() {
 
                               {/* Floating Meta Tag */}
                               <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
-                                 <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">Service Block {idx + 1}</p>
+                                 <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{srv.title}</p>
                               </div>
                            </div>
 
