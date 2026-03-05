@@ -111,12 +111,6 @@ const termsSections = [
 
 export default function TermsAndConditions() {
   const [activeSection, setActiveSection] = useState(termsSections[0].id);
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
