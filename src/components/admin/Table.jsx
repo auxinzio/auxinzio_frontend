@@ -34,25 +34,25 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return [
                     { name: "key", label: "Key", type: "text", placeholder: "Enter key" },
                     { name: "value", label: "Value", type: "text", placeholder: "Enter value" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "Chat":
                 return [
                     { name: "question", label: "Question", type: "text", placeholder: "Enter Question" },
                     { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter Answer" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "FAQ":
                 return [
                     { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
                     { name: "question", label: "Question", type: "text", placeholder: "Enter Question" },
                     { name: "answer", label: "Answer", type: "textarea", placeholder: "Enter Answer" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "Subscribers":
                 return [
                     { name: "email", label: "Email Address", type: "email", placeholder: "Enter Email Address" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "Feedbacks":
                 return [
@@ -61,7 +61,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "rating", label: "Rating", type: "number", placeholder: "Enter Rating" },
                     { name: "location", label: "Location", type: "text", placeholder: "Enter Location" },
                     { name: "image", label: "Image", type: "image", placeholder: "Upload Image" },
-                    { name: "status", label: "Status", type: "select", options: ["Active", "Inactive"] }
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "Services":
                 return [
@@ -201,8 +201,8 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 initialData.skill = Array.isArray(item.requirements?.skill) ? item.requirements.skill.join('~') : item.requirements?.skill || '';
                 initialData.extra = Array.isArray(item.requirements?.extra) ? item.requirements.extra.join('~') : item.requirements?.extra || '';
             }
-            initialData.status = item.status === 1 || item.status === true ? "Active" : "Inactive";
 
+            initialData.status = item.status === 1 || item.status === true ? "Active" : "In-active";
             setFormData(initialData);
         } else if (mode === "view") {
             openApplicationModal(item, 'view');
@@ -297,7 +297,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             dataToSave = {
                 ...formData,
                 description: formData.description,
-                tag:formData.tag?.split('~').map(s => s.trim()).filter(Boolean) || [],
+                tag: formData.tag?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 key_feature: formData.key_feature?.split('~').map(s => s.trim()).filter(Boolean) || [],
                 benefit: {
                     time_benefits: formData.time_benefits?.split('~').map(s => s.trim()).filter(Boolean) || [],
@@ -340,8 +340,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             };
             ['experience', 'skill', 'extra', 'status'].forEach(f => delete dataToSave[f]);
         }
-        dataToSave.status = dataToSave.status === "Active" ? 1 : 0;
-        console.log("Submitting:", modalMode, dataToSave, title);
+        dataToSave.status = formData.status === "Active" ? 1 : 0;
         await handleSave(modalMode, dataToSave, title);
     };
 
