@@ -5,14 +5,15 @@ import { ArrowRight, ChevronRight, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSettings } from "@/app/Context/SettingsContext";
+import servicesData from "@/data/services.json";
 
 export default function ServiceSection({ service }) {
    const { settings } = useSettings();
-   const serviceData = service?.data?.serviceList || [];
+   const serviceData = service?.data?.serviceList || servicesData.services || [];
    return (
       <>
-         {service && serviceData.length > 0 && (
-            <section id="services" className="py-24 lg:py-40 bg-gray-50/50 relative overflow-hidden">
+         {serviceData.length > 0 && (
+            <section id="services" className="py-14 lg:py-20 bg-gray-50/50 relative overflow-hidden">
                <div className="max-w-[1600px] mx-auto px-6">
                   {/* Header: Focused Scale */}
                   <div className="grid lg:grid-cols-12 gap-12 items-end mb-24 lg:mb-32">
@@ -32,7 +33,7 @@ export default function ServiceSection({ service }) {
                            <span className="italic font-normal text-[#14b8a6]">Ecosystems.</span>
                         </h2>
                      </motion.div>
-                     <motion.div
+                     {/* <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
@@ -47,7 +48,7 @@ export default function ServiceSection({ service }) {
                               </div>
                            </button>
                         </Link>
-                     </motion.div>
+                     </motion.div> */}
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100 border border-gray-100 rounded-[3rem] overflow-hidden shadow-2xl">
                      {serviceData?.map((srv, index) => (

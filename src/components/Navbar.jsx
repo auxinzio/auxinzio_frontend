@@ -41,7 +41,7 @@ export function Navbar() {
         <div className={cn(
           "mx-auto transition-all duration-700 flex items-center justify-between pointer-events-auto",
           scrolled
-            ? "max-w-[1000px] mt-6 px-8 h-16 bg-white/70 backdrop-blur-2xl rounded-2xl border border-white/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)]"
+            ? "max-w-[1000px] px-8 h-16 bg-white/70 backdrop-blur-2xl rounded-2xl border border-white/40 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.05)]"
             : "max-w-[1600px] mt-0 px-6 h-24 bg-transparent border-transparent"
         )}>
 
@@ -57,12 +57,6 @@ export function Navbar() {
                 scrolled ? "h-8" : "h-10"
               )}
             />
-            {!scrolled && (
-              <motion.div
-                layoutId="logo-accent"
-                className="absolute -right-4 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-[#14b8a6] rounded-full"
-              />
-            )}
           </Link>
 
           {/* Desktop Navigation */}

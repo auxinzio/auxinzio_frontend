@@ -43,8 +43,8 @@ export default function MissionVision() {
                     className="relative"
                     >
                     {/* Large decorative background typography */}
-                    <div className="absolute -top-12 -right-15 select-none pointer-events-none overflow-hidden">
-                        <span className="text-[120px] lg:text-[160px] font-bold text-gradi-500 leading-none block opacity-20">
+                    <div className="absolute -top-12 lg:-right-15 select-none pointer-events-none overflow-hidden">
+                        <span className="text-[80px] lg:text-[160px] font-bold text-gradi-500 leading-none block opacity-20">
                         MISSION
                         </span>
                     </div>
@@ -80,8 +80,8 @@ export default function MissionVision() {
                     className="relative"
                     >
                     {/* Large decorative background typography - positioned differently */}
-                    <div className="absolute -top-2 -right-4 select-none pointer-events-none overflow-hidden">
-                        <span className="text-[120px] lg:text-[160px] font-bold text-gradi-500 leading-none block opacity-20">
+                    <div className="absolute -top-2 lg:-right-4 select-none pointer-events-none overflow-hidden">
+                        <span className="text-[80px] lg:text-[160px] font-bold text-gradi-500 leading-none block opacity-20">
                         VISION
                         </span>
                     </div>
@@ -115,7 +115,7 @@ export default function MissionVision() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.4 }}
-                    className="mt-32 pt-16 border-t border-gray-200"
+                    className="mt-20 pt-16 border-t border-gray-200"
                 >
                     <div className="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 text-xs tracking-[0.25em] uppercase text-gray-500 font-medium">
                     <span>Innovation</span>

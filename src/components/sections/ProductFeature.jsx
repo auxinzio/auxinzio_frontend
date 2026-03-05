@@ -12,7 +12,7 @@ export function ProductFeature({ products }) {
   const { settings } = useSettings();
 
   return (
-    <section className="relative py-24 lg:py-32 px-6 overflow-hidden bg-white">
+    <section id="product-feature" className="relative py-24 lg:py-32 px-6 overflow-hidden bg-white">
       <div className="mx-auto max-w-[1600px]">
         {/* Section Header with Architectural Tone */}
         <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-20 gap-8">
@@ -81,25 +81,22 @@ export function ProductFeature({ products }) {
 
               {/* Benefits with minimalist icons */}
               <div className="grid gap-6">
-                {product?.key_feature?.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 + index * 0.1 }}
-                    className="flex items-start gap-4 group"
-                  >
-                    <div className="mt-1">
-                      <Zap className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
-                    </div>
-                    <div>
-                      <span className="text-gray-900 font-medium tracking-tight block mb-1">
-                        {feature}
-                      </span>
-                      <div className="w-0 group-hover:w-8 h-px bg-[#22c55e]/30 transition-all duration-300" />
-                    </div>
-                  </motion.div>
-                ))}
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="mt-1">
+                    <Zap className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <span className="text-gray-900 font-medium tracking-tight block mb-1">
+                      {product?.description.split(".")[0]}
+                    </span>
+                    <div className="w-0 group-hover:w-8 h-px bg-[#22c55e]/30 transition-all duration-300" />
+                  </div>
+                </motion.div>
               </div>
 
               {/* Action */}
@@ -139,7 +136,8 @@ export function ProductFeature({ products }) {
                   {product?.image && (
                     <Image
                       src={`${settings?.backend_api_url}/${product.image}`}
-                      fill
+                      width={500}
+                      height={300}
                       alt={product.product_name}
                       className="object-cover opacity-90 transition-opacity duration-700 group-hover:opacity-100"
                     />

@@ -135,320 +135,321 @@ export default function JobDetailsPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="min-h-screen bg-gray-50/50 pt-24 pb-20 selection:bg-[#14b8a6]/10">
         {/* Header */}
-        <div className="bg-white border-b border-gray-200">
-          <div className="max-w-7xl mx-auto px-6 py-8">
-            <Link
-              href="/careers"
-              className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 mb-6 transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Back to Careers
-            </Link>
-            <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-6">
+        <div className="bg-white border-b border-gray-100">
+          <div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+            <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
               <div className="flex-1">
-                <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">{careerData?.title}</h1>
-                <div className="flex flex-wrap items-center gap-3">
-                  <span
-                    className="px-4 py-2 rounded-full text-sm font-medium"
-                    style={{
-                      backgroundColor: '#14b8a615',
-                      color: '#14b8a6',
-                    }}
-                  >
-                    <Briefcase className="w-4 h-4 inline mr-1.5" />
-                    {careerData?.team}
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-8 h-px bg-[#14b8a6]/30" />
+                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Job Vacancy</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
+                  {careerData?.title?.split(' ').map((word, i) => (
+                    <span key={i}>
+                      {i === 0 ? <span className="font-semibold">{word} </span> : <span className="italic">{word} </span>}
+                    </span>
+                  ))}
+                </h1>
+                <div className="flex flex-wrap items-center gap-4">
+                  <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
+                    <Briefcase className="w-3.5 h-3.5 text-[#14b8a6]" />
+                    {careerData?.department}
                   </span>
-                  <span className="flex items-center gap-1.5 text-gray-600">
-                    <MapPin className="w-4 h-4" />
+                  <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
+                    <MapPin className="w-3.5 h-3.5 text-[#14b8a6]" />
                     {careerData?.location}
                   </span>
-                  <span className="flex items-center gap-1.5 text-gray-600">
-                    <Clock className="w-4 h-4" />
+                  <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
+                    <Clock className="w-3.5 h-3.5 text-[#14b8a6]" />
                     {careerData?.type}
                   </span>
                 </div>
               </div>
               <a
                 href="#apply"
-                className="px-8 py-4 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 whitespace-nowrap inline-block text-center"
-                style={{ backgroundColor: '#22c55e', boxShadow: '0 4px 20px #22c55e30' }}
+                className="px-10 py-5 rounded-2xl font-bold text-xs uppercase tracking-widest text-white bg-gray-900 transition-all duration-500 hover:bg-[#14b8a6] hover:shadow-[0_20px_40px_-10px_rgba(20,184,166,0.3)] hover:-translate-y-1 whitespace-nowrap inline-block text-center shadow-2xl"
               >
-                Apply Now
+                Apply for Position
               </a>
             </div>
           </div>
         </div>
+
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-6 py-12">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
+            
             {/* Left Column: Job Details */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-16">
+              
               {/* About the Role */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+                className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">About the Role</h2>
-                <p className="text-gray-600 leading-relaxed text-lg">{careerData?.description}</p>
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-8 h-px bg-[#14b8a6]/20" />
+                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Historical Context</h2>
+                </div>
+                <p className="text-gray-600 leading-[1.8] text-lg font-light italic">
+                  &quot;{careerData?.description}&quot;
+                </p>
               </motion.section>
+
               {/* Responsibilities */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+                className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Responsibilities</h2>
-                <ul className="space-y-3">
+                <div className="flex items-center gap-4 mb-10">
+                  <div className="w-8 h-px bg-[#14b8a6]/20" />
+                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Core Deliverables</h2>
+                </div>
+                <div className="grid gap-6">
                   {careerData?.requirements?.experience?.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#22c55e' }} />
-                      <span className="text-gray-600 leading-relaxed">{item}</span>
-                    </li>
+                    <div key={index} className="flex items-start gap-6 group hover:translate-x-2 transition-transform duration-500">
+                      <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b8a6]/10 group-hover:border-[#14b8a6]/20 transition-colors">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#14b8a6] transition-colors" />
+                      </div>
+                      <span className="text-gray-600 leading-relaxed font-light">{item}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </motion.section>
-              {/* Requirements */}
+
+              {/* Requirements & Extra */}
               <motion.section
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+                className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Requirements</h2>
-                <ul className="space-y-3">
-                  {careerData?.requirements?.skill?.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#06b6d4' }} />
-                      <span className="text-gray-600 leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-                <h3 className="text-xl font-bold text-gray-900 mt-8 mb-4">Nice to Have</h3>
-                <ul className="space-y-3">
-                  {careerData?.requirements?.extra?.map((item, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <CheckCircle2 className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: '#14b8a6' }} />
-                      <span className="text-gray-600 leading-relaxed">{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                <div className="grid md:grid-cols-2 gap-16">
+                  <div>
+                    <div className="flex items-center gap-4 mb-10">
+                      <div className="w-6 h-px bg-gray-200" />
+                      <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Prerequisites</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      {careerData?.requirements?.skill?.map((item, index) => (
+                        <li key={index} className="flex items-center gap-4 text-sm text-gray-500 font-light">
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div>
+                    <div className="flex items-center gap-4 mb-10">
+                      <div className="w-6 h-px bg-gray-200" />
+                      <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Auxiliary Nodes</h3>
+                    </div>
+                    <ul className="space-y-4">
+                      {careerData?.requirements?.extra?.map((item, index) => (
+                        <li key={index} className="flex items-center gap-4 text-sm text-gray-500 font-light">
+                          <div className="w-1.5 h-1.5 rounded-full border border-[#14b8a6]" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </motion.section>
+
               {/* Application Form */}
               <motion.section
                 id="apply"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+                className="bg-white rounded-[2.5rem] p-10 lg:p-16 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.05)] border border-gray-100"
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Apply for this Position</h2>
-                <p className="text-gray-600 mb-8">
-                  Fill out the form below and we will get back to you within 2 business days.
-                </p>
+                <div className="text-center mb-16">
+                  <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">Initiate Transmission</h2>
+                  <p className="text-sm text-gray-400 font-light max-w-sm mx-auto">
+                    Submit your credentials to join our global network of elite architects and innovators.
+                  </p>
+                </div>
+
                 {isSubmitted ? (
-                  <div
-                    className="p-8 rounded-2xl text-center"
-                    style={{ backgroundColor: '#22c55e10', border: '2px solid #22c55e30' }}
-                  >
-                    <CheckCircle2 className="w-16 h-16 mx-auto mb-4" style={{ color: '#22c55e' }} />
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted!</h3>
-                    <p className="text-gray-600">
-                      Thank you for applying. We will review your application and get back to you soon.
-                    </p>
+                  <div className="py-20 text-center space-y-8">
+                    <div className="w-24 h-24 bg-[#14b8a6]/5 rounded-full flex items-center justify-center mx-auto border border-[#14b8a6]/10">
+                      <CheckCircle2 className="w-10 h-10 text-[#14b8a6]" />
+                    </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Protocol Successful</h3>
+                      <p className="text-gray-500 max-w-sm mx-auto font-light leading-relaxed">
+                        Your application has been received. Our selection committee will verify your credentials shortly.
+                      </p>
+                    </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Full Name *
-                        </label>
+                  <form onSubmit={handleSubmit} className="space-y-10">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Full Identity</label>
                         <input
                           type="text"
                           name="applicant_name"
                           required
                           value={formData.applicant_name}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                          style={{ '--tw-ring-color': '#06b6d4' }}
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
                           placeholder="John Doe"
                         />
                       </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Email Address *
-                        </label>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Digital Address</label>
                         <input
                           type="email"
                           name="email"
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                          style={{ '--tw-ring-color': '#06b6d4' }}
-                          placeholder="john@example.com"
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          placeholder="john@protocol.com"
                         />
                       </div>
                     </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          Phone Number
-                        </label>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Phone Connection</label>
                         <input
                           type="tel"
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                          style={{ '--tw-ring-color': '#06b6d4' }}
-                          placeholder="+1 (555) 123-4567"
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          placeholder="+1 (555) 000-0000"
                         />
                       </div>
-                      <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
-                          LinkedIn Profile
-                        </label>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">LinkedIn Nexus</label>
                         <input
                           type="url"
                           name="linkedin"
                           value={formData.linkedin}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                          style={{ '--tw-ring-color': '#06b6d4' }}
-                          placeholder="linkedin.com/in/johndoe"
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          placeholder="linkedin.com/in/profile"
                         />
                       </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Portfolio / Website
-                      </label>
-                      <input
-                        type="url"
-                        name="portfolio"
-                        value={formData.portfolio}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                        style={{ '--tw-ring-color': '#06b6d4' }}
-                        placeholder="https://johndoe.com"
-                      />
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                       <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Artifact Portfolio</label>
+                        <input
+                          type="url"
+                          name="portfolio"
+                          value={formData.portfolio}
+                          onChange={handleChange}
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          placeholder="https://portfolio.design"
+                        />
+                      </div>
+                      <div className="space-y-3">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Credentials (PDF)</label>
+                        <input
+                          type="file"
+                          name="resume"
+                          required
+                          onChange={handleChange}
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-3.5 px-6 text-sm file:hidden cursor-pointer hover:bg-gray-100/50 transition-colors"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Resume *
-                      </label>
-                      <input
-                        type="file"
-                        name="resume"
-                        required
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all"
-                        style={{ '--tw-ring-color': '#06b6d4' }}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-semibold text-gray-700 mb-2">
-                        Cover Letter *
-                      </label>
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Impact Narrative</label>
                       <textarea
                         name="cover_letter"
                         required
                         value={formData.cover_letter}
                         onChange={handleChange}
                         rows={6}
-                        className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 transition-all resize-none"
-                        style={{ '--tw-ring-color': '#06b6d4' }}
-                        placeholder="Tell us why you're a great fit for this role..."
+                        className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none resize-none"
+                        placeholder="Detail your architectural approach & core intent..."
                       ></textarea>
                     </div>
                     <button
                       type="submit"
-                      className="w-full py-4 rounded-full font-semibold text-white transition-all duration-300 hover:scale-105 flex items-center justify-center gap-2"
-                      style={{ backgroundColor: '#22c55e', boxShadow: '0 8px 24px #22c55e30' }}
+                      className="w-full group relative overflow-hidden py-5 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
                     >
-                      <Send className="w-5 h-5" />
-                      Submit Application
+                      <span className="relative z-10 flex items-center justify-center gap-4 transition-transform group-hover:scale-105 duration-500">
+                         Establish Sync Protocol <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      </span>
+                      <div className="absolute inset-0 bg-[#14b8a6] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
                   </form>
                 )}
               </motion.section>
             </div>
-            {/* Right Column: Sticky Apply Card */}
+            
+            {/* Right Column: Sticky Summary Card */}
             <div className="lg:col-span-1">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                className="sticky top-18 space-y-6"
+                className="sticky top-28 space-y-8"
               >
-                {/* Quick Apply Card */}
-                <div
-                  className="rounded-3xl p-8 backdrop-blur-sm border"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(6, 182, 212, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%)',
-                    borderColor: '#06b6d420',
-                    boxShadow: '0 8px 32px rgba(6, 182, 212, 0.1)',
-                  }}
-                >
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">Quick Summary</h3>
-                  <div className="space-y-4 mb-6">
-                    <div className="flex items-start gap-3">
-                      <Briefcase className="w-5 h-5 mt-0.5" style={{ color: '#14b8a6' }} />
+                {/* Protocol Card */}
+                <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100 overflow-hidden relative">
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b8a6]/5 rounded-bl-[100%] pointer-events-none" />
+                  
+                  <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.3em] mb-10 pb-4 border-b border-gray-50">Role Protocol</h3>
+                  <div className="space-y-8 mb-10">
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
+                        <Briefcase className="w-5 h-5 text-[#14b8a6]" />
+                      </div>
                       <div>
-                        <p className="text-sm text-gray-500">Department</p>
-                        <p className="font-semibold text-gray-900">{careerData?.department}</p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Department</p>
+                        <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.department}</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <MapPin className="w-5 h-5 mt-0.5" style={{ color: '#14b8a6' }} />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
+                        <MapPin className="w-5 h-5 text-[#14b8a6]" />
+                      </div>
                       <div>
-                        <p className="text-sm text-gray-500">Location</p>
-                        <p className="font-semibold text-gray-900">{careerData?.location}</p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">location</p>
+                        <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.location}</p>
                       </div>
                     </div>
-                    <div className="flex items-start gap-3">
-                      <Clock className="w-5 h-5 mt-0.5" style={{ color: '#14b8a6' }} />
+                    <div className="flex items-start gap-4">
+                      <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
+                        <Clock className="w-5 h-5 text-[#14b8a6]" />
+                      </div>
                       <div>
-                        <p className="text-sm text-gray-500">Employment Type</p>
-                        <p className="font-semibold text-gray-900">{careerData?.type}</p>
+                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Commitment</p>
+                        <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.type}</p>
                       </div>
                     </div>
                   </div>
-                  <a
-                    href="#apply"
-                    className="block w-full py-3 rounded-full font-semibold text-white text-center transition-all duration-300 hover:scale-105"
-                    style={{ backgroundColor: '#22c55e' }}
-                  >
-                    Apply Now
-                  </a>
-                  <p className="text-sm text-gray-500 text-center mt-4">
-                    Questions? Contact our talent team at{' '}
-                    <a href="mailto:careers@auxinzio.com" className="text-[#06b6d4] hover:underline">
-                      careers@auxinzio.com
-                    </a>
+                  
+                  <p className="text-[10px] text-gray-400 text-center leading-relaxed">
+                    Questions regarding this protocol? <br />
+                    <a href="mailto:talent@auxinzio.com" className="text-[#14b8a6] font-bold hover:underline">{settings?.email}</a>
                   </p>
                 </div>
-                {/* Benefits */}
-                <div className="bg-white rounded-3xl p-6 shadow-sm border border-gray-100">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">What We Offer</h3>
-                  <div className="space-y-3">
-                    {careerData?.requirements?.experience?.map((item, index) => {
-                      return (
-                        <div key={index} className="flex items-center gap-3">
-                          <div
-                            className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0"
-                            style={{ backgroundColor: `${item.color}15` }}
-                          >
-                            <CloudCheck className="w-5 h-5 text-[#22c55e]" />
-                          </div>
-                          <span className="text-gray-700">{item}</span>
+
+                {/* Offerings */}
+                <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100">
+                  <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.3em] mb-10 pb-4 border-b border-gray-50">Eco-System</h3>
+                  <div className="space-y-6">
+                    {careerData?.requirements?.experience?.slice(0, 4).map((_, index) => (
+                      <div key={index} className="flex items-center gap-4 group">
+                        <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b8a6]/10 group-hover:border-[#14b8a6]/20 transition-all">
+                          <CloudCheck className="w-4 h-4 text-gray-300 group-hover:text-[#14b8a6]" />
                         </div>
-                      );
-                    })}
+                        <span className="text-xs text-gray-500 font-light group-hover:text-gray-900 transition-colors">Strategic Benefits</span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </motion.div>
@@ -459,3 +460,4 @@ export default function JobDetailsPage() {
     </>
   );
 }
+

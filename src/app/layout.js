@@ -21,9 +21,9 @@ export const metadata = {
   keywords: ["Digital Agency", "Software Architecture", "Auxinzio", "Strategic Consulting", "Global Engineering"],
   metadataBase: new URL("https://auxinz.io"),
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/favicon.png",
+    shortcut: "/favicon.png",
+    apple: "/favicon.png",
   },
   openGraph: {
     title: "Auxinzio | Digital Agency",

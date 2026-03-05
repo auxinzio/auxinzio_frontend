@@ -63,7 +63,6 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  console.log(formData);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;
@@ -196,7 +195,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <input
                           type="text"
                           required
-                          placeholder="Organization Name"
+                          placeholder="Your Name"
                           className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                           value={formData.name}
                           onChange={(e) => {
@@ -330,7 +329,6 @@ export default function GetDemoModal({ isOpen, onClose }) {
                       variant="gradi"
                       disabled={loading}
                       type="submit"
-                      onClick={()=>{console.log(formData);}}
                       className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b8a6]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
                     >
                       {loading ? 'Processing...' : 'Initiate Synchronization'}

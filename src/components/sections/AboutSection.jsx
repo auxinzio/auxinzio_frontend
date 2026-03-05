@@ -13,11 +13,11 @@ export function AboutSection() {
    ];
 
    return (
-      <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
+      <section className="py-14 lg:py-25 lg:pb-40 bg-white relative overflow-hidden">
          <div className="max-w-[1600px] mx-auto px-6">
 
             {/* Header: Editorial Scale */}
-            <div className="grid lg:grid-cols-12 gap-12 items-end mb-24 lg:mb-40">
+            <div className="grid lg:grid-cols-12 gap-12 items-end mb-24 lg:mb-20">
                <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -26,7 +26,7 @@ export function AboutSection() {
                >
                   <div className="flex items-center gap-4 mb-8">
                      <div className="w-12 h-px bg-[#14b8a6]" />
-                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Identity & Purpose</span>
+                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">{about.tag}</span>
                   </div>
                   <h2 className="text-6xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
                      Synthesizing <br />
@@ -48,30 +48,32 @@ export function AboutSection() {
                </motion.div>
             </div>
 
-            {/* Feature Block: Cinematic Split */}
-            <div className="grid lg:grid-cols-12 gap-12 lg:gap-32 items-center">
-
-               {/* Left: Tactical Stats & Content */}
-               <div className="lg:col-span-5 order-2 lg:order-1">
-                  <div className="space-y-16">
-                     {tacticalStats.map((stat, idx) => (
+            <div className="grid lg:grid-cols-3 gap-12 items-center justify-center mb-15">
+               {tacticalStats.map((stat, idx) => (
                         <motion.div
                            key={idx}
                            initial={{ opacity: 0, x: -20 }}
                            whileInView={{ opacity: 1, x: 0 }}
                            viewport={{ once: true }}
                            transition={{ delay: idx * 0.1 }}
-                           className="flex items-center gap-10 group"
+                           className="flex items-center justify-center gap-10 group"
                         >
                            <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b8a6] group-hover:w-20 transition-all duration-700" />
                            <div className="space-y-1">
                               <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{stat.label}</p>
-                              <p className="text-4xl font-light text-gray-900 tracking-tight leading-none group-hover:italic transition-all">{stat.value}</p>
+                              <p className="text-4xl font-light text-gray-900 tracking-tight leading-none transition-all">{stat.value}</p>
                            </div>
                         </motion.div>
                      ))}
+            </div>
 
-                     <div className="pt-8">
+            {/* Feature Block: Cinematic Split */}
+            <div className="grid lg:grid-cols-12 gap-12 lg:gap-32 items-center">
+
+               {/* Left: Tactical Stats & Content */}
+               <div className="lg:col-span-5 order-2 lg:order-1">
+                  <div className="space-y-16">
+                     <div className="">
                         <p className="text-gray-500 leading-relaxed mb-12 italic text-lg lg:text-xl">
                            {`"${about.description}"`}
                         </p>
@@ -104,7 +106,7 @@ export function AboutSection() {
 
                         {/* Floating Info Pod */}
                         <div className="absolute top-12 right-12 bg-white/90 backdrop-blur-xl px-10 py-8 rounded-[2.5rem] shadow-2xl border border-white/20 hidden lg:block translate-x-12 translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 z-10">
-                           <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">3+</p>
+                           <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">{about.experience.split(' ')[0]}+</p>
                            <p className="text-[10px] font-bold text-[#14b8a6] tracking-widest uppercase">Legacy Years</p>
                         </div>
                      </div>

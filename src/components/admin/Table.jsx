@@ -341,7 +341,6 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             ['experience', 'skill', 'extra', 'status'].forEach(f => delete dataToSave[f]);
         }
         dataToSave.status = dataToSave.status === "Active" ? 1 : 0;
-        console.log("Submitting:", modalMode, dataToSave, title);
         await handleSave(modalMode, dataToSave, title);
     };
 
