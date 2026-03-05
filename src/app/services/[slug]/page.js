@@ -180,7 +180,7 @@ export default function ServiceDetailPage({ params }) {
             </section>
 
             {/* CONTENT ARCHITECTURE */}
-            <section className="py-24 lg:py-40 relative">
+            <section className="py-24 lg:py-20 lg:pt-5 pt-5 relative">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
@@ -222,7 +222,6 @@ export default function ServiceDetailPage({ params }) {
                                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Specialized Nodes</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
-                                    {console.log(service.service_item)}
                                     {(service.service_item && service.service_item.length > 0 ? service.service_item : ["Expert Consultation", "Custom Implementation", "Ongoing Support"]).map((item, i) => (
                                         <div key={i} className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 group hover:bg-[#14b8a6] transition-all duration-500">
                                             <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">

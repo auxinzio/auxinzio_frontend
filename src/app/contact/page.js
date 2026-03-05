@@ -66,7 +66,6 @@ export default function Contact() {
         setFormState({ name: '', email: '', phone: '', title: '', description: '' });
       })
       .catch(err => {
-        console.log(err);
         setErrors({ submit: 'Transmission failed. Please try again later.' });
       })
       .finally(() => {
@@ -133,13 +132,13 @@ export default function Contact() {
       </section>
 
       {/* --- CHANNELS: HORIZONTAL CONNECTIVITY BAR --- */}
-      <section className="py-6 border-y border-gray-100 bg-gray-50/50">
+      {/* <section className="py-6 border-y border-gray-100 bg-gray-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="flex flex-wrap justify-center lg:justify-between items-center gap-12 lg:gap-8">
             {[
               { label: 'Electronic Mail', value: settings?.email, icon: Mail },
               { label: 'Voice Communication', value: settings?.phone, icon: Phone },
-              { label: 'Digital Network', value: settings?.social_links?.twitter, icon: Globe },
+              { label: 'Digital Network', value: settings?.website, icon: Globe },
               { label: 'Current Location', value: settings?.address, icon: MapPin }
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-4 group cursor-pointer">
@@ -148,13 +147,13 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="text-[9px] uppercase tracking-widest text-gray-400 font-bold mb-0.5">{item.label}</p>
-                  <p className="text-sm font-bold text-gray-900 group-hover:text-[#14b8a6] transition-colors">{item.value}</p>
+                  <p className="text-sm font-bold text-gray-900 group-hover:text-[#14b8a6] transition-colors whitespace-pre-wrap">{item.value}</p>
                 </div>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* --- MAIN INQUIRY: MODERN FORM EXPERIENCE --- */}
       <section className="py-32 px-6 bg-gray-50/30">
@@ -311,28 +310,86 @@ export default function Contact() {
         </div>
       </section>
 
-      {/* --- MAP: ARCHITECTURAL FOOTPRINT --- */}
-      <section className="bg-white">
-        <div className="h-[600px] w-full relative grayscale hover:grayscale-0 transition-all duration-1000">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2073.9500950048136!2d80.24922138453219!3d12.989753517664264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d6202e54fb9%3A0xcf5fc0aac9108c7e!2sTIDEL%20Park%2C%20Rajiv%20Gandhi%20IT%20Expy%2C%20Tharamani%2C%20Chennai%2C%20Tamil%20Nadu%20600113!5e1!3m2!1sen!2sin!4v1771218829977!5m2!1sen!2sin"
-            width="100%"
-            height="100%"
-            style={{ border: 0 }}
-            allowFullScreen
-            loading="lazy"
-          ></iframe>
+      {/* --- MAP: REFINED ARCHITECTURAL HUB --- */}
+      <section className="py-14 lg:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            
+            {/* Map Container */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="relative aspect-square lg:aspect-auto lg:h-[600px] rounded-[3rem] overflow-hidden border border-gray-100 shadow-2xl transition-all duration-700"
+            >
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2073.9500950048136!2d80.24922138453219!3d12.989753517664264!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a525d6202e54fb9%3A0xcf5fc0aac9108c7e!2sTIDEL%20Park%2C%20Rajiv%20Gandhi%20IT%20Expy%2C%20Tharamani%2C%20Chennai%2C%20Tamil%20Nadu%20600113!5e1!3m2!1sen!2sin!4v1771218829977!5m2!1sen!2sin"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+              ></iframe>
+              
+              {/* Subtle Indicator */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
+                <div className="w-10 h-10 bg-[#14b8a6] rounded-full animate-ping opacity-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b8a6] rounded-full border-2 border-white shadow-xl" />
+              </div>
+            </motion.div>
 
-          {/* Floating Badge on Map */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-            <div className="w-8 h-8 bg-[#14b8a6] rounded-full animate-ping opacity-20" />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b8a6] rounded-full border-2 border-white shadow-xl" />
+            {/* Info Block */}
+            <div className="space-y-12">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+              >
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b8a6]">Find Us</span>
+                </div>
+                <h2 className="text-5xl font-light text-gray-900 tracking-tight mb-8">
+                  Visit our <span className="italic">Chennai</span> Base.
+                </h2>
+                <p className="text-lg text-gray-500 font-light leading-relaxed">
+                  Located in the heart of the Tidel Park IT corridor, our workspace is designed for collaboration and technical excellence.
+                </p>
+              </motion.div>
+
+              <div className="grid sm:grid-cols-2 gap-10">
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Headquarters</h4>
+                  <p className="text-gray-900 font-medium leading-relaxed">
+                    {settings?.address}
+                  </p>
+                </div>
+                <div className="space-y-4">
+                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Working Hours</h4>
+                  <p className="text-gray-900 font-medium">
+                    Monday — Friday <br />
+                    <span className="text-gray-500">09:00 AM – 06:00 PM (IST)</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="pt-8 border-t border-gray-100">
+                <a 
+                  href="https://maps.google.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-gray-900 hover:text-[#14b8a6] transition-colors group"
+                >
+                  Directing Coordinates <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* --- FINAL DECORATIVE LINE --- */}
-      <div className="py-20 flex justify-center bg-white">
+      <div className="py-10 flex justify-center bg-white">
         <div className="w-px h-24 bg-gradient-to-b from-[#14b8a6] to-transparent" />
       </div>
 

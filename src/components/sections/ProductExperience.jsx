@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 export function ProductExperience() {
   return (
-    <section className="relative py-24 lg:py-32 px-6 overflow-hidden bg-white">
+    <section id="product-experience" className="relative py-8 lg:py-12 lg:pt-0 pt-0 px-6 overflow-hidden bg-white">
       {/* Editorial Background Elements */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
@@ -17,7 +17,7 @@ export function ProductExperience() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-24"
+          className="text-center mb-4"
         >
           <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-8 font-medium">
             The User Experience
@@ -95,7 +95,7 @@ export function ProductExperience() {
           </motion.div>
 
           {/* Minimal Accent Elements */}
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -119,7 +119,7 @@ export function ProductExperience() {
               Global Data<br />Compliance
             </div>
             <div className="h-px w-24 bg-gray-200 ml-auto" />
-          </motion.div>
+          </motion.div> */}
         </div>
       </div>
     </section>

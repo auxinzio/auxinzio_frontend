@@ -56,9 +56,6 @@ export function Footer() {
 
       const data = await response.json();
 
-      console.log(data);
-      console.log(data.status || data.success);
-
       if (data.status==='ok' || data.success) {
         setSubscribeStatus({ success: true, message: "Subscription synchronized successfully." });
         setEmail("");
@@ -113,8 +110,8 @@ export function Footer() {
               {/* Newsletter synchronization */}
               <div className="space-y-6 pt-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">05</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Stay Synchronized</h3>
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">01</span>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Subscribe to our Newsletter</h3>
                 </div>
                 <form onSubmit={handleSubscribe} className="relative max-w-sm group">
                   <input
@@ -152,15 +149,14 @@ export function Footer() {
               {/* 01 Company */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">01</span>
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">02</span>
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
                     { name: "About Us", href: "/about" },
                     { name: "Careers", href: "/careers" },
-                    { name: "Contact", href: "/contact" },
-                    { name: "Trust Hub", href: "#" }
+                    { name: "Contact", href: "/contact" }
                   ].map((link) => (
                     <li key={link.name}>
                       <Link href={link.href} className="text-sm font-light text-gray-400 hover:text-[#14b8a6] hover:translate-x-1 transition-all flex items-center gap-1 group">
@@ -174,7 +170,7 @@ export function Footer() {
               {/* 02 Services */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">02</span>
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">03</span>
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
                 </div>
                 <ul className="space-y-4">
@@ -191,8 +187,8 @@ export function Footer() {
               {/* 03 Products */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">03</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Ecosystem</h3>
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">04</span>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Products</h3>
                 </div>
                 <ul className="space-y-4">
                   {product?.data?.productsList?.slice(0, 4).map((item) => (
@@ -208,15 +204,14 @@ export function Footer() {
               {/* 04 Legal */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">04</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Archives</h3>
+                  <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">05</span>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Legal</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
                     { name: "Privacy Policy", href: "/privacy-policy" },
-                    { name: "Terms of Service", href: "/terms-and-conditions" },
-                    { name: "Cookie Policy", href: "/cookie-policy" },
-                    { name: "Audit Reports", href: "#" }
+                    { name: "Terms & Conditions", href: "/terms-and-conditions" },
+                    { name: "Cookie Policy", href: "/cookie-policy" }
                   ].map((link) => (
                     <li key={link.name}>
                       <Link href={link.href} className="text-sm font-light text-gray-400 hover:text-[#14b8a6] hover:translate-x-1 transition-all flex items-center gap-1 group">
@@ -235,10 +230,6 @@ export function Footer() {
         <div className="mt-20 pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
             © {new Date().getFullYear()} Auxinzio Digital Ecosystem. All Rights Reserved.
-          </div>
-          <div className="flex items-center gap-8 text-[10px] font-bold uppercase tracking-widest text-gray-500">
-            <p className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-[#14b8a6]" /> Status: Operational</p>
-            <p className="flex items-center gap-2"><span className="w-1 h-1 rounded-full bg-[#14b8a6]" /> Version: 4.2.0</p>
           </div>
         </div>
       </div>

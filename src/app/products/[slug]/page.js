@@ -79,9 +79,9 @@ export default function App({ params }) {
               return (
                 <div key={index} className="p-8 border-r-0 lg:border-r border-[#e5e7eb] border-b md:border-b-0">
                   <Icon className="w-8 h-8 text-[#14b8a6] mb-6 stroke-[1.5]" />
-                  <h3 className="text-lg font-semibold text-[#111827] mb-3">
+                  {/* <h3 className="text-lg font-semibold text-[#111827] mb-3">
                     {feature.split(' ').slice(0, 2).join(' ')}
-                  </h3>
+                  </h3> */}
                   <p className="text-[#6b7280] leading-relaxed text-sm">
                     {feature}
                   </p>
@@ -168,17 +168,10 @@ export default function App({ params }) {
         {/* Section 4 - Editorial Highlight Section */}
         <section className="py-16 lg:py-24 border-t border-b border-[#e5e7eb]">
           <div className="max-w-6xl mx-auto px-6 lg:px-12">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-              <div>
-                <h2 className="text-3xl lg:text-4xl font-light text-[#111827] leading-tight">
-                  {product.tag?.[0]}
-                </h2>
-              </div>
-              <div className="flex items-center">
-                <p className="text-[#4b5563] leading-relaxed text-lg">
-                  {descriptionParts[2] || descriptionParts[1] || product.description}
-                </p>
-              </div>
+            <div className="flex items-center">
+              <p className="text-[#4b5563] leading-relaxed text-lg">
+                {descriptionParts[2] || descriptionParts[1] || product.description}
+              </p>
             </div>
           </div>
         </section>

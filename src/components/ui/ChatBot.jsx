@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Sparkles } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSettings } from "@/app/Context/SettingsContext";
+import Image from "next/image";
 
 export const ChatBot = () => {
     const pathname = usePathname();
@@ -16,12 +17,31 @@ export const ChatBot = () => {
     ]);
     const [input, setInput] = useState("");
     const scrollRef = useRef(null);
+    const chatRef = useRef(null);
 
     useEffect(() => {
         if (scrollRef.current) {
             scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
         }
     }, [messages]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (chatRef.current && !chatRef.current.contains(event.target)) {
+                setIsOpen(false);
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        } else {
+            document.removeEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isOpen]);
 
     // Do not show on admin panel
     if (pathname?.startsWith("/admin")) return null;
@@ -51,20 +71,22 @@ export const ChatBot = () => {
     };
 
     return (
-        <div className="fixed bottom-8 right-8 z-[100]">
+        <div className="fixed bottom-2 right-4 z-[100] flex flex-col items-end">
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 20, scale: 0.95 }}
-                        className="mb-4 w-[380px] h-[550px] bg-white/80 backdrop-blur-2xl rounded-[2.5rem] border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col"
+                        ref={chatRef}
+                        initial={{ opacity: 0, x: 40, scale: 0.85 }}
+                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                        exit={{ opacity: 0, x: 40, scale: 0.95 }}
+                        className="mb-4 w-[380px] max-w-[calc(100vw-2rem)] h-[550px] max-h-[calc(100vh-8rem)] bg-white/80 backdrop-blur-2xl rounded-[2.5rem] border border-gray-100 shadow-[0_20px_50px_rgba(0,0,0,0.1)] overflow-hidden flex flex-col"
                     >
                         {/* Header */}
                         <div className="p-6 bg-gray-900 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-[#14b8a6]/10 flex items-center justify-center border border-[#14b8a6]/20">
-                                    <Sparkles className="w-5 h-5 text-[#14b8a6]" />
+                                <div className="w-10 h-10 rounded-full p-2 bg-[#14b8a6]/10 flex items-center justify-center border border-[#14b8a6]/20 overflow-hidden">
+                                    {/* <Sparkles className="w-5 h-5 text-[#14b8a6]" /> */}
+                                    <Image src="/favicon.png" alt="Logo" width={24} height={24} className="object-contain" />
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm tracking-tight">Auxinzio AI</h3>
@@ -132,18 +154,17 @@ export const ChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`group relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 ${isOpen ? "bg-gray-900 rotate-90" : "bg-[#14b8a6]"
-                    }`}
+                className={`group absolute bottom-4 right-4 w-16 h-16 p-3 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 bg-white ${
+                    isOpen ? "translate-x-[120%] opacity-0 pointer-events-none" : "translate-x-0 opacity-100"
+                }`}
             >
-                {isOpen ? (
-                    <X className="w-6 h-6 text-white" />
-                ) : (
-                    <MessageCircle className="w-6 h-6 text-white" />
-                )}
+                <div className="relative w-10 h-10">
+                    <Image src="/favicon.png" alt="Logo" fill className="object-contain" />
+                </div>
 
                 {/* Decorative Ring */}
                 {!isOpen && (
-                    <div className="absolute inset-0 rounded-full border-2 border-[#14b8a6] animate-ping opacity-20" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[#14b8a6] animate-ping opacity-20" />
                 )}
             </motion.button>
         </div>

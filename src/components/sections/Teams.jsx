@@ -5,12 +5,12 @@ import { Linkedin, Mail, Github, ArrowUpRight } from 'lucide-react';
 import { useSettings } from "@/app/Context/SettingsContext";
 import { motion } from "framer-motion";
 
-export default function Teams({ teams, data }) {
+export default function Teams({ data }) {
   const teamData = data?.teamsList;
   const { settings } = useSettings();
 
   return (
-    <section id="teams" className="py-24 lg:py-40 bg-white relative overflow-hidden">
+    <section id="teams" className="py-15 lg:py-25 lg:pt-5 pt-3 bg-white relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6">
         
         {/* Section Header */}
@@ -46,7 +46,8 @@ export default function Teams({ teams, data }) {
         </div>
 
         {teamData && (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
+          <div className="max-w-[1100px] mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-24 gap-x-12">
             {teamData?.map((team, index) => (
               <TeamMemberCard 
                 key={index}
@@ -60,6 +61,7 @@ export default function Teams({ teams, data }) {
                 description={team.description}
               />
             ))}
+          </div>
           </div>
         )}
       </div>

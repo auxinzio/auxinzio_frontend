@@ -44,8 +44,12 @@
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 
 :root {
@@ -79,18 +83,18 @@
   --popover: 0 0% 100%;
   --popover-foreground: 224 71.4% 4.1%;
 
-  /* Primary mapped to Cyan 500 (#06b6d4 -> 189 94% 43%) */
-  --primary: 189 94% 43%;
+  /* Primary mapped to Teal 500 (#14b8a6 -> 174 80% 40%) */
+  --primary: 174 80% 40%;
   --primary-foreground: 0 0% 100%;
 
   /* Secondary mapped to Teal 100/200-ish for light mode or neutral */
-  --secondary: 180 20% 96%;
-  --secondary-foreground: 189 94% 20%;
+  --secondary: 174 20% 96%;
+  --secondary-foreground: 174 80% 20%;
 
-  --muted: 180 20% 96%;
+  --muted: 174 20% 96%;
   --muted-foreground: 215 16% 47%;
 
-  --accent: 189 94% 43%; /* Matches primary */
+  --accent: 174 80% 40%; /* Matches primary */
   --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84.2% 60.2%;
@@ -98,9 +102,9 @@
 
   --border: 220 13% 91%;
   --input: 220 13% 91%;
-  --ring: 189 94% 43%; /* Matches primary */
+  --ring: 174 80% 40%; /* Matches primary */
 
-  --radius: 0.75rem;
+  --radius: 1.5rem;
 }
 
 @layer base {

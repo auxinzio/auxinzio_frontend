@@ -3,12 +3,24 @@
 import Commitments from "@/components/sections/Commitments";
 import StatsOrganic2 from "@/components/sections/StatsOrganic2";
 import Teams from "@/components/sections/Teams";
-import { teams } from "@/data/teams.json";
 import MissionVision from "@/components/sections/MissionVision";
 import AboutSection2 from "@/components/sections/AboutSection2";
+import CTASection from "@/components/sections/CTASection";
+import { useSettings } from "../Context/SettingsContext";
+import { useEffect, useState } from "react";
 
 
 export default function About() {
+
+  const [teams, setTeams] = useState("");
+  const { settings } = useSettings();
+
+  
+    useEffect(() => {
+      fetch(`${settings.backend_api_url}/api/teams/teamsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+        .then(res => res.json())
+        .then(data => setTeams(data))
+    }, [settings]);
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -25,13 +37,11 @@ export default function About() {
       {/* Stats Section */}
       <StatsOrganic2 />
 
-      {/* CTA Section */}
-      <section>
-        {/* <CTASection/> */}
-      </section>
-
       {/* Teams Section */}
-      <Teams teams={teams} />
+      <Teams data={teams.data} />
+      
+      {/* CTA Section */}
+      <CTASection/>
     </div>
   );
 }

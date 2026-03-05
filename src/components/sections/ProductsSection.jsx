@@ -4,15 +4,16 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, Layers, ShieldCheck, Activity, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
+import productsData from "@/data/products.json";
 
 export default function ProductsSection({ product }) {
   const { settings } = useSettings();
-  const products = product || [];
+  const products = (product && product.length > 0) ? product : (productsData.products || []);
 
   return (
     <>
       {products.length > 0 && (
-        <section id="products" className="py-24 lg:py-40 bg-white relative overflow-hidden">
+        <section id="products" className="py-14 lg:py-25 bg-white relative overflow-hidden">
           <div className="max-w-[1600px] mx-auto px-6">
 
             {/* Header: Editorial Scale */}
@@ -60,8 +61,9 @@ export default function ProductsSection({ product }) {
                   <div className="relative aspect-[16/10] lg:aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-white bg-gray-50 group">
                     <Image
                       src={`${settings.backend_api_url}/${item.image}`}
-                      alt={item.product_name}
-                      fill
+                      alt={`${item.product_name} image`}
+                      width={300}
+                      height={200}
                       className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
                     />
 

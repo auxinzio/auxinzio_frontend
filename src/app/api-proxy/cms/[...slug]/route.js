@@ -27,8 +27,6 @@ async function handler(req, { params }) {
     // the 413 error if it was triggered by buffering large strings in memory.
     const body = ['GET', 'HEAD'].includes(req.method) ? undefined : req.body;
 
-    // console.log(`[CMS Proxy] Forwarding ${req.method} to ${targetUrl} (Content-Type: ${contentType || 'none'})`);
-
     const res = await fetch(targetUrl, {
       method: req.method,
       headers: headers,

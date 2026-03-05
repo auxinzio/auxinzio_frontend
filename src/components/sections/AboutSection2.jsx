@@ -28,7 +28,7 @@ export default function AboutSection2() {
   return (
     <div className="min-h-screen bg-white">
       {/* Main About Section */}
-      <section className="py-24 lg:py-32 px-6">
+      <section className="py-14 lg:py-20 lg:pt-5 pt-5 px-6">
         <div className="mx-auto max-w-[1600px]">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 xl:gap-12">
             {/* Left Zone — Vertical Statement Panel */}

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 export default function CTASection() {
     return (
-        <section className="relative py-32 lg:py-48 bg-gray-900 border-t border-white/5 overflow-hidden">
+        <section className="relative py-14 lg:py-25 bg-gray-900 border-t border-white/5 overflow-hidden">
             {/* Background Architectural Elements */}
             <div className="absolute inset-0 z-0">
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_#14b8a610_0%,_transparent_50%)] blur-[100px]" />
@@ -59,19 +59,15 @@ export default function CTASection() {
                             <div className="relative z-10 space-y-12">
                                 <div className="space-y-4">
                                     <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Direct Nexus</h4>
-                                    <div className="flex flex-col gap-4">
-                                        <a href="mailto:bsanthoshkumar10@gmail.com" className="group/link flex items-center gap-6 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
-                                            Hello <ArrowUpRight className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                                    <div className="flex items-center justify-between">
+                                        <a href="mailto:bsanthoshkumar10@gmail.com" className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                            Hello <Mail className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
-                                        <a href="tel:+15551234567" className="group/link flex items-center gap-6 text-2xl lg:text-3xl font-light text-white/40 hover:text-white transition-colors">
-                                            Voice <ArrowUpRight className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform opacity-40 group-hover/link:opacity-100" />
+                                        <a href="tel:+15551234567" className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                            Voice <Phone className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform opacity-40 group-hover/link:opacity-100" />
                                         </a>
                                     </div>
                                 </div>
-
-                                <button className="w-full py-8 bg-[#14b8a6] text-white rounded-[2rem] text-sm font-bold uppercase tracking-[0.3em] shadow-xl shadow-[#14b8a6]/20 hover:shadow-[#14b8a6]/40 hover:scale-[1.02] transition-all duration-500">
-                                    Initiate Prototype
-                                </button>
                             </div>
                         </motion.div>
                     </div>

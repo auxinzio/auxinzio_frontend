@@ -1,42 +1,25 @@
 import { motion } from "framer-motion";
 import { Zap, Cpu, ShieldCheck, Leaf, BookOpen, Code, Sparkles, ChevronRight } from "lucide-react";
+import homeData from "@/data/home.json";
 
 export default function Commitments() {
-  const commitments = [
-    {
-      title: "Innovation at Core",
-      description: "We delivers AI-driven, secure, and scalable solutions that accelerate digital transformation and business growth.",
-      icon: Zap,
-    },
-    {
-      title: "Excellence in Execution",
-      description: "with precision-driven strategies, agile delivery, and scalable solutions for lasting business success.",
-      icon: Cpu,
-    },
-    {
-      title: "Transparency & Trust",
-      description: "We ensure clear communication, honest practices, and secure solutions that build lasting client trust and credibility.",
-      icon: ShieldCheck,
-    },
-    {
-      title: "Sustainability First",
-      description: "We deliver eco-conscious, future-ready solutions that drive sustainable growth, efficiency, and long-term business value.",
-      icon: Leaf,
-    },
-    {
-      title: "Continuous Learning",
-      description: "We drives innovation, upskills teams, and ensures agile, future-ready business growth.",
-      icon: BookOpen,
-    },
-    {
-      title: "Security by Design",
-      description: "We ensures robust data protection, proactive risk management, and compliant, secure digital solutions by default.",
-      icon: Code,
-    },
-  ];
+  const iconMap = {
+    Zap,
+    Cpu,
+    ShieldCheck,
+    Leaf,
+    BookOpen,
+    Code,
+    Sparkles
+  };
+
+  const commitments = homeData.commitment.map(item => ({
+    ...item,
+    icon: iconMap[item.icon] || Zap
+  }));
 
   return (
-    <section className="py-24 lg:py-40 bg-white relative overflow-hidden">
+    <section className="py-24 lg:py-32 lg:pt-0 pt-0 bg-white relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 

@@ -61,7 +61,7 @@ export default function Services() {
       <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden" ref={containerRef}>
 
          {/* --- HERO: THE ARCHITECTURAL BLUEPRINT --- */}
-         <section className="relative pt-40 pb-24 lg:pt-56 lg:pb-32 px-6">
+         <section className="relative pt-40 pb-24 lg:pt-30 lg:pb-12 px-6">
             <div className="mx-auto max-w-[1600px] relative">
                <div className="grid lg:grid-cols-12 gap-12 items-end">
                   <motion.div
@@ -103,7 +103,7 @@ export default function Services() {
             <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 hidden lg:block" />
 
             <div className="mx-auto max-w-[1600px] relative">
-               <div className="space-y-32 lg:space-y-64">
+               <div className="space-y-4 lg:space-y-10">
                   {displayServices.map((srv, idx) => (
                      <motion.div
                         key={idx}
@@ -141,7 +141,7 @@ export default function Services() {
 
                         {/* Content Block */}
                         <div className="lg:w-1/2 py-8">
-                           <span className="text-6xl lg:text-8xl font-black text-gray-50 mb-8 block select-none">0{idx + 1}</span>
+                           <span className="text-6xl lg:text-8xl font-black text-[#14b8a6]/30 mb-8 block select-none">0{idx + 1}</span>
                            <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
                               {srv.title.split(' ').map((word, i) => (
                                  <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b8a6]"}>
@@ -177,7 +177,7 @@ export default function Services() {
          </section >
 
          {/* --- CTA: THE SYNTHESIS INVITATION --- */}
-         < section className="py-32 px-6" >
+         < section className="px-6" >
             <div className="mx-auto max-w-[1200px]">
                <motion.div
                   initial={{ opacity: 0, y: 30 }}
@@ -194,22 +194,24 @@ export default function Services() {
                      <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
                         Ready to <span className="italic">synthesize</span><br />your next venture?
                      </h2>
-                     <button className="group cursor-pointer relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
-                        <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
-                           Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </span>
-                        <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
-                        <span className="absolute inset-0 flex items-center justify-center text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-bold">
-                           {`Let's Begin`}
-                        </span>
-                     </button>
+                     <Link href="/contact">
+                        <button className="group cursor-pointer relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
+                           <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
+                              Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                           </span>
+                           <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
+                           <span className="absolute inset-0 flex items-center justify-center text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-bold">
+                              {`Let's Begin`}
+                           </span>
+                        </button>
+                     </Link>
                   </div>
                </motion.div>
             </div>
          </section >
 
          {/* --- FOOTER DIVIDER --- */}
-         < div className="py-24 flex flex-col items-center" >
+         < div className="py-2 pb-6 flex flex-col items-center" >
             <div className="w-px h-32 bg-gray-100 mb-8" />
             <div className="w-2 h-2 rounded-full border-2 border-[#14b8a6]" />
          </div >

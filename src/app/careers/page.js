@@ -7,7 +7,7 @@ import {
   Users,
   TrendingUp,
   Heart,
-  DollarSign,
+  IndianRupee,
   Home,
   GraduationCap,
   MapPin,
@@ -53,7 +53,7 @@ const careerValues = [
 ];
 
 const benefits = [
-  { icon: DollarSign, label: 'Competitive Pay' },
+  { icon: IndianRupee, label: 'Competitive Pay' },
   { icon: Home, label: 'Remote First' },
   { icon: GraduationCap, label: 'Learning Budget' },
   { icon: Zap, label: 'Latest Gear' },
@@ -106,7 +106,7 @@ export default function Careers() {
     <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
 
       {/* --- HERO SECTION: THREE-ZONE ASYMMETRICAL --- */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 px-6 overflow-hidden">
+      <section className="relative pt-32  pb-10 lg:pt-40 lg:pb-22 px-6 overflow-hidden">
         <div className="mx-auto max-w-[1600px]">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
 
@@ -227,7 +227,7 @@ export default function Careers() {
       </section>
 
       {/* --- VALUES & BENEFITS: BENTO GRID LAYOUT --- */}
-      <section className="py-24 bg-gray-50/50">
+      <section className="py-10 lg:py-15 bg-gray-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
           <div className="grid lg:grid-cols-12 gap-6">
 
