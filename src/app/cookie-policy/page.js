@@ -14,7 +14,7 @@ import {
     Search,
     Zap
 } from 'lucide-react';
-
+import ProgressBar from '@/components/ui/ProgressBar';
 const cookieModules = [
     {
         icon: Database,
