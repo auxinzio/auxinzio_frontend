@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, User, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-react'
 import { useAuth } from '@/app/Context/AuthContext';
+import Image from 'next/image'
 
 export default function AdminLogin() {
   const [username, setUsername] = useState('')
@@ -34,7 +35,7 @@ export default function AdminLogin() {
   };
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden bg-[#0a0a0a]">
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden">
       {/* Background Animated Elements */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] rounded-full bg-primary/20 blur-[120px] animate-pulse" />
@@ -46,7 +47,7 @@ export default function AdminLogin() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative z-10 w-full max-w-[440px] px-6"
+        className="relative z-10 w-full max-w-[550px] px-6"
       >
         <div className="backdrop-blur-xl bg-white/5 border border-white/10 p-8 md:p-10 rounded-[2.5rem] shadow-2xl overflow-hidden group">
           {/* Top accent line */}
@@ -57,18 +58,18 @@ export default function AdminLogin() {
               initial={{ scale: 0.5, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-green-500 mb-6 shadow-lg shadow-primary/20"
+              className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-white mb-6 shadow-lg shadow-primary/20"
             >
-              <ShieldCheck className="w-8 h-8 text-white" />
+              <Image src="/favicon.png" alt="Logo" width={50} height={50} />
             </motion.div>
 
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-4xl font-extrabold text-white tracking-tight mb-2"
+              className="text-4xl font-extrabold text-[#14b8a6] tracking-tight mb-2"
             >
-              Admin Access
+              Admin Panel
             </motion.h2>
             <motion.p
               initial={{ opacity: 0 }}
@@ -99,7 +100,7 @@ export default function AdminLogin() {
               <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Username</label>
               <div className="relative group/input">
                 <div className="absolute inset-y-0 left-0 pl-1 py-1 h-full w-full">
-                  <div className="h-full w-full rounded-xl bg-white/5 border border-white/10 group-focus-within/input:border-primary/50 transition-all duration-300" />
+                  <div className="h-full w-full rounded-xl bg-white/5 border border-black/10 group-focus-within/input:border-primary/50 transition-all duration-300" />
                 </div>
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-primary transition-colors">
                   <User className="w-5 h-5" />
@@ -119,7 +120,7 @@ export default function AdminLogin() {
               <label className="text-xs font-semibold text-gray-400 uppercase tracking-wider ml-1">Password</label>
               <div className="relative group/input">
                 <div className="absolute inset-y-0 left-0 pl-1 py-1 h-full w-full">
-                  <div className="h-full w-full rounded-xl bg-white/5 border border-white/10 group-focus-within/input:border-primary/50 transition-all duration-300" />
+                  <div className="h-full w-full rounded-xl bg-white/5 border border-black/10 group-focus-within/input:border-primary/50 transition-all duration-300" />
                 </div>
                 <div className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 group-focus-within/input:text-primary transition-colors">
                   <Lock className="w-5 h-5" />
@@ -135,7 +136,7 @@ export default function AdminLogin() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors p-1"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-500 transition-colors p-1"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -156,7 +157,7 @@ export default function AdminLogin() {
                     <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                   ) : (
                     <>
-                      <span>Secure Sign In</span>
+                      <span>Sign In</span>
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
