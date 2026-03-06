@@ -28,24 +28,28 @@ export default function Home() {
   const { settings } = useSettings();
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/services/servicesList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setService(data))
   }, [settings]);
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setProduct(data))
   }, [settings]);
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/solutions/solutionsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setSolution(data))
   }, [settings]);
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/teams/teamsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setTeam(data))

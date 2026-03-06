@@ -17,6 +17,7 @@ export default function About() {
 
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/teams/teamsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setTeams(data))
