@@ -121,12 +121,12 @@ export function Footer() {
                   <span className="text-[10px] font-bold text-[#14b8a6] tracking-tighter">01</span>
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Subscribe to our Newsletter</h3>
                 </div>
-                <form onSubmit={handleSubscribe} className="relative max-w-sm group">
+                <form onSubmit={handleSubscribe} noValidate className="relative max-w-sm group">
                   <input
                     type="email"
                     required
                     placeholder="Protocol mail address"
-                    className="w-full bg-white/5 border border-white/10 rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-[#14b8a6] transition-all placeholder:text-gray-600 font-light"
+                    className={`w-full bg-white/5 border ${subscribeStatus && !subscribeStatus.success ? 'border-red-500' : 'border-white/10'} rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-[#14b8a6] transition-all placeholder:text-gray-600 font-light`}
                     value={email}
                     onChange={(e) => setEmail(e.target.value.replace(/[^a-zA-Z0-9.@]/g, ''))}
                   />

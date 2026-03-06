@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import about from "@/data/about.json";
 import { ArrowUpRight, Target, Zap, Shield } from "lucide-react";
+import Link from "next/link";
 import Image from "next/image";
 
 export function AboutSection() {
@@ -77,12 +78,12 @@ export function AboutSection() {
                         <p className="text-gray-500 leading-relaxed mb-12 italic text-lg lg:text-xl">
                            {`"${about.description}"`}
                         </p>
-                        <button className="flex items-center gap-6 group">
+                        <Link href="/about" className="inline-flex items-center gap-6 group">
                            <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Our Full Narrative</span>
                            <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
                               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                            </div>
-                        </button>
+                        </Link>
                      </div>
                   </div>
                </div>

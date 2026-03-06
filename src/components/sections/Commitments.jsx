@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Zap, Cpu, ShieldCheck, Leaf, BookOpen, Code, Sparkles, ChevronRight } from "lucide-react";
 import homeData from "@/data/home.json";
+import Link from "next/link";
 
 export default function Commitments() {
   const iconMap = {
@@ -19,7 +20,7 @@ export default function Commitments() {
   }));
 
   return (
-    <section className="py-24 lg:py-32 lg:pt-0 pt-0 bg-white relative overflow-hidden">
+    <section className="py-14 lg:py-22 lg:pt-0 pt-0 bg-white relative overflow-hidden">
       <div className="max-w-[1600px] mx-auto px-6">
         <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
 
@@ -47,12 +48,12 @@ export default function Commitments() {
               </p>
 
               <div className="pt-8">
-                <button className="group flex items-center gap-4 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
-                  Inquire for Frameworks
-                  <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
-                    <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                  </div>
-                </button>
+                <Link href="/contact" className="group inline-flex items-center gap-4 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
+                    Inquire for Frameworks
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                      <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                </Link>
               </div>
             </motion.div>
           </div>

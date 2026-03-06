@@ -34,7 +34,7 @@ export default function About() {
       <Commitments />
 
       {/* About Section */}
-      <AboutSection2 />
+      {/* <AboutSection2 /> */}
 
       {/* Stats Section */}
       <StatsOrganic2 />

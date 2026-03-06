@@ -102,13 +102,13 @@ export function ProductFeature({ products }) {
               {/* Action */}
               <div className="pt-6">
                 <Link href={`/products/${product?.slug}`}>
-                  <motion.button
+                  <motion.div
                     whileHover={{ x: 5 }}
                     className="flex items-center gap-4 text-sm font-medium tracking-[0.2em] uppercase text-gray-900 group"
                   >
                     Explore Experience
                     <ArrowRight className="w-5 h-5 text-[#14b8a6] group-hover:translate-x-1 transition-transform" />
-                  </motion.button>
+                  </motion.div>
                 </Link>
               </div>
             </div>

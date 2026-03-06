@@ -1,7 +1,7 @@
 'use client';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Send, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Send, CheckCircle2, ArrowRight, Mail, Phone, MapPin, Clock } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
 import ProgressBar from '@/components/ui/ProgressBar';
@@ -24,9 +24,21 @@ export default function Contact() {
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    const phoneRegex = /^[6-9]\d{9}$/;
+
     if (!formState.name || formState.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
-    if (!formState.email || !emailRegex.test(formState.email)) newErrors.email = 'Please enter a valid email address.';
-    if (!formState.phone || !/^\+?[\d\s-]{10,}$/.test(formState.phone)) newErrors.phone = 'Please enter a valid phone number (min 10 digits).';
+    if (!formState.email) {
+      newErrors.email = 'Email address is required.';
+    } else if (!emailRegex.test(formState.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+    
+    if (!formState.phone) {
+      newErrors.phone = 'Phone number is required.';
+    } else if (!phoneRegex.test(formState.phone)) {
+      newErrors.phone = 'Mobile number must start with 6-9 and be 10 digits.';
+    }
+
     if (!formState.title || formState.title.length < 3) newErrors.title = 'Please provide a subject.';
     if (!formState.description || formState.description.length < 10) newErrors.description = 'Please provide a more detailed briefing (min 10 chars).';
 
@@ -68,7 +80,7 @@ export default function Contact() {
     // Filter for email field: letters, numbers, dot (and @ for functionality)
     if (name === 'phone') {
       const numericValue = value.replace(/\D/g, '');
-      if (numericValue.length <= 15) {
+      if (numericValue.length <= 10) {
         setFormState({ ...formState, [name]: numericValue });
       }
     } else if (name === 'email') {
@@ -166,7 +178,7 @@ export default function Contact() {
                 </div>
 
                 {!isSubmitted ? (
-                  <form onSubmit={handleSubmit} className="grid md:grid-cols-2 gap-10">
+                  <form onSubmit={handleSubmit} noValidate className="grid md:grid-cols-2 gap-10">
                     <div className="md:col-span-1">
                       <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Full Name</label>
                       <input
@@ -201,7 +213,7 @@ export default function Contact() {
                         name="phone"
                         inputMode="numeric"
                         pattern="[0-9]*"
-                        maxLength={15}
+                        maxLength={10}
                         value={formState.phone}
                         onChange={handleChange}
                         className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
@@ -301,61 +313,70 @@ export default function Contact() {
             </motion.div>
 
             {/* Info Block */}
-            <div className="space-y-12">
+            <div className="space-y-12 lg:pl-12">
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b8a6]">Find Us</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b8a6]">Interface Node</span>
                 </div>
-                <h2 className="text-5xl font-light text-gray-900 tracking-tight mb-8">
-                  Visit our <span className="italic">Chennai</span> Base.
+                <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-[0.9] mb-8">
+                  Visit our <br />
+                  <span className="italic font-normal text-[#14b8a6]">Chennai</span> Base.
                 </h2>
-                <p className="text-lg text-gray-500 font-light leading-relaxed">
-                  Located in the heart of the Tidel Park IT corridor, our workspace is designed for collaboration and technical excellence.
+                <p className="text-xl text-gray-400 font-light leading-relaxed max-w-md">
+                  Synthesized within the Tidel Park IT corridor, our workspace serves as the architectural core for global digital operations.
                 </p>
               </motion.div>
 
-              <div className="grid sm:grid-cols-2 gap-10">
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Email Address</h4>
-                  <p className="text-gray-900 font-medium">
-                    {settings?.email}
-                  </p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Phone Number</h4>
-                  <p className="text-gray-900 font-medium leading-relaxed">
-                    {settings?.phone}
-                  </p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Headquarters</h4>
-                  <p className="text-gray-900 font-medium leading-relaxed">
-                    {settings?.address}
-                  </p>
-                </div>
-                <div className="space-y-4">
-                  <h4 className="text-[10px] font-black uppercase tracking-widest text-gray-400">Working Hours</h4>
-                  <p className="text-gray-900 font-medium">
-                    Monday — Saturday <br />
-                    <span className="text-gray-500">09:00 AM – 06:00 PM (IST)</span>
-                  </p>
-                </div>
+              <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
+                {[
+                  { label: "Email Address", val: settings?.email, icon: Mail },
+                  { label: "Phone Number", val: settings?.phone, icon: Phone },
+                  { label: "Headquarters", val: settings?.address, icon: MapPin },
+                  { label: "Working Hours", val: "Mon — Sat, 09:00 AM – 06:00 PM", icon: Clock }
+                ].map((item, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="group p-8 rounded-[2rem] bg-gray-50/50 border border-gray-100 hover:bg-white hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.05)] transition-all duration-500"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500 shadow-sm">
+                      <item.icon size={18} className="transition-colors" />
+                    </div>
+                    <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">{item.label}</h4>
+                    <p className="text-gray-900 font-medium leading-relaxed group-hover:text-[#14b8a6] transition-colors">{item.val}</p>
+                    
+                    {/* Architectural Detail */}
+                    <div className="mt-4 h-px w-0 bg-[#14b8a6]/20 group-hover:w-full transition-all duration-700" />
+                  </motion.div>
+                ))}
               </div>
 
-              <div className="pt-8 border-t border-gray-100">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                className="pt-8 flex items-center gap-8"
+              >
+                <div className="h-px flex-1 bg-gray-100" />
                 <a
                   href="https://maps.app.goo.gl/sg7CJEzcGQR3QrKaA"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-gray-900 hover:text-[#14b8a6] transition-colors group"
+                  className="group flex items-center gap-6"
                 >
-                  Directing Coordinates <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Directing Coordinates</span>
+                  <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500 shadow-xl shadow-transparent hover:shadow-[#14b8a6]/20">
+                    <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </a>
-              </div>
+              </motion.div>
             </div>
 
           </div>

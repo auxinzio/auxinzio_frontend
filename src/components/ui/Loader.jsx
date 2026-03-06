@@ -10,15 +10,18 @@ const LoaderContent = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Show loader on route change
-        setLoading(true);
-
+        // Only run on initial mount
         const timer = setTimeout(() => {
             setLoading(false);
-        }, 800); // Minimum display time for smoothness
+        }, 1000);
 
         return () => clearTimeout(timer);
-    }, [pathname, searchParams]);
+    }, []);
+
+    // Disable loader on admin panel
+    if (pathname?.startsWith("/admin")) {
+        return null;
+    }
 
     return (
         <div className={`loader-overlay ${!loading ? "loader-hidden" : ""}`}>

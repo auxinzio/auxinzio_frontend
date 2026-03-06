@@ -16,6 +16,7 @@ export default function JobDetailsPage() {
   const [error, setError] = useState(null);
   const { settings } = useSettings();
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     applicant_name: '',
@@ -30,12 +31,29 @@ export default function JobDetailsPage() {
   });
 
   const validate = () => {
+    const newErrors = {};
     const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
-    if (!emailRegex.test(formData.email)) {
-      toast.error('Please enter a valid email address.');
-      return false;
+    const phoneRegex = /^[6-9]\d{9,14}$/;
+
+    if (!formData.applicant_name || formData.applicant_name.length < 3) newErrors.applicant_name = 'Name must be at least 3 characters.';
+    
+    if (!formData.email) {
+      newErrors.email = 'Email address is required.';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
     }
-    return true;
+
+    if (!formData.phone) {
+      newErrors.phone = 'Phone number is required.';
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Mobile number must start with 6-9 and be 10-15 digits.';
+    }
+
+    if (!formData.resume) newErrors.resume = 'Please upload your resume.';
+    if (!formData.cover_letter || formData.cover_letter.length < 10) newErrors.cover_letter = 'Please provide a more detailed impact narrative (min 10 chars).';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e) => {
@@ -107,6 +125,7 @@ export default function JobDetailsPage() {
       ...formData,
       [name]: type === 'file' ? files[0] : value,
     });
+    if (errors[name]) setErrors({ ...errors, [name]: null });
   };
 
   useEffect(() => {
@@ -303,7 +322,7 @@ export default function JobDetailsPage() {
                     </div>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} className="space-y-10">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Full Identity</label>
@@ -313,9 +332,10 @@ export default function JobDetailsPage() {
                           required
                           value={formData.applicant_name}
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          className={`w-full bg-gray-50/50 border ${errors.applicant_name ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
                           placeholder="John Doe"
                         />
+                        {errors.applicant_name && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.applicant_name}</p>}
                       </div>
                       <div className="space-y-3">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Digital Address</label>
@@ -325,9 +345,10 @@ export default function JobDetailsPage() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          className={`w-full bg-gray-50/50 border ${errors.email ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
                           placeholder="john@protocol.com"
                         />
+                        {errors.email && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.email}</p>}
                       </div>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -338,9 +359,10 @@ export default function JobDetailsPage() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          className={`w-full bg-gray-50/50 border ${errors.phone ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
                           placeholder="+1 (555) 000-0000"
                         />
+                        {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.phone}</p>}
                       </div>
                       <div className="space-y-3">
                         <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">LinkedIn Nexus</label>
@@ -373,8 +395,9 @@ export default function JobDetailsPage() {
                           name="resume"
                           required
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-3.5 px-6 text-sm file:hidden cursor-pointer hover:bg-gray-100/50 transition-colors"
+                          className={`w-full bg-gray-50/50 border ${errors.resume ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-3.5 px-6 text-sm file:hidden cursor-pointer hover:bg-gray-100/50 transition-colors`}
                         />
+                        {errors.resume && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.resume}</p>}
                       </div>
                     </div>
                     <div className="space-y-3">
@@ -385,9 +408,10 @@ export default function JobDetailsPage() {
                         value={formData.cover_letter}
                         onChange={handleChange}
                         rows={6}
-                        className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none resize-none"
+                        className={`w-full bg-gray-50/50 border ${errors.cover_letter ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none resize-none`}
                         placeholder="Detail your architectural approach & core intent..."
                       ></textarea>
+                      {errors.cover_letter && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.cover_letter}</p>}
                     </div>
                     <button
                       type="submit"

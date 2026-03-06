@@ -64,7 +64,7 @@ export default function CTASection() {
                                             Hello <Mail className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
                                         <a href="tel:+15551234567" className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
-                                            Voice <Phone className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform opacity-40 group-hover/link:opacity-100" />
+                                            Voice <Phone className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
                                     </div>
                                 </div>
