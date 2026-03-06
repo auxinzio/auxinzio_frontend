@@ -7,23 +7,32 @@ import { useSettings } from "@/app/Context/SettingsContext";
 import Image from "next/image";
 import Link from "next/link";
 import ProgressBar from "@/components/ui/ProgressBar";
+import ServiceSkeleton from "@/components/ui/ServiceSkeleton";
 
 export default function Services() {
    const [service, setService] = useState("");
+   const [loading, setLoading] = useState(true);
    const { settings } = useSettings();
    const serviceData = service?.data?.serviceList || [];
    const containerRef = useRef(null);
 
    useEffect(() => {
       if (settings?.backend_api_url) {
+         setLoading(true);
          fetch(`${settings.backend_api_url}/api/services/servicesList`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({})
          })
             .then(res => res.json())
-            .then(data => setService(data))
-            .catch(err => console.error("Error fetching services:", err));
+            .then(data => {
+               setService(data);
+               setLoading(false);
+            })
+            .catch(err => {
+               console.error("Error fetching services:", err);
+               setLoading(false);
+            });
       }
    }, [settings]);
 
@@ -91,74 +100,78 @@ export default function Services() {
 
             <div className="mx-auto max-w-[1600px] relative">
                <div className="space-y-4 lg:space-y-10">
-                  {displayServices.map((srv, idx) => (
-                     <motion.div
-                        key={idx}
-                        initial={{ opacity: 0, y: 50 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-32`}
-                     >
-                        {/* Visual Block */}
-                        <div className="lg:w-1/2 relative">
-                           <div className="relative rounded-[3rem] overflow-hidden shadow-2xl group">
-                              {srv.main_logo ? (
-                                 <Image
-                                    src={`${settings.backend_api_url}/${srv.main_logo}`}
-                                    alt={srv.title}
-                                    width={500}
-                                    height={300}
-                                    className="object-cover w-full transition-all duration-1000 group-hover:scale-110"
-                                 />
-                              ) : (
-                                 <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
-                                    <Layers className="w-32 h-32 text-gray-200" strokeWidth={0.5} />
-                                 </div>
-                              )}
+                  {loading ? (
+                     <ServiceSkeleton />
+                  ) : (
+                     displayServices.map((srv, idx) => (
+                        <motion.div
+                           key={idx}
+                           initial={{ opacity: 0, y: 50 }}
+                           whileInView={{ opacity: 1, y: 0 }}
+                           viewport={{ once: true, margin: "-100px" }}
+                           className={`flex flex-col ${idx % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-32`}
+                        >
+                           {/* Visual Block */}
+                           <div className="lg:w-1/2 relative">
+                              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl group">
+                                 {srv.main_logo ? (
+                                    <Image
+                                       src={`${settings.backend_api_url}/${srv.main_logo}`}
+                                       alt={srv.title}
+                                       width={500}
+                                       height={300}
+                                       className="object-cover w-full transition-all duration-1000 group-hover:scale-110"
+                                    />
+                                 ) : (
+                                    <div className="absolute inset-0 bg-gray-100 flex items-center justify-center">
+                                       <Layers className="w-32 h-32 text-gray-200" strokeWidth={0.5} />
+                                    </div>
+                                 )}
 
-                              {/* Floating Meta Tag */}
-                              <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
-                                 <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{srv.title}</p>
+                                 {/* Floating Meta Tag */}
+                                 <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
+                                    <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{srv.title}</p>
+                                 </div>
                               </div>
+
+                              {/* Architectural Dot on Connector */}
+                              <div className={`absolute top-1/2 ${idx % 2 === 0 ? '-right-[84px]' : '-left-[84px]'} w-4 h-4 rounded-full bg-white border-2 border-[#14b8a6] z-10 hidden lg:block`} />
                            </div>
 
-                           {/* Architectural Dot on Connector */}
-                           <div className={`absolute top-1/2 ${idx % 2 === 0 ? '-right-[84px]' : '-left-[84px]'} w-4 h-4 rounded-full bg-white border-2 border-[#14b8a6] z-10 hidden lg:block`} />
-                        </div>
+                           {/* Content Block */}
+                           <div className="lg:w-1/2 py-8">
+                              <span className="text-6xl lg:text-8xl font-black text-[#14b8a6]/30 mb-8 block select-none">0{idx + 1}</span>
+                              <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
+                                 {srv.title.split(' ').map((word, i) => (
+                                    <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b8a6]"}>
+                                       {word}{' '}
+                                    </span>
+                                 ))}
+                              </h2>
+                              <p className="text-xl text-gray-500 leading-relaxed mb-12 max-w-lg">
+                                 {srv.description?.short_description || srv.description}
+                              </p>
 
-                        {/* Content Block */}
-                        <div className="lg:w-1/2 py-8">
-                           <span className="text-6xl lg:text-8xl font-black text-[#14b8a6]/30 mb-8 block select-none">0{idx + 1}</span>
-                           <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
-                              {srv.title.split(' ').map((word, i) => (
-                                 <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b8a6]"}>
-                                    {word}{' '}
-                                 </span>
-                              ))}
-                           </h2>
-                           <p className="text-xl text-gray-500 leading-relaxed mb-12 max-w-lg">
-                              {srv.description?.short_description || srv.description}
-                           </p>
-
-                           <div className="grid sm:grid-cols-2 gap-6 mb-12">
-                              {srv.features?.map((feature, fidx) => (
-                                 <div key={fidx} className="flex items-center gap-3">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
-                                    <span className="text-sm font-bold text-gray-800 uppercase tracking-tight">{feature}</span>
-                                 </div>
-                              ))}
+                              <div className="grid sm:grid-cols-2 gap-6 mb-12">
+                                 {srv.features?.map((feature, fidx) => (
+                                    <div key={fidx} className="flex items-center gap-3">
+                                       <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
+                                       <span className="text-sm font-bold text-gray-800 uppercase tracking-tight">{feature}</span>
+                                    </div>
+                                 ))}
+                              </div>
+                              <Link href={`/services/${srv.slug}`}>
+                                 <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
+                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Details</span>
+                                    <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                                       <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                                    </div>
+                                 </button>
+                              </Link>
                            </div>
-                           <Link href={`/services/${srv.slug}`}>
-                              <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
-                                 <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Details</span>
-                                 <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
-                                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                                 </div>
-                              </button>
-                           </Link>
-                        </div>
-                     </motion.div>
-                  ))}
+                        </motion.div>
+                     ))
+                  )}
                </div>
             </div>
          </section >

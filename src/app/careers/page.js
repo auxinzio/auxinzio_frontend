@@ -2,28 +2,11 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import {
-  Rocket,
-  Users,
-  TrendingUp,
-  Heart,
-  IndianRupee,
-  Home,
-  GraduationCap,
-  MapPin,
-  Briefcase,
-  Clock,
-  ArrowRight,
-  ChevronRight,
-  Globe,
-  Zap,
-  Shield,
-  Coffee,
-  Umbrella,
-} from 'lucide-react';
+import { Rocket, Users, TrendingUp, Heart, IndianRupee, Home, GraduationCap, MapPin, Briefcase, Clock, ArrowRight, ChevronRight, Globe, Zap, Coffee, Umbrella } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
 import ProgressBar from '@/components/ui/ProgressBar';
+import CareerSkeleton from '@/components/ui/CareerSkeleton';
 // Values for the bento grid
 const careerValues = [
   {
@@ -301,111 +284,106 @@ export default function Careers() {
       {/* --- OPEN POSITIONS: SIDE-BY-SIDE EDITORIAL LIST --- */}
       <section ref={positionsRef} className="py-24 lg:py-32 bg-white">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-16">
+          {isLoading ? (
+            <CareerSkeleton />
+          ) : (
+            <div className="grid lg:grid-cols-12 gap-16">
 
-            {/* Left: Sticky Filter Sidebar */}
-            <div className="lg:col-span-3">
-              <div className="lg:sticky lg:top-32">
-                <p className="text-xs tracking-[0.25em] uppercase text-gray-400 font-bold mb-10">
-                  Current Openings
-                </p>
-                <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                  Join our<br /><span className="text-[#14b8a6] italic font-medium">collective.</span>
-                </h2>
+              {/* Left: Sticky Filter Sidebar */}
+              <div className="lg:col-span-3">
+                <div className="lg:sticky lg:top-32">
+                  <p className="text-xs tracking-[0.25em] uppercase text-gray-400 font-bold mb-10">
+                    Current Openings
+                  </p>
+                  <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
+                    Join our<br /><span className="text-[#14b8a6] italic font-medium">collective.</span>
+                  </h2>
 
-                <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
-                  {filters.map((filter) => (
-                    <button
-                      key={filter}
-                      onClick={() => setActiveFilter(filter)}
-                      className={`group flex items-center justify-between px-6 py-4 rounded-xl transition-all duration-300 ${activeFilter === filter
-                        ? 'bg-[#14b8a6] text-white shadow-xl shadow-[#14b8a6]/20'
-                        : 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-900'
-                        }`}
-                    >
-                      <span className="text-sm font-bold tracking-tight">{filter}</span>
-                      {activeFilter === filter && (
-                        <motion.div layoutId="active-dot" className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
-                      )}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Right: Jobs Feed */}
-            <div className="lg:col-span-9">
-              <div className="space-y-4">
-                {isLoading ? (
-                  <div className="py-20 flex flex-col items-center justify-center gap-4">
-                    <div className="w-12 h-12 border-4 border-gray-100 border-t-[#14b8a6] rounded-full animate-spin" />
-                    <p className="text-sm font-medium text-gray-400 animate-pulse">Scanning opportunities...</p>
-                  </div>
-                ) : filteredJobs.length > 0 ? (
                   <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
-                    {filteredJobs.map((job, index) => (
-                      <motion.div
-                        key={job.id}
-                        layout
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95 }}
-                        transition={{ duration: 0.4, delay: index * 0.05 }}
+                    {filters.map((filter) => (
+                      <button
+                        key={filter}
+                        onClick={() => setActiveFilter(filter)}
+                        className={`group flex items-center justify-between px-6 py-4 rounded-xl transition-all duration-300 ${activeFilter === filter
+                          ? 'bg-[#14b8a6] text-white shadow-xl shadow-[#14b8a6]/20'
+                          : 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-900'
+                          }`}
                       >
-                        <Link
-                          href={`/careers/${job.slug}`}
-                          className="group block bg-white border border-gray-100 rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:border-[#14b8a6] hover:shadow-[0_20px_60px_-15px_rgba(20,184,166,0.1)] relative overflow-hidden"
-                        >
-                          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1 relative z-10">
-                            <div className="max-w-xl">
-                              <div className="flex items-center gap-3 mb-4">
-                                <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#14b8a6] py-1 px-3 bg-[#14b8a6]/5 rounded-full">
-                                  {job.department}
-                                </span>
-                                <div className="w-1 h-1 rounded-full bg-gray-300" />
-                                <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
-                                  <MapPin className="w-3 h-3" />
-                                  {job.location}
-                                </span>
-                              </div>
-                              <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:translate-x-1 transition-transform duration-300">
-                                {job.title}
-                              </h3>
-                              {/* <p className="text-gray-500 text-sm leading-relaxed line-clamp-2">
-                                {job.description}
-                              </p> */}
-                            </div>
-
-                            <div className="flex items-center gap-6 w-[40%] justify-end">
-                              <div className="hidden sm:block text-right">
-                                <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
-                                <p className="text-sm font-bold text-gray-700">{job.type}</p>
-                              </div>
-                              <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">
-                                <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
-                              </div>
-                            </div>
-                          </div>
-
-                          {/* Inner Decorative Accent */}
-                          <div className="absolute left-0 bottom-0 top-0 w-1 bg-[#14b8a6] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
-                        </Link>
-                      </motion.div>
+                        <span className="text-sm font-bold tracking-tight">{filter}</span>
+                        {activeFilter === filter && (
+                          <motion.div layoutId="active-dot" className="w-1.5 h-1.5 rounded-full bg-white shadow-sm" />
+                        )}
+                      </button>
                     ))}
                   </div>
-                ) : (
-                  <div className="bg-gray-50 rounded-[2rem] p-20 flex flex-col items-center text-center">
-                    <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border border-gray-100">
-                      <Briefcase className="w-8 h-8 text-gray-300" />
-                    </div>
-                    <h4 className="text-xl font-bold text-gray-900 mb-2">No positions found</h4>
-                    <p className="text-gray-500 max-w-xs">{`We don't have any openings in ${activeFilter} right now, but check back soon!`}</p>
-                  </div>
-                )}
+                </div>
               </div>
-            </div>
 
-          </div>
+              {/* Right: Jobs Feed */}
+              <div className="lg:col-span-9">
+                <div className="space-y-4">
+                  {filteredJobs.length > 0 ? (
+                    <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                      {filteredJobs.map((job, index) => (
+                        <motion.div
+                          key={job.id}
+                          layout
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, scale: 0.95 }}
+                          transition={{ duration: 0.4, delay: index * 0.05 }}
+                        >
+                          <Link
+                            href={`/careers/${job.slug}`}
+                            className="group block bg-white border border-gray-100 rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:border-[#14b8a6] hover:shadow-[0_20px_60px_-15px_rgba(20,184,166,0.1)] relative overflow-hidden"
+                          >
+                            <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1 relative z-10">
+                              <div className="max-w-xl">
+                                <div className="flex items-center gap-3 mb-4">
+                                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#14b8a6] py-1 px-3 bg-[#14b8a6]/5 rounded-full">
+                                    {job.department}
+                                  </span>
+                                  <div className="w-1 h-1 rounded-full bg-gray-300" />
+                                  <span className="flex items-center gap-1.5 text-xs font-medium text-gray-500">
+                                    <MapPin className="w-3 h-3" />
+                                    {job.location}
+                                  </span>
+                                </div>
+                                <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 group-hover:translate-x-1 transition-transform duration-300">
+                                  {job.title}
+                                </h3>
+                              </div>
+
+                              <div className="flex items-center gap-6 w-[40%] justify-end">
+                                <div className="hidden sm:block text-right">
+                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
+                                  <p className="text-sm font-bold text-gray-700">{job.type}</p>
+                                </div>
+                                <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">
+                                  <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                                </div>
+                              </div>
+                            </div>
+
+                            <div className="absolute left-0 bottom-0 top-0 w-1 bg-[#14b8a6] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  ) : (
+                    <div className="bg-gray-50 rounded-[2rem] p-20 flex flex-col items-center text-center">
+                      <div className="w-20 h-20 rounded-full bg-white flex items-center justify-center mb-6 shadow-sm border border-gray-100">
+                        <Briefcase className="w-8 h-8 text-gray-300" />
+                      </div>
+                      <h4 className="text-xl font-bold text-gray-900 mb-2">No positions found</h4>
+                      <p className="text-gray-500 max-w-xs">{`We don't have any openings in ${activeFilter} right now, but check back soon!`}</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+            </div>
+          )}
         </div>
       </section>
 
