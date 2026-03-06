@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -14,11 +14,14 @@ import {
   ShieldCheck,
   Globe,
   Zap,
-  Activity
+  Activity,
+  CheckCircle2,
+  AlertCircle
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
 import { useSettings } from '@/app/Context/SettingsContext';
+import Image from "next/image";
 
 export default function GetDemoModal({ isOpen, onClose }) {
   const [loading, setLoading] = useState(false);
@@ -44,13 +47,23 @@ export default function GetDemoModal({ isOpen, onClose }) {
     objective: "",
     product_id: "",
   });
+  const handleClose = useCallback(() => {
+    onClose();
+    // Delay resetting states slightly to prevent flicker during exit animation
+    setTimeout(() => {
+      setSuccess(false);
+      setError(false);
+      setMessage("");
+    }, 500);
+  }, [onClose]);
+
   useEffect(() => {
     const handleEsc = (e) => {
-      if (e.key === "Escape") onClose();
+      if (e.key === "Escape") handleClose();
     };
     window.addEventListener("keydown", handleEsc);
     return () => window.removeEventListener("keydown", handleEsc);
-  }, [onClose]);
+  }, [handleClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -66,11 +79,23 @@ export default function GetDemoModal({ isOpen, onClose }) {
   const validate = () => {
     const newErrors = {};
     const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    const phoneRegex = /^[6-9]\d{9,14}$/;
 
     if (!formData.name || formData.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
     if (!formData.company || formData.company.length < 2) newErrors.company = 'Company must be at least 2 characters.';
-    if (!formData.email || !emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address.';
-    if (!formData.phone || !/^\+?[\d\s-]{10,}$/.test(formData.phone)) newErrors.phone = 'Please enter a valid phone number.';
+    
+    if (!formData.email) {
+      newErrors.email = 'Email address is required.';
+    } else if (!emailRegex.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address.';
+    }
+
+    if (!formData.phone) {
+      newErrors.phone = 'Phone number is required.';
+    } else if (!phoneRegex.test(formData.phone)) {
+      newErrors.phone = 'Mobile number must start with 6-9 and be 10-15 digits.';
+    }
+
     if (!formData.product_id) newErrors.product_id = 'Please select a product.';
     if (!formData.objective || formData.objective.length < 5) newErrors.objective = 'Please provide an objective.';
 
@@ -82,8 +107,6 @@ export default function GetDemoModal({ isOpen, onClose }) {
     e.preventDefault();
     if (!validate()) return;
 
-    
-
     setLoading(true);
     setMessage("");
     setSuccess(false);
@@ -93,7 +116,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
       .then(data => {
         if (data.status) {
           setSuccess(true);
-          setMessage(data.message);
+          setMessage(data.message || "Request successfully dispatched.");
           setFormData({
             company: "",
             name: "",
@@ -103,14 +126,39 @@ export default function GetDemoModal({ isOpen, onClose }) {
             product_id: "",
           });
           setErrors({});
+          
+          // Close modal after 5 seconds
+          setTimeout(() => {
+            handleClose();
+          }, 5000);
         } else {
           setError(true);
-          setMessage(data.message);
+          setMessage(data.message || "Synchronization failed. Please try again.");
+          // Clear form fields as requested on failure
+          setFormData({
+            company: "",
+            name: "",
+            email: "",
+            phone: "",
+            objective: "",
+            product_id: "",
+          });
         }
+      })
+      .catch((err) => {
+        setError(true);
+        setMessage("Connection failed. Protocol interrupted.");
+        setFormData({
+          company: "",
+          name: "",
+          email: "",
+          phone: "",
+          objective: "",
+          product_id: "",
+        });
       })
       .finally(() => {
         setLoading(false);
-        if (success) onClose();
       });
   };
 
@@ -123,7 +171,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={onClose}
+            onClick={handleClose}
             className="absolute inset-0 bg-gray-950/80 backdrop-blur-xl"
           />
 
@@ -149,12 +197,8 @@ export default function GetDemoModal({ isOpen, onClose }) {
 
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-xl bg-[#14b8a6]/20 border border-[#14b8a6]/30 flex items-center justify-center">
-                    <Zap size={20} className="text-[#14b8a6]" fill="currentColor" />
-                  </div>
-                  <div>
-                    <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6] block">Protocol Initiation</span>
-                    <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-500 block">v4.2.0 Active</span>
+                  <div className="w-10 h-10 rounded-xl p-2 bg-[#14b8a6]/20 border border-[#14b8a6]/30 flex items-center justify-center">
+                    <Image src="/favicon.png" alt="Logo" width={50} height={50} />
                   </div>
                 </div>
 
@@ -179,25 +223,71 @@ export default function GetDemoModal({ isOpen, onClose }) {
                   ))}
                 </div>
               </div>
-
-              {/* Status Indicator */}
-              <div className="relative z-10 mt-10 pt-8 border-t border-white/5 flex items-center gap-4">
-                <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] animate-pulse shadow-[0_0_10px_#14b8a6]" />
-                <span className="text-[10px] font-bold uppercase tracking-widest text-gray-500">Nodes Active: Online</span>
-              </div>
             </div>
 
             {/* --- RIGHT: THE INTERFACE (FORM) --- */}
             <div className="lg:w-7/12 bg-white p-8 lg:p-14 relative overflow-y-auto custom-scrollbar">
               <button
-                onClick={onClose}
+                onClick={handleClose}
                 className="absolute top-6 right-6 w-10 h-10 rounded-full bg-gray-50 hover:bg-gray-100 flex items-center justify-center transition-all group z-20"
               >
                 <X size={20} className="text-gray-400 group-hover:text-gray-900" />
               </button>
 
               <div className="h-full flex flex-col justify-center">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <AnimatePresence mode="wait">
+                  {success ? (
+                    <motion.div
+                      key="success"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      className="py-12 flex flex-col items-center justify-center text-center space-y-6"
+                    >
+                      <div className="w-20 h-20 rounded-full bg-[#14b8a6]/10 flex items-center justify-center mb-4">
+                        <CheckCircle2 className="w-10 h-10 text-[#14b8a6]" />
+                      </div>
+                      <h3 className="text-3xl font-light text-gray-900 tracking-tight">
+                        Protocol <span className="italic font-normal text-[#14b8a6]">Synthesized.</span>
+                      </h3>
+                      <p className="text-gray-500 max-w-sm text-sm font-light leading-relaxed">
+                        {message || "One of our specialists will reach out to your provided coordinates within 24 hours."}
+                      </p>
+                      <div className="pt-4">
+                        <div className="h-1 w-24 bg-gray-100 rounded-full overflow-hidden">
+                          <motion.div 
+                            initial={{ width: "100%" }}
+                            animate={{ width: "0%" }}
+                            transition={{ duration: 5, ease: "linear" }}
+                            className="h-full bg-[#14b8a6]"
+                          />
+                        </div>
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="form"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                    >
+                      {error && (
+                        <motion.div 
+                          initial={{ opacity: 0, y: -10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className="mb-8 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-4"
+                        >
+                          <div className="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center shrink-0">
+                            <AlertCircle size={16} className="text-red-600" />
+                          </div>
+                          <div>
+                            <p className="text-[10px] font-bold text-red-600 uppercase tracking-widest leading-none mb-1">Transmission Error</p>
+                            <p className="text-xs text-red-500 font-light">{message}</p>
+                          </div>
+                        </motion.div>
+                      )}
+
+                <form onSubmit={handleSubmit} noValidate className="space-y-6">
                   {/* Section 01: Identification */}
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
@@ -206,7 +296,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                     </div>
 
                     <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                      <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                      <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
                         <input
                           type="text"
                           required
@@ -218,8 +308,8 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             if (errors.name) setErrors({ ...errors, name: null });
                           }}
                         />
-                        <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                        {errors.company && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.company}</p>}
+                        <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                        {errors.name && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.name}</p>}
                       </div>
                       <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
                         <input
@@ -268,7 +358,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                           required
                           placeholder="Mobile Link"
                           inputMode="numeric"
-                          maxLength={15}
+                          maxLength={10}
                           pattern="[0-9]*"
                           className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                           value={formData.phone}
@@ -351,8 +441,12 @@ export default function GetDemoModal({ isOpen, onClose }) {
                     </Button>
                   </div>
                 </form>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             </div>
+
           </motion.div>
         </div>
       )}

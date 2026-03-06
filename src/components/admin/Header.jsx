@@ -34,7 +34,7 @@ export default function AdminHeader({ setIsOpen }) {
                </div>
              </div>
              {/* Dropdown for Logout */}
-             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all">
+             <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-100 py-1 opacity-0 group-hover:opacity-100 invisible group-hover:visible transition-all overflow-hidden">
                 <button 
                   onClick={logout}
                   className="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50"
