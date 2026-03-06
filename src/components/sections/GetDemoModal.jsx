@@ -63,6 +63,21 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
+  const validate = () => {
+    const newErrors = {};
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+
+    if (!formData.name || formData.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
+    if (!formData.company || formData.company.length < 2) newErrors.company = 'Company must be at least 2 characters.';
+    if (!formData.email || !emailRegex.test(formData.email)) newErrors.email = 'Please enter a valid email address.';
+    if (!formData.phone || !/^\+?[\d\s-]{10,}$/.test(formData.phone)) newErrors.phone = 'Please enter a valid phone number.';
+    if (!formData.product_id) newErrors.product_id = 'Please select a product.';
+    if (!formData.objective || formData.objective.length < 5) newErrors.objective = 'Please provide an objective.';
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validate()) return;

@@ -23,8 +23,9 @@ export default function Contact() {
 
   const validate = () => {
     const newErrors = {};
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
     if (!formState.name || formState.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
-    if (!formState.email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) newErrors.email = 'Please enter a valid email address.';
+    if (!formState.email || !emailRegex.test(formState.email)) newErrors.email = 'Please enter a valid email address.';
     if (!formState.phone || !/^\+?[\d\s-]{10,}$/.test(formState.phone)) newErrors.phone = 'Please enter a valid phone number (min 10 digits).';
     if (!formState.title || formState.title.length < 3) newErrors.title = 'Please provide a subject.';
     if (!formState.description || formState.description.length < 10) newErrors.description = 'Please provide a more detailed briefing (min 10 chars).';
