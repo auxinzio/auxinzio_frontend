@@ -11,14 +11,14 @@ const LoaderContent = () => {
 
     useEffect(() => {
         // Show loader on route change
-        setLoading(true);
+        // setLoading(true);
 
         const timer = setTimeout(() => {
             setLoading(false);
         }, 800); // Minimum display time for smoothness
 
         return () => clearTimeout(timer);
-    }, [pathname, searchParams]);
+    }, []);
 
     return (
         <div className={`loader-overlay ${!loading ? "loader-hidden" : ""}`}>

@@ -10,11 +10,26 @@ import ProgressBar from '@/components/ui/ProgressBar';
 export default function Products() {
     const { settings } = useSettings();
     const [product, setProduct] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
-            .then(res => res.json())
-            .then(data => setProduct(data))
+        if (settings?.backend_api_url) {
+            setLoading(true);
+            fetch(`${settings.backend_api_url}/api/products/productsList`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({})
+            })
+                .then(res => res.json())
+                .then(data => {
+                    setProduct(data);
+                    setLoading(false);
+                })
+                .catch(err => {
+                    console.error("Error fetching products:", err);
+                    setLoading(false);
+                });
+        }
     }, [settings]);
     return (
         <>
@@ -128,7 +143,11 @@ export default function Products() {
                                 >
                                     <div className="bg-white border border-gray-200 px-6 py-4 shadow-sm">
                                         <div className="text-3xl font-light text-gray-900 mb-1">
-                                            {product.length > 0 ? product.length : '12'}<span className="text-[#22c55e]">+</span>
+                                            {loading ? (
+                                                <div className="h-8 w-12 bg-gray-100 animate-pulse rounded" />
+                                            ) : (
+                                                <>{product?.data?.productsList?.length || '0'}<span className="text-[#22c55e]">+</span></>
+                                            )}
                                         </div>
                                         <div className="text-xs tracking-[0.15em] uppercase text-gray-500">
                                             Global Platforms
@@ -209,7 +228,7 @@ export default function Products() {
             </section>
 
             {/* Product Features Section */}
-            <ProductFeature products={product} />
+            <ProductFeature products={product} loading={loading} />
 
             {/* Product Experience Section */}
             <ProductExperience />
