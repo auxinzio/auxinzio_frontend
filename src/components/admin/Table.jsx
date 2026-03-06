@@ -18,6 +18,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const [formData, setFormData] = useState({});
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
+    const [formErrors, setFormErrors] = useState({});
     const productList = useMemo(() => {
         if (product && Array.isArray(product)) {
             return product.map((item) => ({
@@ -226,23 +227,27 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         setIsApplicationModalOpen(false);
         setFormData({});
         setSelectedItem(null);
+        setFormErrors({});
     };
 
     const handleModalClose = () => {
         setIsModalOpen(false);
         setFormData({});
         setSelectedItem(null);
+        setFormErrors({});
     };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({ ...prev, [name]: value }));
+        if (formErrors[name]) setFormErrors(prev => ({ ...prev, [name]: '' }));
     };
 
     const handleFileChange = (e, fieldName) => {
         const file = e.target.files[0];
         if (file) {
             setFormData(prev => ({ ...prev, [fieldName]: file }));
+            if (formErrors[fieldName]) setFormErrors(prev => ({ ...prev, [fieldName]: '' }));
         }
     };
 
@@ -262,6 +267,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         const file = e.dataTransfer.files[0];
         if (file && file.type.startsWith('image/')) {
             setFormData(prev => ({ ...prev, [fieldName]: file }));
+            if (formErrors[fieldName]) setFormErrors(prev => ({ ...prev, [fieldName]: '' }));
         }
     };
 
@@ -271,10 +277,54 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             delete newData[fieldName];
             return newData;
         });
+        if (formErrors[fieldName]) setFormErrors(prev => ({ ...prev, [fieldName]: '' }));
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        // Form Validation
+        const fields = getFormFields(title);
+        const optionalFields = ['sub_logo', 'github', 'linkedin', 'portfolio', 'extra', 'tag'];
+        let newErrors = {};
+
+        for (const field of fields) {
+            if (optionalFields.includes(field.name)) continue;
+
+            if (field.type === 'image' || field.type === 'file') {
+                if (modalMode === 'add' && !formData[field.name]) {
+                    newErrors[field.name] = `Please provide ${field.label}`;
+                }
+            } else {
+                const val = formData[field.name];
+                if (val === undefined || val === null || String(val).trim() === '') {
+                    newErrors[field.name] = `Please fill in ${field.label}`;
+                    continue;
+                }
+
+                if (field.type === 'email' || field.name === 'email') {
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (val && !emailRegex.test(val)) {
+                        newErrors[field.name] = `Please enter a valid ${field.label}`;
+                        continue;
+                    }
+                }
+
+                if (field.name === 'phone') {
+                    const phoneRegex = /^\+?[\d\s\-()]{8,}$/;
+                    if (val && !phoneRegex.test(val)) {
+                        newErrors[field.name] = `Please enter a valid ${field.label}`;
+                        continue;
+                    }
+                }
+            }
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setFormErrors(newErrors);
+            return;
+        }
+
         let dataToSave = { ...formData };
 
         // Structure data based on the section title
@@ -970,20 +1020,23 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                             </label>
 
                             {field.type === 'textarea' ? (
-                                <textarea
-                                    name={field.name}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleInputChange}
-                                    placeholder={field.placeholder}
-                                    className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 min-h-[100px]"
-                                />
+                                <>
+                                    <textarea
+                                        name={field.name}
+                                        value={formData[field.name] || ''}
+                                        onChange={handleInputChange}
+                                        placeholder={field.placeholder}
+                                        className={`w-full px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2 min-h-[100px]`}
+                                    />
+                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
+                                </>
                             ) : field.type === 'select' ? (
                                 <div className="relative">
                                     <select
                                         name={field.name}
                                         value={formData[field.name] || ''}
                                         onChange={handleInputChange}
-                                        className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500 appearance-none pr-10"
+                                        className={`w-full px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2 appearance-none pr-10`}
                                     >
                                         <option value="">Select {field.label}</option>
                                         {field.options && field.options.map((opt) => (
@@ -997,6 +1050,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </div>
+                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
                                 </div>
                             ) : field.type === 'image' ? (
                                 <div className="space-y-2">
@@ -1014,7 +1068,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             className="hidden"
                                             accept="image/*"
                                         />
-                                        <div className={`flex items-center justify-center w-full px-6 py-8 border-2 border-dashed rounded-xl cursor-pointer transition-all group ${isDragging ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:bg-gray-50 hover:border-green-400'
+                                        <div className={`flex items-center justify-center w-full px-6 py-8 border-2 border-dashed rounded-xl cursor-pointer transition-all group ${isDragging ? 'border-green-500 bg-green-50' : (formErrors[field.name] ? 'border-red-500 bg-red-50 hover:bg-red-100' : 'border-gray-300 hover:bg-gray-50 hover:border-green-400')
                                             }`}>
                                             <div className="space-y-2 text-center w-full">
                                                 <div className={`mx-auto w-10 h-10 mb-2 flex items-center justify-center rounded-full transition-colors ${isDragging ? 'bg-green-100 text-green-600' : 'bg-gray-50 text-gray-400 group-hover:bg-green-50 group-hover:text-green-500'
@@ -1048,6 +1102,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             </div>
                                         </div>
                                     </label>
+                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
 
                                     {/* Preview if image exists */}
                                     {formData[field.name] && (
@@ -1072,14 +1127,17 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                     )}
                                 </div>
                             ) : (
-                                <input
-                                    type={field.type}
-                                    name={field.name}
-                                    value={formData[field.name] || ''}
-                                    onChange={handleInputChange}
-                                    placeholder={field.placeholder}
-                                    className="w-full px-4 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500/20 focus:border-green-500"
-                                />
+                                <>
+                                    <input
+                                        type={field.type}
+                                        name={field.name}
+                                        value={formData[field.name] || ''}
+                                        onChange={handleInputChange}
+                                        placeholder={field.placeholder}
+                                        className={`w-full px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2`}
+                                    />
+                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
+                                </>
                             )}
                         </div>
                     ))}

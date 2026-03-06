@@ -44,6 +44,14 @@ export function Footer() {
 
   const handleSubscribe = async (e) => {
     e.preventDefault();
+
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    if (!emailRegex.test(email)) {
+      setSubscribeStatus({ success: false, message: "Please enter a valid email address." });
+      setTimeout(() => setSubscribeStatus(null), 5000);
+      return;
+    }
+
     setSubscribing(true);
     setSubscribeStatus(null);
 

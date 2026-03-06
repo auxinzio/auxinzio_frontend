@@ -29,8 +29,18 @@ export default function JobDetailsPage() {
     designation: '',
   });
 
+  const validate = () => {
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    if (!emailRegex.test(formData.email)) {
+      toast.error('Please enter a valid email address.');
+      return false;
+    }
+    return true;
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!validate()) return;
     setIsSubmitted(false);
     const data = {
       job_id: careerData?.job_id,
