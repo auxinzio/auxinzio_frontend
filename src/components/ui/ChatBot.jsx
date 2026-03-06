@@ -52,6 +52,13 @@ export const ChatBot = () => {
         const userMsg = { id: Date.now(), type: "user", text: input };
         setMessages([...messages, userMsg]);
         setInput("");
+
+        if (!settings?.backend_api_url) {
+            const botMsg = { id: Date.now() + 1, type: "bot", text: "I'm sorry, I'm currently disconnected from the server." };
+            setMessages(prev => [...prev, botMsg]);
+            return;
+        }
+
         fetch(`${settings.backend_api_url}/api/chatbot/query`, {
             method: "POST",
             headers: {
@@ -154,9 +161,8 @@ export const ChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
-                className={`group absolute bottom-4 right-4 w-16 h-16 p-3 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 bg-white ${
-                    isOpen ? "translate-x-[120%] opacity-0 pointer-events-none" : "translate-x-0 opacity-100"
-                }`}
+                className={`group absolute bottom-4 right-4 w-16 h-16 p-3 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 bg-white ${isOpen ? "translate-x-[120%] opacity-0 pointer-events-none" : "translate-x-0 opacity-100"
+                    }`}
             >
                 <div className="relative w-10 h-10">
                     <Image src="/favicon.png" alt="Logo" fill className="object-contain" />

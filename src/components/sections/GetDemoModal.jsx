@@ -33,6 +33,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
   const [product, setProduct] = useState([]);
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/products/productsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
       .then(res => res.json())
       .then(data => setProduct(data?.data?.productsList))
@@ -83,7 +84,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
 
     if (!formData.name || formData.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
     if (!formData.company || formData.company.length < 2) newErrors.company = 'Company must be at least 2 characters.';
-    
+
     if (!formData.email) {
       newErrors.email = 'Email address is required.';
     } else if (!emailRegex.test(formData.email)) {
@@ -111,6 +112,14 @@ export default function GetDemoModal({ isOpen, onClose }) {
     setMessage("");
     setSuccess(false);
     setError(false);
+
+    if (!settings?.backend_api_url) {
+      setError(true);
+      setMessage("API configuration missing.");
+      setLoading(false);
+      return;
+    }
+
     fetch(`${settings.backend_api_url}/api/enquiry/submit`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(formData) })
       .then(res => res.json())
       .then(data => {
@@ -126,7 +135,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
             product_id: "",
           });
           setErrors({});
-          
+
           // Close modal after 5 seconds
           setTimeout(() => {
             handleClose();
@@ -255,7 +264,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                       </p>
                       <div className="pt-4">
                         <div className="h-1 w-24 bg-gray-100 rounded-full overflow-hidden">
-                          <motion.div 
+                          <motion.div
                             initial={{ width: "100%" }}
                             animate={{ width: "0%" }}
                             transition={{ duration: 5, ease: "linear" }}
@@ -272,7 +281,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                       exit={{ opacity: 0 }}
                     >
                       {error && (
-                        <motion.div 
+                        <motion.div
                           initial={{ opacity: 0, y: -10 }}
                           animate={{ opacity: 1, y: 0 }}
                           className="mb-8 p-4 bg-red-50 border border-red-100 rounded-2xl flex items-center gap-4"
@@ -287,160 +296,160 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         </motion.div>
                       )}
 
-                <form onSubmit={handleSubmit} noValidate className="space-y-6">
-                  {/* Section 01: Identification */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">1</span>
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Identification</h3>
-                    </div>
+                      <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                        {/* Section 01: Identification */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">1</span>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Identification</h3>
+                          </div>
 
-                    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                      <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Your Name"
-                          className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
-                          value={formData.name}
-                          onChange={(e) => {
-                            setFormData({ ...formData, name: e.target.value });
-                            if (errors.name) setErrors({ ...errors, name: null });
-                          }}
-                        />
-                        <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                        {errors.name && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.name}</p>}
-                      </div>
-                      <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Organization Name"
-                          className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
-                          value={formData.company}
-                          onChange={(e) => {
-                            setFormData({ ...formData, company: e.target.value });
-                            if (errors.company) setErrors({ ...errors, company: null });
-                          }}
-                        />
-                        <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                        {errors.company && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.company}</p>}
-                      </div>
-                    </div>
-                  </div>
+                          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                            <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                              <input
+                                type="text"
+                                required
+                                placeholder="Your Name"
+                                className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
+                                value={formData.name}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, name: e.target.value });
+                                  if (errors.name) setErrors({ ...errors, name: null });
+                                }}
+                              />
+                              <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              {errors.name && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.name}</p>}
+                            </div>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                              <input
+                                type="text"
+                                required
+                                placeholder="Organization Name"
+                                className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
+                                value={formData.company}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, company: e.target.value });
+                                  if (errors.company) setErrors({ ...errors, company: null });
+                                }}
+                              />
+                              <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              {errors.company && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.company}</p>}
+                            </div>
+                          </div>
+                        </div>
 
-                  {/* Section 02: Communication */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">2</span>
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication</h3>
-                    </div>
+                        {/* Section 02: Communication */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">2</span>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication</h3>
+                          </div>
 
-                    <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                      <div className={cn("relative group border-b transition-all pb-1", errors.email ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                        <input
-                          type="email"
-                          required
-                          placeholder="Protocol Mail"
-                          className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
-                          value={formData.email}
-                          onChange={(e) => {
-                            setFormData({ ...formData, email: e.target.value.replace(/[^a-zA-Z0-9.@]/g, '') });
-                            if (errors.email) setErrors({ ...errors, email: null });
-                          }}
-                        />
-                        <Mail className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.email ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                        {errors.email && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.email}</p>}
-                      </div>
-                      <div className={cn("relative group border-b transition-all pb-1", errors.phone ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                        <input
-                          type="text"
-                          required
-                          placeholder="Mobile Link"
-                          inputMode="numeric"
-                          maxLength={10}
-                          pattern="[0-9]*"
-                          className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
-                          value={formData.phone}
-                          onChange={(e) => {
-                            setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') });
-                            if (errors.phone) setErrors({ ...errors, phone: null });
-                          }}
-                        />
-                        <Phone className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.phone ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                        {errors.phone && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.phone}</p>}
-                      </div>
-                    </div>
-                  </div>
+                          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                            <div className={cn("relative group border-b transition-all pb-1", errors.email ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                              <input
+                                type="email"
+                                required
+                                placeholder="Protocol Mail"
+                                className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
+                                value={formData.email}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, email: e.target.value.replace(/[^a-zA-Z0-9.@]/g, '') });
+                                  if (errors.email) setErrors({ ...errors, email: null });
+                                }}
+                              />
+                              <Mail className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.email ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              {errors.email && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.email}</p>}
+                            </div>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.phone ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                              <input
+                                type="text"
+                                required
+                                placeholder="Mobile Link"
+                                inputMode="numeric"
+                                maxLength={10}
+                                pattern="[0-9]*"
+                                className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
+                                value={formData.phone}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') });
+                                  if (errors.phone) setErrors({ ...errors, phone: null });
+                                }}
+                              />
+                              <Phone className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.phone ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              {errors.phone && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.phone}</p>}
+                            </div>
+                          </div>
+                        </div>
 
-                  {/* Section 03: Ecosystem */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">3</span>
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Ecosystem Selection</h3>
-                    </div>
-                    <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                      <select
-                        required
-                        className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
-                        value={formData.product_id}
-                        onChange={(e) => {
-                          setFormData({ ...formData, product_id: e.target.value });
-                          if (errors.product_id) setErrors({ ...errors, product_id: null });
-                        }}
-                      >
-                        <option value="" className="text-gray-400">Select Product</option>
-                        {product.map((p) => (
-                          <option key={p.id} value={p.id} className="text-gray-900">
-                            {p.product_name}
-                          </option>
-                        ))}
-                      </select>
-                      <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                      {errors.product_id && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.product_id}</p>}
-                    </div>
-                  </div>
+                        {/* Section 03: Ecosystem */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">3</span>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Ecosystem Selection</h3>
+                          </div>
+                          <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <select
+                              required
+                              className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
+                              value={formData.product_id}
+                              onChange={(e) => {
+                                setFormData({ ...formData, product_id: e.target.value });
+                                if (errors.product_id) setErrors({ ...errors, product_id: null });
+                              }}
+                            >
+                              <option value="" className="text-gray-400">Select Product</option>
+                              {product.map((p) => (
+                                <option key={p.id} value={p.id} className="text-gray-900">
+                                  {p.product_name}
+                                </option>
+                              ))}
+                            </select>
+                            <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                            {errors.product_id && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.product_id}</p>}
+                          </div>
+                        </div>
 
-                  {/* Section 04: Objective */}
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">4</span>
-                      <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Objective</h3>
-                    </div>
+                        {/* Section 04: Objective */}
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3">
+                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">4</span>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Objective</h3>
+                          </div>
 
-                    <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
-                      <textarea
-                        placeholder="Project brief or specific requirements..."
-                        rows={1}
-                        className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
-                        value={formData.objective}
-                        onChange={(e) => {
-                          setFormData({ ...formData, objective: e.target.value });
-                          if (errors.objective) setErrors({ ...errors, objective: null });
-                        }}
-                      />
-                      <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
-                      {errors.objective && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.objective}</p>}
-                    </div>
-                  </div>
+                          <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <textarea
+                              placeholder="Project brief or specific requirements..."
+                              rows={1}
+                              className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
+                              value={formData.objective}
+                              onChange={(e) => {
+                                setFormData({ ...formData, objective: e.target.value });
+                                if (errors.objective) setErrors({ ...errors, objective: null });
+                              }}
+                            />
+                            <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                            {errors.objective && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.objective}</p>}
+                          </div>
+                        </div>
 
-                  {/* Actions */}
-                  <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-8">
-                    <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] max-w-[200px] text-center sm:text-left leading-relaxed">
-                      By initiating, you authorize data synchronization.
-                    </p>
+                        {/* Actions */}
+                        <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-8">
+                          <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] max-w-[200px] text-center sm:text-left leading-relaxed">
+                            By initiating, you authorize data synchronization.
+                          </p>
 
-                    <Button
-                      variant="gradi"
-                      disabled={loading}
-                      type="submit"
-                      className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b8a6]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
-                    >
-                      {loading ? 'Processing...' : 'Initiate Synchronization'}
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </Button>
-                  </div>
-                </form>
+                          <Button
+                            variant="gradi"
+                            disabled={loading}
+                            type="submit"
+                            className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b8a6]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
+                          >
+                            {loading ? 'Processing...' : 'Initiate Synchronization'}
+                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                        </div>
+                      </form>
                     </motion.div>
                   )}
                 </AnimatePresence>
