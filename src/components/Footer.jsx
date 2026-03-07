@@ -12,6 +12,7 @@ export function Footer() {
   const [product, setProduct] = useState("");
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/services/servicesList`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -22,6 +23,7 @@ export function Footer() {
   }, [settings]);
 
   useEffect(() => {
+    if (!settings?.backend_api_url) return;
     fetch(`${settings.backend_api_url}/api/products/productsList`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -55,6 +57,12 @@ export function Footer() {
     setSubscribing(true);
     setSubscribeStatus(null);
 
+    if (!settings?.backend_api_url) {
+      setSubscribeStatus({ success: false, message: "API configuration missing." });
+      setSubscribing(false);
+      return;
+    }
+
     try {
       const response = await fetch(`${settings.backend_api_url}/api/subscribers/submit`, {
         method: "POST",
@@ -64,7 +72,7 @@ export function Footer() {
 
       const data = await response.json();
 
-      if (data.status==='ok' || data.success) {
+      if (data.status === 'ok' || data.success) {
         setSubscribeStatus({ success: true, message: "Subscription synchronized successfully." });
         setEmail("");
       } else {
@@ -139,7 +147,7 @@ export function Footer() {
                   </button>
                 </form>
                 {subscribeStatus && (
-                  <motion.p 
+                  <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     className={`text-[10px] font-bold uppercase tracking-widest ${subscribeStatus.success ? 'text-[#14b8a6]' : 'text-red-400'}`}
