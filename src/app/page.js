@@ -24,6 +24,7 @@ export default function Home() {
   const [service, setService] = useState("");
   const [product, setProduct] = useState("");
   const [solution, setSolution] = useState("");
+  const [client, setClient] = useState("");
   const [team, setTeam] = useState("");
   const { settings } = useSettings();
 
@@ -55,6 +56,15 @@ export default function Home() {
       .then(data => setTeam(data))
   }, [settings]);
 
+  useEffect(() => {
+    if (!settings?.backend_api_url) return;
+    fetch(`${settings.backend_api_url}/api/clients/clientsList`, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({}) })
+      .then(res => res.json())
+      .then(data => setClient(data))
+  }, [settings]);
+
+  console.log(client);
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -77,7 +87,7 @@ export default function Home() {
       {/* Progress Bar */}
       <ProgressBar />
       {/* --- HERO: THE ARCHITECTURAL MONOLITH --- */}
-      <section className="relative h-screen lg:min-h-[850px] min-h-[1100px] flex items-center pt-30 px-6 lg:px-12 bg-gray-50/30">
+      <section className="relative h-screen lg:min-h-[850px] min-h-[1000px] flex items-center lg:pt-30 md:pt-20 sm:pt-0 px-6 lg:px-12 bg-gray-50/30">
 
         {/* Background Large Text (Watermark) */}
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full opacity-[0.02] select-none pointer-events-none lg:block hidden">
@@ -97,7 +107,7 @@ export default function Home() {
                 <div className="w-12 h-px bg-[#14b8a6]" />
                 <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Synthesizing Tomorrow</span>
               </div>
-              <h1 className="text-4xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
+              <h1 className="text-6xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
                 Engineering <br />
                 <span className="italic font-normal text-[#14b8a6]">Business</span> <br />
                 <span className="font-medium">Excellence</span>
@@ -145,7 +155,7 @@ export default function Home() {
             transition={{ duration: 1.2, delay: 0.3 }}
             className="lg:col-span-5 relative"
           >
-            <div className="relative aspect-[4/5] w-full rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-8 border-white group">
+            <div className="relative lg:aspect-[4/5] w-full rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] border-8 border-white group">
               <video
                 autoPlay
                 loop
@@ -157,11 +167,11 @@ export default function Home() {
               </video>
 
               {/* Floating Meta Overlay */}
-              <div className="absolute bottom-8 left-8 right-8 bg-white/10 backdrop-blur-xl p-8 rounded-[2.5rem] border border-white/20">
+              <div className="absolute lg:bottom-8 lg:left-8 lg:right-8 bottom-4 left-4 right-4 bg-white/10 backdrop-blur-xl lg:p-8 p-4 rounded-[2.5rem] border border-white/20">
                 <div className="flex justify-between items-end">
                   <div>
                     <p className="text-[10px] uppercase tracking-widest text-white/60 mb-1">Success Metric</p>
-                    <p className="text-3xl font-light text-white tracking-tighter">98.4% Retention</p>
+                    <p className="lg:text-3xl text-2xl font-light text-white tracking-tighter">98.4% Retention</p>
                   </div>
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
                     <TrendingUp className="text-[#14b8a6] w-6 h-6" />
@@ -215,7 +225,7 @@ export default function Home() {
       {/* <Teams data={team.data} /> */}
 
       {/* --- CLIENTS: THE GLOBAL SYNERGY GRID --- */}
-      <ClientSection clients={clients} />
+      <ClientSection clients={client?.data?.clientsList} />
 
       {/* CTA Section */}
       <CTASection />

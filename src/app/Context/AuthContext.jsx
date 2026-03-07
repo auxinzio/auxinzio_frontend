@@ -20,6 +20,13 @@ export function AuthProvider({ children }) {
   const pathname = usePathname();
 
   useEffect(() => {
+    // Only run auth check on admin panel pages
+    if (!pathname.startsWith('/admin/')) {
+      setIsLoading(false);
+      return;
+    }
+
+    // Skip the API call on the login page itself (no token to check yet)
     if (pathname === '/admin/login') {
       setIsLoading(false);
       return;

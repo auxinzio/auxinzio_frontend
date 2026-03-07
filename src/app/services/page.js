@@ -17,23 +17,28 @@ export default function Services() {
    const containerRef = useRef(null);
 
    useEffect(() => {
-      if (settings?.backend_api_url) {
-         setLoading(true);
-         fetch(`${settings.backend_api_url}/api/services/servicesList`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({})
-         })
-            .then(res => res.json())
-            .then(data => {
+      if (!settings?.backend_api_url) return;
+
+      let cancelled = false;
+
+      fetch(`${settings.backend_api_url}/api/services/servicesList`, {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify({})
+      })
+         .then(res => res.json())
+         .then(data => {
+            if (!cancelled) {
                setService(data);
                setLoading(false);
-            })
-            .catch(err => {
-               console.error("Error fetching services:", err);
-               setLoading(false);
-            });
-      }
+            }
+         })
+         .catch(err => {
+            console.error("Error fetching services:", err);
+            if (!cancelled) setLoading(false);
+         });
+
+      return () => { cancelled = true; };
    }, [settings]);
 
    // Fallback services if API is empty for design demonstration
@@ -70,7 +75,7 @@ export default function Services() {
                         <div className="w-12 h-px bg-[#14b8a6]" />
                         <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Engineering Excellence</span>
                      </div>
-                     <h1 className="text-7xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
+                     <h1 className="text-6xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                         Our <span className="italic font-medium text-[#14b8a6]">Capabilities</span><br />
                         <span className="font-medium text-gray-200">Explained.</span>
                      </h1>

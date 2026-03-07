@@ -2,8 +2,11 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useSettings } from "@/app/Context/SettingsContext";
 
 export default function ClientSection({clients}){
+  const { settings } = useSettings();
+  console.log(clients);
     return(
         <>
             <section className="relative py-10 lg:py-20 lg:pt-0 pt-0 bg-white overflow-hidden">
@@ -34,7 +37,7 @@ export default function ClientSection({clients}){
                               <div className="w-12 h-px bg-[#14b8a6]" />
                               <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Global Synergy</span>
                             </div>
-                            <h2 className="text-6xl lg:text-[7rem] font-light text-gray-900 tracking-tighter leading-[0.8] mb-12">
+                            <h2 className="text-5xl lg:text-[7rem] font-light text-gray-900 tracking-tighter leading-[0.8] mb-12">
                               Our <br />
                               <span className="italic font-normal text-[#14b8a6]">Elite</span> <br />
                               Network.
@@ -64,7 +67,7 @@ export default function ClientSection({clients}){
                         {/* Right: Responsive Logo Matrix */}
                         <div className="lg:col-span-7">
                           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 lg:gap-6">
-                            {[...clients].map((client, idx) => (
+                            {clients?.map((client, idx) => (
                               <motion.div
                                 key={idx}
                                 initial={{ opacity: 0, y: 20 }}
@@ -76,8 +79,8 @@ export default function ClientSection({clients}){
                                 <div className="relative aspect-[4/3] bg-gray-50/50 rounded-[2rem] border border-gray-100 flex items-center justify-center p-8 lg:p-12 hover:bg-white hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-700">
                                   <div className="relative w-full h-full">
                                     <Image
-                                      src={`/assets/img/client/${client}`}
-                                      alt="Partner Logo"
+                                      src={`${settings?.backend_api_url}/${client.image}`}
+                                      alt={`${client.name}`}
                                       fill
                                       className="object-contain opacity-40 grayscale group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 scale-90 group-hover:scale-110"
                                     />

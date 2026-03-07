@@ -27,7 +27,7 @@ export default function ServiceSection({ service }) {
                            <div className="w-12 h-px bg-[#14b8a6]" />
                            <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Synthesized Delivery</span>
                         </div>
-                        <h2 className="text-6xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
+                        <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                            Transformative <br />
                            <span className="font-medium text-gray-200">Digital</span><br />
                            <span className="italic font-normal text-[#14b8a6]">Ecosystems.</span>

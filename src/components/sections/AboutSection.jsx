@@ -29,7 +29,7 @@ export function AboutSection() {
                      <div className="w-12 h-px bg-[#14b8a6]" />
                      <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">{about.tag}</span>
                   </div>
-                  <h2 className="text-6xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
+                  <h2 className="text-5xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
                      Synthesizing <br />
                      <span className="italic font-medium text-[#14b8a6]">Digital</span> <br />
                      <span className="font-medium">Legacies</span>

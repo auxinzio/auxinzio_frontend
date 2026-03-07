@@ -205,13 +205,13 @@ export default function GetDemoModal({ isOpen, onClose }) {
                 style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-xl p-2 bg-[#14b8a6]/20 border border-[#14b8a6]/30 flex items-center justify-center">
-                    <Image src="/favicon.png" alt="Logo" width={50} height={50} />
+                <div className="flex items-center md:gap-4 gap-2 md:mb-8 mb-3">
+                  <div className="w-100 h-20 rounded-xl p-2 flex items-center justify-center">
+                    <Image src="/assets/img/logo.png" alt="Logo" width={150} height={50} />
                   </div>
                 </div>
 
-                <h2 className="text-3xl lg:text-6xl font-light tracking-tighter leading-[0.95] mb-8">
+                <h2 className="text-3xl lg:text-6xl font-light tracking-tighter leading-[0.95] hd:mb-8">
                   Request <br />
                   <span className="italic font-normal text-[#14b8a6]">Synchronization.</span>
                 </h2>
@@ -420,7 +420,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                           <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
                             <textarea
                               placeholder="Project brief or specific requirements..."
-                              rows={1}
+                              rows={2}
                               className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
                               value={formData.objective}
                               onChange={(e) => {
