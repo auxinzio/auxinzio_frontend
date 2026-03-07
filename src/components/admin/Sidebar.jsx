@@ -42,6 +42,7 @@ const sidebarItems = [
   { name: 'Contact', href: '/admin/contact', icon: SquareUser },
   { name: 'Enquiry', href: '/admin/enquiry', icon: Toolbox },
   { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
+  { name: 'Clients', href: '/admin/clients', icon: Users },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 
