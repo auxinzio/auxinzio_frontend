@@ -28,9 +28,15 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         }
         return [];
     }, [product]);
-
+    console.log(dataArray);
     const getFormFields = (type) => {
         switch (type) {
+            case "Clients":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
+                    { name: "image", label: "Image", type: "file", placeholder: "Enter image" },
+                    { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
+                ];
             case "Settings":
                 return [
                     { name: "key", label: "Key", type: "text", placeholder: "Enter key" },
@@ -418,6 +424,8 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return mode === 'add' ? '/contacts/create' : '/contacts/update';
             case 'Enquiry':
                 return mode === 'add' ? '/enquiry/create' : '/enquiry/update';
+            case 'Clients':
+                return mode === 'add' ? '/clients/create' : '/clients/update';
             case 'Settings':
                 return mode === 'add' ? '/settings/create' : '/settings/update';
             default:
@@ -519,7 +527,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
                         <h1 className="text-2xl font-bold text-gray-900">{title} Management</h1>
-                        <p className="text-gray-500">View and manage your agency {title.toLowerCase()}</p>
+                        <p className="text-gray-500">View and manage your {title.toLowerCase()}</p>
                     </div>
                     {title !== "Applications" && (
                         <button
@@ -669,6 +677,13 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Object</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
+                                                title === "Clients" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Image</th>
                                                     </>
                                                 )
                                             }
@@ -880,6 +895,17 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 {item.phone}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    title === "Clients" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                <span className="px-2 py-1">
+                                                                    <Image src={`${settings?.backend_api_url}/${item.image}`} alt={`${item.name}`} className=" mx-auto" width={100} height={100} />
+                                                                </span>
                                                             </td>
                                                         </>
                                                     )

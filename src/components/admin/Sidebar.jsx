@@ -42,6 +42,7 @@ const sidebarItems = [
   { name: 'Contact', href: '/admin/contact', icon: SquareUser },
   { name: 'Enquiry', href: '/admin/enquiry', icon: Toolbox },
   { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
+  { name: 'Clients', href: '/admin/clients', icon: Users },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 
@@ -76,21 +77,21 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
         )}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-100">
-          <Link 
-            href="/admin/dashboard" 
+          <Link
+            href="/admin/dashboard"
             className="flex items-center gap-3 group transition-all duration-300"
           >
             <div className="relative flex items-center justify-center w-10 h-10 bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden shrink-0 group-hover:shadow-md transition-shadow">
-              <Image 
-                src="/favicon.png" 
-                alt="Logo" 
-                width={28} 
-                height={28} 
+              <Image
+                src="/favicon.png"
+                alt="Logo"
+                width={28}
+                height={28}
                 className="relative z-10 transition-transform duration-500 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            
+
             <div className="flex flex-col">
               <span className="text-sm font-black tracking-tighter text-gray-900 uppercase leading-tight">
                 Auxinzio
