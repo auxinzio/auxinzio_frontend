@@ -26,6 +26,7 @@ import {
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/app/Context/AuthContext'
 import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 const sidebarItems = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
@@ -75,11 +76,31 @@ export default function AdminSidebar({ isOpen, setIsOpen }) {
         )}
       >
         <div className="flex items-center justify-between h-16 px-6 border-b border-gray-100">
-          <Link href="/admin/dashboard" className="flex items-center gap-2 font-bold text-xl text-gray-900">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-green-500 to-cyan-500 flex items-center justify-center text-white">
-              A
+          <Link 
+            href="/admin/dashboard" 
+            className="flex items-center gap-3 group transition-all duration-300"
+          >
+            <div className="relative flex items-center justify-center w-10 h-10 bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden shrink-0 group-hover:shadow-md transition-shadow">
+              <Image 
+                src="/favicon.png" 
+                alt="Logo" 
+                width={28} 
+                height={28} 
+                className="relative z-10 transition-transform duration-500 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
-            <span>Admin</span>
+            
+            <div className="flex flex-col">
+              <span className="text-sm font-black tracking-tighter text-gray-900 uppercase leading-tight">
+                Auxinzio
+              </span>
+              <div className="flex items-center gap-1.5">
+                <span className="text-[10px] font-bold tracking-[0.15em] text-primary uppercase">
+                  Admin
+                </span>
+              </div>
+            </div>
           </Link>
           <button onClick={() => setIsOpen(false)} className="md:hidden text-gray-500">
             <X size={20} />

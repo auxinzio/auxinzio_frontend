@@ -2,8 +2,11 @@
 /**
  * Validates the API response and handles common errors.
  */
-async function handleResponse(response) {
-  if (response.status === 401) {
+/**
+ * Validates the API response and handles common errors.
+ */
+async function handleResponse(response, options = {}) {
+  if (response.status === 401 && !options.skipRedirect) {
     // Session expired or invalid token
     if (typeof window !== 'undefined') {
       window.location.href = '/admin/login';
@@ -25,7 +28,14 @@ async function handleResponse(response) {
   }
 
   if (!response.ok) {
+    // If it's a 401 and we skipped redirect, we still want to return the error data
     const error = (data && data.message) || response.statusText || `Error ${response.status}`;
+    // If we skip redirect, we might want to return the data even if not ok, 
+    // but the current pattern is to throw. Let's return data if it's a skipped redirect 401
+    // to allow the component to handle specific error messages from the backend.
+    if (response.status === 401 && options.skipRedirect) {
+        return { ...data, statuscode: 401, status: "error" };
+    }
     throw new Error(error);
   }
 
@@ -37,32 +47,29 @@ async function handleResponse(response) {
  * Usage: api.get('/users'), api.post('/services', data)
  */
 export const cmsApi = {
-  get: async (endpoint) => {
-    // Strip leading slash if present to avoid double slash
+  get: async (endpoint, options = {}) => {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
     const response = await fetch(`/api-proxy/cms/${path}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
-    return handleResponse(response);
+    return handleResponse(response, options);
   },
 
-  post: async (endpoint, body) => {
+  post: async (endpoint, body, options = {}) => {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
     const isFormData = body instanceof FormData;
-
     const response = await fetch(`/api-proxy/cms/${path}`, {
       method: 'POST',
       headers: isFormData ? {} : { 'Content-Type': 'application/json' },
       body: isFormData ? body : JSON.stringify(body),
     });
-    return handleResponse(response);
+    return handleResponse(response, options);
   },
 
-  // Custom fetch wrapper for file uploads or special headers
-  request: async (endpoint, options = {}) => {
+  request: async (endpoint, fetchOptions = {}, apiOptions = {}) => {
     const path = endpoint.startsWith('/') ? endpoint.slice(1) : endpoint;
-    const response = await fetch(`/api/cms/${path}`, options);
-    return handleResponse(response);
+    const response = await fetch(`/api-proxy/cms/${path}`, fetchOptions);
+    return handleResponse(response, apiOptions);
   },
 };

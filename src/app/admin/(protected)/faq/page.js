@@ -24,17 +24,12 @@ export default function FaqPage() {
         page: currentPage,
         limit: ITEMS_PER_PAGE
       });
-      const response1 = await cmsApi.post('/products', {
-        search: searchTerm,
-        page: currentPage,
-        limit: ITEMS_PER_PAGE
-      });
 
       // Update state with backend response
-      if (response && response.data && response1 && response1.data) {
+      if (response && response.data) {
         setData({
           faqList: response.data.faqsList || [],
-          product: response1.data.productsList || [],
+          product: response.data.productsList || [],
           totalCount: response.data.totalCount || 0,
           totalPages: Math.ceil((response.data.totalCount || 0) / ITEMS_PER_PAGE) || 1
         });

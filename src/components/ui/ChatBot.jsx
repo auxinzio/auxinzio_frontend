@@ -12,12 +12,40 @@ export const ChatBot = () => {
     const { settings } = useSettings();
     const [isOpen, setIsOpen] = useState(false);
 
+    const [suggestedQuestions, setSuggestedQuestions] = useState([]);
+
     const [messages, setMessages] = useState([
         { id: 1, type: "bot", text: "Hello! I'm Auxinzio's AI Assistant. How can I help you today?" }
     ]);
     const [input, setInput] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const scrollRef = useRef(null);
     const chatRef = useRef(null);
+
+    useEffect(() => {
+        if (!settings?.backend_api_url) return;
+        
+        fetch(`${settings.backend_api_url}/api/chatbot/initial`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.statuscode === 200 || data.greeting) {
+                    setSuggestedQuestions(data.suggestions || []);
+                    // Update the first message only if user hasn't started talking
+                    setMessages(prev => {
+                        if (prev.length <= 1) {
+                            return [{ id: 'initial', type: "bot", text: data.greeting }];
+                        }
+                        return prev;
+                    });
+                }
+            })
+            .catch(err => console.error("Chatbot initialization failed:", err));
+    }, [settings.backend_api_url]);
 
     useEffect(() => {
         if (scrollRef.current) {
@@ -46,28 +74,57 @@ export const ChatBot = () => {
     // Do not show on admin panel
     if (pathname?.startsWith("/admin")) return null;
 
-    const handleSend = () => {
-        if (!input.trim()) return;
+    const handleSend = (text = input) => {
+        const messageText = typeof text === 'string' ? text : input;
+        if (!messageText.trim()) return;
 
-        const userMsg = { id: Date.now(), type: "user", text: input };
-        setMessages([...messages, userMsg]);
+        setMessages(prev => {
+            const userMsg = { 
+                id: `user-${prev.length}`, 
+                type: "user", 
+                text: messageText 
+            };
+            return [...prev, userMsg];
+        });
+        
         setInput("");
+        setIsLoading(true);
+
+        if (!settings?.backend_api_url) {
+            console.error("Chatbot query failed: backend_api_url is not defined.");
+            return;
+        }
+
         fetch(`${settings.backend_api_url}/api/chatbot/query`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ message: input }),
+            body: JSON.stringify({ message: messageText }),
         })
             .then((response) => response.json())
             .then((data) => {
-                const botMsg = {
-                    id: Date.now() + 1,
-                    type: "bot",
-                    text: data.answer
-                };
-                setMessages(prev => [...prev, botMsg]);
-            });
+                setMessages(prev => {
+                    const botMsg = {
+                        id: `bot-${prev.length}`,
+                        type: "bot",
+                        text: data.answer || "I apologize, I'm having trouble retrieving a response right now."
+                    };
+                    return [...prev, botMsg];
+                });
+            })
+            .catch(err => {
+                console.error("Chatbot query failed:", err);
+                setMessages(prev => {
+                    const errorMsg = {
+                        id: `err-${prev.length}`,
+                        type: "bot",
+                        text: "Connection interrupted. Please verify your sync status."
+                    };
+                    return [...prev, errorMsg];
+                });
+            })
+            .finally(() => setIsLoading(false));
     };
 
     return (
@@ -99,6 +156,7 @@ export const ChatBot = () => {
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="text-gray-400 hover:text-white transition-colors"
+                                aria-label="Close Chat"
                             >
                                 <X className="w-5 h-5" />
                             </button>
@@ -124,7 +182,35 @@ export const ChatBot = () => {
                                     </div>
                                 </motion.div>
                             ))}
+                            {isLoading && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 5 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="flex justify-start"
+                                >
+                                    <div className="bg-gray-50 p-4 rounded-2xl rounded-tl-none border border-gray-100 flex gap-1 items-center">
+                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '0ms' }} />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '150ms' }} />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-gray-300 animate-bounce" style={{ animationDelay: '300ms' }} />
+                                    </div>
+                                </motion.div>
+                            )}
                         </div>
+
+                        {/* Suggestions */}
+                        {suggestedQuestions.length > 0 && messages.length <= 1 && (
+                            <div className="px-6 pb-4 flex flex-wrap gap-2">
+                                {suggestedQuestions.slice(0, 5).map((q, idx) => (
+                                    <button
+                                        key={idx}
+                                        onClick={() => handleSend(q)}
+                                        className="text-[10px] font-bold uppercase tracking-widest px-4 py-2 bg-white border border-gray-100 rounded-full text-gray-400 hover:border-primary/30 hover:text-primary transition-all active:scale-95"
+                                    >
+                                        {q}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
                         {/* Input */}
                         <div className="p-6 border-t border-gray-100 bg-gray-50/50">
@@ -133,12 +219,13 @@ export const ChatBot = () => {
                                     type="text"
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
-                                    onKeyPress={(e) => e.key === "Enter" && handleSend()}
+                                    onKeyDown={(e) => e.key === "Enter" && handleSend()}
                                     placeholder="Type your message..."
                                     className="w-full bg-white border border-gray-100 rounded-2xl py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-[#14b8a6]/30 focus:ring-4 focus:ring-[#14b8a6]/5 transition-all outline-none"
                                 />
                                 <button
                                     onClick={handleSend}
+                                    aria-label="Send Message"
                                     className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#14b8a6] text-white rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#14b8a6]/20"
                                 >
                                     <Send className="w-4 h-4" />
@@ -154,6 +241,7 @@ export const ChatBot = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label="Toggle Chat"
                 className={`group absolute bottom-4 right-4 w-16 h-16 p-3 rounded-full flex items-center justify-center shadow-2xl transition-all duration-500 bg-white ${
                     isOpen ? "translate-x-[120%] opacity-0 pointer-events-none" : "translate-x-0 opacity-100"
                 }`}
