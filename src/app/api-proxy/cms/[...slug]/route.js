@@ -12,6 +12,8 @@ async function handler(req, { params }) {
   const path = slug.join('/'); // e.g. "users" or "services/123"
   const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
   const targetUrl = `${apiUrl}/api/${path}`; // Append query params
+
+
   try {
     // Forward headers
     const headers = new Headers();
