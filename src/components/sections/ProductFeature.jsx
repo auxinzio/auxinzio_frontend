@@ -23,11 +23,13 @@ export function ProductFeature({ products, loading }) {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-6 font-medium">
-              Featured Solutions
-            </p>
-            <h2 className="text-5xl lg:text-6xl font-light text-gray-900 leading-tight tracking-tight">
-              Innovation Through <span className="text-[#14b8a6]">Precision</span>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-px bg-[#14b8a6]" />
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Proprietary Artifacts</span>
+            </div>
+            <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
+              Innovation Through <br />
+              <span className="italic font-normal text-[#14b8a6]">Precision.</span>
             </h2>
           </motion.div>
 
@@ -73,12 +75,12 @@ export function ProductFeature({ products, loading }) {
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: 48 }}
-                    className="h-px bg-[#06b6d4]"
+                    className="h-px bg-[#14b8a6]"
                   />
-                  <h3 className="text-3xl lg:text-4xl font-light text-gray-900 leading-tight">
+                  <h3 className="text-3xl lg:text-4xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                     {product?.product_name}
                   </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+                  <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
                     {product?.tag?.[0]}
                   </p>
                 </div>

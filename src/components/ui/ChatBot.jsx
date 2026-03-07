@@ -24,7 +24,8 @@ export const ChatBot = () => {
 
     useEffect(() => {
         if (!settings?.backend_api_url) return;
-        
+        if (pathname?.startsWith("/admin")) return;
+
         fetch(`${settings.backend_api_url}/api/chatbot/initial`, {
             method: "POST",
             headers: {
@@ -45,7 +46,7 @@ export const ChatBot = () => {
                 }
             })
             .catch(err => console.error("Chatbot initialization failed:", err));
-    }, [settings.backend_api_url]);
+    }, [settings.backend_api_url, pathname]);
 
     useEffect(() => {
         if (scrollRef.current) {

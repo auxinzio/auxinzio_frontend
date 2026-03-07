@@ -7,6 +7,7 @@ import AdminHeader from '@/components/admin/Header'
 
 export default function AdminLayout({ children }) {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false)
   const { isLoading, isAuthenticated } = useAuth()
 
   if (isLoading) {
@@ -28,10 +29,15 @@ export default function AdminLayout({ children }) {
   return (
     <div className="flex min-h-screen bg-gray-50">
       {/* Sidebar */}
-      <AdminSidebar isOpen={isSidebarOpen} setIsOpen={setIsSidebarOpen} />
+      <AdminSidebar
+        isOpen={isSidebarOpen}
+        setIsOpen={setIsSidebarOpen}
+        isCollapsed={isSidebarCollapsed}
+        setIsCollapsed={setIsSidebarCollapsed}
+      />
 
-      {/* Main Content */}
-      <div className="flex flex-col flex-1 md:pl-64 transition-all duration-300">
+      {/* Main Content — padding adjusts with sidebar width */}
+      <div className={`flex flex-col flex-1 transition-all duration-300 ${isSidebarCollapsed ? 'md:pl-[72px]' : 'md:pl-64'}`}>
         <AdminHeader setIsOpen={setIsSidebarOpen} />
 
         <main className="flex-1 p-6 overflow-y-auto">
@@ -41,3 +47,4 @@ export default function AdminLayout({ children }) {
     </div>
   )
 }
+

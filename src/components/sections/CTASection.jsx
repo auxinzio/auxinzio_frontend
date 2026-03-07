@@ -2,8 +2,12 @@
 
 import { Phone, Mail, ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useSettings } from '@/app/Context/SettingsContext';
 
 export default function CTASection() {
+
+      const { settings } = useSettings();
+
     return (
         <section className="relative py-14 lg:py-25 bg-gray-900 border-t border-white/5 overflow-hidden">
             {/* Background Architectural Elements */}
@@ -60,10 +64,10 @@ export default function CTASection() {
                                 <div className="space-y-4">
                                     <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Direct Nexus</h4>
                                     <div className="flex items-center justify-between">
-                                        <a href="mailto:bsanthoshkumar10@gmail.com" className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                        <a href={`mailto:${settings.email}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
                                             Hello <Mail className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
-                                        <a href="tel:+15551234567" className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                        <a href={`tel:${settings.phone}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
                                             Voice <Phone className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
                                     </div>

@@ -299,7 +299,7 @@ export default function Careers() {
                     Join our<br /><span className="text-[#14b8a6] italic font-medium">collective.</span>
                   </h2>
 
-                  <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {filters.map((filter) => (
                       <button
                         key={filter}
@@ -354,9 +354,9 @@ export default function Careers() {
                                 </h3>
                               </div>
 
-                              <div className="flex items-center gap-6 w-[40%] justify-end">
-                                <div className="hidden sm:block text-right">
-                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
+                              <div className="flex items-center gap-6 md:w-[40%] w-full md:justify-end justify-between">
+                                <div className="md:text-right">
+                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Type</p>
                                   <p className="text-sm font-bold text-gray-700">{job.type}</p>
                                 </div>
                                 <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">

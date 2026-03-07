@@ -223,8 +223,8 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-8 h-px bg-[#14b8a6]/20" />
-                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Historical Context</h2>
+                  <div className="w-8 h-px bg-[#14b8a6]/80" />
+                  <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Historical Context</h2>
                 </div>
                 <p className="text-gray-600 leading-[1.8] text-lg font-light italic">
                   &quot;{careerData?.description}&quot;
@@ -239,8 +239,8 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-10">
-                  <div className="w-8 h-px bg-[#14b8a6]/20" />
-                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Core Deliverables</h2>
+                  <div className="w-8 h-px bg-[#14b8a6]/80" />
+                  <h2 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Core Deliverables</h2>
                 </div>
                 <div className="grid gap-6">
                   {careerData?.requirements?.experience?.map((item, index) => (
@@ -264,7 +264,7 @@ export default function JobDetailsPage() {
                 <div className="grid md:grid-cols-2 gap-16">
                   <div>
                     <div className="flex items-center gap-4 mb-10">
-                      <div className="w-6 h-px bg-gray-200" />
+                      <div className="w-6 h-px bg-[#14b8a6]/80" />
                       <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Prerequisites</h3>
                     </div>
                     <ul className="space-y-4">
@@ -279,7 +279,7 @@ export default function JobDetailsPage() {
 
                   <div>
                     <div className="flex items-center gap-4 mb-10">
-                      <div className="w-6 h-px bg-gray-200" />
+                      <div className="w-6 h-px bg-[#14b8a6]/80" />
                       <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Auxiliary Nodes</h3>
                     </div>
                     <ul className="space-y-4">
@@ -415,10 +415,10 @@ export default function JobDetailsPage() {
                     </div>
                     <button
                       type="submit"
-                      className="w-full group relative overflow-hidden py-5 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
+                      className="w-full group relative overflow-hidden py-5 px-3 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-4 transition-transform group-hover:scale-105 duration-500">
-                        Establish Sync Protocol <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        Submit Application <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </span>
                       <div className="absolute inset-0 bg-[#14b8a6] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
