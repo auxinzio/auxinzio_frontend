@@ -13,7 +13,7 @@ const privacyModules = [
     summary: 'Understanding the specific digital footprints we analyze.',
     content: 'We collect information you provide directly to us (names, emails, company data) and automated usage metrics through our infrastructure to optimize your experience.',
     details: ['Personal Identifiers', 'Technical Metadata', 'Engagement Patterns'],
-    color: '#14b8a6'
+    color: '#14b88f'
   },
   {
     icon: Eye,
@@ -57,7 +57,7 @@ const expandedSections = [
 export default function PrivacyPolicy() {
 
   return (
-    <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
+    <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
       {/* Progress Bar */}
       <ProgressBar />
 
@@ -76,14 +76,14 @@ export default function PrivacyPolicy() {
             className="flex flex-col items-center"
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-px bg-[#14b8a6]" />
-              <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Data Protection Protocol</span>
-              <div className="w-12 h-px bg-[#14b8a6]" />
+              <div className="w-12 h-px bg-[#14b88f]" />
+              <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Data Protection Protocol</span>
+              <div className="w-12 h-px bg-[#14b88f]" />
             </div>
 
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="italic font-normal text-[#14b8a6]">Sovereignty.</span>
+              <span className="italic font-normal text-[#14b88f]">Sovereignty.</span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
@@ -104,21 +104,21 @@ export default function PrivacyPolicy() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: idx * 0.2 }}
-                className="group relative bg-white border border-gray-100 p-12 lg:p-16 rounded-[3rem] hover:border-[#14b8a6]/30 transition-all duration-700 overflow-hidden"
+                className="group relative bg-white border border-gray-100 p-12 lg:p-16 rounded-[3rem] hover:border-[#14b88f]/30 transition-all duration-700 overflow-hidden"
               >
                 <div className="relative z-10">
-                  <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500">
+                  <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                     <module.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
 
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b8a6] mb-6">{module.summary}</h3>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b88f] mb-6">{module.summary}</h3>
                   <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                   <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
 
                   <div className="space-y-3">
                     {module.details.map((detail, i) => (
                       <div key={i} className="flex items-center gap-3">
-                        <div className="w-1 h-1 rounded-full bg-[#14b8a6]" />
+                        <div className="w-1 h-1 rounded-full bg-[#14b88f]" />
                         <span className="text-xs font-bold uppercase tracking-widest text-gray-400">{detail}</span>
                       </div>
                     ))}
@@ -146,12 +146,12 @@ export default function PrivacyPolicy() {
             <div className="lg:col-span-5 lg:sticky lg:top-32">
               <div className="space-y-12">
                 <div className="flex items-center gap-4">
-                  <ShieldCheck className="w-6 h-6 text-[#14b8a6]" />
-                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Compliance Standard</span>
+                  <ShieldCheck className="w-6 h-6 text-[#14b88f]" />
+                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Compliance Standard</span>
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
                   Regulatory <br />
-                  <span className="italic font-normal text-[#14b8a6]">Architecture.</span>
+                  <span className="italic font-normal text-[#14b88f]">Architecture.</span>
                 </h2>
                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                   We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
@@ -182,7 +182,7 @@ export default function PrivacyPolicy() {
                   className="relative group"
                 >
                   <div className="flex items-start gap-8">
-                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-[#14b8a6] shrink-0 group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-[#14b88f] shrink-0 group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                       <section.icon className="w-5 h-5" strokeWidth={1.5} />
                     </div>
                     <div>
@@ -190,7 +190,7 @@ export default function PrivacyPolicy() {
                       <p className="text-gray-400 text-xl font-light leading-relaxed mb-12">
                         {section.content}
                       </p>
-                      <button className="flex items-center gap-3 text-[#14b8a6] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                      <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                         Technical Specifics <ArrowRight className="w-4 h-4" />
                       </button>
                     </div>
@@ -201,10 +201,10 @@ export default function PrivacyPolicy() {
               ))}
 
               <div className="bg-white/5 p-12 lg:p-16 rounded-[3rem] border border-white/10 backdrop-blur-xl">
-                <Mail className="w-12 h-12 text-[#14b8a6] mb-8" />
+                <Mail className="w-12 h-12 text-[#14b88f] mb-8" />
                 <h4 className="text-2xl font-light mb-4">Request Data Audit</h4>
                 <p className="text-gray-500 mb-10 leading-relaxed font-light">Want a full report of your data stored on our servers? Our automation engine can generate a secure report for you within 24 hours.</p>
-                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b8a6]/10">
+                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b88f]/10">
                   Initiate Audit
                 </Button>
               </div>
@@ -220,7 +220,7 @@ export default function PrivacyPolicy() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
               Privacy is a <br />
-              <span className="text-[#14b8a6] italic font-normal">Human Right.</span>
+              <span className="text-[#14b88f] italic font-normal">Human Right.</span>
             </h2>
             <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
               If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.

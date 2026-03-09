@@ -143,7 +143,7 @@ export default function Profile() {
             {/* Avatar Header */}
             <div className="h-28 bg-gray-900 relative">
               <div className="absolute inset-0 opacity-[0.04] pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
+                style={{ backgroundImage: 'radial-gradient(#14b88f 1px, transparent 1px)', backgroundSize: '16px 16px' }} />
               <div className="absolute -bottom-10 left-1/2 -translate-x-1/2">
                 <div className="relative group">
                   <div className="w-20 h-20 rounded-2xl bg-white p-1 shadow-lg shadow-gray-200/60">

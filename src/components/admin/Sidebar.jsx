@@ -51,7 +51,7 @@ const sidebarItems = [
 
 export default function AdminSidebar({ isOpen, setIsOpen, isCollapsed, setIsCollapsed }) {
   const pathname = usePathname()
-  const { logout } = useAuth()
+  const { user,logout } = useAuth()
 
   const handleLogout = async () => {
     await logout()
@@ -147,8 +147,12 @@ export default function AdminSidebar({ isOpen, setIsOpen, isCollapsed, setIsColl
                 : <><ChevronsLeft size={20} className="shrink-0" /><span className="whitespace-nowrap">Collapse</span></>
               }
             </button>
+            {console.log(user.user.role)}
             {sidebarItems.map((item) => {
-              const isActive = pathname === item.href
+              const isActive = pathname === item.href;
+              if(user.user.role === 'user' && item.href === '/admin/users'){
+                return null;
+              }
               return (
                 <Link
                   key={item.href}

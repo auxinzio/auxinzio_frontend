@@ -14,7 +14,7 @@ export function StatsOrganic() {
   return (
     <section className="py-24 lg:py-40 bg-gray-900 border-y border-white/5 relative overflow-hidden">
       {/* Background Subtle Gradient */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#14b8a6] rounded-full blur-[150px] opacity-10 -z-10" />
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-[#14b88f] rounded-full blur-[150px] opacity-10 -z-10" />
       <div className="absolute bottom-0 left-0 w-1/3 h-full bg-cyan-500 rounded-full blur-[150px] opacity-5 -z-10" />
 
       <div className="max-w-[1600px] mx-auto px-6">
@@ -35,15 +35,15 @@ export function StatsOrganic() {
               className="px-8 lg:px-12 group text-center lg:text-left"
             >
               <div className="flex flex-col lg:items-start items-center space-y-6">
-                <div className="w-12 h-px bg-[#14b8a6]/40 group-hover:w-20 group-hover:bg-[#14b8a6] transition-all duration-700" />
+                <div className="w-12 h-px bg-[#14b88f]/40 group-hover:w-20 group-hover:bg-[#14b88f] transition-all duration-700" />
 
                 <div className="space-y-4">
-                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 group-hover:text-[#14b8a6]/40 transition-colors">{stat.label}</span>
+                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 group-hover:text-[#14b88f]/40 transition-colors">{stat.label}</span>
                   <div className="flex items-end gap-3 justify-center lg:justify-start">
                     <h3 className="text-5xl lg:text-8xl font-light text-white tracking-tighter leading-none">
                       {stat.value}
                     </h3>
-                    <stat.icon className="w-6 h-6 text-white/10 group-hover:text-[#14b8a6]/40 transition-colors mb-2" strokeWidth={1} />
+                    <stat.icon className="w-6 h-6 text-white/10 group-hover:text-[#14b88f]/40 transition-colors mb-2" strokeWidth={1} />
                   </div>
                 </div>
 

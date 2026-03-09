@@ -59,7 +59,7 @@ export default function Products() {
                                         Solutions
                                     </h1>
                                     <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                                        <span className="text-[#14b8a6]">Engineered</span>
+                                        <span className="text-[#14b88f]">Engineered</span>
                                     </h1>
                                     <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
                                         to Scale
@@ -71,7 +71,7 @@ export default function Products() {
 
                         {/* Architectural Divider */}
                         <div className="hidden lg:block lg:col-span-1 relative">
-                            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b8a6]/15"></div>
+                            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b88f]/15"></div>
                         </div>
 
                         {/* Center Zone — Geometric Visual Storytelling */}
@@ -106,7 +106,7 @@ export default function Products() {
                                         />
                                         <motion.circle
                                             cx="200" cy="250" r="100"
-                                            fill="none" stroke="#14b8a6" strokeWidth="1" opacity="0.1"
+                                            fill="none" stroke="#14b88f" strokeWidth="1" opacity="0.1"
                                             initial={{ scale: 0 }}
                                             whileInView={{ scale: 1 }}
                                             viewport={{ once: true }}
@@ -114,10 +114,10 @@ export default function Products() {
                                         />
                                         {/* Animated dots representing product data */}
                                         {[
-                                            { x: 100, y: 100, color: "#14b8a6" },
+                                            { x: 100, y: 100, color: "#14b88f" },
                                             { x: 300, y: 100, color: "#06b6d4" },
                                             { x: 300, y: 400, color: "#22c55e" },
-                                            { x: 100, y: 400, color: "#14b8a6" },
+                                            { x: 100, y: 400, color: "#14b88f" },
                                             { x: 200, y: 250, color: "#06b6d4" }
                                         ].map((node, i) => (
                                             <motion.circle
@@ -159,7 +159,7 @@ export default function Products() {
 
                         {/* Architectural Divider */}
                         <div className="hidden lg:block lg:col-span-1 relative">
-                            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b8a6]/15"></div>
+                            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b88f]/15"></div>
                         </div>
 
                         {/* Right Zone — Product Narrative */}
@@ -194,7 +194,7 @@ export default function Products() {
                                 >
                                     <a href="#product-feature" className="flex items-center gap-3 text-sm font-medium tracking-widest uppercase text-gray-900 group">
                                         Explore Products
-                                        <ArrowRight className="w-4 h-4 text-[#14b8a6] group-hover:translate-x-1 transition-transform" />
+                                        <ArrowRight className="w-4 h-4 text-[#14b88f] group-hover:translate-x-1 transition-transform" />
                                     </a>
                                 </motion.button>
                                 <div className="w-px h-6 bg-gray-200 mx-2 hidden sm:block"></div>

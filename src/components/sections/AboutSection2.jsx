@@ -54,7 +54,7 @@ export default function AboutSection2() {
                     That
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                    <span className="text-[#14b8a6]">Empowers</span>
+                    <span className="text-[#14b88f]">Empowers</span>
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
                     Growth
@@ -68,7 +68,7 @@ export default function AboutSection2() {
 
             {/* Subtle architectural divider */}
             <div className="hidden lg:block lg:col-span-1 relative">
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b8a6]/15"></div>
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b88f]/15"></div>
             </div>
 
             {/* Center Zone — Minimal Visual Storytelling */}
@@ -125,7 +125,7 @@ export default function AboutSection2() {
                       cy="150"
                       r="80"
                       fill="none"
-                      stroke="#14b8a6"
+                      stroke="#14b88f"
                       strokeWidth="0.5"
                       opacity="0.2"
                       initial={{ scale: 0, opacity: 0 }}
@@ -185,7 +185,7 @@ export default function AboutSection2() {
                       y1="50"
                       x2="200"
                       y2="400"
-                      stroke="#14b8a6"
+                      stroke="#14b88f"
                       strokeWidth="0.5"
                       opacity="0.15"
                       strokeDasharray="5,5"
@@ -243,7 +243,7 @@ export default function AboutSection2() {
 
             {/* Subtle architectural divider */}
             <div className="hidden lg:block lg:col-span-1 relative">
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b8a6]/15"></div>
+              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-[#14b88f]/15"></div>
             </div>
 
             {/* Right Zone — Structured Company Narrative */}
@@ -285,7 +285,7 @@ export default function AboutSection2() {
                   >
                     {/* Icon */}
                     <div className="flex-shrink-0 mt-1">
-                      <capability.icon className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
+                      <capability.icon className="w-5 h-5 text-[#14b88f]" strokeWidth={1.5} />
                     </div>
 
                     {/* Content */}

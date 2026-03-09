@@ -33,27 +33,27 @@ export default function ClientSection({clients}){
                             className="lg:sticky lg:top-32"
                           >
                             <div className="flex items-center gap-4 mb-8">
-                              <div className="w-12 h-px bg-[#14b8a6]" />
-                              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Global Synergy</span>
+                              <div className="w-12 h-px bg-[#14b88f]" />
+                              <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Global Synergy</span>
                             </div>
                             <h2 className="text-5xl lg:text-[7rem] font-light text-gray-900 tracking-tighter leading-[0.8] mb-12">
                               Our <br />
-                              <span className="italic font-normal text-[#14b8a6]">Elite</span> <br />
+                              <span className="italic font-normal text-[#14b88f]">Elite</span> <br />
                               Network.
                             </h2>
                             <div className="space-y-8 max-w-sm">
                               <p className="text-xl text-gray-400 font-light leading-relaxed">
                                 We collaborate with industry leaders and disruptive innovators to architect the future of digital commerce.
                               </p>
-                              <p className="text-sm text-gray-400 border-l-2 border-[#14b8a6]/20 pl-6">
+                              <p className="text-sm text-gray-400 border-l-2 border-[#14b88f]/20 pl-6">
                                 Driving global impact through architectural precision and high-fidelity technological integration.
                               </p>
             
                               <div className="pt-8">
                                 <Link href="/contact">
                                   <button className="group flex items-center gap-6">
-                                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Initiate Partnership</span>
-                                    <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                                    <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Initiate Partnership</span>
+                                    <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                   </button>
@@ -75,7 +75,7 @@ export default function ClientSection({clients}){
                                 transition={{ duration: 0.8, delay: idx * 0.05 }}
                                 className="group"
                               >
-                                <div className="relative aspect-[4/3] bg-gray-50/50 rounded-[2rem] border border-gray-100 flex items-center justify-center p-8 lg:p-12 hover:bg-white hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-700">
+                                <div className="relative aspect-[4/3] bg-gray-50/50 rounded-[2rem] border border-gray-100 flex items-center justify-center p-8 lg:p-12 hover:bg-white hover:border-[#14b88f]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-700">
                                   <div className="relative w-full h-full">
                                     <Image
                                       src={`${settings?.backend_api_url}/${client.image}`}
@@ -86,8 +86,8 @@ export default function ClientSection({clients}){
                                   </div>
             
                                   {/* Interactive Architectural Accent */}
-                                  <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-gray-100 group-hover:bg-[#14b8a6] group-hover:scale-150 transition-all duration-500" />
-                                  <div className="absolute bottom-6 left-6 w-8 h-px bg-gray-100 group-hover:bg-[#14b8a6] group-hover:w-16 transition-all duration-700" />
+                                  <div className="absolute top-6 right-6 w-2 h-2 rounded-full bg-gray-100 group-hover:bg-[#14b88f] group-hover:scale-150 transition-all duration-500" />
+                                  <div className="absolute bottom-6 left-6 w-8 h-px bg-gray-100 group-hover:bg-[#14b88f] group-hover:w-16 transition-all duration-700" />
                                 </div>
                               </motion.div>
                             ))}

@@ -25,12 +25,12 @@ export default function ProductsSection({ product }) {
                 className="lg:col-span-8"
               >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-12 h-px bg-[#14b8a6]" />
-                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Proprietary Artifacts</span>
+                  <div className="w-12 h-px bg-[#14b88f]" />
+                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Proprietary Artifacts</span>
                 </div>
                 <h2 className="text-5xl lg:text-9xl font-light text-gray-900 leading-[0.8] tracking-tighter">
                   Built for the <br />
-                  <span className="italic font-medium text-[#14b8a6]">Intelligent</span> <br />
+                  <span className="italic font-medium text-[#14b88f]">Intelligent</span> <br />
                   <span className="font-medium text-gray-200">Enterprise.</span>
                 </h2>
               </motion.div>
@@ -68,7 +68,7 @@ export default function ProductsSection({ product }) {
                     />
 
                     {/* Floating Tactical Tag */}
-                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500">
+                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                       <p className="text-[10px] font-black tracking-widest uppercase">{item.category_name}</p>
                     </div>
 
@@ -92,15 +92,15 @@ export default function ProductsSection({ product }) {
 
                   <div className="mt-12 space-y-6 px-4">
                     <div className="flex items-center gap-6">
-                      <span className="text-4xl font-light text-gray-200 group-hover:text-[#14b8a6] transition-colors duration-500">0{index + 1}</span>
+                      <span className="text-4xl font-light text-gray-200 group-hover:text-[#14b88f] transition-colors duration-500">0{index + 1}</span>
                       <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-none group-hover:italic transition-all">{item.product_name}</h3>
                     </div>
                     <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
                       {`"${item.description.split('~')[0]}"`}
                     </p>
                     <button className="flex items-center gap-6 group/btn">
-                      <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Architecture</span>
-                      <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                      <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">Enquire Architecture</span>
+                      <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                         <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </button>
@@ -111,7 +111,7 @@ export default function ProductsSection({ product }) {
           </div>
 
           {/* Background Decorative Element */}
-          <div className="absolute right-0 top-1/4 w-1/4 h-full bg-[#14b8a6]/5 rounded-full blur-[120px] -z-10" />
+          <div className="absolute right-0 top-1/4 w-1/4 h-full bg-[#14b88f]/5 rounded-full blur-[120px] -z-10" />
         </section>
       )}
     </>

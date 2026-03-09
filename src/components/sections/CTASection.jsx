@@ -12,13 +12,13 @@ export default function CTASection() {
         <section className="relative py-14 lg:py-25 bg-gray-900 border-t border-white/5 overflow-hidden">
             {/* Background Architectural Elements */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_#14b8a610_0%,_transparent_50%)] blur-[100px]" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-[radial-gradient(circle_at_center,_#14b88f10_0%,_transparent_50%)] blur-[100px]" />
                 
                 {/* Vertical Scanning Line */}
                 <motion.div 
                    animate={{ x: ['-100%', '100%'] }}
                    transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                   className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#14b8a620] to-transparent z-10"
+                   className="absolute inset-y-0 w-px bg-gradient-to-b from-transparent via-[#14b88f20] to-transparent z-10"
                 />
             </div>
 
@@ -33,13 +33,13 @@ export default function CTASection() {
                             viewport={{ once: true }}
                         >
                             <div className="flex items-center gap-4 mb-10">
-                                <div className="w-12 h-px bg-[#14b8a6]" />
-                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Convergence</span>
+                                <div className="w-12 h-px bg-[#14b88f]" />
+                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Convergence</span>
                             </div>
                             
                             <h2 className="text-6xl lg:text-[10rem] font-light text-white leading-[0.8] tracking-tighter mb-12">
                                 Ready to <br/>
-                                <span className="italic font-medium text-[#14b8a6]">Synthesize?</span>
+                                <span className="italic font-medium text-[#14b88f]">Synthesize?</span>
                             </h2>
                             
                             <p className="text-xl lg:text-2xl text-white/40 font-light leading-relaxed max-w-xl">
@@ -58,16 +58,16 @@ export default function CTASection() {
                             className="bg-white/5 backdrop-blur-3xl p-10 lg:p-16 rounded-[4rem] border border-white/10 shadow-2xl relative group overflow-hidden"
                         >
                             {/* Inner Glow */}
-                            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#14b8a6]/20 rounded-full blur-[60px] group-hover:bg-[#14b8a6]/40 transition-all duration-700" />
+                            <div className="absolute -top-24 -right-24 w-48 h-48 bg-[#14b88f]/20 rounded-full blur-[60px] group-hover:bg-[#14b88f]/40 transition-all duration-700" />
                             
                             <div className="relative z-10 space-y-12">
                                 <div className="space-y-4">
                                     <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Direct Nexus</h4>
                                     <div className="flex items-center justify-between">
-                                        <a href={`mailto:${settings.email}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                        <a href={`mailto:${settings.email}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b88f] transition-colors">
                                             Hello <Mail className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
-                                        <a href={`tel:${settings.phone}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b8a6] transition-colors">
+                                        <a href={`tel:${settings.phone}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b88f] transition-colors">
                                             Voice <Phone className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                                         </a>
                                     </div>
