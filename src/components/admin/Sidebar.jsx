@@ -22,6 +22,8 @@ import {
   Toolbox,
   ChevronsLeft,
   ChevronsRight,
+  ShieldUser,
+  Handshake,
 } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useAuth } from '@/app/Context/AuthContext'
@@ -33,7 +35,7 @@ const sidebarItems = [
   { name: 'Services', href: '/admin/services', icon: Wrench },
   { name: 'Products', href: '/admin/products', icon: Package },
   { name: 'Solutions', href: '/admin/solutions', icon: Lightbulb },
-  { name: 'Teams', href: '/admin/teams', icon: Users },
+  { name: 'Teams', href: '/admin/teams', icon: Handshake },
   { name: 'Careers', href: '/admin/careers', icon: Briefcase },
   { name: 'Applications', href: '/admin/applications', icon: FileUser },
   { name: 'Subscribers', href: '/admin/subscribers', icon: Mail },
@@ -43,6 +45,7 @@ const sidebarItems = [
   { name: 'Enquiry', href: '/admin/enquiry', icon: Toolbox },
   { name: 'FAQ', href: '/admin/faq', icon: HelpCircle },
   { name: 'Clients', href: '/admin/clients', icon: Users },
+  { name: 'Users', href: '/admin/users', icon: ShieldUser },
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ]
 

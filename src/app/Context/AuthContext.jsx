@@ -69,16 +69,13 @@ export function AuthProvider({ children }) {
         method: 'POST',
         credentials: 'include',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
+        body: JSON.stringify({ name: email, password }),
       });
 
       const data = await res.json();
 
-      if (res.ok && (data.status === 200 || data.statuscode === 200 || data.status === "ok")) {
-        const userData = data.data;
-        setUser(userData.user || userData);
-        router.push('/admin/dashboard');
-        return { success: true };
+      if (data.data.statuscode === 200 || data.status === 200 || data.statuscode === 200 || data.status === "ok") {
+        return data;
       } else {
         return {
           success: false,
@@ -92,6 +89,35 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const verifyLoginCode = async (email, userOtp, adminOtp) =>{
+    setIsLoading(true);
+    try{
+      const res = await fetch('/api-proxy/auth/verify-login-otp', {
+        method: 'POST',
+        credentials: 'include',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email:email, user_code: userOtp, admin_code: adminOtp }),
+      });
+      const data = await res.json();
+      if (data.data.statuscode === 200 || data.status === 200 || data.statuscode === 200 || data.status === "ok") {
+        // const userData = data.data;
+        // setUser(userData.user || userData);
+        // router.push('/admin/dashboard');
+        return data;
+      } else {
+        return {
+          success: false,
+          message: data.message || 'Login failed'
+        };
+      }
+    }catch(error){
+      return { success: false, message: 'Network error. Please try again.' };
+    }finally{
+      setIsLoading(false);
+    }
+
+  }
+
   const logout = async () => {
     try {
       await fetch('/api-proxy/auth/logout', { method: 'POST' });
@@ -103,7 +129,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, isLoading, login, logout, verifyLoginCode }}>
       {children}
     </AuthContext.Provider>
   );

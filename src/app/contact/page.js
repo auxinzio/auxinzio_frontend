@@ -87,6 +87,10 @@ export default function Contact() {
       // Allowing only alphanumeric, dots, and the @ symbol
       const emailValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
       setFormState({ ...formState, [name]: emailValue });
+    } else if (name === 'name') {
+      // Prevent numbers in the name field
+      const nameValue = value.replace(/[0-9]/g, '');
+      setFormState({ ...formState, [name]: nameValue });
     } else {
       setFormState({ ...formState, [name]: value });
     }
@@ -130,7 +134,7 @@ export default function Contact() {
       </section>
 
       {/* --- MAIN INQUIRY: MODERN FORM EXPERIENCE --- */}
-      <section className="py-32 lg:pt-10 px-6 bg-gray-50/30">
+      <section className="py-32 lg:pt-10 lg:pb-10  px-6 bg-gray-50/30">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-12 gap-24 items-start">
 
@@ -184,6 +188,7 @@ export default function Contact() {
                       <input
                         type="text"
                         name="name"
+                        pattern="[a-zA-Z]*"
                         value={formState.name}
                         onChange={handleChange}
                         maxLength={50}
@@ -285,7 +290,7 @@ export default function Contact() {
       </section>
 
       {/* --- MAP: REFINED ARCHITECTURAL HUB --- */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-8 lg:py-15 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -384,7 +389,7 @@ export default function Contact() {
       </section>
 
       {/* --- FINAL DECORATIVE LINE --- */}
-      <div className="py-10 flex justify-center bg-white">
+      <div className="py-10 pt-0 flex justify-center bg-white">
         <div className="w-px h-24 bg-gradient-to-b from-[#14b8a6] to-transparent" />
       </div>
 

@@ -6,12 +6,11 @@ import { useSettings } from "@/app/Context/SettingsContext";
 
 export default function ClientSection({clients}){
   const { settings } = useSettings();
-  console.log(clients);
     return(
         <>
             <section className="relative py-10 lg:py-20 lg:pt-0 pt-0 bg-white overflow-hidden">
                     {/* Background Panning Text */}
-                    <div className="absolute top-1/2 left-0 w-full opacity-[0.02] select-none pointer-events-none -translate-y-1/2">
+                    {/* <div className="absolute top-1/2 left-0 w-full opacity-[0.02] select-none pointer-events-none -translate-y-1/2">
                       <motion.h1
                         animate={{ x: [0, -1200] }}
                         transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
@@ -19,7 +18,7 @@ export default function ClientSection({clients}){
                       >
                         STRATEGIC PARTNERSHIPS & GLOBAL ALLIANCES SYNERGY
                       </motion.h1>
-                    </div>
+                    </div> */}
             
                     <div className="mx-auto max-w-[1600px] px-6 relative z-10">
                       <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-start">
@@ -46,7 +45,7 @@ export default function ClientSection({clients}){
                               <p className="text-xl text-gray-400 font-light leading-relaxed">
                                 We collaborate with industry leaders and disruptive innovators to architect the future of digital commerce.
                               </p>
-                              <p className="text-sm text-gray-400 border-l-2 border-[#14b8a6]/20 pl-6 italic">
+                              <p className="text-sm text-gray-400 border-l-2 border-[#14b8a6]/20 pl-6">
                                 Driving global impact through architectural precision and high-fidelity technological integration.
                               </p>
             

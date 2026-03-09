@@ -28,13 +28,12 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         }
         return [];
     }, [product]);
-    console.log(dataArray);
     const getFormFields = (type) => {
         switch (type) {
             case "Clients":
                 return [
                     { name: "name", label: "Name", type: "text", placeholder: "Enter name" },
-                    { name: "image", label: "Image", type: "file", placeholder: "Enter image" },
+                    { name: "image", label: "Image", type: "image", placeholder: "Enter image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] }
                 ];
             case "Settings":
@@ -163,6 +162,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "object", label: "Object", type: "text", placeholder: "Enter Object" },
                     // { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
+            case "Users":
+                return [
+                    { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
+                    { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
+                    { name: "password", label: "Password", type: "text", placeholder: "Enter Password" },
+                    { name: "role", label: "Role", type: "select", placeholder: "Select Role", options: ["Admin", "User"] },
+                    { name: "status", label: "Status", type: "select", placeholder: "Select Status", options: ["Active", "In-active"] },
+                ];
             default:
                 return [];
         }
@@ -210,6 +217,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             }
 
             initialData.status = item.status === 1 || item.status === true ? "Active" : "In-active";
+            initialData.role = item.role === "admin" ? "Admin" : "User";
             setFormData(initialData);
         } else if (mode === "view") {
             openApplicationModal(item, 'view');
@@ -245,7 +253,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prev => ({ ...prev, [name]: value }));
+        let finalValue = value;
+        
+        const noNumberFields = ['product_name','title', 'name', 'slug', 'short_description_title', 'long_description_title', 'designation', 'department'];
+        if (noNumberFields.includes(name)) {
+            finalValue = value.replace(/[0-9]/g, '');
+        }
+
+        setFormData(prev => ({ ...prev, [name]: finalValue }));
         if (formErrors[name]) setFormErrors(prev => ({ ...prev, [name]: '' }));
     };
 
@@ -292,6 +307,9 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         // Form Validation
         const fields = getFormFields(title);
         const optionalFields = ['sub_logo', 'github', 'linkedin', 'portfolio', 'extra', 'tag'];
+        if (modalMode === 'edit') {
+            optionalFields.push('password');
+        }
         let newErrors = {};
 
         for (const field of fields) {
@@ -396,6 +414,12 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             };
             ['experience', 'skill', 'extra', 'status'].forEach(f => delete dataToSave[f]);
         }
+        else if (title === "Users") {
+            dataToSave = {
+                ...formData,
+                role: formData.role === "Admin" ? "admin" : "user",
+            };
+        }
         dataToSave.status = formData.status === "Active" ? 1 : 0;
         await handleSave(modalMode, dataToSave, title);
     };
@@ -428,6 +452,8 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return mode === 'add' ? '/clients/create' : '/clients/update';
             case 'Settings':
                 return mode === 'add' ? '/settings/create' : '/settings/update';
+            case 'Users':
+                return mode === 'add' ? '/users/create' : '/users/update';
             default:
                 return '';
         }
@@ -613,6 +639,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 )
                                             }
                                             {
+                                                title === "Users" && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Email</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Role</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
                                                 title === "Feedbacks" && (
                                                     <>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Content</th>
@@ -683,7 +717,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                             {
                                                 title === "Clients" && (
                                                     <>
-                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Image</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-center text-gray-500 uppercase">Image</th>
                                                     </>
                                                 )
                                             }
@@ -708,7 +742,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     title !== "FAQ" && title !== "Applications" && title !== "Chat" && title !== "Enquiry" && title !== "Contacts" && (
                                                         <td className="px-6 py-4">
                                                             <div>
-                                                                <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.email || item.name || item.key}</div>
+                                                                <div className="text-sm font-medium text-gray-900">{item.product_name || item.title || item.name || item.key || item.email}</div>
                                                             </div>
                                                         </td>
                                                     )
@@ -911,6 +945,18 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                     )
                                                 }
                                                 {
+                                                    title === "Users" && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                {item.email}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.role}
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
                                                     title === "Applications" ? (
                                                         <td className="px-6 py-4">
                                                             <div className="relative">
@@ -1038,9 +1084,14 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 title={`${modalMode === 'add' ? 'Add New' : 'Edit'}`}
             >
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    {getFormFields(title).map((field) => (
+                    {getFormFields(title).map((field) => {
 
-                        <div key={field.name} className="space-y-1">
+                        if(modalMode === 'edit' && field.name === 'password'){
+                            return null;
+                        }
+
+                        return (
+                            <div key={field.name} className="space-y-1">
                             <label className="text-sm font-medium text-gray-700">
                                 {field.label}
                             </label>
@@ -1154,19 +1205,21 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                 </div>
                             ) : (
                                 <>
-                                    <input
-                                        type={field.type}
-                                        name={field.name}
-                                        value={formData[field.name] || ''}
-                                        onChange={handleInputChange}
+                                    <div className="relative">
+                                             <input
+                                                type={field.type}
+                                                name={field.name}
+                                                value={formData[field.name] || ''}
+                                                onChange={handleInputChange}
                                         placeholder={field.placeholder}
                                         className={`w-full px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2`}
                                     />
                                     {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
+                                    </div>
                                 </>
                             )}
-                        </div>
-                    ))}
+                        </div>)
+})}
 
                     <div className="flex items-center justify-end gap-3 pt-4 border-t border-gray-100">
                         <button

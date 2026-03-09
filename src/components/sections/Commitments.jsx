@@ -77,7 +77,7 @@ export default function Commitments() {
                     <item.icon className="w-6 h-6 text-gray-400 group-hover:text-[#14b8a6] transition-colors" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 tracking-tight">{item.title}</h3>
-                  <p className="text-gray-500 leading-relaxed text-sm">{item.description}</p>
+                  <p className="text-gray-500 leading-relaxed">{item.description}</p>
                 </div>
 
                 {/* Architectural Decor */}

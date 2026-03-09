@@ -9,7 +9,7 @@ export async function POST(request) {
     // Assuming API_URL is valid, otherwise use logic to set base URL
     const apiUrl = API_URL || process.env.NEXT_PUBLIC_API_URL;
 
-    const res = await fetch(`${apiUrl}/api/auth/login`, {
+    const res = await fetch(`${apiUrl}/api/auth/verifymfa`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -19,12 +19,41 @@ export async function POST(request) {
 
     const data = await res.json();
 
-    if (res.ok) {
+    // Robust token extraction
+    const token = data.data?.token || data.token || (data.user && data.user.token);
+
+    if (res.ok && token) {
       const response = NextResponse.json({
         success: true,
-        message: 'OTP sent successfully',
+        message: 'Logged in successfully',
         status: 200,
         data: data.data || data.user
+      });
+
+      // Set token in cookie
+      response.cookies.set({
+        name: 'auth_token',
+        value: token,
+        httpOnly: true,
+        path: '/',
+        sameSite: 'lax',
+        secure: request.nextUrl.protocol === 'https:',
+        maxAge: 60 * 60 * 24, // 1 day
+      });
+
+      // Set user info in cookie (so we can retrieve it without calling backend)
+      // Extract user info, excluding the token itself if it's inside
+      const userInfo = { ...data.data };
+      delete userInfo.token; // Ensure we don't duplicate token storage
+
+      response.cookies.set({
+        name: 'user_info',
+        value: JSON.stringify(userInfo),
+        httpOnly: true,
+        path: '/',
+        sameSite: 'lax',
+        secure: request.nextUrl.protocol === 'https:',
+        maxAge: 60 * 60 * 24, // 1 day
       });
 
       return response;

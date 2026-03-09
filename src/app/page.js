@@ -63,8 +63,6 @@ export default function Home() {
       .then(data => setClient(data))
   }, [settings]);
 
-  console.log(client);
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -193,7 +191,7 @@ export default function Home() {
 
       {/* Hero Marquee Strip */}
       <div className="py-6 border-y border-gray-100 bg-white overflow-hidden">
-        <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.4em] text-[12px] items-center">
+        <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.1em] text-[12px] items-center">
           {[...Array(6)].map((_, outerIndex) => (
             <div key={outerIndex} className="flex items-center gap-12">
               {(service?.data?.serviceList || servicesData.services)?.map((item, index) => (
