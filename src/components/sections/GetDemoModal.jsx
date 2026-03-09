@@ -313,7 +313,8 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.name}
                                 onChange={(e) => {
-                                  setFormData({ ...formData, name: e.target.value });
+                                  const nameValue = e.target.value.replace(/[0-9]/g, '');
+                                  setFormData({ ...formData, name: nameValue });
                                   if (errors.name) setErrors({ ...errors, name: null });
                                 }}
                               />

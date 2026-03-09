@@ -95,7 +95,7 @@ export default function ProductsSection({ product }) {
                       <span className="text-4xl font-light text-gray-200 group-hover:text-[#14b8a6] transition-colors duration-500">0{index + 1}</span>
                       <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-none group-hover:italic transition-all">{item.product_name}</h3>
                     </div>
-                    <p className="text-lg text-gray-500 leading-relaxed max-w-lg italic">
+                    <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
                       {`"${item.description.split('~')[0]}"`}
                     </p>
                     <button className="flex items-center gap-6 group/btn">

@@ -75,7 +75,7 @@ export function AboutSection() {
                <div className="lg:col-span-5 order-2 lg:order-1">
                   <div className="space-y-16">
                      <div className="">
-                        <p className="text-gray-500 leading-relaxed mb-12 italic text-lg lg:text-xl">
+                        <p className="text-gray-500 leading-relaxed mb-12 text-lg lg:text-xl">
                            {`"${about.description}"`}
                         </p>
                         <Link href="/about" className="inline-flex items-center gap-6 group">
