@@ -120,7 +120,7 @@ export function ProductFeature({ products, loading }) {
               </div>
 
               {/* Right side - Refined Mockup */}
-              <div className="lg:col-span-7 relative h-[400px]">
+              <div className="lg:col-span-7 relative">
                 <div className="bg-gray-50/50 rounded-full blur-3xl opacity-50" />
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}

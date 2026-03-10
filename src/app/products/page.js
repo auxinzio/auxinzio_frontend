@@ -13,24 +13,32 @@ export default function Products() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (settings?.backend_api_url) {
-            setLoading(true);
-            fetch(`${settings.backend_api_url}/api/products/productsList`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({})
-            })
-                .then(res => res.json())
-                .then(data => {
+        const backendUrl = settings?.backend_api_url;
+        if (!backendUrl) return;
+
+        let isMounted = true;
+        
+        fetch(`${backendUrl}/api/products/productsList`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({})
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (isMounted) {
                     setProduct(data);
                     setLoading(false);
-                })
-                .catch(err => {
-                    console.error("Error fetching products:", err);
-                    setLoading(false);
-                });
-        }
-    }, [settings]);
+                }
+            })
+            .catch(err => {
+                console.error("Error fetching products:", err);
+                if (isMounted) setLoading(false);
+            });
+
+        return () => {
+            isMounted = false;
+        };
+    }, [settings?.backend_api_url]);
     return (
         <>
             {/* Progress Bar */}

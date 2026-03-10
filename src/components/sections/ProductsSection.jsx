@@ -69,9 +69,9 @@ export default function ProductsSection({ product }) {
                     />
 
                     {/* Floating Tactical Tag */}
-                    <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
+                    {/* <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                       <p className="text-[10px] font-black tracking-widest uppercase">{item.category_name}</p>
-                    </div>
+                    </div> */}
 
                     {/* Architectural Overlay on Hover */}
                     <div className="absolute inset-x-8 bottom-8 bg-white/10 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/20 translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 hidden lg:block">
@@ -85,7 +85,7 @@ export default function ProductsSection({ product }) {
                           </div>
                         </div>
                         <button className="flex items-center gap-3 text-white text-[10px] font-bold uppercase tracking-widest">
-                          System Specs <ArrowUpRight className="w-4 h-4" />
+                          {item.category_name} <ArrowUpRight className="w-4 h-4" />
                         </button>
                       </div>
                     </div>
