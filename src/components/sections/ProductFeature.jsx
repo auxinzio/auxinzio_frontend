@@ -120,8 +120,8 @@ export function ProductFeature({ products, loading }) {
               </div>
 
               {/* Right side - Refined Mockup */}
-              <div className="lg:col-span-7 relative">
-                <div className="absolute -inset-10 bg-gray-50/50 rounded-full blur-3xl opacity-50" />
+              <div className="lg:col-span-7 relative h-[400px]">
+                <div className="bg-gray-50/50 rounded-full blur-3xl opacity-50" />
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -135,17 +135,17 @@ export function ProductFeature({ products, loading }) {
                       <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
                     </div>
                     <div className="text-[10px] tracking-widest uppercase text-gray-400 font-medium">
-                      Secure Sandbox
+                      {product?.product_name}
                     </div>
                   </div>
-                  <div className="relative aspect-video lg:aspect-square overflow-hidden bg-white">
+                  <div className="relative aspect-video overflow-hidden bg-white">
                     {product?.image && (
                       <Image
-                        src={`${settings?.backend_api_url}/${product.image}`}
+                        src={`${settings?.backend_api_url}/${product.logo}`}
                         width={500}
                         height={300}
                         alt={product.product_name}
-                        className="object-cover opacity-90 transition-opacity duration-700 group-hover:opacity-100"
+                        className="object-cover w-full h-full opacity-90 transition-opacity duration-700 group-hover:opacity-100"
                       />
                     )}
                     {/* Subtle grid overlay on image */}
