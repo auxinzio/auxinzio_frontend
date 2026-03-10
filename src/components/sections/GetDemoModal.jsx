@@ -79,7 +79,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
 
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
     const phoneRegex = /^[6-9]\d{9,14}$/;
 
     if (!formData.name || formData.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
@@ -202,18 +202,18 @@ export default function GetDemoModal({ isOpen, onClose }) {
 
               {/* Decorative SVG Grid */}
               <div className="absolute inset-0 opacity-[0.05] pointer-events-none"
-                style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
+                style={{ backgroundImage: 'radial-gradient(#14b88f 1px, transparent 1px)', backgroundSize: '30px 30px' }} />
 
               <div className="relative z-10">
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="w-10 h-10 rounded-xl p-2 bg-[#14b8a6]/20 border border-[#14b8a6]/30 flex items-center justify-center">
-                    <Image src="/favicon.png" alt="Logo" width={50} height={50} />
+                <div className="flex items-center md:gap-4 gap-2 md:mb-8 mb-3">
+                  <div className="w-100 h-20 rounded-xl p-2 flex items-center justify-center">
+                    <Image src="/assets/img/logo.png" alt="Logo" width={150} height={50} />
                   </div>
                 </div>
 
-                <h2 className="text-3xl lg:text-6xl font-light tracking-tighter leading-[0.95] mb-8">
+                <h2 className="text-3xl lg:text-6xl font-light tracking-tighter leading-[0.95] hd:mb-8">
                   Request <br />
-                  <span className="italic font-normal text-[#14b8a6]">Synchronization.</span>
+                  <span className="italic font-normal text-[#14b88f]">Synchronization.</span>
                 </h2>
                 <p className="text-gray-400 text-sm font-light leading-relaxed mb-10 max-w-xs hidden lg:block">
                   Secure your slot in our quarterly engineering cycle. We prioritize projects based on infrastructural complexity and vision alignment.
@@ -226,7 +226,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                     { icon: Activity, text: "Real-time Analytics Sync" }
                   ].map((item, idx) => (
                     <div key={idx} className="flex items-center gap-3 text-[11px] font-bold uppercase tracking-widest text-gray-500">
-                      <item.icon size={14} className="text-[#14b8a6]" />
+                      <item.icon size={14} className="text-[#14b88f]" />
                       <span>{item.text}</span>
                     </div>
                   ))}
@@ -253,11 +253,11 @@ export default function GetDemoModal({ isOpen, onClose }) {
                       exit={{ opacity: 0, scale: 0.95 }}
                       className="py-12 flex flex-col items-center justify-center text-center space-y-6"
                     >
-                      <div className="w-20 h-20 rounded-full bg-[#14b8a6]/10 flex items-center justify-center mb-4">
-                        <CheckCircle2 className="w-10 h-10 text-[#14b8a6]" />
+                      <div className="w-20 h-20 rounded-full bg-[#14b88f]/10 flex items-center justify-center mb-4">
+                        <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                       </div>
                       <h3 className="text-3xl font-light text-gray-900 tracking-tight">
-                        Protocol <span className="italic font-normal text-[#14b8a6]">Synthesized.</span>
+                        Protocol <span className="italic font-normal text-[#14b88f]">Synthesized.</span>
                       </h3>
                       <p className="text-gray-500 max-w-sm text-sm font-light leading-relaxed">
                         {message || "One of our specialists will reach out to your provided coordinates within 24 hours."}
@@ -268,7 +268,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             initial={{ width: "100%" }}
                             animate={{ width: "0%" }}
                             transition={{ duration: 5, ease: "linear" }}
-                            className="h-full bg-[#14b8a6]"
+                            className="h-full bg-[#14b88f]"
                           />
                         </div>
                       </div>
@@ -300,12 +300,12 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Section 01: Identification */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">1</span>
+                            <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">1</span>
                             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Identification</h3>
                           </div>
 
                           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                            <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
                                 required
@@ -313,14 +313,15 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.name}
                                 onChange={(e) => {
-                                  setFormData({ ...formData, name: e.target.value });
+                                  const nameValue = e.target.value.replace(/[0-9]/g, '');
+                                  setFormData({ ...formData, name: nameValue });
                                   if (errors.name) setErrors({ ...errors, name: null });
                                 }}
                               />
-                              <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.name && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.name}</p>}
                             </div>
-                            <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
                                 required
@@ -332,7 +333,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                   if (errors.company) setErrors({ ...errors, company: null });
                                 }}
                               />
-                              <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.company && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.company}</p>}
                             </div>
                           </div>
@@ -341,12 +342,12 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Section 02: Communication */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">2</span>
+                            <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">2</span>
                             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication</h3>
                           </div>
 
                           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
-                            <div className={cn("relative group border-b transition-all pb-1", errors.email ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.email ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="email"
                                 required
@@ -358,10 +359,10 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                   if (errors.email) setErrors({ ...errors, email: null });
                                 }}
                               />
-                              <Mail className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.email ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              <Mail className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.email ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.email && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.email}</p>}
                             </div>
-                            <div className={cn("relative group border-b transition-all pb-1", errors.phone ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.phone ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
                                 required
@@ -376,7 +377,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                   if (errors.phone) setErrors({ ...errors, phone: null });
                                 }}
                               />
-                              <Phone className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.phone ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                              <Phone className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.phone ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.phone && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.phone}</p>}
                             </div>
                           </div>
@@ -385,10 +386,10 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Section 03: Ecosystem */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">3</span>
+                            <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">3</span>
                             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Ecosystem Selection</h3>
                           </div>
-                          <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                          <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                             <select
                               required
                               className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
@@ -405,7 +406,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                 </option>
                               ))}
                             </select>
-                            <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                            <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                             {errors.product_id && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.product_id}</p>}
                           </div>
                         </div>
@@ -413,14 +414,14 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Section 04: Objective */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
-                            <span className="text-[10px] font-bold text-[#14b8a6] w-5 h-5 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">4</span>
+                            <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">4</span>
                             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Objective</h3>
                           </div>
 
-                          <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b8a6]")}>
+                          <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                             <textarea
                               placeholder="Project brief or specific requirements..."
-                              rows={1}
+                              rows={2}
                               className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
                               value={formData.objective}
                               onChange={(e) => {
@@ -428,7 +429,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                 if (errors.objective) setErrors({ ...errors, objective: null });
                               }}
                             />
-                            <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b8a6]")} />
+                            <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                             {errors.objective && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.objective}</p>}
                           </div>
                         </div>
@@ -443,7 +444,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             variant="gradi"
                             disabled={loading}
                             type="submit"
-                            className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b8a6]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
+                            className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b88f]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
                           >
                             {loading ? 'Processing...' : 'Initiate Synchronization'}
                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

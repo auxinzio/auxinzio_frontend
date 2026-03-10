@@ -6,7 +6,7 @@ export function ProductExperience() {
       {/* Editorial Background Elements */}
       <div className="absolute inset-0 opacity-[0.015] pointer-events-none"
         style={{
-          backgroundImage: `linear-gradient(#14b8a6 1px, transparent 1px), linear-gradient(90deg, #14b8a6 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(#14b88f 1px, transparent 1px), linear-gradient(90deg, #14b88f 1px, transparent 1px)`,
           backgroundSize: '100px 100px'
         }}
       />
@@ -25,7 +25,7 @@ export function ProductExperience() {
           <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-gray-900 mb-8 tracking-tight leading-tight">
             Designed for <span className="text-[#06b6d4]">Performance</span>,
             <br />
-            Built for <span className="text-[#14b8a6]">Growth</span>
+            Built for <span className="text-[#14b88f]">Growth</span>
           </h2>
           <div className="w-16 h-px bg-[#22c55e] mx-auto mb-8"></div>
           <p className="text-gray-600 text-xl max-w-3xl mx-auto leading-relaxed">
@@ -64,13 +64,13 @@ export function ProductExperience() {
                 <div className="h-10 bg-gray-50 rounded flex items-center px-4 gap-4">
                   <div className="w-24 h-4 bg-gray-200 rounded" />
                   <div className="flex-1" />
-                  <div className="w-12 h-4 bg-[#14b8a6]/20 rounded" />
+                  <div className="w-12 h-4 bg-[#14b88f]/20 rounded" />
                 </div>
 
                 <div className="grid grid-cols-4 gap-4">
                   {[...Array(4)].map((_, i) => (
                     <div key={i} className="h-24 border border-gray-100 p-4 flex flex-col justify-end">
-                      <div className="h-1 w-8 bg-[#14b8a6] mb-2" />
+                      <div className="h-1 w-8 bg-[#14b88f] mb-2" />
                       <div className="h-3 w-16 bg-gray-200 rounded" />
                     </div>
                   ))}
@@ -85,7 +85,7 @@ export function ProductExperience() {
                         whileInView={{ height: `${height}%` }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.3 + i * 0.05, duration: 0.5 }}
-                        className="flex-1 bg-gray-50 hover:bg-[#14b8a6]/10 transition-colors"
+                        className="flex-1 bg-gray-50 hover:bg-[#14b88f]/10 transition-colors"
                       />
                     ))}
                   </div>
@@ -102,7 +102,7 @@ export function ProductExperience() {
             transition={{ delay: 0.5 }}
             className="absolute left-8 top-12 w-48 text-left hidden lg:block"
           >
-            <div className="text-[10px] tracking-[0.3em] uppercase text-[#14b8a6] font-semibold mb-4 leading-relaxed">
+            <div className="text-[10px] tracking-[0.3em] uppercase text-[#14b88f] font-semibold mb-4 leading-relaxed">
               Real-time<br />Orchestration
             </div>
             <div className="h-px w-24 bg-gray-200" />

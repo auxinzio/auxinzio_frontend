@@ -13,7 +13,7 @@ const careerValues = [
     icon: Rocket,
     title: 'Innovation',
     description: 'We push boundaries and explore new possibilities every day in the heart of ed-tech.',
-    color: '#14b8a6', // Teal
+    color: '#14b88f', // Teal
   },
   {
     icon: Users,
@@ -31,7 +31,7 @@ const careerValues = [
     icon: Heart,
     title: 'Empathy',
     description: 'We build for users and each other with kindness and deep understanding.',
-    color: '#14b8a6',
+    color: '#14b88f',
   },
 ];
 
@@ -86,7 +86,7 @@ export default function Careers() {
   };
 
   return (
-    <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
+    <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
       {/* Progress Bar */}
       <ProgressBar />
       {/* --- HERO SECTION: THREE-ZONE ASYMMETRICAL --- */}
@@ -101,7 +101,7 @@ export default function Careers() {
               transition={{ duration: 0.8 }}
               className="lg:col-span-4 flex flex-col justify-end"
             >
-              <div className="bg-gray-50/50 p-8 lg:p-12 border-l-2 border-[#14b8a6] mb-8">
+              <div className="bg-gray-50/50 p-8 lg:p-12 border-l-2 border-[#14b88f] mb-8">
                 <p className="text-[10px] tracking-[0.3em] uppercase text-gray-500 mb-6 font-bold">
                   Work with us
                 </p>
@@ -109,7 +109,7 @@ export default function Careers() {
                   <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                     Build
                   </h1>
-                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-[#14b8a6] leading-[0.9] tracking-tighter italic">
+                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-[#14b88f] leading-[0.9] tracking-tighter italic">
                     Legacy
                   </h1>
                   <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
@@ -129,7 +129,7 @@ export default function Careers() {
                 initial={{ height: 0 }}
                 animate={{ height: "100%" }}
                 transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute left-1/2 top-0 w-[2px] bg-[#14b8a6]"
+                className="absolute left-1/2 top-0 w-[2px] bg-[#14b88f]"
               />
             </div>
 
@@ -169,8 +169,8 @@ export default function Careers() {
                   className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 bg-white/90 backdrop-blur-md p-6 border border-white/20 shadow-2xl rounded-2xl max-w-xs"
                 >
                   <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">
-                      <Globe className="w-5 h-5 text-[#14b8a6]" />
+                    <div className="w-10 h-10 rounded-full bg-[#14b88f]/10 flex items-center justify-center">
+                      <Globe className="w-5 h-5 text-[#14b88f]" />
                     </div>
                     <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Our Reach</span>
                   </div>
@@ -184,12 +184,12 @@ export default function Careers() {
               <div className="mt-12 flex items-center justify-between">
                 <button
                   onClick={scrollToPositions}
-                  className="group flex items-center gap-4 text-gray-900 font-medium tracking-tight hover:text-[#14b8a6] transition-colors"
+                  className="group flex items-center gap-4 text-gray-900 font-medium tracking-tight hover:text-[#14b88f] transition-colors"
                 >
-                  <span className="text-lg underline underline-offset-8 decoration-gray-200 group-hover:decoration-[#14b8a6] transition-all">
+                  <span className="text-lg underline underline-offset-8 decoration-gray-200 group-hover:decoration-[#14b88f] transition-all">
                     Explore Open Roles
                   </span>
-                  <div className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#14b8a6] group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-300">
+                  <div className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#14b88f] group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-300">
                     <ArrowRight className="w-5 h-5" />
                   </div>
                 </button>
@@ -222,7 +222,7 @@ export default function Careers() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="text-xs tracking-[0.25em] uppercase text-[#14b8a6] font-bold mb-8"
+                  className="text-xs tracking-[0.25em] uppercase text-[#14b88f] font-bold mb-8"
                 >
                   Culture & DNA
                 </motion.p>
@@ -238,7 +238,7 @@ export default function Careers() {
               <div className="mt-12 pt-10 border-t border-gray-100 grid grid-cols-2 gap-8">
                 {benefits.slice(0, 4).map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <item.icon className="w-4 h-4 text-[#14b8a6]" />
+                    <item.icon className="w-4 h-4 text-[#14b88f]" />
                     <span className="text-sm font-medium text-gray-700">{item.label}</span>
                   </div>
                 ))}
@@ -254,11 +254,11 @@ export default function Careers() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-white p-10 rounded-[2rem] border border-gray-100 group hover:border-[#14b8a6]/30 transition-all duration-300 relative overflow-hidden"
+                  className="bg-white p-10 rounded-[2rem] border border-gray-100 group hover:border-[#14b88f]/30 transition-all duration-300 relative overflow-hidden"
                 >
                   <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#14b8a6]/10 transition-all duration-500">
-                      <val.icon className="w-6 h-6 text-gray-900 group-hover:text-[#14b8a6]" strokeWidth={1.5} />
+                    <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#14b88f]/10 transition-all duration-500">
+                      <val.icon className="w-6 h-6 text-gray-900 group-hover:text-[#14b88f]" strokeWidth={1.5} />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-4">{val.title}</h3>
                     <p className="text-gray-600 text-sm leading-relaxed">
@@ -296,16 +296,16 @@ export default function Careers() {
                     Current Openings
                   </p>
                   <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                    Join our<br /><span className="text-[#14b8a6] italic font-medium">collective.</span>
+                    Join our<br /><span className="text-[#14b88f] italic font-medium">collective.</span>
                   </h2>
 
-                  <div className="grid lg:grid-cols-2 grid-cols-1 gap-2">
+                  <div className="grid grid-cols-2 gap-2">
                     {filters.map((filter) => (
                       <button
                         key={filter}
                         onClick={() => setActiveFilter(filter)}
                         className={`group flex items-center justify-between px-6 py-4 rounded-xl transition-all duration-300 ${activeFilter === filter
-                          ? 'bg-[#14b8a6] text-white shadow-xl shadow-[#14b8a6]/20'
+                          ? 'bg-[#14b88f] text-white shadow-xl shadow-[#14b88f]/20'
                           : 'bg-transparent text-gray-500 hover:bg-gray-50 hover:text-gray-900'
                           }`}
                       >
@@ -335,12 +335,12 @@ export default function Careers() {
                         >
                           <Link
                             href={`/careers/${job.slug}`}
-                            className="group block bg-white border border-gray-100 rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:border-[#14b8a6] hover:shadow-[0_20px_60px_-15px_rgba(20,184,166,0.1)] relative overflow-hidden"
+                            className="group block bg-white border border-gray-100 rounded-3xl p-8 lg:p-10 transition-all duration-500 hover:border-[#14b88f] hover:shadow-[0_20px_60px_-15px_rgba(20,184,166,0.1)] relative overflow-hidden"
                           >
                             <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-1 relative z-10">
                               <div className="max-w-xl">
                                 <div className="flex items-center gap-3 mb-4">
-                                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#14b8a6] py-1 px-3 bg-[#14b8a6]/5 rounded-full">
+                                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-[#14b88f] py-1 px-3 bg-[#14b88f]/5 rounded-full">
                                     {job.department}
                                   </span>
                                   <div className="w-1 h-1 rounded-full bg-gray-300" />
@@ -354,18 +354,18 @@ export default function Careers() {
                                 </h3>
                               </div>
 
-                              <div className="flex items-center gap-6 w-[40%] justify-end">
-                                <div className="hidden sm:block text-right">
-                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Nature</p>
+                              <div className="flex items-center gap-6 md:w-[40%] w-full md:justify-end justify-between">
+                                <div className="md:text-right">
+                                  <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1 font-bold">Type</p>
                                   <p className="text-sm font-bold text-gray-700">{job.type}</p>
                                 </div>
-                                <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:border-[#14b8a6] transition-all duration-500">
+                                <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:border-[#14b88f] transition-all duration-500">
                                   <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                                 </div>
                               </div>
                             </div>
 
-                            <div className="absolute left-0 bottom-0 top-0 w-1 bg-[#14b8a6] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
+                            <div className="absolute left-0 bottom-0 top-0 w-1 bg-[#14b88f] scale-y-0 group-hover:scale-y-100 transition-transform origin-top duration-500" />
                           </Link>
                         </motion.div>
                       ))}
@@ -389,7 +389,7 @@ export default function Careers() {
 
       {/* --- ARCHITECTURAL DIVIDER BEFORE FOOTER --- */}
       <div className="px-6 mx-auto max-w-[1600px]">
-        <div className="h-px bg-gradient-to-r from-transparent via-[#14b8a6]/20 to-transparent" />
+        <div className="h-px bg-gradient-to-r from-transparent via-[#14b88f]/20 to-transparent" />
       </div>
 
     </div>

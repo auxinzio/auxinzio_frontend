@@ -23,7 +23,7 @@ export default function Contact() {
 
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
     const phoneRegex = /^[6-9]\d{9}$/;
 
     if (!formState.name || formState.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
@@ -87,6 +87,10 @@ export default function Contact() {
       // Allowing only alphanumeric, dots, and the @ symbol
       const emailValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
       setFormState({ ...formState, [name]: emailValue });
+    } else if (name === 'name') {
+      // Prevent numbers in the name field
+      const nameValue = value.replace(/[0-9]/g, '');
+      setFormState({ ...formState, [name]: nameValue });
     } else {
       setFormState({ ...formState, [name]: value });
     }
@@ -98,7 +102,7 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
+    <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
       {/* Progress Bar */}
       <ProgressBar />
       {/* --- HERO: MINIMALIST OVERTURE --- */}
@@ -111,11 +115,11 @@ export default function Contact() {
             className="flex flex-col items-center text-center"
           >
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-2 h-2 rounded-full bg-[#14b8a6] animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
               <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Syncing with our team (24/7)</span>
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-              Get in <span className="italic font-normal text-[#14b8a6]">Touch.</span>
+              Get in <span className="italic font-normal text-[#14b88f]">Touch.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
               {`Synthesize your vision with our technical expertise. We're ready to explore new digital frontiers together.`}
@@ -130,7 +134,7 @@ export default function Contact() {
       </section>
 
       {/* --- MAIN INQUIRY: MODERN FORM EXPERIENCE --- */}
-      <section className="py-32 lg:pt-10 px-6 bg-gray-50/30">
+      <section className="py-32 lg:pt-10 lg:pb-10  px-6 bg-gray-50/30">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-12 gap-24 items-start">
 
@@ -138,7 +142,7 @@ export default function Contact() {
             <div className="lg:col-span-4 lg:sticky lg:top-32">
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
                 Start our <br />
-                <span className="italic font-medium text-[#14b8a6]">Inquiry Protocol.</span>
+                <span className="italic font-medium text-[#14b88f]">Inquiry Protocol.</span>
               </h2>
 
               <p className="text-gray-500 mb-16 leading-relaxed">
@@ -152,7 +156,7 @@ export default function Contact() {
                   { title: 'Strategic Proposal', desc: 'Comprehensive roadmap and delivery timeline.' }
                 ].map((step, i) => (
                   <div key={i} className="flex gap-6">
-                    <span className="text-[10px] font-bold text-[#14b8a6] w-6 h-6 rounded-full bg-[#14b8a6]/10 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[10px] font-bold text-[#14b88f] w-6 h-6 rounded-full bg-[#14b88f]/10 flex items-center justify-center flex-shrink-0">
                       {i + 1}
                     </span>
                     <div>
@@ -184,10 +188,11 @@ export default function Contact() {
                       <input
                         type="text"
                         name="name"
+                        pattern="[a-zA-Z]*"
                         value={formState.name}
                         onChange={handleChange}
                         maxLength={50}
-                        className={`w-full bg-transparent border-b ${errors.name ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        className={`w-full bg-transparent border-b ${errors.name ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors placeholder:text-gray-200 text-lg`}
                         placeholder="Your Full Name"
                         required
                       />
@@ -200,7 +205,7 @@ export default function Contact() {
                         name="email"
                         value={formState.email}
                         onChange={handleChange}
-                        className={`w-full bg-transparent border-b ${errors.email ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        className={`w-full bg-transparent border-b ${errors.email ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors placeholder:text-gray-200 text-lg`}
                         placeholder="Your mail address"
                         required
                       />
@@ -216,7 +221,7 @@ export default function Contact() {
                         maxLength={10}
                         value={formState.phone}
                         onChange={handleChange}
-                        className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        className={`w-full bg-transparent border-b ${errors.phone ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors placeholder:text-gray-200 text-lg`}
                         placeholder="Your Phone Number"
                         required
                       />
@@ -229,7 +234,7 @@ export default function Contact() {
                         name="title"
                         value={formState.title}
                         onChange={handleChange}
-                        className={`w-full bg-transparent border-b ${errors.title ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors placeholder:text-gray-200 text-lg`}
+                        className={`w-full bg-transparent border-b ${errors.title ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors placeholder:text-gray-200 text-lg`}
                         placeholder="Subject of Inquiry"
                         required
                       />
@@ -242,7 +247,7 @@ export default function Contact() {
                         value={formState.description}
                         onChange={handleChange}
                         rows={6}
-                        className={`w-full bg-transparent border-b ${errors.description ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b8a6] transition-colors resize-none placeholder:text-gray-200 text-lg`}
+                        className={`w-full bg-transparent border-b ${errors.description ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors resize-none placeholder:text-gray-200 text-lg`}
                         placeholder="Describe your vision or specific system requirements..."
                         required
                       />
@@ -254,12 +259,12 @@ export default function Contact() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`group flex items-center gap-8 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-gray-900 hover:text-[#14b8a6]'} font-medium tracking-tight transition-all`}
+                        className={`group flex items-center gap-8 ${isSubmitting ? 'text-gray-400 cursor-not-allowed' : 'text-gray-900 hover:text-[#14b88f]'} font-medium tracking-tight transition-all`}
                       >
-                        <div className={`w-16 h-16 rounded-full border ${errors.submit ? 'border-red-200' : 'border-gray-200'} flex items-center justify-center ${isSubmitting ? 'bg-gray-100' : 'group-hover:border-[#14b8a6] group-hover:bg-[#14b8a6] group-hover:text-white'} transition-all duration-500`}>
+                        <div className={`w-16 h-16 rounded-full border ${errors.submit ? 'border-red-200' : 'border-gray-200'} flex items-center justify-center ${isSubmitting ? 'bg-gray-100' : 'group-hover:border-[#14b88f] group-hover:bg-[#14b88f] group-hover:text-white'} transition-all duration-500`}>
                           <ArrowRight className={`w-6 h-6 ${isSubmitting ? 'animate-pulse' : ''}`} />
                         </div>
-                        <span className="text-2xl font-light tracking-tighter decoration-gray-200 underline-offset-[12px] group-hover:decoration-[#14b8a6] transition-all">
+                        <span className="text-2xl font-light tracking-tighter decoration-gray-200 underline-offset-[12px] group-hover:decoration-[#14b88f] transition-all">
                           {isSubmitting ? 'Syncing...' : 'Transmit Message'}
                         </span>
                       </button>
@@ -271,8 +276,8 @@ export default function Contact() {
                     animate={{ opacity: 1, scale: 1 }}
                     className="py-24 flex flex-col items-center justify-center text-center"
                   >
-                    <div className="w-24 h-24 rounded-full bg-[#14b8a6]/10 flex items-center justify-center mb-10">
-                      <CheckCircle2 className="w-12 h-12 text-[#14b8a6]" />
+                    <div className="w-24 h-24 rounded-full bg-[#14b88f]/10 flex items-center justify-center mb-10">
+                      <CheckCircle2 className="w-12 h-12 text-[#14b88f]" />
                     </div>
                     <h3 className="text-4xl font-light text-gray-900 mb-6">Inquiry Dispatched.</h3>
                     <p className="text-gray-400 max-w-sm text-lg">One of our specialists will reach out to your provided coordinates within 24 hours.</p>
@@ -285,7 +290,7 @@ export default function Contact() {
       </section>
 
       {/* --- MAP: REFINED ARCHITECTURAL HUB --- */}
-      <section className="py-14 lg:py-20 bg-white">
+      <section className="py-8 lg:py-15 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
@@ -307,8 +312,8 @@ export default function Contact() {
 
               {/* Subtle Indicator */}
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none">
-                <div className="w-10 h-10 bg-[#14b8a6] rounded-full animate-ping opacity-10" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b8a6] rounded-full border-2 border-white shadow-xl" />
+                <div className="w-10 h-10 bg-[#14b88f] rounded-full animate-ping opacity-10" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#14b88f] rounded-full border-2 border-white shadow-xl" />
               </div>
             </motion.div>
 
@@ -321,11 +326,11 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b8a6]">Interface Node</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b88f]">Interface Node</span>
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-[0.9] mb-8">
                   Visit our <br />
-                  <span className="italic font-normal text-[#14b8a6]">Chennai</span> Base.
+                  <span className="italic font-normal text-[#14b88f]">Chennai</span> Base.
                 </h2>
                 <p className="text-xl text-gray-400 font-light leading-relaxed max-w-md">
                   Synthesized within the Tidel Park IT corridor, our workspace serves as the architectural core for global digital operations.
@@ -337,7 +342,7 @@ export default function Contact() {
                   { label: "Email Address", val: settings?.email, icon: Mail },
                   { label: "Phone Number", val: settings?.phone, icon: Phone },
                   { label: "Headquarters", val: settings?.address, icon: MapPin },
-                  { label: "Working Hours", val: "Mon — Sat, 09:00 AM – 06:00 PM", icon: Clock }
+                  { label: "Working Hours", val: "Mon - Sat, 09:00 AM - 06:00 PM", icon: Clock }
                 ].map((item, i) => (
                   <motion.div
                     key={i}
@@ -345,16 +350,16 @@ export default function Contact() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="group p-8 rounded-[2rem] bg-gray-50/50 border border-gray-100 hover:bg-white hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.05)] transition-all duration-500"
+                    className="group p-8 rounded-[2rem] bg-gray-50/50 border border-gray-100 hover:bg-white hover:border-[#14b88f]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.05)] transition-all duration-500"
                   >
-                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500 shadow-sm">
+                    <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500 shadow-sm">
                       <item.icon size={18} className="transition-colors" />
                     </div>
                     <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">{item.label}</h4>
-                    <p className="text-gray-900 font-medium leading-relaxed group-hover:text-[#14b8a6] transition-colors">{item.val}</p>
+                    <p className="text-gray-900 font-medium leading-relaxed group-hover:text-[#14b88f] transition-colors">{item.label === "Email Address" ? <a href={`mailto:${item.val}`}>{item.val}</a> : item.label === "Phone Number" ? <a href={`tel:${item.val}`}>{item.val}</a> : item.val}</p>
                     
                     {/* Architectural Detail */}
-                    <div className="mt-4 h-px w-0 bg-[#14b8a6]/20 group-hover:w-full transition-all duration-700" />
+                    <div className="mt-4 h-px w-0 bg-[#14b88f]/20 group-hover:w-full transition-all duration-700" />
                   </motion.div>
                 ))}
               </div>
@@ -371,8 +376,8 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-6"
                 >
-                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Directing Coordinates</span>
-                  <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500 shadow-xl shadow-transparent hover:shadow-[#14b8a6]/20">
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Directing Coordinates</span>
+                  <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500 shadow-xl shadow-transparent hover:shadow-[#14b88f]/20">
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </a>
@@ -384,8 +389,8 @@ export default function Contact() {
       </section>
 
       {/* --- FINAL DECORATIVE LINE --- */}
-      <div className="py-10 flex justify-center bg-white">
-        <div className="w-px h-24 bg-gradient-to-b from-[#14b8a6] to-transparent" />
+      <div className="py-10 pt-0 flex justify-center bg-white">
+        <div className="w-px h-24 bg-gradient-to-b from-[#14b88f] to-transparent" />
       </div>
 
     </div>

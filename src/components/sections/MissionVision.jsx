@@ -90,7 +90,7 @@ export default function MissionVision() {
                     <div className="relative pt-32 lg:pt-40">
                         {/* Title with accent line */}
                         <div className="flex items-center gap-4 mb-8">
-                        <div className="w-1 h-12 bg-[#14b8a6]"></div>
+                        <div className="w-1 h-12 bg-[#14b88f]"></div>
                         <h2 className="text-3xl lg:text-4xl font-light text-gray-900 tracking-tight">
                             Vision
                         </h2>

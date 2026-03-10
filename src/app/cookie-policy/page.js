@@ -22,7 +22,7 @@ const cookieModules = [
         summary: 'Core architecture required for structural stability.',
         content: 'These tracking tokens are vital for infrastructural security, session maintenance, and authentication protocols. Without these, the digital environment cannot function as intended.',
         details: ['Security Tokens', 'Session Integrity', 'Load Calibration'],
-        color: '#14b8a6'
+        color: '#14b88f'
     },
     {
         icon: Activity,
@@ -65,7 +65,7 @@ const expandedSections = [
 
 export default function CookiePolicy() {
     return (
-        <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
+        <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
             {/* Progress Bar */}
             <ProgressBar />
 
@@ -84,14 +84,14 @@ export default function CookiePolicy() {
                         className="flex flex-col items-center"
                     >
                         <div className="flex items-center gap-4 mb-8">
-                            <div className="w-12 h-px bg-[#14b8a6]" />
-                            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Tracking Protocol Hub</span>
-                            <div className="w-12 h-px bg-[#14b8a6]" />
+                            <div className="w-12 h-px bg-[#14b88f]" />
+                            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Tracking Protocol Hub</span>
+                            <div className="w-12 h-px bg-[#14b88f]" />
                         </div>
 
                         <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                             Cookie <br />
-                            <span className="italic font-normal text-[#14b8a6]">Architecture.</span>
+                            <span className="italic font-normal text-[#14b88f]">Architecture.</span>
                         </h1>
 
                         <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
@@ -112,21 +112,21 @@ export default function CookiePolicy() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ duration: 0.8, delay: idx * 0.2 }}
-                                className="group relative bg-white border border-gray-100 p-12 lg:p-16 rounded-[3rem] hover:border-[#14b8a6]/30 transition-all duration-700 overflow-hidden"
+                                className="group relative bg-white border border-gray-100 p-12 lg:p-16 rounded-[3rem] hover:border-[#14b88f]/30 transition-all duration-700 overflow-hidden"
                             >
                                 <div className="relative z-10">
-                                    <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b8a6] group-hover:text-white transition-all duration-500">
+                                    <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                                         <module.icon className="w-8 h-8" strokeWidth={1.5} />
                                     </div>
 
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b8a6] mb-6">{module.summary}</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b88f] mb-6">{module.summary}</h3>
                                     <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                                     <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
 
                                     <div className="space-y-3">
                                         {module.details.map((detail, i) => (
                                             <div key={i} className="flex items-center gap-3">
-                                                <div className="w-1 h-1 rounded-full bg-[#14b8a6]" />
+                                                <div className="w-1 h-1 rounded-full bg-[#14b88f]" />
                                                 <span className="text-xs font-bold uppercase tracking-widest text-gray-400">{detail}</span>
                                             </div>
                                         ))}
@@ -154,12 +154,12 @@ export default function CookiePolicy() {
                         <div className="lg:col-span-5 lg:sticky lg:top-32">
                             <div className="space-y-12">
                                 <div className="flex items-center gap-4">
-                                    <Search className="w-6 h-6 text-[#14b8a6]" />
-                                    <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Audit & Compliance</span>
+                                    <Search className="w-6 h-6 text-[#14b88f]" />
+                                    <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Audit & Compliance</span>
                                 </div>
                                 <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
                                     Tracking <br />
-                                    <span className="italic font-normal text-[#14b8a6]">Intelligence.</span>
+                                    <span className="italic font-normal text-[#14b88f]">Intelligence.</span>
                                 </h2>
                                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                                     Our environment is audited for tracking hygiene, ensuring that no unnecessary digital footprints are collected during your session.
@@ -190,7 +190,7 @@ export default function CookiePolicy() {
                                     className="relative group"
                                 >
                                     <div className="flex items-start gap-8">
-                                        <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-[#14b8a6] shrink-0 group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                                        <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-[#14b88f] shrink-0 group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                                             <section.icon className="w-5 h-5" strokeWidth={1.5} />
                                         </div>
                                         <div>
@@ -198,7 +198,7 @@ export default function CookiePolicy() {
                                             <p className="text-gray-400 text-xl font-light leading-relaxed mb-12">
                                                 {section.content}
                                             </p>
-                                            <button className="flex items-center gap-3 text-[#14b8a6] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                                            <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                                                 Management Hub <ArrowRight className="w-4 h-4" />
                                             </button>
                                         </div>
@@ -209,10 +209,10 @@ export default function CookiePolicy() {
                             ))}
 
                             <div className="bg-white/5 p-12 lg:p-16 rounded-[3rem] border border-white/10 backdrop-blur-xl">
-                                <Zap className="w-12 h-12 text-[#14b8a6] mb-8" />
+                                <Zap className="w-12 h-12 text-[#14b88f] mb-8" />
                                 <h4 className="text-2xl font-light mb-4">Real-time Recalibration</h4>
                                 <p className="text-gray-500 mb-10 leading-relaxed font-light">Want to synchronize your cookie settings with your current architectural setup? Use our automated tool to reset your session markers.</p>
-                                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b8a6]/10">
+                                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b88f]/10">
                                     Reset Session
                                 </Button>
                             </div>
@@ -228,7 +228,7 @@ export default function CookiePolicy() {
                     <div className="max-w-3xl mx-auto">
                         <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
                             Control your <br />
-                            <span className="text-[#14b8a6] italic font-normal">Digital Footprint.</span>
+                            <span className="text-[#14b88f] italic font-normal">Digital Footprint.</span>
                         </h2>
                         <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
                             Our technical support team is ready to assist with any queries regarding our tracking architectures and privacy sovereignty.

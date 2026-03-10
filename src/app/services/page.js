@@ -17,23 +17,28 @@ export default function Services() {
    const containerRef = useRef(null);
 
    useEffect(() => {
-      if (settings?.backend_api_url) {
-         setLoading(true);
-         fetch(`${settings.backend_api_url}/api/services/servicesList`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({})
-         })
-            .then(res => res.json())
-            .then(data => {
+      if (!settings?.backend_api_url) return;
+
+      let cancelled = false;
+
+      fetch(`${settings.backend_api_url}/api/services/servicesList`, {
+         method: "POST",
+         headers: { "Content-Type": "application/json" },
+         body: JSON.stringify({})
+      })
+         .then(res => res.json())
+         .then(data => {
+            if (!cancelled) {
                setService(data);
                setLoading(false);
-            })
-            .catch(err => {
-               console.error("Error fetching services:", err);
-               setLoading(false);
-            });
-      }
+            }
+         })
+         .catch(err => {
+            console.error("Error fetching services:", err);
+            if (!cancelled) setLoading(false);
+         });
+
+      return () => { cancelled = true; };
    }, [settings]);
 
    // Fallback services if API is empty for design demonstration
@@ -53,7 +58,7 @@ export default function Services() {
    ];
 
    return (
-      <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden" ref={containerRef}>
+      <div className="min-h-screen bg-white selection:bg-[#14b88f]/10 overflow-hidden" ref={containerRef}>
          {/* Progress Bar */}
          <ProgressBar />
          {/* --- HERO: THE ARCHITECTURAL BLUEPRINT --- */}
@@ -67,11 +72,11 @@ export default function Services() {
                      className="lg:col-span-8"
                   >
                      <div className="flex items-center gap-4 mb-8">
-                        <div className="w-12 h-px bg-[#14b8a6]" />
-                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Engineering Excellence</span>
+                        <div className="w-12 h-px bg-[#14b88f]" />
+                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Engineering Excellence</span>
                      </div>
-                     <h1 className="text-7xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-                        Our <span className="italic font-medium text-[#14b8a6]">Capabilities</span><br />
+                     <h1 className="text-6xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
+                        Our <span className="italic font-medium text-[#14b88f]">Capabilities</span><br />
                         <span className="font-medium text-gray-200">Explained.</span>
                      </h1>
                   </motion.div>
@@ -130,20 +135,20 @@ export default function Services() {
 
                                  {/* Floating Meta Tag */}
                                  <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
-                                    <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{srv.title}</p>
+                                    <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{srv.title}</p>
                                  </div>
                               </div>
 
                               {/* Architectural Dot on Connector */}
-                              <div className={`absolute top-1/2 ${idx % 2 === 0 ? '-right-[84px]' : '-left-[84px]'} w-4 h-4 rounded-full bg-white border-2 border-[#14b8a6] z-10 hidden lg:block`} />
+                              <div className={`absolute top-1/2 ${idx % 2 === 0 ? '-right-[84px]' : '-left-[84px]'} w-4 h-4 rounded-full bg-white border-2 border-[#14b88f] z-10 hidden lg:block`} />
                            </div>
 
                            {/* Content Block */}
                            <div className="lg:w-1/2 py-8">
-                              <span className="text-6xl lg:text-8xl font-black text-[#14b8a6]/30 mb-8 block select-none">0{idx + 1}</span>
+                              <span className="text-6xl lg:text-8xl font-black text-[#14b88f]/30 mb-8 block select-none">0{idx + 1}</span>
                               <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
                                  {srv.title.split(' ').map((word, i) => (
-                                    <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b8a6]"}>
+                                    <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b88f]"}>
                                        {word}{' '}
                                     </span>
                                  ))}
@@ -155,15 +160,15 @@ export default function Services() {
                               <div className="grid sm:grid-cols-2 gap-6 mb-12">
                                  {srv.features?.map((feature, fidx) => (
                                     <div key={fidx} className="flex items-center gap-3">
-                                       <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
+                                       <div className="w-1.5 h-1.5 rounded-full bg-[#14b88f]" />
                                        <span className="text-sm font-bold text-gray-800 uppercase tracking-tight">{feature}</span>
                                     </div>
                                  ))}
                               </div>
                               <Link href={`/services/${srv.slug}`}>
-                                 <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
-                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Details</span>
-                                    <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                                 <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b88f] transition-all">
+                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">Enquire Details</span>
+                                    <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </div>
                                  </button>
@@ -186,16 +191,16 @@ export default function Services() {
                   className="bg-gray-900 rounded-[4rem] p-12 lg:p-24 text-center relative overflow-hidden group shadow-2xl"
                >
                   {/* Background Glow */}
-                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#14b8a6] rounded-full blur-[120px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
+                  <div className="absolute -top-24 -right-24 w-64 h-64 bg-[#14b88f] rounded-full blur-[120px] opacity-20 group-hover:opacity-40 transition-opacity duration-1000" />
                   <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
 
                   <div className="relative z-10">
-                     <p className="text-[10px] tracking-[0.5em] uppercase text-[#14b8a6] font-bold mb-10">Next Evolution</p>
+                     <p className="text-[10px] tracking-[0.5em] uppercase text-[#14b88f] font-bold mb-10">Next Evolution</p>
                      <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
                         Ready to <span className="italic">synthesize</span><br />your next venture?
                      </h2>
                      <Link href="/contact">
-                        <button className="group cursor-pointer relative px-12 py-6 bg-[#14b8a6] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b8a6]/20">
+                        <button className="group cursor-pointer relative px-12 py-6 bg-[#14b88f] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b88f]/20">
                            <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
                               Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                            </span>
@@ -213,7 +218,7 @@ export default function Services() {
          {/* --- FOOTER DIVIDER --- */}
          < div className="py-2 pb-6 flex flex-col items-center" >
             <div className="w-px h-32 bg-gray-100 mb-8" />
-            <div className="w-2 h-2 rounded-full border-2 border-[#14b8a6]" />
+            <div className="w-2 h-2 rounded-full border-2 border-[#14b88f]" />
          </div >
 
       </div >

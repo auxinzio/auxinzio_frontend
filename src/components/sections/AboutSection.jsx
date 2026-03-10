@@ -26,12 +26,12 @@ export function AboutSection() {
                   className="lg:col-span-8"
                >
                   <div className="flex items-center gap-4 mb-8">
-                     <div className="w-12 h-px bg-[#14b8a6]" />
-                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">{about.tag}</span>
+                     <div className="w-12 h-px bg-[#14b88f]" />
+                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">{about.tag}</span>
                   </div>
-                  <h2 className="text-6xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
+                  <h2 className="text-5xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
                      Synthesizing <br />
-                     <span className="italic font-medium text-[#14b8a6]">Digital</span> <br />
+                     <span className="italic font-medium text-[#14b88f]">Digital</span> <br />
                      <span className="font-medium">Legacies</span>
                   </h2>
                </motion.div>
@@ -59,9 +59,9 @@ export function AboutSection() {
                            transition={{ delay: idx * 0.1 }}
                            className="flex items-center justify-center gap-10 group"
                         >
-                           <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b8a6] group-hover:w-20 transition-all duration-700" />
+                           <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b88f] group-hover:w-20 transition-all duration-700" />
                            <div className="space-y-1">
-                              <p className="text-[10px] font-bold tracking-widest text-[#14b8a6] uppercase whitespace-nowrap">{stat.label}</p>
+                              <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{stat.label}</p>
                               <p className="text-4xl font-light text-gray-900 tracking-tight leading-none transition-all">{stat.value}</p>
                            </div>
                         </motion.div>
@@ -75,12 +75,12 @@ export function AboutSection() {
                <div className="lg:col-span-5 order-2 lg:order-1">
                   <div className="space-y-16">
                      <div className="">
-                        <p className="text-gray-500 leading-relaxed mb-12 italic text-lg lg:text-xl">
+                        <p className="text-gray-500 leading-relaxed mb-12 text-lg lg:text-xl">
                            {`"${about.description}"`}
                         </p>
                         <Link href="/about" className="inline-flex items-center gap-6 group">
-                           <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors">Our Full Narrative</span>
-                           <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                           <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Our Full Narrative</span>
+                           <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                            </div>
                         </Link>
@@ -108,7 +108,7 @@ export function AboutSection() {
                         {/* Floating Info Pod */}
                         <div className="absolute top-12 right-12 bg-white/90 backdrop-blur-xl px-10 py-8 rounded-[2.5rem] shadow-2xl border border-white/20 hidden lg:block translate-x-12 translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 z-10">
                            <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">{about.experience.split(' ')[0]}+</p>
-                           <p className="text-[10px] font-bold text-[#14b8a6] tracking-widest uppercase">Legacy Years</p>
+                           <p className="text-[10px] font-bold text-[#14b88f] tracking-widest uppercase">Legacy Years</p>
                         </div>
                      </div>
 

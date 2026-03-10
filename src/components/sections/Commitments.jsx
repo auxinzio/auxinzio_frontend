@@ -33,13 +33,13 @@ export default function Commitments() {
               className="space-y-8"
             >
               <div className="flex items-center gap-4 mb-12">
-                <div className="w-12 h-px bg-[#14b8a6]" />
-                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Value Framework</span>
+                <div className="w-12 h-px bg-[#14b88f]" />
+                <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Value Framework</span>
               </div>
 
               <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-none mb-12">
                 The <br />
-                <span className="italic font-medium text-[#14b8a6]">Principles</span> <br />
+                <span className="italic font-medium text-[#14b88f]">Principles</span> <br />
                 <span className="font-medium">of Synthesis.</span>
               </h2>
 
@@ -48,9 +48,9 @@ export default function Commitments() {
               </p>
 
               <div className="pt-8">
-                <Link href="/contact" className="group inline-flex items-center gap-4 text-gray-900 font-bold hover:text-[#14b8a6] transition-all">
+                <Link href="/contact" className="group inline-flex items-center gap-4 text-gray-900 font-bold hover:text-[#14b88f] transition-all">
                     Inquire for Frameworks
-                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                    <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                       <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                     </div>
                 </Link>
@@ -67,21 +67,21 @@ export default function Commitments() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`p-10 rounded-[2.5rem] border border-gray-100 bg-white group hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-20px_rgba(20,184,166,0.1)] transition-all duration-500 relative overflow-hidden ${index % 2 !== 0 ? 'md:translate-y-12' : ''}`}
+                className={`p-10 rounded-[2.5rem] border border-gray-100 bg-white group hover:border-[#14b88f]/20 hover:shadow-[0_20px_50px_-20px_rgba(20,184,166,0.1)] transition-all duration-500 relative overflow-hidden ${index % 2 !== 0 ? 'md:translate-y-12' : ''}`}
               >
                 {/* Background Number */}
-                <span className="absolute top-8 right-10 text-5xl font-black text-gray-50 group-hover:text-[#14b8a6]/40 transition-colors">0{index + 1}</span>
+                <span className="absolute top-8 right-10 text-5xl font-black text-gray-50 group-hover:text-[#14b88f]/40 transition-colors">0{index + 1}</span>
 
                 <div className="relative z-10">
-                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:bg-[#14b8a6]/10 transition-colors">
-                    <item.icon className="w-6 h-6 text-gray-400 group-hover:text-[#14b8a6] transition-colors" strokeWidth={1.5} />
+                  <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:bg-[#14b88f]/10 transition-colors">
+                    <item.icon className="w-6 h-6 text-gray-400 group-hover:text-[#14b88f] transition-colors" strokeWidth={1.5} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4 tracking-tight">{item.title}</h3>
-                  <p className="text-gray-500 leading-relaxed text-sm">{item.description}</p>
+                  <p className="text-gray-500 leading-relaxed">{item.description}</p>
                 </div>
 
                 {/* Architectural Decor */}
-                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-[#14b8a6]/40 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-700" />
+                <div className="absolute inset-x-0 bottom-0 h-1 bg-gradient-to-r from-transparent via-[#14b88f]/40 to-transparent translate-y-full group-hover:translate-y-0 transition-transform duration-700" />
               </motion.div>
             ))}
           </div>

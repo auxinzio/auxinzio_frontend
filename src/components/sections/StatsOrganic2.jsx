@@ -64,13 +64,13 @@ export default function StatsOrganic2() {
               <circle cx="140" cy="120" r="60" stroke="#22c55e" strokeWidth="1.5" fill="none" opacity="0.4" />
               <circle cx="140" cy="120" r="40" stroke="#06b6d4" strokeWidth="1.5" fill="none" opacity="0.3" />
               
-              <rect x="100" y="200" width="80" height="80" stroke="#14b8a6" strokeWidth="1.5" fill="none" opacity="0.4" />
+              <rect x="100" y="200" width="80" height="80" stroke="#14b88f" strokeWidth="1.5" fill="none" opacity="0.4" />
               <line x1="70" y1="320" x2="210" y2="320" stroke="#22c55e" strokeWidth="1.5" opacity="0.3" />
               
               <polygon points="140,300 120,340 160,340" stroke="#06b6d4" strokeWidth="1.5" fill="none" opacity="0.4" />
               
               {/* Connecting lines */}
-              <line x1="140" y1="180" x2="140" y2="200" stroke="#14b8a6" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
+              <line x1="140" y1="180" x2="140" y2="200" stroke="#14b88f" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
               <line x1="140" y1="280" x2="140" y2="300" stroke="#22c55e" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
             </svg>
           </div>
@@ -83,10 +83,10 @@ export default function StatsOrganic2() {
             <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] text-gray-900 mb-6">
               Technology<br />
               That<br />
-              <span className="text-[#14b8a6]">Empowers</span><br />
+              <span className="text-[#14b88f]">Empowers</span><br />
               Growth
             </h1>
-            <div className="w-24 h-[2px] bg-[#14b8a6]" />
+            <div className="w-24 h-[2px] bg-[#14b88f]" />
           </div>
         </div>
 
@@ -100,8 +100,8 @@ export default function StatsOrganic2() {
             return (
               <div key={index} className="flex gap-4 lg:gap-6 group">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 rounded-sm border border-gray-200 flex items-center justify-center group-hover:border-[#14b8a6] transition-colors duration-300">
-                    <Icon className="w-6 h-6 text-[#14b8a6]" strokeWidth={1.5} />
+                  <div className="w-12 h-12 rounded-sm border border-gray-200 flex items-center justify-center group-hover:border-[#14b88f] transition-colors duration-300">
+                    <Icon className="w-6 h-6 text-[#14b88f]" strokeWidth={1.5} />
                   </div>
                 </div>
                 <div>

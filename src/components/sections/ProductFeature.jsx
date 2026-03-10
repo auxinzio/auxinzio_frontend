@@ -23,11 +23,13 @@ export function ProductFeature({ products, loading }) {
             viewport={{ once: true }}
             className="max-w-2xl"
           >
-            <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-6 font-medium">
-              Featured Solutions
-            </p>
-            <h2 className="text-5xl lg:text-6xl font-light text-gray-900 leading-tight tracking-tight">
-              Innovation Through <span className="text-[#14b8a6]">Precision</span>
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-px bg-[#14b88f]" />
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Proprietary Artifacts</span>
+            </div>
+            <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
+              Innovation Through <br />
+              <span className="italic font-normal text-[#14b88f]">Precision.</span>
             </h2>
           </motion.div>
 
@@ -46,7 +48,7 @@ export function ProductFeature({ products, loading }) {
                 {activeProduct === index && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute bottom-[-9px] left-0 right-0 h-px bg-[#14b8a6]"
+                    className="absolute bottom-[-9px] left-0 right-0 h-px bg-[#14b88f]"
                   />
                 )}
               </button>
@@ -73,12 +75,12 @@ export function ProductFeature({ products, loading }) {
                   <motion.div
                     initial={{ width: 0 }}
                     animate={{ width: 48 }}
-                    className="h-px bg-[#06b6d4]"
+                    className="h-px bg-[#14b88f]"
                   />
-                  <h3 className="text-3xl lg:text-4xl font-light text-gray-900 leading-tight">
+                  <h3 className="text-3xl lg:text-4xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                     {product?.product_name}
                   </h3>
-                  <p className="text-lg text-gray-600 leading-relaxed max-w-lg">
+                  <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
                     {product?.tag?.[0]}
                   </p>
                 </div>
@@ -92,7 +94,7 @@ export function ProductFeature({ products, loading }) {
                     className="flex items-start gap-4 group"
                   >
                     <div className="mt-1">
-                      <Zap className="w-5 h-5 text-[#14b8a6]" strokeWidth={1.5} />
+                      <Zap className="w-5 h-5 text-[#14b88f]" strokeWidth={1.5} />
                     </div>
                     <div>
                       <span className="text-gray-900 font-medium tracking-tight block mb-1">
@@ -111,7 +113,7 @@ export function ProductFeature({ products, loading }) {
                       className="flex items-center gap-4 text-sm font-medium tracking-[0.2em] uppercase text-gray-900 group"
                     >
                       Explore Experience
-                      <ArrowRight className="w-5 h-5 text-[#14b8a6] group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight className="w-5 h-5 text-[#14b88f] group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </Link>
                 </div>
@@ -149,7 +151,7 @@ export function ProductFeature({ products, loading }) {
                     {/* Subtle grid overlay on image */}
                     <div className="absolute inset-0 pointer-events-none opacity-[0.03]"
                       style={{
-                        backgroundImage: 'radial-gradient(#14b8a6 0.5px, transparent 0.5px)',
+                        backgroundImage: 'radial-gradient(#14b88f 0.5px, transparent 0.5px)',
                         backgroundSize: '24px 24px',
                       }}
                     />
@@ -157,7 +159,7 @@ export function ProductFeature({ products, loading }) {
                 </motion.div>
 
                 {/* Floating Architectural Element */}
-                <div className="absolute -right-4 -bottom-4 w-24 h-24 border-r border-b border-[#14b8a6]/20 hidden lg:block" />
+                <div className="absolute -right-4 -bottom-4 w-24 h-24 border-r border-b border-[#14b88f]/20 hidden lg:block" />
               </div>
             </motion.div>
           </AnimatePresence>

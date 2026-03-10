@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Lock, User, Eye, EyeOff, ArrowRight, ShieldCheck } from 'lucide-react'
@@ -12,23 +12,88 @@ export default function AdminLogin() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [isOtpStep, setIsOtpStep] = useState(false)
+  const [userOtp, setUserOtp] = useState(['', '', '', '', '', ''])
+  const [adminOtp, setAdminOtp] = useState(['', '', '', '', '', ''])
+  const [loginEmail, setLoginEmail] = useState('')
+  const [timer, setTimer] = useState(120)
   const [error, setError] = useState(null)
   const [errors, setErrors] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
 
-  const { login } = useAuth();
+  const { login, verifyLoginCode } = useAuth();
   
+  useEffect(() => {
+    let interval;
+    if (isOtpStep && timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    }
+    return () => clearInterval(interval);
+  }, [isOtpStep, timer]);
+
+  const formatTime = (seconds) => {
+    const m = Math.floor(seconds / 60);
+    const s = seconds % 60;
+    return `${m}:${s.toString().padStart(2, '0')}`;
+  };
+
   const validate = () => {
     const newErrors = {};
-    if (!username.trim()) {
-      newErrors.username = 'Identifier is required';
-    }
-    if (!password) {
-      newErrors.password = 'Credential is required';
+    if (!isOtpStep) {
+      if (!username.trim()) {
+        newErrors.username = 'Identifier is required';
+      }
+      if (!password) {
+        newErrors.password = 'Credential is required';
+      }
+    } else {
+      if (userOtp.some(digit => digit === '')) {
+        newErrors.userOtp = 'Complete 6-digit User OTP is required';
+      }
+      if (adminOtp.some(digit => digit === '')) {
+        newErrors.adminOtp = 'Complete 6-digit Admin OTP is required';
+      }
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleOtpChange = (e, index, type) => {
+    let value = e.target.value;
+    if (!/^\d*$/.test(value)) return;
+    
+    if (value.length > 1) {
+      value = value.slice(-1);
+    }
+
+    if (type === 'user') {
+      const newOtp = [...userOtp];
+      newOtp[index] = value;
+      setUserOtp(newOtp);
+      if (value && index < 5) {
+        document.getElementById(`userOtp-${index + 1}`)?.focus();
+      }
+    } else {
+      const newOtp = [...adminOtp];
+      newOtp[index] = value;
+      setAdminOtp(newOtp);
+      if (value && index < 5) {
+        document.getElementById(`adminOtp-${index + 1}`)?.focus();
+      }
+    }
+  };
+
+  const handleOtpKeyDown = (e, index, type) => {
+    if (e.key === 'Backspace') {
+      const otpArray = type === 'user' ? userOtp : adminOtp;
+      if (!otpArray[index] && index > 0) {
+        const prevId = type === 'user' ? `userOtp-${index - 1}` : `adminOtp-${index - 1}`;
+        document.getElementById(prevId)?.focus();
+      }
+    }
   };
 
   const handleLogin = async (e) => {
@@ -38,9 +103,24 @@ export default function AdminLogin() {
     setError(null);
 
     try {
-      const result = await login(username, password);
-      if (!result.success) {
-        setError(result.message || 'Verification failed. Please check your credentials.');
+      if (!isOtpStep) {
+        const result = await login(username, password);
+        if (result.statuscode === 200 || result.status === 200 || result.success) {
+          setLoginEmail(result.data?.email || username);
+          setIsOtpStep(true);
+        } else {
+          setError(result.message || 'Verification failed. Please check your credentials.');
+        }
+      } else {
+        const userOtpString = userOtp.join('');
+        const adminOtpString = adminOtp.join('');
+        const result = await verifyLoginCode(loginEmail || username, userOtpString, adminOtpString);        
+        
+        if (result.statuscode === 200 || result.status === 200 || result.success) {
+          router.push('/admin/dashboard');
+        } else {
+          setError(result.message || 'OTP verification failed. Please try again.');
+        }
       }
     } catch (err) {
       setError('An unexpected error occurred. Please try again.');
@@ -145,83 +225,174 @@ export default function AdminLogin() {
               </AnimatePresence>
 
               <form onSubmit={handleLogin} noValidate className="space-y-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Identifier</label>
-                  <div className="relative group/input">
-                    <div className="absolute inset-y-0 left-0 h-full w-full">
-                      <div className={cn(
-                        "h-full w-full rounded-2xl bg-gray-50 border transition-all duration-300",
-                        errors.username ? "border-red-500/50 bg-red-50" : "border-gray-200 group-focus-within/input:border-primary/50 group-focus-within/input:bg-white group-focus-within/input:shadow-sm"
-                      )} />
-                    </div>
-                    <div className={cn(
-                      "absolute left-4 top-1/2 -translate-y-1/2 transition-colors",
-                      errors.username ? "text-red-400" : "text-gray-400 group-focus-within/input:text-primary"
-                    )}>
-                      <User className="w-5 h-5" />
-                    </div>
-                    <input
-                      type="text"
-                      placeholder="Username / Email"
-                      value={username}
-                      onChange={(e) => {
-                        setUsername(e.target.value);
-                        if (errors.username) setErrors({ ...errors, username: null });
-                      }}
-                      className="relative w-full bg-transparent pl-12 pr-4 py-4 text-gray-900 placeholder-gray-400 focus:outline-none transition-all font-medium"
-                      required
-                    />
-                  </div>
-                  {errors.username && (
-                    <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
-                      {errors.username}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Credential</label>
-                  <div className="relative group/input">
-                    <div className="absolute inset-y-0 left-0 h-full w-full">
-                      <div className={cn(
-                        "h-full w-full rounded-2xl bg-gray-50 border transition-all duration-300",
-                        errors.password ? "border-red-500/50 bg-red-50" : "border-gray-200 group-focus-within/input:border-primary/50 group-focus-within/input:bg-white group-focus-within/input:shadow-sm"
-                      )} />
-                    </div>
-                    <div className={cn(
-                      "absolute left-4 top-1/2 -translate-y-1/2 transition-colors",
-                      errors.password ? "text-red-400" : "text-gray-400 group-focus-within/input:text-primary"
-                    )}>
-                      <Lock className="w-5 h-5" />
-                    </div>
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      placeholder="••••••••"
-                      value={password}
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        if (errors.password) setErrors({ ...errors, password: null });
-                      }}
-                      className="relative w-full bg-transparent pl-12 pr-12 py-4 text-gray-900 placeholder-gray-400 focus:outline-none transition-all font-medium"
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className={cn(
-                        "absolute right-4 top-1/2 -translate-y-1/2 transition-colors p-1",
-                        errors.password ? "text-red-400" : "text-gray-400 hover:text-gray-600"
-                      )}
+                <AnimatePresence mode="popLayout">
+                  {!isOtpStep ? (
+                    <motion.div
+                      key="login-fields"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20 }}
+                      className="space-y-6"
                     >
-                      {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                    </button>
-                  </div>
-                  {errors.password && (
-                    <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
-                      {errors.password}
-                    </p>
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Identifier</label>
+                        <div className="relative group/input">
+                          <div className="absolute inset-y-0 left-0 h-full w-full">
+                            <div className={cn(
+                              "h-full w-full rounded-2xl bg-gray-50 border transition-all duration-300",
+                              errors.username ? "border-red-500/50 bg-red-50" : "border-gray-200 group-focus-within/input:border-primary/50 group-focus-within/input:bg-white group-focus-within/input:shadow-sm"
+                            )} />
+                          </div>
+                          <div className={cn(
+                            "absolute left-4 top-1/2 -translate-y-1/2 transition-colors",
+                            errors.username ? "text-red-400" : "text-gray-400 group-focus-within/input:text-primary"
+                          )}>
+                            <User className="w-5 h-5" />
+                          </div>
+                          <input
+                            type="text"
+                            placeholder="Username / Email"
+                            value={username}
+                            onChange={(e) => {
+                              setUsername(e.target.value);
+                              if (errors.username) setErrors({ ...errors, username: null });
+                            }}
+                            className="relative w-full bg-transparent pl-12 pr-4 py-4 text-gray-900 placeholder-gray-400 focus:outline-none transition-all font-medium"
+                            required
+                          />
+                        </div>
+                        {errors.username && (
+                          <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
+                            {errors.username}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Credential</label>
+                        <div className="relative group/input">
+                          <div className="absolute inset-y-0 left-0 h-full w-full">
+                            <div className={cn(
+                              "h-full w-full rounded-2xl bg-gray-50 border transition-all duration-300",
+                              errors.password ? "border-red-500/50 bg-red-50" : "border-gray-200 group-focus-within/input:border-primary/50 group-focus-within/input:bg-white group-focus-within/input:shadow-sm"
+                            )} />
+                          </div>
+                          <div className={cn(
+                            "absolute left-4 top-1/2 -translate-y-1/2 transition-colors",
+                            errors.password ? "text-red-400" : "text-gray-400 group-focus-within/input:text-primary"
+                          )}>
+                            <Lock className="w-5 h-5" />
+                          </div>
+                          <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="••••••••"
+                            value={password}
+                            onChange={(e) => {
+                              setPassword(e.target.value);
+                              if (errors.password) setErrors({ ...errors, password: null });
+                            }}
+                            className="relative w-full bg-transparent pl-12 pr-12 py-4 text-gray-900 placeholder-gray-400 focus:outline-none transition-all font-medium"
+                            required
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className={cn(
+                              "absolute right-4 top-1/2 -translate-y-1/2 transition-colors p-1",
+                              errors.password ? "text-red-400" : "text-gray-400 hover:text-gray-600"
+                            )}
+                          >
+                            {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                          </button>
+                        </div>
+                        {errors.password && (
+                          <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
+                            {errors.password}
+                          </p>
+                        )}
+                      </div>
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="otp-fields"
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -20 }}
+                      className="space-y-6"
+                    >
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">User OTP</label>
+                        <div className="flex gap-2 lg:gap-3">
+                          {userOtp.map((digit, index) => (
+                            <input
+                              key={`userOtp-${index}`}
+                              id={`userOtp-${index}`}
+                              type="text"
+                              inputMode="numeric"
+                              autoComplete="one-time-code"
+                              value={digit}
+                              onChange={(e) => {
+                                handleOtpChange(e, index, 'user');
+                                if (errors.userOtp) setErrors({ ...errors, userOtp: null });
+                              }}
+                              onKeyDown={(e) => handleOtpKeyDown(e, index, 'user')}
+                              className={cn(
+                                "w-full h-14 rounded-2xl bg-gray-50 border text-center text-xl font-bold text-gray-900 focus:outline-none transition-all duration-300",
+                                errors.userOtp ? "border-red-500/50 bg-red-50" : "border-gray-200 focus:border-primary/50 focus:bg-white focus:shadow-sm"
+                              )}
+                              required
+                            />
+                          ))}
+                        </div>
+                        {errors.userOtp && (
+                          <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
+                            {errors.userOtp}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest ml-1">Admin OTP</label>
+                        <div className="flex gap-2 lg:gap-3">
+                          {adminOtp.map((digit, index) => (
+                            <input
+                              key={`adminOtp-${index}`}
+                              id={`adminOtp-${index}`}
+                              type="text"
+                              inputMode="numeric"
+                              autoComplete="one-time-code"
+                              value={digit}
+                              onChange={(e) => {
+                                handleOtpChange(e, index, 'admin');
+                                if (errors.adminOtp) setErrors({ ...errors, adminOtp: null });
+                              }}
+                              onKeyDown={(e) => handleOtpKeyDown(e, index, 'admin')}
+                              className={cn(
+                                "w-full h-14 rounded-2xl bg-gray-50 border text-center text-xl font-bold text-gray-900 focus:outline-none transition-all duration-300",
+                                errors.adminOtp ? "border-red-500/50 bg-red-50" : "border-gray-200 focus:border-primary/50 focus:bg-white focus:shadow-sm"
+                              )}
+                              required
+                            />
+                          ))}
+                        </div>
+                        {errors.adminOtp && (
+                          <p className="text-[10px] text-red-500 font-bold uppercase ml-1 tracking-widest animate-in fade-in slide-in-from-top-1">
+                            {errors.adminOtp}
+                          </p>
+                        )}
+                      </div>
+                      
+                      <div className="pt-2 flex justify-center items-center">
+                        <div className={cn(
+                          "px-4 py-2 rounded-full text-xs font-bold transition-colors duration-300 tracking-widest",
+                          timer <= 30 ? "bg-red-50 text-red-500" : "bg-primary/10 text-primary"
+                        )}>
+                          {formatTime(timer)}
+                        </div>
+                      </div>
+                    </motion.div>
                   )}
-                </div>
+                </AnimatePresence>
 
                 <div className="pt-4">
                   <motion.button
@@ -237,7 +408,7 @@ export default function AdminLogin() {
                         <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />
                       ) : (
                         <>
-                          <span>Access Console</span>
+                          <span>{!isOtpStep ? "Access Console" : "Verify Authenticity"}</span>
                           <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                         </>
                       )}

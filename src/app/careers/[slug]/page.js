@@ -32,7 +32,7 @@ export default function JobDetailsPage() {
 
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/;
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
     const phoneRegex = /^[6-9]\d{9,14}$/;
 
     if (!formData.applicant_name || formData.applicant_name.length < 3) newErrors.applicant_name = 'Name must be at least 3 characters.';
@@ -165,7 +165,7 @@ export default function JobDetailsPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gray-50/50 pt-24 pb-20 selection:bg-[#14b8a6]/10">
+      <div className="min-h-screen bg-gray-50/50 pt-24 pb-20 selection:bg-[#14b88f]/10">
         {/* Progress Bar */}
         <ProgressBar />
         {/* Header */}
@@ -174,34 +174,30 @@ export default function JobDetailsPage() {
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
               <div className="flex-1">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-8 h-px bg-[#14b8a6]/30" />
-                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Job Vacancy</span>
+                  <div className="w-8 h-px bg-[#14b88f]/30" />
+                  <span className="text-[14px] font-bold tracking-[0.2em] uppercase text-[#14b88f]">Job Vacancy</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
-                  {careerData?.title?.split(' ').map((word, i) => (
-                    <span key={i}>
-                      {i === 0 ? <span className="font-semibold">{word} </span> : <span className="italic">{word} </span>}
-                    </span>
-                  ))}
+                  <span className="font-semibold">{careerData?.title} </span> 
                 </h1>
                 <div className="flex flex-wrap items-center gap-4">
                   <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
-                    <Briefcase className="w-3.5 h-3.5 text-[#14b8a6]" />
+                    <Briefcase className="w-3.5 h-3.5 text-[#14b88f]" />
                     {careerData?.department}
                   </span>
                   <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
-                    <MapPin className="w-3.5 h-3.5 text-[#14b8a6]" />
+                    <MapPin className="w-3.5 h-3.5 text-[#14b88f]" />
                     {careerData?.location}
                   </span>
                   <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-[#14b8a6]" />
+                    <Clock className="w-3.5 h-3.5 text-[#14b88f]" />
                     {careerData?.type}
                   </span>
                 </div>
               </div>
               <a
                 href="#apply"
-                className="px-10 py-5 rounded-2xl font-bold text-xs uppercase tracking-widest text-white bg-gray-900 transition-all duration-500 hover:bg-[#14b8a6] hover:shadow-[0_20px_40px_-10px_rgba(20,184,166,0.3)] hover:-translate-y-1 whitespace-nowrap inline-block text-center shadow-2xl"
+                className="px-10 py-5 rounded-2xl font-bold text-xs uppercase tracking-widest text-white bg-gray-900 transition-all duration-500 hover:bg-[#14b88f] hover:shadow-[0_20px_40px_-10px_rgba(20,184,166,0.3)] hover:-translate-y-1 whitespace-nowrap inline-block text-center shadow-2xl"
               >
                 Apply for Position
               </a>
@@ -223,8 +219,8 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-8">
-                  <div className="w-8 h-px bg-[#14b8a6]/20" />
-                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Historical Context</h2>
+                  <div className="w-8 h-px bg-[#14b88f]/80" />
+                  <h2 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Historical Context</h2>
                 </div>
                 <p className="text-gray-600 leading-[1.8] text-lg font-light italic">
                   &quot;{careerData?.description}&quot;
@@ -239,14 +235,14 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-14 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100"
               >
                 <div className="flex items-center gap-4 mb-10">
-                  <div className="w-8 h-px bg-[#14b8a6]/20" />
-                  <h2 className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.4em]">Core Deliverables</h2>
+                  <div className="w-8 h-px bg-[#14b88f]/80" />
+                  <h2 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Core Deliverables</h2>
                 </div>
                 <div className="grid gap-6">
                   {careerData?.requirements?.experience?.map((item, index) => (
                     <div key={index} className="flex items-start gap-6 group hover:translate-x-2 transition-transform duration-500">
-                      <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b8a6]/10 group-hover:border-[#14b8a6]/20 transition-colors">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-[#14b8a6] transition-colors" />
+                      <div className="mt-1 flex-shrink-0 w-6 h-6 rounded-full bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b88f]/10 group-hover:border-[#14b88f]/20 transition-colors">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-[#14b88f] transition-colors" />
                       </div>
                       <span className="text-gray-600 leading-relaxed font-light">{item}</span>
                     </div>
@@ -264,13 +260,13 @@ export default function JobDetailsPage() {
                 <div className="grid md:grid-cols-2 gap-16">
                   <div>
                     <div className="flex items-center gap-4 mb-10">
-                      <div className="w-6 h-px bg-gray-200" />
-                      <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Prerequisites</h3>
+                      <div className="w-6 h-px bg-[#14b88f]/80" />
+                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Prerequisites</h3>
                     </div>
                     <ul className="space-y-4">
                       {careerData?.requirements?.skill?.map((item, index) => (
                         <li key={index} className="flex items-center gap-4 text-sm text-gray-500 font-light">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6]" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#14b88f]" />
                           {item}
                         </li>
                       ))}
@@ -279,13 +275,13 @@ export default function JobDetailsPage() {
 
                   <div>
                     <div className="flex items-center gap-4 mb-10">
-                      <div className="w-6 h-px bg-gray-200" />
-                      <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.4em]">Auxiliary Nodes</h3>
+                      <div className="w-6 h-px bg-[#14b88f]/80" />
+                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Auxiliary Nodes</h3>
                     </div>
                     <ul className="space-y-4">
                       {careerData?.requirements?.extra?.map((item, index) => (
                         <li key={index} className="flex items-center gap-4 text-sm text-gray-500 font-light">
-                          <div className="w-1.5 h-1.5 rounded-full border border-[#14b8a6]" />
+                          <div className="w-1.5 h-1.5 rounded-full border border-[#14b88f]" />
                           {item}
                         </li>
                       ))}
@@ -311,8 +307,8 @@ export default function JobDetailsPage() {
 
                 {isSubmitted ? (
                   <div className="py-20 text-center space-y-8">
-                    <div className="w-24 h-24 bg-[#14b8a6]/5 rounded-full flex items-center justify-center mx-auto border border-[#14b8a6]/10">
-                      <CheckCircle2 className="w-10 h-10 text-[#14b8a6]" />
+                    <div className="w-24 h-24 bg-[#14b88f]/5 rounded-full flex items-center justify-center mx-auto border border-[#14b88f]/10">
+                      <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                     </div>
                     <div>
                       <h3 className="text-2xl font-bold text-gray-900 mb-2">Protocol Successful</h3>
@@ -332,7 +328,7 @@ export default function JobDetailsPage() {
                           required
                           value={formData.applicant_name}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50/50 border ${errors.applicant_name ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
+                          className={`w-full bg-gray-50/50 border ${errors.applicant_name ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
                           placeholder="John Doe"
                         />
                         {errors.applicant_name && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.applicant_name}</p>}
@@ -345,7 +341,7 @@ export default function JobDetailsPage() {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50/50 border ${errors.email ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
+                          className={`w-full bg-gray-50/50 border ${errors.email ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
                           placeholder="john@protocol.com"
                         />
                         {errors.email && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.email}</p>}
@@ -359,7 +355,7 @@ export default function JobDetailsPage() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className={`w-full bg-gray-50/50 border ${errors.phone ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none`}
+                          className={`w-full bg-gray-50/50 border ${errors.phone ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
                           placeholder="+1 (555) 000-0000"
                         />
                         {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.phone}</p>}
@@ -371,7 +367,7 @@ export default function JobDetailsPage() {
                           name="linkedin"
                           value={formData.linkedin}
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none"
                           placeholder="linkedin.com/in/profile"
                         />
                       </div>
@@ -384,7 +380,7 @@ export default function JobDetailsPage() {
                           name="portfolio"
                           value={formData.portfolio}
                           onChange={handleChange}
-                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none"
+                          className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none"
                           placeholder="https://portfolio.design"
                         />
                       </div>
@@ -408,19 +404,19 @@ export default function JobDetailsPage() {
                         value={formData.cover_letter}
                         onChange={handleChange}
                         rows={6}
-                        className={`w-full bg-gray-50/50 border ${errors.cover_letter ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b8a6]/40 transition-all outline-none resize-none`}
+                        className={`w-full bg-gray-50/50 border ${errors.cover_letter ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none resize-none`}
                         placeholder="Detail your architectural approach & core intent..."
                       ></textarea>
                       {errors.cover_letter && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.cover_letter}</p>}
                     </div>
                     <button
                       type="submit"
-                      className="w-full group relative overflow-hidden py-5 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
+                      className="w-full group relative overflow-hidden py-5 px-3 bg-gray-900 text-white rounded-2xl font-bold text-xs uppercase tracking-[0.2em] transition-all hover:shadow-[0_20px_40px_-10px_rgba(0,0,0,0.2)]"
                     >
                       <span className="relative z-10 flex items-center justify-center gap-4 transition-transform group-hover:scale-105 duration-500">
-                        Establish Sync Protocol <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                        Submit Application <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
                       </span>
-                      <div className="absolute inset-0 bg-[#14b8a6] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+                      <div className="absolute inset-0 bg-[#14b88f] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
                     </button>
                   </form>
                 )}
@@ -436,53 +432,53 @@ export default function JobDetailsPage() {
               >
                 {/* Protocol Card */}
                 <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100 overflow-hidden relative">
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b8a6]/5 rounded-bl-[100%] pointer-events-none" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-[#14b88f]/5 rounded-bl-[100%] pointer-events-none" />
 
-                  <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.3em] mb-10 pb-4 border-b border-gray-50">Role Protocol</h3>
+                  <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em] mb-10 pb-4 border-b border-gray-50">Role Protocol</h3>
                   <div className="space-y-8 mb-10">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
-                        <Briefcase className="w-5 h-5 text-[#14b8a6]" />
+                        <Briefcase className="w-5 h-5 text-[#14b88f]" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Department</p>
+                        <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Department</p>
                         <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.department}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
-                        <MapPin className="w-5 h-5 text-[#14b8a6]" />
+                        <MapPin className="w-5 h-5 text-[#14b88f]" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">location</p>
+                        <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">location</p>
                         <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.location}</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center border border-gray-100">
-                        <Clock className="w-5 h-5 text-[#14b8a6]" />
+                        <Clock className="w-5 h-5 text-[#14b88f]" />
                       </div>
                       <div>
-                        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Commitment</p>
+                        <p className="text-[12px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1.5">Commitment</p>
                         <p className="text-sm font-bold text-gray-900 tracking-tight">{careerData?.type}</p>
                       </div>
                     </div>
                   </div>
 
-                  <p className="text-[10px] text-gray-400 text-center leading-relaxed">
+                  <p className="text-[12px] text-gray-400 text-center leading-relaxed">
                     Questions regarding this protocol? <br />
-                    <a href="mailto:talent@auxinzio.com" className="text-[#14b8a6] font-bold hover:underline">{settings?.email}</a>
+                    <a href={`mailto:${settings?.email}`} className="text-[#14b88f] font-bold hover:underline">{settings?.email}</a>
                   </p>
                 </div>
 
                 {/* Offerings */}
                 <div className="bg-white rounded-[2.5rem] p-10 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.03)] border border-gray-100">
-                  <h3 className="text-[10px] font-bold text-gray-900 uppercase tracking-[0.3em] mb-10 pb-4 border-b border-gray-50">Eco-System</h3>
+                  <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em] mb-10 pb-4 border-b border-gray-50">Eco-System</h3>
                   <div className="space-y-6">
                     {careerData?.requirements?.experience?.slice(0, 4).map((_, index) => (
                       <div key={index} className="flex items-center gap-4 group">
-                        <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b8a6]/10 group-hover:border-[#14b8a6]/20 transition-all">
-                          <CloudCheck className="w-4 h-4 text-gray-300 group-hover:text-[#14b8a6]" />
+                        <div className="w-8 h-8 rounded-lg bg-gray-50 flex items-center justify-center border border-gray-100 group-hover:bg-[#14b88f]/10 group-hover:border-[#14b88f]/20 transition-all">
+                          <CloudCheck className="w-4 h-4 text-gray-300 group-hover:text-[#14b88f]" />
                         </div>
                         <span className="text-xs text-gray-500 font-light group-hover:text-gray-900 transition-colors">Strategic Benefits</span>
                       </div>

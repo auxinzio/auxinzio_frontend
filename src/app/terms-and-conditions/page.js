@@ -147,7 +147,7 @@ export default function TermsAndConditions() {
   };
 
   return (
-    <div className="min-h-screen bg-white selection:bg-[#14b8a6]/10">
+    <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
       {/* Progress Bar */}
       <ProgressBar />
 
@@ -160,7 +160,7 @@ export default function TermsAndConditions() {
 
         {/* Decorative Grid */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none"
-          style={{ backgroundImage: 'radial-gradient(#14b8a6 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
+          style={{ backgroundImage: 'radial-gradient(#14b88f 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
         <div className="mx-auto max-w-[1600px] relative z-10">
           <div className="max-w-4xl">
@@ -170,12 +170,12 @@ export default function TermsAndConditions() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <div className="flex items-center gap-4 mb-12">
-                <div className="w-12 h-px bg-[#14b8a6]" />
-                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Standard Operating Protocol</span>
+                <div className="w-12 h-px bg-[#14b88f]" />
+                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Standard Operating Protocol</span>
               </div>
               <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                 Terms <br />
-                <span className="italic font-normal text-[#14b8a6]">of Service.</span>
+                <span className="italic font-normal text-[#14b88f]">of Service.</span>
               </h1>
             </motion.div>
 
@@ -186,7 +186,7 @@ export default function TermsAndConditions() {
               className="flex flex-wrap items-center gap-8"
             >
               <div className="px-6 py-2 bg-gray-50 rounded-full border border-gray-100 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-[#14b8a6] animate-pulse" />
+                <div className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
                 <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Version 4.2.0</span>
               </div>
               <p className="text-xl text-gray-500 font-light max-w-xl">
@@ -217,7 +217,7 @@ export default function TermsAndConditions() {
                         className={`group relative flex items-center gap-6 py-4 transition-all duration-500 ${activeSection === section.id ? 'translate-x-4' : 'hover:translate-x-2'
                           }`}
                       >
-                        <span className={`text-[10px] font-bold transition-colors duration-500 ${activeSection === section.id ? 'text-[#14b8a6]' : 'text-gray-300'
+                        <span className={`text-[10px] font-bold transition-colors duration-500 ${activeSection === section.id ? 'text-[#14b88f]' : 'text-gray-300'
                           }`}>
                           0{idx + 1}
                         </span>
@@ -228,7 +228,7 @@ export default function TermsAndConditions() {
                         {activeSection === section.id && (
                           <motion.div
                             layoutId="active-nav-line"
-                            className="absolute -left-4 w-1 h-1 rounded-full bg-[#14b8a6]"
+                            className="absolute -left-4 w-1 h-1 rounded-full bg-[#14b88f]"
                           />
                         )}
                       </button>
@@ -239,17 +239,17 @@ export default function TermsAndConditions() {
                 {/* Glass Card Accessory */}
                 <div className="p-10 rounded-[2.5rem] bg-gray-50/50 border border-gray-100 flex flex-col justify-between aspect-square group overflow-hidden relative">
                   <div className="relative z-10">
-                    <HelpCircle className="w-10 h-10 text-[#14b8a6] mb-8" />
+                    <HelpCircle className="w-10 h-10 text-[#14b88f] mb-8" />
                     <h4 className="text-2xl font-light text-gray-900 mb-4 tracking-tight">Need expert <br /><span className="italic">clarification?</span></h4>
                     <p className="text-sm text-gray-500 leading-relaxed mb-8">Our legal council is available for structured inquiries regarding these protocols.</p>
                   </div>
 
-                  <Button variant="outline" className="w-fit rounded-xl border-[#14b8a6] text-[#14b8a6] hover:bg-[#14b8a6] hover:text-white transition-all group relative z-10">
+                  <Button variant="outline" className="w-fit rounded-xl border-[#14b88f] text-[#14b88f] hover:bg-[#14b88f] hover:text-white transition-all group relative z-10">
                     Inquire Legal
                   </Button>
 
                   {/* Background Decorative */}
-                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#14b8a6]/5 rounded-full blur-3xl" />
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#14b88f]/5 rounded-full blur-3xl" />
                 </div>
               </div>
             </div>
@@ -268,7 +268,7 @@ export default function TermsAndConditions() {
                 >
                   {/* Section Label */}
                   <div className="flex items-center gap-6 mb-12">
-                    <span className="text-[10px] font-bold text-[#14b8a6] tracking-[0.5em]">ARTICLE 0{index + 1}</span>
+                    <span className="text-[10px] font-bold text-[#14b88f] tracking-[0.5em]">ARTICLE 0{index + 1}</span>
                     <div className="h-px flex-1 bg-gradient-to-r from-gray-100 to-transparent" />
                   </div>
 
@@ -288,10 +288,10 @@ export default function TermsAndConditions() {
                             <motion.div
                               key={i}
                               whileHover={{ y: -5 }}
-                              className="group flex flex-col p-8 rounded-3xl bg-white border border-gray-100 hover:border-[#14b8a6]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-500"
+                              className="group flex flex-col p-8 rounded-3xl bg-white border border-gray-100 hover:border-[#14b88f]/20 hover:shadow-[0_20px_50px_-15px_rgba(20,184,166,0.1)] transition-all duration-500"
                             >
-                              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-[#14b8a6]/1 flex-shrink-0">
-                                <section.icon className="w-5 h-5 text-gray-400 group-hover:text-[#14b8a6] transition-colors" strokeWidth={1.5} />
+                              <div className="w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center mb-6 group-hover:bg-[#14b88f]/1 flex-shrink-0">
+                                <section.icon className="w-5 h-5 text-gray-400 group-hover:text-[#14b88f] transition-colors" strokeWidth={1.5} />
                               </div>
                               <span className="text-sm text-gray-800 font-medium leading-relaxed">{point}</span>
                             </motion.div>
@@ -319,14 +319,14 @@ export default function TermsAndConditions() {
                   <div className="max-w-2xl">
                     <h3 className="text-4xl lg:text-6xl font-light text-white tracking-tighter leading-[0.9] mb-12">
                       Formal Acceptance <br />
-                      <span className="text-[#14b8a6] italic font-normal">of Protocol.</span>
+                      <span className="text-[#14b88f] italic font-normal">of Protocol.</span>
                     </h3>
                     <p className="text-gray-400 text-xl font-light leading-relaxed mb-16">
                       By participating in the Auxinzio ecosystem, you formally acknowledge and accept these regulatory standards in their entirety.
                     </p>
 
                     <div className="flex flex-wrap gap-6">
-                      <Button variant="gradi" size="lg" className="rounded-2xl px-12 py-8 text-lg font-bold hover:scale-105 transition-all shadow-2xl shadow-[#14b8a6]/20">
+                      <Button variant="gradi" size="lg" className="rounded-2xl px-12 py-8 text-lg font-bold hover:scale-105 transition-all shadow-2xl shadow-[#14b88f]/20">
                         <Download className="w-5 h-5 mr-3" /> Save for Records
                       </Button>
                       <Link href="/contact">
@@ -339,7 +339,7 @@ export default function TermsAndConditions() {
                 </div>
 
                 {/* Corner Accent */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#14b8a6]/20 to-transparent blur-[80px]" />
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-[#14b88f]/20 to-transparent blur-[80px]" />
               </motion.div>
             </div>
           </div>

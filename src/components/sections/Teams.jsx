@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import { Linkedin, Mail, Github, ArrowUpRight } from 'lucide-react';
 import { useSettings } from "@/app/Context/SettingsContext";
 import { motion } from "framer-motion";
@@ -22,13 +23,13 @@ export default function Teams({ data }) {
              className="lg:col-span-8"
            >
               <div className="flex items-center gap-4 mb-8">
-                 <div className="w-12 h-px bg-[#14b8a6]" />
-                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b8a6]">Human Intellect</span>
+                 <div className="w-12 h-px bg-[#14b88f]" />
+                 <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Human Intellect</span>
               </div>
-              <h2 className="text-6xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
+              <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                 The Minds <br/>
                 <span className="font-medium">Behind the</span><br/>
-                <span className="italic font-normal text-[#14b8a6]">Synthesis.</span>
+                <span className="italic font-normal text-[#14b88f]">Synthesis.</span>
               </h2>
            </motion.div>
            
@@ -70,30 +71,40 @@ export default function Teams({ data }) {
 }
 
 function TeamMemberCard({ index, name, role, image, linkedin, github, email, description }) {
+  const [tapped, setTapped] = useState(false);
+
+  const handleTap = (e) => {
+    // Don't toggle if clicking a social link
+    if (e.target.closest('a')) return;
+    setTapped(prev => !prev);
+  };
+
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: (index % 3) * 0.1 }}
-      className="group relative"
+      className="group relative select-none"
+      onClick={handleTap}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-[2.5rem] bg-gray-50 border border-gray-100 shadow-xl group-hover:shadow-2xl transition-all duration-700">
         <Image
           src={image}
           alt={name}
           fill
-          className="object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-in-out"
+          className={`object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-in-out ${tapped ? "grayscale-0 scale-105":""}`}
+          style={{ touchAction: 'manipulation' }}
         />
-        
-        {/* Hover Content Overlay */}
-        <div className="absolute inset-0 bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-           <p className="text-white text-sm font-light leading-relaxed mb-6 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+
+        {/* Hover / Tap Content Overlay */}
+        <div className={`absolute inset-0 z-10 bg-gray-900/50 transition-opacity duration-500 flex flex-col justify-end p-8 ${tapped ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'}`}>
+           <p className={`text-white text-sm font-light leading-relaxed mb-6 transition-transform duration-500 ${tapped ? 'translate-y-0' : 'translate-y-4 group-hover:translate-y-0'}`}>
               {description}
            </p>
-           <div className="flex gap-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-700 delay-100">
+           <div className={`flex gap-4 transition-transform duration-700 delay-100 ${tapped ? 'translate-y-0' : 'translate-y-4 group-hover:translate-y-0'}`}>
               {linkedin && (
-                <a href={linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-[#14b8a6] transition-colors">
+                <a href={linkedin} target="_blank" rel="noreferrer" className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-[#14b88f] transition-colors">
                    <Linkedin size={16} />
                 </a>
               )}
@@ -103,22 +114,23 @@ function TeamMemberCard({ index, name, role, image, linkedin, github, email, des
                 </a>
               )}
               {email && (
-                <a href={`mailto:${email}`} className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-[#14b8a6] transition-colors">
+                <a href={`mailto:${email}`} className="w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white hover:bg-[#14b88f] transition-colors">
                    <Mail size={16} />
                 </a>
               )}
            </div>
         </div>
       </div>
-      
+
       {/* Identity Label Block */}
       <div className="mt-8 flex justify-between items-start px-4">
          <div>
-            <h3 className="text-2xl font-bold text-gray-900 tracking-tight mb-1 group-hover:text-[#14b8a6] transition-colors">{name}</h3>
+            <h3 className="text-2xl font-bold text-gray-900 tracking-tight mb-1 group-hover:text-[#14b88f] transition-colors">{name}</h3>
             <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{role}</p>
          </div>
-         <div className="w-10 h-px bg-gray-100 mt-4 group-hover:w-16 group-hover:bg-[#14b8a6] transition-all duration-500" />
+         <div className="w-10 h-px bg-gray-100 mt-4 group-hover:w-16 group-hover:bg-[#14b88f] transition-all duration-500" />
       </div>
     </motion.div>
   );
 }
+

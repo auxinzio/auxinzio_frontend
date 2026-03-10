@@ -36,7 +36,7 @@ export function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-[100] transition-all duration-700 pointer-events-none">
+      <nav className={cn("fixed top-0 left-0 right-0 z-[100] transition-all duration-700 pointer-events-none", scrolled ? "top-1":"")}>
         <div className={cn(
           "mx-auto transition-all duration-700 flex items-center justify-between pointer-events-auto",
           scrolled
@@ -58,7 +58,7 @@ export function Navbar() {
               width={120}
               height={60}
               className={cn(
-                "transition-all duration-700",
+                "w-auto transition-all duration-700",
                 scrolled ? "h-8" : "h-10"
               )}
             />
@@ -75,7 +75,7 @@ export function Navbar() {
                     href={link.href}
                     className={cn(
                       "relative group py-2",
-                      isActive && "pointer-events-none cursor-default"
+                      isActive && "cursor-default"
                     )}
                   >
                     <div className="flex items-start gap-1">
@@ -92,7 +92,7 @@ export function Navbar() {
                       {isActive && (
                         <motion.div
                           layoutId="nav-underline"
-                          className="absolute -bottom-1 left-0 right-0 h-px bg-[#14b8a6]"
+                          className="absolute -bottom-1 left-0 right-0 h-px bg-[#14b88f]"
                           initial={{ opacity: 0, scaleX: 0 }}
                           animate={{ opacity: 1, scaleX: 1 }}
                           exit={{ opacity: 0, scaleX: 0 }}
@@ -119,7 +119,7 @@ export function Navbar() {
 
           {/* Mobile Toggle */}
           <button
-            className="md:hidden p-2 text-gray-900 hover:text-[#14b8a6] transition-colors"
+            className="md:hidden p-2 text-gray-900 hover:text-[#14b88f] transition-colors"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -157,7 +157,7 @@ export function Navbar() {
                       <div className="flex flex-col">
                         <span className="text-3xl font-light text-gray-900 tracking-tighter group-hover:italic transition-all">{link.name}</span>
                       </div>
-                      <ArrowRight className="text-gray-200 group-hover:text-[#14b8a6] transition-colors" />
+                      {/* <ArrowRight className="text-gray-200 group-hover:text-[#14b88f] transition-colors" /> */}
                     </Link>
                   );
                 })}
@@ -165,7 +165,7 @@ export function Navbar() {
 
               <div className="p-8">
                 <Button variant="gradi" className="w-full py-8 text-lg font-bold rounded-2xl" onClick={() => { setIsOpen(false); setIsModalOpen(true); }}>
-                  Request Access
+                  Get Demo
                 </Button>
               </div>
             </motion.div>
