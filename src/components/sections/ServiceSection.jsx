@@ -6,6 +6,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSettings } from "@/app/Context/SettingsContext";
 import servicesData from "@/data/services.json";
+import GeometricIllustration from "@/components/ui/GeometricIllustration";
+
 
 export default function ServiceSection({ service }) {
    const { settings } = useSettings();
@@ -16,7 +18,7 @@ export default function ServiceSection({ service }) {
             <section id="services" className="py-14 lg:py-20 bg-gray-50/50 relative overflow-hidden">
                <div className="max-w-[1600px] mx-auto px-6">
                   {/* Header: Focused Scale */}
-                  <div className="grid lg:grid-cols-12 gap-12 items-end mb-24 lg:mb-32">
+                  <div className="grid lg:grid-cols-12 gap-12 items-center mb-24 lg:mb-32">
                      <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}
@@ -33,22 +35,16 @@ export default function ServiceSection({ service }) {
                            <span className="italic font-normal text-[#14b88f]">Ecosystems.</span>
                         </h2>
                      </motion.div>
-                     {/* <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                     
+                     <motion.div 
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="lg:col-span-4 lg:pb-4 text-right"
+                        transition={{ duration: 0.8 }}
+                        className="lg:col-span-4 hidden lg:flex items-center justify-center relative"
                      >
-                        <Link href="/services">
-                           <button className="group flex items-center justify-end gap-6 w-full lg:w-auto ml-auto">
-                              <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Manifesto of Services</span>
-                              <div className="w-12 h-12 rounded-full border border-gray-100 bg-white flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500 shadow-sm">
-                                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                              </div>
-                           </button>
-                        </Link>
-                     </motion.div> */}
+                        <GeometricIllustration />
+                     </motion.div>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100 border border-gray-100 rounded-[3rem] overflow-hidden shadow-2xl">
                      {serviceData?.map((srv, index) => (

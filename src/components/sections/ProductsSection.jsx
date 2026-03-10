@@ -101,7 +101,7 @@ export default function ProductsSection({ product }) {
                     </p>
                     <Link href={`/products/${item.slug}`}>
                       <button className="flex items-center gap-6 group/btn">
-                        <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Architecture</span>
+                        <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6] cursor-pointer">Enquire Architecture</span>
                         <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
                           <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                         </div>
