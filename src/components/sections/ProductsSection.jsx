@@ -5,6 +5,7 @@ import { ArrowUpRight, ArrowRight, Layers, ShieldCheck, Activity, ChevronRight }
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
 import productsData from "@/data/products.json";
+import Link from 'next/link';
 
 export default function ProductsSection({ product }) {
   const { settings } = useSettings();
@@ -60,11 +61,11 @@ export default function ProductsSection({ product }) {
                 >
                   <div className="relative aspect-[16/10] lg:aspect-[4/3] rounded-[3.5rem] overflow-hidden shadow-2xl border-8 border-white bg-gray-50 group">
                     <Image
-                      src={`${settings.backend_api_url}/${item.image}`}
+                      src={`${settings.backend_api_url}/${item.logo}`}
                       alt={`${item.product_name} image`}
                       width={300}
                       height={200}
-                      className="object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-105"
+                      className="object-cover w-full h-full transition-all duration-1000 group-hover:scale-105"
                     />
 
                     {/* Floating Tactical Tag */}
@@ -98,12 +99,14 @@ export default function ProductsSection({ product }) {
                     <p className="text-lg text-gray-500 leading-relaxed max-w-lg italic">
                       {`"${item.description.split('~')[0]}"`}
                     </p>
-                    <button className="flex items-center gap-6 group/btn">
-                      <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Architecture</span>
-                      <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
-                        <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </button>
+                    <Link href={`/products/${item.slug}`}>
+                      <button className="flex items-center gap-6 group/btn">
+                        <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b8a6] transition-colors underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b8a6]">Enquire Architecture</span>
+                        <div className="w-10 h-10 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b8a6] group-hover:text-white group-hover:border-[#14b8a6] transition-all duration-500">
+                          <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </div>
+                      </button>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
