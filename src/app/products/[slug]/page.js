@@ -6,6 +6,8 @@ import { useSettings } from '@/app/Context/SettingsContext';
 import GetDemoModal from "@/components/sections/GetDemoModal";
 import { Zap, Shield, Users, BarChart3, Clock, MessageSquare, TrendingUp, Cloud } from "lucide-react";
 import ProgressBar from "@/components/ui/ProgressBar";
+import ParticlesBackground from "@/components/ui/ParticlesBackground";
+import { motion } from "framer-motion";
 
 export default function App({ params }) {
   const { settings } = useSettings();
@@ -60,40 +62,65 @@ export default function App({ params }) {
             <div className="hidden lg:block absolute right-0 top-0 bottom-0 w-[1px] bg-[#e5e7eb]"></div>
           </div>
           {/* Right Panel - 70% */}
-          <div className="lg:w-[70%] p-8 lg:p-16 lg:px-10 flex items-center justify-center bg-white">
-            <div className="max-w-3xl w-full">
-              <Image
-                src={`${settings.backend_api_url}/${product.image}`}
-                alt={product.product_name}
-                width={1000}
-                height={1000}
-                className="w-full h-auto shadow-[0_2px_20px_rgba(0,0,0,0.06)]"
-              />
-            </div>
+          <div className="lg:w-[70%] p-8 lg:p-16 lg:px-10 flex items-center justify-center bg-white relative overflow-hidden group/panel">
+            {/* Background elements */}
+            <div className="absolute inset-0 bg-radial-[at_50%_50%] from-white via-white to-gray-50/50"></div>
+            <ParticlesBackground />
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{
+                opacity: 1,
+                y: [0, -20, 0],
+              }}
+              transition={{
+                opacity: { duration: 0.8 },
+                y: {
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }
+              }}
+              className="max-w-3xl w-full relative z-10"
+            >
+              <div className="relative group/image">
+                {/* Decorative glow behind image */}
+                <div className="absolute -inset-4 bg-gradient-to-tr from-[#14b88f]/20 to-[#06b6d4]/20 blur-2xl opacity-0 group-hover/image:opacity-100 transition-opacity duration-700"></div>
+
+                <Image
+                  src={`${settings.backend_api_url}/${product.image}`}
+                  alt={product.product_name}
+                  width={1000}
+                  height={1000}
+                  className="w-full h-auto shadow-[0_20px_50px_rgba(0,0,0,0.1)] rounded-2xl relative z-10 border border-white/20 backdrop-blur-[2px]"
+                  priority
+                />
+              </div>
+            </motion.div>
           </div>
         </section>
         {/* Section 2 - Key Features (Horizontal Architecture Grid) */}
         {product.key_feature?.length > 0 && (
-        <section className="py-16 lg:py-24 px-6 lg:px-12">
-          <h2 className="text-3xl font-light text-[#111827] mb-12">Core Capabilities</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
-            {product.key_feature?.map((feature, index) => {
-              const icons = [Zap, Shield, Users, BarChart3];
-              const Icon = icons[index % icons.length];
-              return (
-                <div key={index} className="p-8 border-r-0 lg:border-r border-[#e5e7eb] border-b md:border-b-0">
-                  <Icon className="w-8 h-8 text-[#14b88f] mb-6 stroke-[1.5]" />
-                  {/* <h3 className="text-lg font-semibold text-[#111827] mb-3">
+          <section className="py-16 lg:py-24 px-6 lg:px-12">
+            <h2 className="text-3xl font-light text-[#111827] mb-12">Core Capabilities</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0">
+              {product.key_feature?.map((feature, index) => {
+                const icons = [Zap, Shield, Users, BarChart3];
+                const Icon = icons[index % icons.length];
+                return (
+                  <div key={index} className="p-8 border-r-0 lg:border-r border-[#e5e7eb] border-b md:border-b-0">
+                    <Icon className="w-8 h-8 text-[#14b88f] mb-6 stroke-[1.5]" />
+                    {/* <h3 className="text-lg font-semibold text-[#111827] mb-3">
                     {feature.split(' ').slice(0, 2).join(' ')}
                   </h3> */}
-                  <p className="text-[#6b7280] leading-relaxed text-sm">
-                    {feature}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+                    <p className="text-[#6b7280] leading-relaxed text-sm">
+                      {feature}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
         )}
         {/* Section 3 - Business Benefits (Structured Quadrant Layout) */}
         <section className="py-16 lg:py-24 bg-[#f5f7f9]">
@@ -173,6 +200,7 @@ export default function App({ params }) {
         {/* Section 4 - Editorial Highlight Section */}
         <section className="py-16 lg:py-24 border-t border-b border-[#e5e7eb]">
           <div className="max-w-6xl mx-auto px-6 lg:px-12">
+            <h2 className="text-3xl font-light text-[#111827] mb-12 text-center capitalize">{product.category_name}</h2>
             <div className="flex items-center">
               <p className="text-[#4b5563] leading-relaxed text-lg">
                 {descriptionParts[2] || descriptionParts[1] || product.description}
