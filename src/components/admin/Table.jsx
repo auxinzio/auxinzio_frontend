@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion } from "framer-motion";
-import { Search, Plus, Edit, Trash2, Loader2, ChevronLeft, ChevronRight, X, Save, Eye } from "lucide-react";
+import { Search, Plus, Edit, Trash2, Loader2, ChevronLeft, ChevronRight, X, Save, Eye, EyeOff, CheckCircle2, Circle } from "lucide-react";
 import Image from "next/image";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Modal, { ApplicationModal } from "./Modal";
@@ -19,6 +19,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
     const [formErrors, setFormErrors] = useState({});
+    const [showPassword, setShowPassword] = useState(false);
     const productList = useMemo(() => {
         if (product && Array.isArray(product)) {
             return product.map((item) => ({
@@ -166,7 +167,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                 return [
                     { name: "name", label: "Name", type: "text", placeholder: "Enter Name" },
                     { name: "email", label: "Email", type: "text", placeholder: "Enter Email Id" },
-                    { name: "password", label: "Password", type: "text", placeholder: "Enter Password" },
+                    { name: "password", label: "Password", type: "password", placeholder: "Enter Password" },
                     { name: "role", label: "Role", type: "select", placeholder: "Select Role", options: ["Admin", "User"] },
                     { name: "status", label: "Status", type: "select", placeholder: "Select Status", options: ["Active", "In-active"] },
                 ];
@@ -249,6 +250,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         setFormData({});
         setSelectedItem(null);
         setFormErrors({});
+        setShowPassword(false);
     };
 
     const handleInputChange = (e) => {
@@ -338,6 +340,22 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     const phoneRegex = /^\+?[\d\s\-()]{8,}$/;
                     if (val && !phoneRegex.test(val)) {
                         newErrors[field.name] = `Please enter a valid ${field.label}`;
+                        continue;
+                    }
+                }
+
+                if (field.name === 'password' && modalMode === 'add') {
+                    const pass = formData.password || '';
+                    const passRules = [
+                        { regex: /[A-Z]/, label: 'one uppercase letter (A-Z)' },
+                        { regex: /[a-z]/, label: 'one lowercase letter (a-z)' },
+                        { regex: /[0-9]/, label: 'one number (0-9)' },
+                        { regex: /[!@#$%^&*]/, label: 'one special character (!@#$%^&*)' },
+                        { satisfied: pass.length >= 8, label: 'minimum 8 characters' }
+                    ];
+                    const failed = passRules.filter(r => r.satisfied === false || (r.regex && !r.regex.test(pass)));
+                    if (failed.length > 0) {
+                        newErrors[field.name] = `Password must contain ${failed.map(f => f.label).join(', ')}`;
                         continue;
                     }
                 }
@@ -1207,15 +1225,44 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                 <>
                                     <div className="relative">
                                              <input
-                                                type={field.type}
+                                                type={field.name === 'password' ? (showPassword ? 'text' : 'password') : field.type}
                                                 name={field.name}
                                                 value={formData[field.name] || ''}
                                                 onChange={handleInputChange}
                                         placeholder={field.placeholder}
-                                        className={`w-full px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2`}
+                                        className={`w-full ${field.name === 'password' ? 'pr-10' : ''} px-4 py-2 text-sm border ${formErrors[field.name] ? 'border-red-500 bg-red-50 focus:ring-red-500/20 focus:border-red-500' : 'border-gray-200 focus:ring-green-500/20 focus:border-green-500'} rounded-lg focus:outline-none focus:ring-2`}
                                     />
-                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
+                                    {field.name === 'password' && (
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowPassword(!showPassword)}
+                                            className="absolute right-3 top-2.5 text-gray-400 hover:text-gray-600 transition-colors"
+                                        >
+                                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                                        </button>
+                                    )}
                                     </div>
+                                    {field.name === 'password' && (
+                                        <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 p-3 bg-gray-50/50 rounded-xl border border-gray-100">
+                                            {[
+                                                { label: "Uppercase letter (A-Z)", satisfied: /[A-Z]/.test(formData[field.name] || '') },
+                                                { label: "Lowercase letter (a-z)", satisfied: /[a-z]/.test(formData[field.name] || '') },
+                                                { label: "Number (0-9)", satisfied: /[0-9]/.test(formData[field.name] || '') },
+                                                { label: "Special character (!@#$%^&*)", satisfied: /[!@#$%^&*]/.test(formData[field.name] || '') },
+                                                { label: "At least 8 characters", satisfied: (formData[field.name] || '').length >= 8 },
+                                            ].map((rule, index) => (
+                                                <div key={index} className={`flex items-center gap-2 text-[10px] font-medium transition-all duration-300 ${rule.satisfied ? 'text-green-600' : 'text-gray-400'}`}>
+                                                    {rule.satisfied ? (
+                                                        <CheckCircle2 size={12} className="text-green-500" />
+                                                    ) : (
+                                                        <Circle size={12} className="opacity-50" />
+                                                    )}
+                                                    <span>{rule.label}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    )}
+                                    {formErrors[field.name] && <p className="text-red-500 text-xs mt-1">{formErrors[field.name]}</p>}
                                 </>
                             )}
                         </div>)

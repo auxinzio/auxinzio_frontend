@@ -81,7 +81,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-white selection:bg-[#14b8a6]/10 overflow-hidden">
+    <div className="flex flex-col min-h-screen bg-white selection:bg-[#14b88f]/10 overflow-hidden">
       {/* Progress Bar */}
       <ProgressBar />
       {/* --- HERO: THE ARCHITECTURAL MONOLITH --- */}
@@ -102,12 +102,12 @@ export default function Home() {
               transition={{ duration: 1, ease: "easeOut" }}
             >
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-px bg-[#14b8a6]" />
-                <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b8a6]">Synthesizing Tomorrow</span>
+                <div className="w-12 h-px bg-[#14b88f]" />
+                <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Synthesizing Tomorrow</span>
               </div>
               <h1 className="text-6xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
                 Engineering <br />
-                <span className="italic font-normal text-[#14b8a6]">Business</span> <br />
+                <span className="italic font-normal text-[#14b88f]">Business</span> <br />
                 <span className="font-medium">Excellence</span>
               </h1>
             </motion.div>
@@ -128,7 +128,7 @@ export default function Home() {
                     <span className="relative z-10 flex items-center gap-4">
                       Explore Capabilities <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
-                    <div className="absolute inset-0 bg-[#14b8a6] translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-2xl" />
+                    <div className="absolute inset-0 bg-[#14b88f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-2xl" />
                   </button>
                 </Link>
 
@@ -172,20 +172,20 @@ export default function Home() {
                     <p className="lg:text-3xl text-2xl font-light text-white tracking-tighter">98.4% Retention</p>
                   </div>
                   <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center">
-                    <TrendingUp className="text-[#14b8a6] w-6 h-6" />
+                    <TrendingUp className="text-green-500 w-6 h-6" />
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Decorative Background Shape */}
-            <div className="absolute -top-12 -right-12 w-64 h-64 bg-[#14b8a6]/10 rounded-full blur-[80px] -z-10" />
+            <div className="absolute -top-12 -right-12 w-64 h-64 bg-[#14b88f]/10 rounded-full blur-[80px] -z-10" />
           </motion.div>
         </div>
 
         {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4">
-          <div className="w-px h-16 bg-gradient-to-b from-[#14b8a6] to-transparent" />
+          <div className="w-px h-16 bg-gradient-to-b from-[#14b88f] to-transparent" />
         </div>
       </section>
 
@@ -196,7 +196,7 @@ export default function Home() {
             <div key={outerIndex} className="flex items-center gap-12">
               {(service?.data?.serviceList || servicesData.services)?.map((item, index) => (
                 <span className="flex items-center gap-6" key={index}>
-                  {item.title} <Zap className="w-3 h-3 text-[#14b8a6]" />
+                  {item.title} <Zap className="w-3 h-3 text-[#14b88f]" />
                 </span>
               ))}
             </div>

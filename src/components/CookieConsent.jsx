@@ -50,13 +50,13 @@ export default function CookieConsent() {
                     <div className="relative bg-white/80 backdrop-blur-2xl border border-gray-100 rounded-[2.5rem] p-8 lg:p-10 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
                         {/* Architectural Accent */}
                         <div className="absolute top-0 right-0 w-32 h-32 opacity-[0.03] select-none pointer-events-none">
-                            <Zap className="w-full h-full text-[#14b8a6]" strokeWidth={0.5} />
+                            <Zap className="w-full h-full text-[#14b88f]" strokeWidth={0.5} />
                         </div>
 
                         <div className="relative z-10">
                             <div className="flex items-center gap-4 mb-8">
-                                <div className="w-12 h-12 rounded-2xl bg-[#14b8a6]/10 flex items-center justify-center">
-                                    <ShieldCheck className="w-6 h-6 text-[#14b8a6]" strokeWidth={1.5} />
+                                <div className="w-12 h-12 rounded-2xl bg-[#14b88f]/10 flex items-center justify-center">
+                                    <ShieldCheck className="w-6 h-6 text-[#14b88f]" strokeWidth={1.5} />
                                 </div>
                                 <div>
                                     <p className="text-[10px] font-bold tracking-[0.3em] uppercase text-gray-400">Privacy Protocol</p>
@@ -84,7 +84,7 @@ export default function CookieConsent() {
 
                                 <Link
                                     href="/cookie-policy"
-                                    className="text-[10px] font-bold uppercase tracking-widest text-[#14b8a6] hover:underline underline-offset-8 decoration-[#14b8a6]/30"
+                                    className="text-[10px] font-bold uppercase tracking-widest text-[#14b88f] hover:underline underline-offset-8 decoration-[#14b88f]/30"
                                     onClick={() => setIsVisible(false)}
                                 >
                                     Technical Specifics

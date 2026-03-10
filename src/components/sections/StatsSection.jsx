@@ -8,7 +8,7 @@ export default function StatsSection({ stats }) {
                     <div className="absolute bottom-20 left-10 w-96 h-96 bg-[#06b6d4]/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
                     
                     {/* Geometric decorations */}
-                    <div className="absolute top-1/4 left-1/4 w-20 h-20 border-4 border-[#14b8a6]/20 rounded-2xl rotate-45" />
+                    <div className="absolute top-1/4 left-1/4 w-20 h-20 border-4 border-[#14b88f]/20 rounded-2xl rotate-45" />
                     <div className="absolute bottom-1/3 right-1/3 w-16 h-16 bg-[#22c55e]/10 rounded-full" />
                     <div className="absolute top-1/2 right-1/4 w-24 h-24 border-4 border-[#06b6d4]/20 rotate-12" />
                 </div>
@@ -24,10 +24,10 @@ export default function StatsSection({ stats }) {
                     <div className="relative">
                         <div className="inline-flex items-center gap-3 mb-4">
                         <div className="h-px w-12 bg-gradient-to-r from-transparent to-[#22c55e]" />
-                        <span className="text-sm font-semibold text-[#14b8a6] tracking-widest uppercase">Our Journey</span>
+                        <span className="text-sm font-semibold text-[#14b88f] tracking-widest uppercase">Our Journey</span>
                         <div className="h-px w-12 bg-gradient-to-l from-transparent to-[#06b6d4]" />
                         </div>
-                        {/* <h2 className="text-6xl font-bold bg-gradient-to-r from-[#22c55e] via-[#14b8a6] to-[#06b6d4] bg-clip-text text-transparent mb-4">
+                        {/* <h2 className="text-6xl font-bold bg-gradient-to-r from-[#22c55e] via-[#14b88f] to-[#06b6d4] bg-clip-text text-transparent mb-4">
                         Numbers That Matter
                         </h2> */}
                         <h2 className="text-6xl font-bold mb-4">

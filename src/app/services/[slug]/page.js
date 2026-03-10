@@ -64,9 +64,9 @@ export default function ServiceDetailPage({ params }) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-white">
                 <div className="relative">
-                    <div className="w-24 h-24 border border-[#14b8a6]/20 rounded-full animate-ping" />
+                    <div className="w-24 h-24 border border-[#14b88f]/20 rounded-full animate-ping" />
                     <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-3 h-3 bg-[#14b8a6] rounded-full" />
+                        <div className="w-3 h-3 bg-[#14b88f] rounded-full" />
                     </div>
                 </div>
             </div>
@@ -94,7 +94,7 @@ export default function ServiceDetailPage({ params }) {
     }
 
     return (
-        <div className="min-h-screen bg-white selection:bg-[#14b8a6] selection:text-white">
+        <div className="min-h-screen bg-white selection:bg-[#14b88f] selection:text-white">
             {/* Progress Bar */}
             <ProgressBar />
             {/* MONOLITH HERO */}
@@ -111,10 +111,10 @@ export default function ServiceDetailPage({ params }) {
                                 animate={{ opacity: 1, y: 0 }}
                                 className="flex items-center gap-4"
                             >
-                                <div className="w-8 h-8 rounded-full bg-[#14b8a6]/10 flex items-center justify-center">
-                                    <Zap size={14} className="text-[#14b8a6]" fill="currentColor" />
+                                <div className="w-8 h-8 rounded-full bg-[#14b88f]/10 flex items-center justify-center">
+                                    <Zap size={14} className="text-[#14b88f]" fill="currentColor" />
                                 </div>
-                                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b8a6]">Node Type: {service.description?.short_description_title || "Enterprise"}</span>
+                                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Node Type: {service.description?.short_description_title || "Enterprise"}</span>
                             </motion.div>
 
                             <motion.h1
@@ -123,7 +123,7 @@ export default function ServiceDetailPage({ params }) {
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                 className="text-6xl md:text-8xl lg:text-[120px] font-light tracking-tighter leading-[0.9] text-gray-900"
                             >
-                                {service.title}<span className="text-[#14b8a6]">.</span>
+                                {service.title}<span className="text-[#14b88f]">.</span>
                             </motion.h1>
 
                             <motion.p
@@ -168,11 +168,11 @@ export default function ServiceDetailPage({ params }) {
                             >
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
-                                        <Activity size={16} className="text-[#14b8a6]" />
+                                        <Activity size={16} className="text-[#14b88f]" />
                                         <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Sync Status</span>
                                     </div>
                                     <p className="text-sm font-bold flex items-center gap-2">
-                                        <span className="w-2 h-2 rounded-full bg-[#14b8a6] animate-pulse" />
+                                        <span className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
                                         Operational 100%
                                     </p>
                                 </div>
@@ -198,7 +198,7 @@ export default function ServiceDetailPage({ params }) {
                                 className="space-y-12"
                             >
                                 <div className="flex items-center gap-4">
-                                    <span className="text-[10px] font-bold text-[#14b8a6]">01</span>
+                                    <span className="text-[10px] font-bold text-[#14b88f]">01</span>
                                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Architectural Overview</h3>
                                 </div>
                                 <h2 className="text-4xl lg:text-5xl font-light tracking-tight text-gray-900 leading-tight">
@@ -221,12 +221,12 @@ export default function ServiceDetailPage({ params }) {
                                 className="space-y-12"
                             >
                                 <div className="flex items-center gap-4">
-                                    <span className="text-[10px] font-bold text-[#14b8a6]">02</span>
+                                    <span className="text-[10px] font-bold text-[#14b88f]">02</span>
                                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Specialized Nodes</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
                                     {(service.service_item && service.service_item.length > 0 ? service.service_item : ["Expert Consultation", "Custom Implementation", "Ongoing Support"]).map((item, i) => (
-                                        <div key={i} className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 group hover:bg-[#14b8a6] transition-all duration-500">
+                                        <div key={i} className="p-8 rounded-[2.5rem] bg-gray-50 border border-gray-100 group hover:bg-[#14b88f] transition-all duration-500">
                                             <div className="w-12 h-12 rounded-2xl bg-white flex items-center justify-center mb-6 shadow-sm group-hover:scale-110 transition-transform">
                                                 {i % 3 === 0 ? <Fingerprint size={20} /> : i % 3 === 1 ? <Cpu size={20} /> : <Layers size={20} />}
                                             </div>
@@ -256,7 +256,7 @@ export default function ServiceDetailPage({ params }) {
                                     <div className="relative z-10 space-y-8">
                                         <h3 className="text-3xl font-light tracking-tighter leading-tight">
                                             Ready to <br />
-                                            <span className="italic text-[#14b8a6]">Synchronize?</span>
+                                            <span className="italic text-[#14b88f]">Synchronize?</span>
                                         </h3>
                                         <p className="text-gray-400 font-light leading-relaxed">
                                             Initiate a deep-dive session with our lead architects to integrate this node into your ecosystem.
@@ -276,8 +276,8 @@ export default function ServiceDetailPage({ params }) {
                                 <div className="p-8 border border-gray-100 rounded-[2.5rem] space-y-6">
                                     <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication Node</h4>
                                     <div className="space-y-4">
-                                        <p className="text-sm font-medium text-gray-900">Direct Protocol: {settings.phone}</p>
-                                        <p className="text-sm font-medium text-gray-900">Encrypted Mail: info@auxinzio.com</p>
+                                        <p className="text-sm font-medium text-gray-900">Direct Protocol: <a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
+                                        <p className="text-sm font-medium text-gray-900">Encrypted Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
                                     </div>
                                 </div>
                             </div>

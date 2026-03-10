@@ -142,14 +142,14 @@ export const ChatBot = () => {
                         {/* Header */}
                         <div className="p-6 bg-gray-900 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full p-2 bg-[#14b8a6]/10 flex items-center justify-center border border-[#14b8a6]/20 overflow-hidden">
-                                    {/* <Sparkles className="w-5 h-5 text-[#14b8a6]" /> */}
+                                <div className="w-10 h-10 rounded-full p-2 bg-[#14b88f]/10 flex items-center justify-center border border-[#14b88f]/20 overflow-hidden">
+                                    {/* <Sparkles className="w-5 h-5 text-[#14b88f]" /> */}
                                     <Image src="/favicon.png" alt="Logo" width={24} height={24} className="object-contain" />
                                 </div>
                                 <div>
                                     <h3 className="text-white font-bold text-sm tracking-tight">Auxinzio AI</h3>
                                     <div className="flex items-center gap-1.5">
-                                        <div className="w-1.5 h-1.5 rounded-full bg-[#14b8a6] animate-pulse" />
+                                        <div className="w-1.5 h-1.5 rounded-full bg-[#14b88f] animate-pulse" />
                                         <p className="text-[10px] text-gray-400 uppercase tracking-widest font-bold">Neural Active</p>
                                     </div>
                                 </div>
@@ -176,7 +176,7 @@ export const ChatBot = () => {
                                     className={`flex ${msg.type === "user" ? "justify-end" : "justify-start"}`}
                                 >
                                     <div className={`max-w-[80%] p-4 rounded-2xl text-sm ${msg.type === "user"
-                                        ? "bg-[#14b8a6] text-white rounded-tr-none"
+                                        ? "bg-[#14b88f] text-white rounded-tr-none"
                                         : "bg-gray-50 text-gray-600 rounded-tl-none border border-gray-100"
                                         }`}>
                                         {msg.text}
@@ -222,12 +222,12 @@ export const ChatBot = () => {
                                     onChange={(e) => setInput(e.target.value)}
                                     onKeyDown={(e) => e.key === "Enter" && handleSend()}
                                     placeholder="Type your message..."
-                                    className="w-full bg-white border border-gray-100 rounded-2xl py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-[#14b8a6]/30 focus:ring-4 focus:ring-[#14b8a6]/5 transition-all outline-none"
+                                    className="w-full bg-white border border-gray-100 rounded-2xl py-4 pl-6 pr-14 text-sm focus:outline-none focus:border-[#14b88f]/30 focus:ring-4 focus:ring-[#14b88f]/5 transition-all outline-none"
                                 />
                                 <button
                                     onClick={handleSend}
                                     aria-label="Send Message"
-                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#14b8a6] text-white rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#14b8a6]/20"
+                                    className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#14b88f] text-white rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg shadow-[#14b88f]/20"
                                 >
                                     <Send className="w-4 h-4" />
                                 </button>
@@ -253,7 +253,7 @@ export const ChatBot = () => {
 
                 {/* Decorative Ring */}
                 {!isOpen && (
-                    <div className="absolute inset-0 rounded-full border-4 border-[#14b8a6] animate-ping opacity-20" />
+                    <div className="absolute inset-0 rounded-full border-4 border-[#14b88f] animate-ping opacity-20" />
                 )}
             </motion.button>
         </div>
