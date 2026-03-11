@@ -27,16 +27,16 @@ export default function ServiceSection({ service }) {
                      >
                         <div className="flex items-center gap-4 mb-8">
                            <div className="w-12 h-px bg-[#14b88f]" />
-                           <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Synthesized Delivery</span>
+                           <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesized Delivery</span>
                         </div>
                         <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                            Transformative <br />
                            <span className="font-medium text-gray-200">Digital</span><br />
-                           <span className="italic font-normal text-[#14b88f]">Ecosystems.</span>
+                           <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Ecosystems.</span>
                         </h2>
                      </motion.div>
-                     
-                     <motion.div 
+
+                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         viewport={{ once: true }}

@@ -54,7 +54,7 @@ export default function AboutSection2() {
                     That
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                    <span className="text-[#14b88f]">Empowers</span>
+                    <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Empowers</span>
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
                     Growth

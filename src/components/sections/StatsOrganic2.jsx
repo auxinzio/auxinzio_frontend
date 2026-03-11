@@ -46,10 +46,10 @@ export default function StatsOrganic2() {
 
           {/* Center - Geometric Illustration */}
           <div className="lg:col-span-3 hidden lg:flex items-center justify-center relative">
-            <svg 
-              className="w-full h-full max-w-[280px]" 
-              viewBox="0 0 280 400" 
-              fill="none" 
+            <svg
+              className="w-full h-full max-w-[280px]"
+              viewBox="0 0 280 400"
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
               {/* Grid background */}
@@ -59,16 +59,16 @@ export default function StatsOrganic2() {
                 </pattern>
               </defs>
               <rect width="280" height="400" fill="url(#grid)" />
-              
+
               {/* Geometric shapes */}
               <circle cx="140" cy="120" r="60" stroke="#22c55e" strokeWidth="1.5" fill="none" opacity="0.4" />
               <circle cx="140" cy="120" r="40" stroke="#06b6d4" strokeWidth="1.5" fill="none" opacity="0.3" />
-              
+
               <rect x="100" y="200" width="80" height="80" stroke="#14b88f" strokeWidth="1.5" fill="none" opacity="0.4" />
               <line x1="70" y1="320" x2="210" y2="320" stroke="#22c55e" strokeWidth="1.5" opacity="0.3" />
-              
+
               <polygon points="140,300 120,340 160,340" stroke="#06b6d4" strokeWidth="1.5" fill="none" opacity="0.4" />
-              
+
               {/* Connecting lines */}
               <line x1="140" y1="180" x2="140" y2="200" stroke="#14b88f" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
               <line x1="140" y1="280" x2="140" y2="300" stroke="#22c55e" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
@@ -83,7 +83,7 @@ export default function StatsOrganic2() {
             <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[1.1] text-gray-900 mb-6">
               Technology<br />
               That<br />
-              <span className="text-[#14b88f]">Empowers</span><br />
+              <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Empowers</span><br />
               Growth
             </h1>
             <div className="w-24 h-[2px] bg-[#14b88f]" />

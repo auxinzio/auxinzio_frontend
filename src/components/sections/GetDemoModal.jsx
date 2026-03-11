@@ -257,7 +257,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                       </div>
                       <h3 className="text-3xl font-light text-gray-900 tracking-tight">
-                        Protocol <span className="italic font-normal text-[#14b88f]">Synthesized.</span>
+                        Protocol <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesized.</span>
                       </h3>
                       <p className="text-gray-500 max-w-sm text-sm font-light leading-relaxed">
                         {message || "One of our specialists will reach out to your provided coordinates within 24 hours."}
