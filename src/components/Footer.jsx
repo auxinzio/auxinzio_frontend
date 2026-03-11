@@ -250,7 +250,7 @@ export function Footer() {
         {/* Global Footer Bottom */}
         <div className="mt-20 pt-7 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
-            © {new Date().getFullYear()} Auxinzio Digital Ecosystem. All Rights Reserved.
+            © {new Date().getFullYear()} Auxinzio - All Rights Reserved.
           </div>
           <div className="flex items-center gap-4">
             <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policy</Link>

@@ -27,11 +27,11 @@ export default function ProductsSection({ product }) {
               >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-12 h-px bg-[#14b88f]" />
-                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Proprietary Artifacts</span>
+                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Proprietary Artifacts</span>
                 </div>
                 <h2 className="text-5xl lg:text-9xl font-light text-gray-900 leading-[0.8] tracking-tighter">
                   Built for the <br />
-                  <span className="italic font-medium text-[#14b88f]">Intelligent</span> <br />
+                  <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Intelligent</span> <br />
                   <span className="font-medium text-gray-200">Enterprise.</span>
                 </h2>
               </motion.div>

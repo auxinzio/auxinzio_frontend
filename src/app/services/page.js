@@ -73,10 +73,10 @@ export default function Services() {
                   >
                      <div className="flex items-center gap-4 mb-8">
                         <div className="w-12 h-px bg-[#14b88f]" />
-                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">Engineering Excellence</span>
+                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Engineering Excellence</span>
                      </div>
                      <h1 className="text-6xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-                        Our <span className="italic font-medium text-[#14b88f]">Capabilities</span><br />
+                        Our <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Capabilities</span><br />
                         <span className="font-medium text-gray-200">Explained.</span>
                      </h1>
                   </motion.div>
@@ -135,7 +135,7 @@ export default function Services() {
 
                                  {/* Floating Meta Tag */}
                                  <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md px-6 py-3 rounded-2xl border border-white/20 shadow-xl">
-                                    <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{srv.title}</p>
+                                    <p className="text-[10px] font-bold tracking-widest uppercase whitespace-nowrap bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{srv.title}</p>
                                  </div>
                               </div>
 
@@ -148,7 +148,7 @@ export default function Services() {
                               <span className="text-6xl lg:text-8xl font-black text-[#14b88f]/30 mb-8 block select-none">0{idx + 1}</span>
                               <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
                                  {srv.title.split(' ').map((word, i) => (
-                                    <span key={i} className={i === 0 ? "font-medium" : "italic text-[#14b88f]"}>
+                                    <span key={i} className={i === 0 ? "font-medium" : "italic bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"}>
                                        {word}{' '}
                                     </span>
                                  ))}
@@ -195,7 +195,7 @@ export default function Services() {
                   <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
 
                   <div className="relative z-10">
-                     <p className="text-[10px] tracking-[0.5em] uppercase text-[#14b88f] font-bold mb-10">Next Evolution</p>
+                     <p className="text-[10px] tracking-[0.5em] uppercase font-bold mb-10 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Next Evolution</p>
                      <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
                         Ready to <span className="italic">synthesize</span><br />your next venture?
                      </h2>

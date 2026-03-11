@@ -27,11 +27,11 @@ export function AboutSection() {
                >
                   <div className="flex items-center gap-4 mb-8">
                      <div className="w-12 h-px bg-[#14b88f]" />
-                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-[#14b88f]">{about.tag}</span>
+                     <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{about.tag}</span>
                   </div>
                   <h2 className="text-5xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
                      Synthesizing <br />
-                     <span className="italic font-medium text-[#14b88f]">Digital</span> <br />
+                     <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital</span> <br />
                      <span className="font-medium">Legacies</span>
                   </h2>
                </motion.div>
@@ -51,21 +51,21 @@ export function AboutSection() {
 
             <div className="grid lg:grid-cols-3 gap-12 items-center justify-center mb-15">
                {tacticalStats.map((stat, idx) => (
-                        <motion.div
-                           key={idx}
-                           initial={{ opacity: 0, x: -20 }}
-                           whileInView={{ opacity: 1, x: 0 }}
-                           viewport={{ once: true }}
-                           transition={{ delay: idx * 0.1 }}
-                           className="flex items-center justify-center gap-10 group"
-                        >
-                           <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b88f] group-hover:w-20 transition-all duration-700" />
-                           <div className="space-y-1">
-                              <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{stat.label}</p>
-                              <p className="text-4xl font-light text-gray-900 tracking-tight leading-none transition-all">{stat.value}</p>
-                           </div>
-                        </motion.div>
-                     ))}
+                  <motion.div
+                     key={idx}
+                     initial={{ opacity: 0, x: -20 }}
+                     whileInView={{ opacity: 1, x: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: idx * 0.1 }}
+                     className="flex items-center justify-center gap-10 group"
+                  >
+                     <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b88f] group-hover:w-20 transition-all duration-700" />
+                     <div className="space-y-1">
+                        <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{stat.label}</p>
+                        <p className="text-4xl font-light text-gray-900 tracking-tight leading-none transition-all">{stat.value}</p>
+                     </div>
+                  </motion.div>
+               ))}
             </div>
 
             {/* Feature Block: Cinematic Split */}

@@ -17,7 +17,7 @@ export default function Products() {
         if (!backendUrl) return;
 
         let isMounted = true;
-        
+
         fetch(`${backendUrl}/api/products/productsList`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ export default function Products() {
                             className="lg:col-span-3 relative"
                         >
                             <div className="bg-gray-50 px-8 py-16 lg:py-20 lg:min-h-[600px] flex flex-col justify-center">
-                                <p className="text-xs tracking-[0.25em] uppercase text-gray-500 mb-12 font-medium">
+                                <p className="text-xs tracking-[0.25em] uppercase mb-12 font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">
                                     Our Products
                                 </p>
                                 <div className="space-y-2">
@@ -67,7 +67,7 @@ export default function Products() {
                                         Solutions
                                     </h1>
                                     <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                                        <span className="text-[#14b88f]">Engineered</span>
+                                        <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Engineered</span>
                                     </h1>
                                     <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
                                         to Scale

@@ -32,7 +32,7 @@ export default function Contact() {
     } else if (!emailRegex.test(formState.email)) {
       newErrors.email = 'Please enter a valid email address.';
     }
-    
+
     if (!formState.phone) {
       newErrors.phone = 'Phone number is required.';
     } else if (!phoneRegex.test(formState.phone)) {
@@ -119,7 +119,7 @@ export default function Contact() {
               <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Syncing with our team (24/7)</span>
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-              Get in <span className="italic font-normal text-[#14b88f]">Touch.</span>
+              Get in <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Touch.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
               {`Synthesize your vision with our technical expertise. We're ready to explore new digital frontiers together.`}
@@ -142,7 +142,7 @@ export default function Contact() {
             <div className="lg:col-span-4 lg:sticky lg:top-32">
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
                 Start our <br />
-                <span className="italic font-medium text-[#14b88f]">Inquiry Protocol.</span>
+                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Inquiry Protocol.</span>
               </h2>
 
               <p className="text-gray-500 mb-16 leading-relaxed">
@@ -326,11 +326,11 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#14b88f]">Interface Node</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Interface Node</span>
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-[0.9] mb-8">
                   Visit our <br />
-                  <span className="italic font-normal text-[#14b88f]">Chennai</span> Base.
+                  <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Chennai</span> Base.
                 </h2>
                 <p className="text-xl text-gray-400 font-light leading-relaxed max-w-md">
                   Synthesized within the Tidel Park IT corridor, our workspace serves as the architectural core for global digital operations.
@@ -357,14 +357,14 @@ export default function Contact() {
                     </div>
                     <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-gray-400 mb-2">{item.label}</h4>
                     <p className="text-gray-900 font-medium leading-relaxed group-hover:text-[#14b88f] transition-colors">{item.label === "Email Address" ? <a href={`mailto:${item.val}`}>{item.val}</a> : item.label === "Phone Number" ? <a href={`tel:${item.val}`}>{item.val}</a> : item.val}</p>
-                    
+
                     {/* Architectural Detail */}
                     <div className="mt-4 h-px w-0 bg-[#14b88f]/20 group-hover:w-full transition-all duration-700" />
                   </motion.div>
                 ))}
               </div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 className="pt-8 flex items-center gap-8"

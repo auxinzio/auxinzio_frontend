@@ -109,7 +109,7 @@ export default function Careers() {
                   <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                     Build
                   </h1>
-                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-[#14b88f] leading-[0.9] tracking-tighter italic">
+                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 pb-5 leading-[0.9] tracking-tighter italic">
                     Legacy
                   </h1>
                   <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
@@ -222,7 +222,7 @@ export default function Careers() {
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  className="text-xs tracking-[0.25em] uppercase text-[#14b88f] font-bold mb-8"
+                  className="text-xs tracking-[0.25em] uppercase font-bold mb-8 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"
                 >
                   Culture & DNA
                 </motion.p>
@@ -296,7 +296,7 @@ export default function Careers() {
                     Current Openings
                   </p>
                   <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                    Join our<br /><span className="text-[#14b88f] italic font-medium">collective.</span>
+                    Join our<br /><span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-medium">collective.</span>
                   </h2>
 
                   <div className="grid grid-cols-2 gap-2">

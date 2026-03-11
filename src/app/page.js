@@ -103,11 +103,11 @@ export default function Home() {
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-px bg-[#14b88f]" />
-                <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Synthesizing Tomorrow</span>
+                <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesizing Tomorrow</span>
               </div>
               <h1 className="text-6xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
                 Engineering <br />
-                <span className="italic font-normal text-[#14b88f]">Business</span> <br />
+                <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Business</span> <br />
                 <span className="font-medium">Excellence</span>
               </h1>
             </motion.div>
