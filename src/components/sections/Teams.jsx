@@ -125,7 +125,7 @@ function TeamMemberCard({ index, name, role, image, linkedin, github, email, des
       {/* Identity Label Block */}
       <div className="mt-8 flex justify-between items-start px-4">
         <div>
-          <h3 className="text-2xl font-bold text-gray-900 tracking-tight mb-1 group-hover:text-[#14b88f] transition-colors">{name}</h3>
+          <h3 className="text-2xl font-bold tracking-tight mb-1 transition-colors bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{name}</h3>
           <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{role}</p>
         </div>
         <div className="w-10 h-px bg-gray-100 mt-4 group-hover:w-16 group-hover:bg-[#14b88f] transition-all duration-500" />

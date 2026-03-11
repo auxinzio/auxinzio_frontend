@@ -141,9 +141,9 @@ export function Footer() {
                   <button
                     type="submit"
                     disabled={subscribing}
-                    className="absolute right-2 top-2 bottom-2 px-4 bg-[#14b88f] hover:bg-[#14b88f]/80 text-white rounded-lg transition-all flex items-center justify-center group/btn disabled:opacity-50"
+                    className="absolute right-2 top-2 bottom-2 px-4 bg-gradient-to-r from-green-500 to-cyan-600 text-transparent pe-5 text-white rounded-lg transition-all flex items-center justify-center group/btn disabled:opacity-50 "
                   >
-                    <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    <ArrowUpRight size={18} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform " />
                   </button>
                 </form>
                 {subscribeStatus && (
