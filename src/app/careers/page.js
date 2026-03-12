@@ -56,9 +56,6 @@ export default function Careers() {
 
     let ignore = false;
 
-    // We don't call setIsLoading(true) here because it's already initialized to true.
-    // This avoids the "cascading render" warning.
-
     fetch(`${settings.backend_api_url}/api/careers/jobList`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -90,193 +87,202 @@ export default function Careers() {
       {/* Progress Bar */}
       <ProgressBar />
       {/* --- HERO SECTION: THREE-ZONE ASYMMETRICAL --- */}
-      <section className="relative pt-32  pb-10 lg:pt-40 lg:pb-22 px-6 overflow-hidden">
+      <section className="relative pt-32 pb-10 lg:pt-40 lg:pb-22 px-6 overflow-hidden bg-white">
         <div className="mx-auto max-w-[1600px]">
-          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
 
-            {/* Zone 1: Vertical Editorial Typography */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:col-span-4 flex flex-col justify-end"
-            >
-              <div className="bg-gray-50/50 p-8 lg:p-12 border-l-2 border-[#14b88f] mb-8">
-                <p className="text-[10px] tracking-[0.3em] uppercase text-gray-500 mb-6 font-bold">
-                  Work with us
-                </p>
-                <div className="space-y-1">
-                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
-                    Build
-                  </h1>
-                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 pb-5 leading-[0.9] tracking-tighter italic">
-                    Legacy
-                  </h1>
-                  <h1 className="text-6xl lg:text-7xl xl:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
-                    Together
-                  </h1>
-                </div>
-              </div>
-              <p className="text-lg text-gray-600 leading-relaxed max-w-sm ml-2">
-                Join a world-class team of designers, engineers, and dreamers redefining the education landscape.
-              </p>
-            </motion.div>
-
-            {/* Zone 2: Architectural Divider */}
-            <div className="hidden lg:block lg:col-span-1 relative">
-              <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-200"></div>
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: "100%" }}
-                transition={{ duration: 1.5, ease: "easeInOut" }}
-                className="absolute left-1/2 top-0 w-[2px] bg-[#14b88f]"
-              />
-            </div>
-
-            {/* Zone 3: Artistic Collage & Geometric Storytelling */}
+            {/* Zone 1: Artistic Collage (Moved to Left) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1, delay: 0.2 }}
-              className="lg:col-span-7 relative"
+              className="lg:col-span-6 relative order-2 lg:order-1"
             >
-              <div className="relative aspect-[16/10] lg:aspect-[16/9] w-full rounded-[2rem] overflow-hidden group">
-                {/* Main Image */}
-                <Image
-                  src="/assets/img/careers/team1.webp"
-                  alt="Team Collaboration"
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  priority
-                />
-
-                {/* Overlay Glass Panel */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-gray-900/40 via-transparent to-transparent" />
-
-                {/* Geometric SVG Overlay */}
-                {/* <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none" viewBox="0 0 800 500">
-                  <pattern id="dot-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                    <circle cx="2" cy="2" r="1" fill="white" />
-                  </pattern>
-                  <rect width="100%" height="100%" fill="url(#dot-pattern)" />
-                </svg> */}
-
-                {/* Floating Meta Badge */}
-                <motion.div
-                  initial={{ y: 20, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.6 }}
-                  className="absolute bottom-6 right-6 lg:bottom-10 lg:right-10 bg-white/90 backdrop-blur-md p-6 border border-white/20 shadow-2xl rounded-2xl max-w-xs"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-10 h-10 rounded-full bg-[#14b88f]/10 flex items-center justify-center">
-                      <Globe className="w-5 h-5 text-[#14b88f]" />
-                    </div>
-                    <span className="text-xs font-bold tracking-widest uppercase text-gray-400">Our Reach</span>
+              <div className="grid grid-cols-3 gap-2 lg:gap-3 items-start">
+                {/* Column 1 */}
+                <div className="space-y-2 lg:space-y-3">
+                  <div className="relative aspect-[3/2] rounded-xl lg:rounded-2xl overflow-hidden group shadow-lg">
+                    <Image
+                      src="/assets/img/careers/team2.webp"
+                      alt="Team Event"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
-                  <p className="text-sm font-medium text-gray-800 leading-snug">
-                    Operating across 5 continents with a 100% remote-first culture.
-                  </p>
-                </motion.div>
-              </div>
-
-              {/* Decorative CTA Line */}
-              <div className="mt-12 flex items-center justify-between">
-                <button
-                  onClick={scrollToPositions}
-                  className="group flex items-center gap-4 text-gray-900 font-medium tracking-tight hover:text-[#14b88f] transition-colors"
-                >
-                  <span className="text-lg underline underline-offset-8 decoration-gray-200 group-hover:decoration-[#14b88f] transition-all">
-                    Explore Open Roles
-                  </span>
-                  <div className="w-12 h-12 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-[#14b88f] group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-300">
-                    <ArrowRight className="w-5 h-5" />
+                  <div className="relative aspect-[1/2] rounded-xl lg:rounded-2xl overflow-hidden group shadow-lg">
+                    <Image
+                      src="/assets/img/careers/team1.webp"
+                      alt="Team Working"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
-                </button>
+                </div>
 
-                <div className="hidden md:flex gap-12">
-                  <div>
-                    <p className="text-2xl font-light text-gray-900">50+</p>
-                    <p className="text-[10px] uppercase tracking-widest text-gray-400">Team Size</p>
+                {/* Column 2 */}
+                <div className="space-y-2 lg:space-y-3 pt-8 lg:pt-12">
+                  <div className="relative aspect-[2/3] rounded-xl lg:rounded-2xl overflow-hidden group shadow-lg">
+                    <Image
+                      src="/assets/img/careers/team3.webp"
+                      alt="Collaboration"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
-                  <div>
-                    <p className="text-2xl font-light text-gray-900">12</p>
-                    <p className="text-[10px] uppercase tracking-widest text-gray-400">Nationalities</p>
+                  <div className="relative aspect-[4/3] rounded-xl lg:rounded-2xl overflow-hidden group shadow-lg">
+                    <Image
+                      src="/assets/img/careers/team4.webp"
+                      alt="Office Life"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                </div>
+
+                {/* Column 3 */}
+                <div className="space-y-2 lg:space-y-3 pt-16 lg:pt-24 relative top-[10%]">
+                  <div className="relative aspect-[4/5] rounded-xl lg:rounded-2xl overflow-hidden group shadow-lg">
+                    <Image
+                      src="/assets/img/careers/team5.webp"
+                      alt="Social Impact"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
                   </div>
                 </div>
               </div>
+            </motion.div>
+
+            {/* Zone 2: Text Content (Moved to Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-6 flex flex-col justify-center order-1 lg:order-2"
+            >
+              <div className="relative z-10">
+                <h1 className="text-5xl lg:text-7xl xl:text-8xl font-bold text-gray-900 leading-[1.1] tracking-tight mb-2">
+                  Join our fast Growing Team
+                </h1>
+                <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic leading-tight tracking-tight mb-12">
+                  have an outsized impact
+                </h2>
+
+                <div className="flex flex-wrap items-center gap-8">
+                  <button
+                    onClick={scrollToPositions}
+                    className="group relative px-8 py-4 bg-white border border-gray-200 text-gray-800 rounded-xl font-medium transition-all hover:border-[#14b88f] hover:shadow-xl hover:shadow-[#14b88f]/10"
+                  >
+                    See Open Positions
+                  </button>
+                </div>
+              </div>
+
+              {/* Decorative CTA Stats - Subtle version of what was below */}
+              {/* <div className="mt-12 flex gap-12 items-center">
+                <div>
+                  <p className="text-2xl font-light text-gray-900">50+</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400">Team Size</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-light text-gray-900">12</p>
+                  <p className="text-[10px] uppercase tracking-widest text-gray-400">Nationalities</p>
+                </div>
+              </div> */}
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* --- VALUES & BENEFITS: BENTO GRID LAYOUT --- */}
-      <section className="py-10 lg:py-15 bg-gray-50/50">
+      {/* --- VALUES & BENEFITS: REFINED LAYOUT --- */}
+      <section className="py-20 lg:py-32 bg-gray-50/50">
         <div className="max-w-[1600px] mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-6">
+          <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
 
-            {/* Bento Block 1: Intro */}
-            <div className="lg:col-span-5 bg-white p-10 lg:p-16 rounded-[2.5rem] border border-gray-100 flex flex-col justify-between">
-              <div>
-                <motion.p
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  className="text-xs tracking-[0.25em] uppercase font-bold mb-8 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"
-                >
-                  Culture & DNA
-                </motion.p>
-                <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-8 leading-tight tracking-tight">
-                  We don’t just hire roles.<br />
-                  <span className="font-medium italic">We find partners.</span>
-                </h2>
-                <p className="text-gray-600 text-lg leading-relaxed max-w-md">
-                  Our culture is built on radical transparency, obsessed user-centricity, and the relentless pursuit of better solutions.
-                </p>
-              </div>
+            {/* Content Zone (Text Left) */}
+            <div className="lg:col-span-6">
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                className="text-xs tracking-[0.25em] uppercase font-bold mb-8 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"
+              >
+                Culture & DNA
+              </motion.p>
+              <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
+                We find partners,<br />
+                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">not just employees.</span>
+              </h2>
+              <p className="text-gray-600 text-lg lg:text-xl leading-relaxed max-w-xl mb-12">
+                Our culture is built on radical transparency, obsessed user-centricity, and the relentless pursuit of better solutions. We empower you to lead.
+              </p>
 
-              <div className="mt-12 pt-10 border-t border-gray-100 grid grid-cols-2 gap-8">
+              <div className="grid grid-cols-2 gap-8 border-t border-gray-200 pt-10">
                 {benefits.slice(0, 4).map((item, i) => (
-                  <div key={i} className="flex items-center gap-3">
-                    <item.icon className="w-4 h-4 text-[#14b88f]" />
-                    <span className="text-sm font-medium text-gray-700">{item.label}</span>
+                  <div key={i} className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-xl bg-[#14b88f]/10 flex items-center justify-center">
+                      <item.icon className="w-5 h-5 text-[#14b88f]" />
+                    </div>
+                    <span className="text-sm font-bold text-gray-700">{item.label}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Bento Block 2: Values (Vertical List with geometric hover) */}
-            <div className="lg:col-span-7 grid md:grid-cols-2 gap-6">
-              {careerValues.map((val, idx) => (
-                <motion.div
-                  key={idx}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-white p-10 rounded-[2rem] border border-gray-100 group hover:border-[#14b88f]/30 transition-all duration-300 relative overflow-hidden"
-                >
-                  <div className="relative z-10">
-                    <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-[#14b88f]/10 transition-all duration-500">
-                      <val.icon className="w-6 h-6 text-gray-900 group-hover:text-[#14b88f]" strokeWidth={1.5} />
-                    </div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-4">{val.title}</h3>
-                    <p className="text-gray-600 text-sm leading-relaxed">
-                      {val.description}
-                    </p>
+            {/* Visual Zone (Staggered Grid Right) */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="lg:col-span-6"
+            >
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-4">
+                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
+                    <Image
+                      src="/assets/img/careers/team3.webp"
+                      alt="Culture"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-
-                  {/* Subtle Geometric Background logic from AboutSection2 style */}
-                  <div className="absolute -bottom-4 -right-4 w-24 h-24 opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                      <rect x="10" y="10" width="80" height="80" fill="none" stroke={val.color} strokeWidth="1" />
-                      <circle cx="50" cy="50" r="30" fill="none" stroke={val.color} strokeWidth="0.5" />
-                    </svg>
+                </div>
+                <div className="space-y-4 pt-12">
+                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
+                    <Image
+                      src="/assets/img/careers/team4.webp"
+                      alt="Collaboration"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                </motion.div>
-              ))}
-            </div>
+                </div>
+              </div>
+            </motion.div>
 
+          </div>
+
+          {/* Detailed Values Grid */}
+          <div className="mt-24 lg:mt-32 grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {careerValues.map((val, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white p-10 rounded-3xl border border-gray-100 hover:border-[#14b88f]/30 transition-all duration-300 relative group overflow-hidden"
+              >
+                <div className="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mb-8 group-hover:bg-[#14b88f]/10 transition-all duration-500">
+                  <val.icon className="w-6 h-6 text-gray-900 group-hover:text-[#14b88f]" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{val.title}</h3>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {val.description}
+                </p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>

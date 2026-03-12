@@ -18,7 +18,7 @@ export default function ServiceSection({ service }) {
             <section id="services" className="py-14 lg:py-20 bg-gray-50/50 relative overflow-hidden">
                <div className="max-w-[1600px] mx-auto px-6">
                   {/* Header: Focused Scale */}
-                  <div className="grid lg:grid-cols-12 gap-12 items-center mb-24 lg:mb-32">
+                  <div className="grid lg:grid-cols-12 gap-12 items-center mb-12 lg:mb-14">
                      <motion.div
                         initial={{ opacity: 0, x: -30 }}
                         whileInView={{ opacity: 1, x: 0 }}

@@ -61,7 +61,7 @@ export function AboutSection() {
                   >
                      <div className="w-12 h-px bg-gray-100 group-hover:bg-[#14b88f] group-hover:w-20 transition-all duration-700" />
                      <div className="space-y-1">
-                        <p className="text-[10px] font-bold tracking-widest text-[#14b88f] uppercase whitespace-nowrap">{stat.label}</p>
+                        <p className="text-[10px] font-bold tracking-widest bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 uppercase whitespace-nowrap">{stat.label}</p>
                         <p className="text-4xl font-light text-gray-900 tracking-tight leading-none transition-all">{stat.value}</p>
                      </div>
                   </motion.div>

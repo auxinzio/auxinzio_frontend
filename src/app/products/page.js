@@ -154,7 +154,7 @@ export default function Products() {
                                             {loading ? (
                                                 <div className="h-8 w-12 bg-gray-100 animate-pulse rounded" />
                                             ) : (
-                                                <>{product?.data?.productsList?.length || '0'}<span className="text-[#22c55e]">+</span></>
+                                                <>{product?.data?.productsList?.length || '0'}<span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">+</span></>
                                             )}
                                         </div>
                                         <div className="text-xs tracking-[0.15em] uppercase text-gray-500">
