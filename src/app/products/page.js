@@ -239,7 +239,7 @@ export default function Products() {
             <ProductFeature products={product} loading={loading} />
 
             {/* Product Experience Section */}
-            <ProductExperience />
+            <ProductExperience products={product} loading={loading} />
         </>
     );
 }

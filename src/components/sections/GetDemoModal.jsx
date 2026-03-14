@@ -39,7 +39,6 @@ export default function GetDemoModal({ isOpen, onClose }) {
       .then(data => setProduct(data?.data?.productsList))
   }, [settings]);
 
-
   const [formData, setFormData] = useState({
     company: "",
     name: "",
@@ -48,6 +47,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
     objective: "",
     product_id: "",
   });
+
   const handleClose = useCallback(() => {
     onClose();
     // Delay resetting states slightly to prevent flicker during exit animation
@@ -196,8 +196,9 @@ export default function GetDemoModal({ isOpen, onClose }) {
             {/* --- LEFT: ARCHITECTURAL BRANDING --- */}
             <div className="lg:w-5/12 bg-gray-900 relative overflow-hidden p-10 lg:p-14 flex flex-col justify-between text-white shrink-0">
               {/* Background Large Text (Watermark) */}
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.03] select-none pointer-events-none origin-left -rotate-90 hidden lg:block">
-                <h1 className="text-[20vw] font-black tracking-tighter leading-none uppercase">Auxinz</h1>
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 select-none pointer-events-none origin-left hidden lg:block z-1 ">
+                {/* <h1 className="text-[20vw] font-black tracking-tighter leading-none uppercase">Auxinz</h1> */}
+                <Image src="/favicon.png" alt="Logo" className="w-20 h-20 scale-550 opacity-5" width={150} height={50} />
               </div>
 
               {/* Decorative SVG Grid */}
