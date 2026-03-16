@@ -208,7 +208,7 @@ export default function ServiceDetailPage({ params }) {
                                 className="space-y-12"
                             >
                                 <div className="flex items-center gap-4">
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Key Features</h3>
+                                    <h3 className="text-[16px] font-bold uppercase tracking-[0.4em] text-gray-600">Key Features</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
                                     {(service.service_item && service.service_item.length > 0 ? service.service_item : ["Expert Consultation", "Custom Implementation", "Ongoing Support"]).map((item, i) => (

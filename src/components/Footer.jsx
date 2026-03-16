@@ -34,10 +34,10 @@ export function Footer() {
   }, [settings]);
 
   const socialLinks = [
-    { icon: Twitter, href: "#" },
-    { icon: Linkedin, href: "#" },
-    { icon: Instagram, href: "#" },
-    { icon: Github, href: "#" },
+    // { icon: Twitter, href: settings?.twitter_url },
+    { icon: Linkedin, href: settings?.linkedin_url },
+    { icon: Instagram, href: settings?.instagram_url },
+    // { icon: Facebook, href: settings?.facebook_url },
   ];
 
   const [email, setEmail] = useState("");
@@ -115,7 +115,7 @@ export function Footer() {
                 {socialLinks.map((social, idx) => (
                   <Link
                     key={idx}
-                    href={social.href}
+                    href={social.href || "#"}
                     className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#14b88f] hover:border-[#14b88f] hover:text-white transition-all duration-500 group"
                   >
                     <social.icon size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
@@ -160,16 +160,14 @@ export function Footer() {
           </div>
 
           <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-5 md:mt-0 mt-10 row-gap-10">
-
-              {/* 02 Company */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:mt-0 mt-10 row-gap-10">
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">02</span> */}
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
+                    { name: "Home", href: "/" },
                     { name: "About", href: "/about" },
                     { name: "Careers", href: "/careers" },
                     { name: "Contact", href: "/contact" }
@@ -183,27 +181,8 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* 03 Services */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">03</span> */}
-                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
-                </div>
-                <ul className="space-y-4">
-                  {service?.data?.serviceList?.slice(0, 4).map((item) => (
-                    <li key={item.id}>
-                      <Link href={`/services/${item.slug}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
-                        {item.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* 04 Products */}
-              <div className="space-y-8">
-                <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">04</span> */}
                   <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-white">Products</h3>
                 </div>
                 <ul className="space-y-4">
@@ -217,10 +196,23 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* 05 Address */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">05</span> */}
+                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
+                </div>
+                <ul className="space-y-4 ">
+                  {service?.data?.serviceList?.slice(0, 4).map((item) => (
+                    <li key={item.id}>
+                      <Link href={`/services/${item.slug}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
+                        {item.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="lg:col-span-3 lg:mt-7 mt-7 space-y-8">
+                <div className="flex items-center gap-3">
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
                 </div>
                 <ul className="space-y-4">
@@ -250,12 +242,12 @@ export function Footer() {
         {/* Global Footer Bottom */}
         <div className="mt-20 pt-7 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
-            © {new Date().getFullYear()} {settings?.footer_company_name} - All Rights Reserved.
+            © {new Date().getFullYear()} {settings?.footer_company_name} - All Rights Reserved
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policy</Link>
-            <Link href="/terms-and-conditions" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Terms & Conditions</Link>
-            <Link href="/cookie-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Cookie Policy</Link>
+            <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policies |</Link>
+            <Link href="/terms-and-conditions" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Terms & Conditions |</Link>
+            <Link href="/cookie-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Cookie Policies</Link>
           </div>
         </div>
       </div>
