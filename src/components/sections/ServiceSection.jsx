@@ -10,7 +10,7 @@ import GeometricIllustration from "@/components/ui/GeometricIllustration";
 
 export default function ServiceSection({ service }) {
    const { settings } = useSettings();
-   const serviceData = service?.data?.serviceList || servicesData.services || [];
+   const serviceData = service?.data?.serviceList || [];
    return (
       <>
          {serviceData.length > 0 && (

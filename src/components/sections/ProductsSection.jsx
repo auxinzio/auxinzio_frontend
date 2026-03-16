@@ -8,7 +8,7 @@ import Link from 'next/link';
 
 export default function ProductsSection({ product }) {
   const { settings } = useSettings();
-  const products = (product && product.length > 0) ? product : (productsData.products || []);
+  const products = (product && product.length > 0) ? product : [];
 
   return (
     <>

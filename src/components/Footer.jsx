@@ -126,8 +126,8 @@ export function Footer() {
               {/* 01 Newsletter synchronization */}
               <div className="space-y-6 pt-4">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">01</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Subscribe to our Newsletter</h3>
+                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">01</span> */}
+                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Subscribe to our Newsletter</h3>
                 </div>
                 <form onSubmit={handleSubscribe} noValidate className="relative max-w-sm group">
                   <input
@@ -150,7 +150,7 @@ export function Footer() {
                   <motion.p
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className={`text-[10px] font-bold uppercase tracking-widest ${subscribeStatus.success ? 'text-[#14b88f]' : 'text-red-400'}`}
+                    className={`text-[12px] font-bold uppercase tracking-widest ${subscribeStatus.success ? 'text-[#14b88f]' : 'text-red-400'}`}
                   >
                     {subscribeStatus.message}
                   </motion.p>
@@ -165,17 +165,17 @@ export function Footer() {
               {/* 02 Company */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">02</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
+                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">02</span> */}
+                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
                 </div>
                 <ul className="space-y-4">
                   {[
-                    { name: "About Us", href: "/about" },
+                    { name: "About", href: "/about" },
                     { name: "Careers", href: "/careers" },
                     { name: "Contact", href: "/contact" }
                   ].map((link) => (
                     <li key={link.name}>
-                      <Link href={link.href} className="text-sm font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
+                      <Link href={link.href} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
                         {link.name} <ArrowUpRight size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                       </Link>
                     </li>
@@ -186,8 +186,8 @@ export function Footer() {
               {/* 03 Services */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">03</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
+                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">03</span> */}
+                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
                 </div>
                 <ul className="space-y-4">
                   {service?.data?.serviceList?.slice(0, 4).map((item) => (
@@ -203,13 +203,13 @@ export function Footer() {
               {/* 04 Products */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">04</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Products</h3>
+                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">04</span> */}
+                  <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-white">Products</h3>
                 </div>
                 <ul className="space-y-4">
                   {product?.data?.productsList?.slice(0, 4).map((item) => (
                     <li key={item.id}>
-                      <Link href={`/products/${item.slug}`} className="text-sm font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
+                      <Link href={`/products/${item.slug}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
                         {item.product_name}
                       </Link>
                     </li>
@@ -220,22 +220,22 @@ export function Footer() {
               {/* 05 Address */}
               <div className="lg:col-span-2 space-y-8">
                 <div className="flex items-center gap-3">
-                  <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">05</span>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
+                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">05</span> */}
+                  <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
                 </div>
                 <ul className="space-y-4">
-                  <li className="text-sm font-light text-gray-400 flex items-start gap-3">
+                  <li className="text-base font-light text-gray-400 flex items-start gap-3">
                     <MapPin className="w-4 h-4 text-[#14b88f] shrink-0 mt-0.5" />
                     <span>{settings?.address || 'Loading address...'}</span>
                   </li>
                   <li>
-                    <a href={`mailto:${settings?.email}`} className="text-sm font-light text-gray-400 hover:text-[#14b88f] transition-all break-all flex items-center gap-3 group">
+                    <a href={`mailto:${settings?.email}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] transition-all break-all flex items-center gap-3 group">
                       <Mail className="w-4 h-4 text-[#14b88f] shrink-0 group-hover:scale-110 transition-transform" />
                       <span>{settings?.email}</span>
                     </a>
                   </li>
                   <li>
-                    <a href={`tel:${settings?.phone}`} className="text-sm font-light text-gray-400 hover:text-[#14b88f] transition-all flex items-center gap-3 group">
+                    <a href={`tel:${settings?.phone}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] transition-all flex items-center gap-3 group">
                       <Phone className="w-4 h-4 text-[#14b88f] shrink-0 group-hover:scale-110 transition-transform" />
                       <span>{settings?.phone}</span>
                     </a>
@@ -250,7 +250,7 @@ export function Footer() {
         {/* Global Footer Bottom */}
         <div className="mt-20 pt-7 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
-            © {new Date().getFullYear()} Auxinzio - All Rights Reserved.
+            © {new Date().getFullYear()} {settings?.footer_company_name} - All Rights Reserved.
           </div>
           <div className="flex items-center gap-4">
             <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policy</Link>
