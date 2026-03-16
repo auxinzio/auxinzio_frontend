@@ -77,7 +77,7 @@ export default function Services() {
                      </div>
                      <h1 className="text-6xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                         Solutions Built <br />
-                        <span className="font-medium text-gray-200">for Business.</span>
+                        <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">for Business</span>
                      </h1>
                   </motion.div>
 
@@ -145,7 +145,7 @@ export default function Services() {
 
                            {/* Content Block */}
                            <div className="lg:w-1/2 py-8">
-                              <span className="text-6xl lg:text-8xl font-black text-[#14b88f]/30 mb-8 block select-none">0{idx + 1}</span>
+                              {/* <span className="text-6xl lg:text-8xl font-black text-[#14b88f]/30 mb-8 block select-none">0{idx + 1}</span> */}
                               <h2 className="text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
                                  {srv.title.split(' ').map((word, i) => (
                                     <span key={i} className={i === 0 ? "font-medium" : "italic bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"}>

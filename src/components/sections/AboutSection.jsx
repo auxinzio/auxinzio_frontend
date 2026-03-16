@@ -30,9 +30,9 @@ export function AboutSection() {
                      <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{about.tag}</span>
                   </div>
                   <h2 className="text-5xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
-                    Building <br />
-                    <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital</span> <br />
-                    <span className="font-medium">Solutions</span>
+                     Building <br />
+                     <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital</span> <br />
+                     <span className="font-medium">Solutions</span>
                   </h2>
                </motion.div>
 
@@ -107,7 +107,7 @@ export function AboutSection() {
 
                         {/* Floating Info Pod */}
                         <div className="absolute top-12 right-12 bg-white/90 backdrop-blur-xl px-10 py-8 rounded-[2.5rem] shadow-2xl border border-white/20 hidden lg:block translate-x-12 translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 z-10">
-                           <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">{about.experience.split(' ')[0]}+</p>
+                           <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">{about.experience.split(' ')[0]}</p>
                            <p className="text-[10px] font-bold text-[#14b88f] tracking-widest uppercase">Years Experience</p>
                         </div>
                      </div>

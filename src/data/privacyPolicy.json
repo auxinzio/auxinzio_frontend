@@ -1,0 +1,48 @@
+{
+  "privacyModules" : [
+  {
+    "icon": "Database",
+    "title": "Data Collection",
+    "summary": "Understanding the specific digital footprints we analyze.",
+    "content": "We collect information you provide directly to us (names, emails, company data) and automated usage metrics through our infrastructure to optimize your experience.",
+    "details": ['Personal Identifiers', 'Technical Metadata', 'Engagement Patterns'],
+    "color": "#14b88f"
+  },
+  {
+    "icon": "Eye",
+    "title": "Data Usage",
+    "summary": "How your information fuels business intelligence.",
+    "content": "Your data is strictly used to provide, maintain, and improve our services, develop new features, and protect Auxinzio and our users from fraudulent activity.",
+    "details": ['Service Optimization', 'Algorithmic Tuning', 'Security Protocols'],
+    "color": "#06b6d4"
+  },
+  {
+    "icon": "Share2",
+    "title": "Sharing Protocols",
+    "summary": "Our standards for third-party ecosystem integration.",
+    "content": "We do not sell your personal data. We only share information with trusted service providers who adhere to our strict privacy standards and legal requirements.",
+    "details": ['Partner Vetting', 'Encrypted Transfers', 'No Data Selling'],
+    "color": "#22c55e"
+  }
+],
+"expandedSections" : [
+  {
+    "id": "security",
+    "title": "Infrastructural Security",
+    "icon": "ShieldAlert",
+    "content": "Auxinzio employs military-grade encryption and architectural-level security measures to protect your data. Our infrastructure is audited regularly to ensure compliance with global security standards."
+  },
+  {
+    "id": "rights",
+    "title": "Constitutional Rights",
+    "icon": "Fingerprint",
+    "content": "You retain full sovereignty over your data. This includes the right to access, rectify, or request the erasure of your personal information from our active databases at any time."
+  },
+  {
+    "id": "cookies",
+    "title": "Cookie Taxonomy",
+    "icon": "Settings",
+    "content": "We use advanced tracking tokens (cookies) to maintain your session state and understand site interaction. You can manage these preferences through your architectural dashboard."
+  }
+]
+}

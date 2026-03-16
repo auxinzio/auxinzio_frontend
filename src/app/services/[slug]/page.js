@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,20 +16,17 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { useSettings } from "@/app/Context/SettingsContext";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import ProgressBar from "@/components/ui/ProgressBar";
-
 export default function ServiceDetailPage({ params }) {
     const { slug } = React.use(params);
     const [service, setService] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const { settings } = useSettings();
-
     useEffect(() => {
         const fetchServiceDetail = async () => {
             if (!settings.backend_api_url) return;
-
             try {
                 setLoading(true);
                 const response = await fetch(`${settings.backend_api_url}/api/services/servicesShow`, {
@@ -40,11 +36,9 @@ export default function ServiceDetailPage({ params }) {
                     },
                     body: JSON.stringify({ slug: slug }),
                 });
-
                 if (!response.ok) {
                     throw new Error(`Failed to fetch service details: ${response.status}`);
                 }
-
                 const result = await response.json();
                 setService(result.data.service);
             } catch (err) {
@@ -54,12 +48,10 @@ export default function ServiceDetailPage({ params }) {
                 setLoading(false);
             }
         };
-
         if (slug && settings.backend_api_url) {
             fetchServiceDetail();
         }
     }, [slug, settings.backend_api_url]);
-
     if (loading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-white">
@@ -72,7 +64,6 @@ export default function ServiceDetailPage({ params }) {
             </div>
         );
     }
-
     if (error || !service) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-white p-6">
@@ -92,7 +83,6 @@ export default function ServiceDetailPage({ params }) {
             </div>
         );
     }
-
     return (
         <div className="min-h-screen bg-white selection:bg-[#14b88f] selection:text-white">
             {/* Progress Bar */}
@@ -102,9 +92,8 @@ export default function ServiceDetailPage({ params }) {
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none">
                     <h1 className="text-[40vw] font-black leading-none tracking-tighter">SERVICE</h1>
                 </div>
-
                 <div className="container mx-auto px-6 relative z-10">
-                    <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-end">
+                    <div className="grid lg:grid-cols-12 gap-16 lg:gap-24 items-center">
                         <div className="lg:col-span-7 space-y-8 lg:space-y-12">
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
@@ -116,26 +105,23 @@ export default function ServiceDetailPage({ params }) {
                                 </div>
                                 <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Category: {service.description?.short_description_title || "Enterprise"}</span>
                             </motion.div>
-
                             <motion.h1
                                 initial={{ opacity: 0, scale: 0.95 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                                 className="text-6xl md:text-8xl lg:text-[120px] font-light tracking-tighter leading-[0.9] text-gray-900"
                             >
-                                {service.title}<span className="text-[#14b88f]">.</span>
+                                {service.title}
                             </motion.h1>
-
-                            <motion.p
+                            {/* <motion.p
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 transition={{ delay: 0.3 }}
                                 className="text-xl lg:text-2xl font-light text-gray-500 leading-relaxed max-w-2xl"
                             >
                                 {service.description?.short_description}
-                            </motion.p>
+                            </motion.p> */}
                         </div>
-
                         <div className="lg:col-span-5 relative">
                             <motion.div
                                 initial={{ opacity: 0, y: 40 }}
@@ -158,7 +144,6 @@ export default function ServiceDetailPage({ params }) {
                                 )}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                             </motion.div>
-
                             {/* Floating Architecture Badge */}
                             <motion.div
                                 initial={{ opacity: 0, x: 20 }}
@@ -181,15 +166,12 @@ export default function ServiceDetailPage({ params }) {
                     </div>
                 </div>
             </section>
-
             {/* CONTENT ARCHITECTURE */}
             <section className="py-24 lg:py-20 lg:pt-5 pt-5 relative">
                 <div className="container mx-auto px-6">
                     <div className="grid lg:grid-cols-12 gap-16 lg:gap-24">
-
                         {/* LEFT COLUMN: DESCRIPTION */}
                         <div className="lg:col-span-7 space-y-32">
-
                             {/* 01 Overview */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -197,9 +179,15 @@ export default function ServiceDetailPage({ params }) {
                                 viewport={{ once: true }}
                                 className="space-y-12"
                             >
-                                <div className="flex items-center gap-4">
-                                    <span className="text-[10px] font-bold text-[#14b88f]">01</span>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Service Overview</h3>
+                                <h2 className="text-4xl lg:text-5xl font-light tracking-tight text-gray-900 leading-tight">
+                                    {service.description?.short_description_title || "Strategic Infrastructure"}
+                                </h2>
+                                <div className="space-y-8 max-w-2xl">
+                                    {(service.description?.short_description || "").split('~').map((part, i) => (
+                                        <p key={i} className="text-lg lg:text-xl font-light text-gray-500 leading-relaxed">
+                                            {part.trim()}
+                                        </p>
+                                    ))}
                                 </div>
                                 <h2 className="text-4xl lg:text-5xl font-light tracking-tight text-gray-900 leading-tight">
                                     {service.description?.long_description_title || "Strategic Infrastructure"}
@@ -212,7 +200,6 @@ export default function ServiceDetailPage({ params }) {
                                     ))}
                                 </div>
                             </motion.div>
-
                             {/* 02 Specialized Nodes */}
                             <motion.div
                                 initial={{ opacity: 0, y: 30 }}
@@ -221,7 +208,6 @@ export default function ServiceDetailPage({ params }) {
                                 className="space-y-12"
                             >
                                 <div className="flex items-center gap-4">
-                                    <span className="text-[10px] font-bold text-[#14b88f]">02</span>
                                     <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Key Features</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
@@ -236,9 +222,7 @@ export default function ServiceDetailPage({ params }) {
                                     ))}
                                 </div>
                             </motion.div>
-
                         </div>
-
                         {/* RIGHT COLUMN: STICKY CALL TO ACTION */}
                         <div className="lg:col-span-1" />
                         <div className="lg:col-span-4 relative">
@@ -252,7 +236,6 @@ export default function ServiceDetailPage({ params }) {
                                     <div className="absolute top-0 right-0 p-8 opacity-10">
                                         <Zap size={80} strokeWidth={1} />
                                     </div>
-
                                     <div className="relative z-10 space-y-8">
                                         <h3 className="text-3xl font-light tracking-tighter leading-tight">
                                             Ready to <br />
@@ -272,7 +255,6 @@ export default function ServiceDetailPage({ params }) {
                                         </div>
                                     </div>
                                 </motion.div>
-
                                 <div className="p-8 border border-gray-100 rounded-[2.5rem] space-y-6">
                                     <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Contact Information</h4>
                                     <div className="space-y-4">
@@ -282,7 +264,6 @@ export default function ServiceDetailPage({ params }) {
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>

@@ -91,7 +91,7 @@ export default function CookiePolicy() {
 
                         <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                             Cookie <br />
-                            <span className="italic font-normal text-[#14b88f]">Architecture.</span>
+                            <span className="font-normal text-[#14b88f]">Architecture.</span>
                         </h1>
 
                         <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
@@ -102,7 +102,7 @@ export default function CookiePolicy() {
             </section>
 
             {/* --- MODULAR BENTO GRID: COOKIE TAXONOMY --- */}
-            <section className="py-24 lg:py-40 px-6">
+            <section className="py-24 lg:py-40 px-6 lg:pt-0 pt-0">
                 <div className="max-w-[1600px] mx-auto">
                     <div className="grid lg:grid-cols-3 gap-8">
                         {cookieModules.map((module, idx) => (
@@ -207,15 +207,6 @@ export default function CookiePolicy() {
                                     <div className="mt-20 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
                                 </motion.div>
                             ))}
-
-                            <div className="bg-white/5 p-12 lg:p-16 rounded-[3rem] border border-white/10 backdrop-blur-xl">
-                                <Zap className="w-12 h-12 text-[#14b88f] mb-8" />
-                                <h4 className="text-2xl font-light mb-4">Real-time Recalibration</h4>
-                                <p className="text-gray-500 mb-10 leading-relaxed font-light">Want to synchronize your cookie settings with your current architectural setup? Use our automated tool to reset your session markers.</p>
-                                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b88f]/10">
-                                    Reset Session
-                                </Button>
-                            </div>
                         </div>
 
                     </div>
@@ -249,9 +240,6 @@ export default function CookiePolicy() {
                     </div>
                 </div>
             </section>
-
-            {/* Decorative Spacer */}
-            <div className="h-20 bg-white" />
         </div>
     );
 }
