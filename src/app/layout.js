@@ -15,10 +15,25 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: {
     template: "%s | Auxinzio",
-    default: "Auxinzio | Digital Agency - Engineering Business Excellence",
+    default: "Auxinzio | Expert IT Solutions, Software Development & Digital Transformation",
   },
-  description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions. Auxinzio combines strategic consulting, cloud services, and managed IT support to optimize performance and strengthen cybersecurity.",
-  keywords: ["Digital Agency", "Software Architecture", "Auxinzio", "Strategic Consulting", "Global Engineering"],
+  description: "Auxinzio delivers enterprise-grade IT solutions — custom software, web & mobile apps, cybersecurity, and digital marketing — engineered to accelerate your business growth and digital transformation.",
+  keywords: [
+    "IT solutions company",
+    "custom software development",
+    "web and mobile app development",
+    "cybersecurity solutions",
+    "IT consulting services",
+    "digital transformation services",
+    "managed IT services",
+    "enterprise software development",
+    "cloud solutions",
+    "UI UX design",
+    "digital marketing agency",
+    "Auxinzio",
+    "SaaS development",
+    "agile software development",
+  ],
   metadataBase: new URL("https://auxinz.io"),
   icons: {
     icon: "/favicon.png",
@@ -26,16 +41,28 @@ export const metadata = {
     apple: "/favicon.png",
   },
   openGraph: {
-    title: "Auxinzio | Digital Agency",
-    description: "Engineering business excellence through secure, scalable, and future‑ready IT solutions.",
+    title: "Auxinzio | Expert IT Solutions & Digital Transformation Partner",
+    description: "Transform your business with Auxinzio's expert web, mobile, cloud, and cybersecurity solutions — engineered for sustainable growth.",
     url: "https://auxinz.io",
     siteName: "Auxinzio",
     locale: "en_US",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Auxinzio | Expert IT Solutions & Digital Transformation",
+    description: "Custom software, web & mobile apps, cybersecurity, and digital marketing services for modern businesses.",
+  },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
+    },
   },
 };
 
