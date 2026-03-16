@@ -62,7 +62,7 @@ export default function CTASection() {
 
                             <div className="relative z-10 space-y-12">
                                 <div className="space-y-4">
-                                    <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Contact Us</h4>
+                                    <h4 className="text-white text-sm font-bold uppercase tracking-[0.4em]">Contact</h4>
                                     <div className="flex items-center justify-between">
                                         <a href={`mailto:${settings.email}`} className="group/link flex items-center gap-4 text-2xl lg:text-3xl font-light text-white hover:text-[#14b88f] transition-colors">
                                             Hello <Mail className="group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />

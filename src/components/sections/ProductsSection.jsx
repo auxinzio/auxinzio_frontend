@@ -4,12 +4,11 @@ import { motion } from 'framer-motion';
 import { ArrowUpRight, ArrowRight, Layers, ShieldCheck, Activity, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
 import { useSettings } from "@/app/Context/SettingsContext";
-import productsData from "@/data/products.json";
 import Link from 'next/link';
 
 export default function ProductsSection({ product }) {
   const { settings } = useSettings();
-  const products = (product && product.length > 0) ? product : (productsData.products || []);
+  const products = (product && product.length > 0) ? product : [];
 
   return (
     <>

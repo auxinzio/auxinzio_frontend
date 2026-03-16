@@ -1,7 +1,7 @@
 {
-    "tag":" About Our Company",
-    "title": "About Us",
-    "description": "We provide secure, reliable, and future‑ready IT solutions that empower businesses to operate efficiently and scale with confidence. Through strategic IT consulting, scalable cloud services, and proactive managed IT support, we help organizations boost performance, strengthen cybersecurity, and reduce operational risks.",
+    "tag": "About Auxinzio",
+    "title": "Technology That Empowers Sustainable Growth",
+    "description": "We deliver reliable, secure, and future-ready IT solutions that empower businesses to operate at their full potential. By combining strategic IT consulting, scalable cloud infrastructure, and proactive managed services, Auxinzio helps organizations enhance performance, strengthen security, and eliminate operational risk. Our customer-first philosophy means every solution is tailored to your unique business requirements — transforming technology into a powerful engine of productivity and long-term growth.",
     "skills": [
         {
             "label": "IT Consulting & Support",
@@ -34,5 +34,5 @@
             "alt": "Team Collaboration"
         }
     ],
-    "experience": "3 + Years of Experience"
+    "experience": "3+ Years of Industry Experience"
 }

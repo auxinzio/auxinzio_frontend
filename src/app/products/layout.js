@@ -1,10 +1,10 @@
 export const metadata = {
-    title: "Auxinzio | Digital Solutions & Engineered Platforms",
-    description: "Explore our suite of digital products designed for enterprise intelligence. From AI-driven analytics to robust cloud infrastructure, we build for performance and security.",
-    keywords: ["digital solutions", "enterprise intelligence", "AI analytics", "cloud infrastructure", "engineered platforms", "Auxinzio products"],
+    title: "Enterprise IT Products | AttendX HRMS & Workforce Management",
+    description: "Discover Auxinzio's enterprise product suite — including AttendX, an AI-powered attendance and workforce management platform built for modern organizations of all sizes.",
+    keywords: ["enterprise IT products", "AttendX HRMS", "attendance management system", "workforce management software", "AI HR platform", "employee tracking system", "Auxinzio products"],
     openGraph: {
-        title: "Auxinzio | Digital Solutions & Engineered Platforms",
-        description: "Powering the next generation of enterprise intelligence with our suite of digital products.",
+        title: "Enterprise IT Products | Auxinzio",
+        description: "Discover Auxinzio's enterprise product suite — including AttendX, an AI-powered attendance and workforce management platform.",
     },
     robots: {
         index: true,

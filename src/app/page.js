@@ -1,21 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
 import { AboutSection } from "@/components/sections/AboutSection";
 import ServiceSection from "@/components/sections/ServiceSection";
 import Commitments from "@/components/sections/Commitments";
-import { clients } from "@/data/home.json";
-import Teams from "@/components/sections/Teams";
-import Image from "next/image";
-import { TrendingUp, Users, Award, Heart, Phone, Mail, ArrowRight, ChevronRight, Zap, Sparkles, Activity } from 'lucide-react';
+import { TrendingUp, ArrowRight, Zap } from 'lucide-react';
 import { StatsOrganic } from "@/components/sections/StatsOrganic";
 import ProductsSection from "@/components/sections/ProductsSection";
 import CTASection from "@/components/sections/CTASection";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Link from "next/link";
-import servicesData from "@/data/services.json";
 import ProgressBar from "@/components/ui/ProgressBar";
 import ClientSection from "@/components/sections/ClientSection";
 
@@ -79,7 +74,6 @@ export default function Home() {
       transition: { duration: 0.5 },
     },
   };
-
   return (
     <div className="flex flex-col min-h-screen bg-white selection:bg-[#14b88f]/10 overflow-hidden">
       {/* Progress Bar */}
@@ -192,9 +186,10 @@ export default function Home() {
       {/* Hero Marquee Strip */}
       <div className="py-6 border-y border-gray-100 bg-white overflow-hidden">
         <div className="flex animate-marquee whitespace-nowrap gap-12 text-gray-200 font-bold uppercase tracking-[0.1em] text-[12px] items-center">
+          {console.log(service)}
           {[...Array(6)].map((_, outerIndex) => (
             <div key={outerIndex} className="flex items-center gap-12">
-              {(service?.data?.serviceList || servicesData.services)?.map((item, index) => (
+              {(service?.data?.serviceList)?.map((item, index) => (
                 <span className="flex items-center gap-6" key={index}>
                   {item.title} <Zap className="w-3 h-3 text-[#14b88f]" />
                 </span>
