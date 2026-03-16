@@ -73,11 +73,11 @@ export default function Services() {
                   >
                      <div className="flex items-center gap-4 mb-8">
                         <div className="w-12 h-px bg-[#14b88f]" />
-                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Engineering Excellence</span>
+                        <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Our Expertise</span>
                      </div>
                      <h1 className="text-6xl lg:text-[11rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-                        Our <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Capabilities</span><br />
-                        <span className="font-medium text-gray-200">Explained.</span>
+                        Solutions Built <br />
+                        <span className="font-medium text-gray-200">for Business.</span>
                      </h1>
                   </motion.div>
 
@@ -88,7 +88,7 @@ export default function Services() {
                      className="lg:col-span-4 pb-4"
                   >
                      <p className="text-xl text-gray-500 leading-relaxed border-l-2 border-gray-100 pl-8 max-w-sm">
-                        {`We don't just build features. We synthesize digital experiences that resonate with human logic and emotion.`}
+                        {`We deliver comprehensive software solutions that align technical excellence with your strategic business goals.`}
                      </p>
                   </motion.div>
                </div>
@@ -167,7 +167,7 @@ export default function Services() {
                               </div>
                               <Link href={`/services/${srv.slug}`}>
                                  <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b88f] transition-all">
-                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">Enquire Details</span>
+                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">Service Details</span>
                                     <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </div>
@@ -195,14 +195,14 @@ export default function Services() {
                   <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-cyan-500 rounded-full blur-[120px] opacity-10 group-hover:opacity-30 transition-opacity duration-1000" />
 
                   <div className="relative z-10">
-                     <p className="text-[10px] tracking-[0.5em] uppercase font-bold mb-10 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Next Evolution</p>
+                     <p className="text-[10px] tracking-[0.5em] uppercase font-bold mb-10 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Expert Consultation</p>
                      <h2 className="text-5xl lg:text-7xl font-light text-white tracking-tighter mb-12">
-                        Ready to <span className="italic">synthesize</span><br />your next venture?
+                        Ready to scale <br />your business technology?
                      </h2>
                      <Link href="/contact">
                         <button className="group cursor-pointer relative px-12 py-6 bg-[#14b88f] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b88f]/20">
                            <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
-                              Consultation Protocol <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                               Book a Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                            </span>
                            <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
                            <span className="absolute inset-0 flex items-center justify-center text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-bold">

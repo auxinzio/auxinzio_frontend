@@ -228,14 +228,14 @@ export default function Contact() {
                       {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.phone}</p>}
                     </div>
                     <div className="md:col-span-1">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Subject of Inquiry</label>
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Subject of Enquiry</label>
                       <input
                         type="text"
                         name="title"
                         value={formState.title}
                         onChange={handleChange}
                         className={`w-full bg-transparent border-b ${errors.title ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors placeholder:text-gray-200 text-lg`}
-                        placeholder="Subject of Inquiry"
+                        placeholder="Subject of Enquiry"
                         required
                       />
                       {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.title}</p>}
