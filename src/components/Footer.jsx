@@ -109,7 +109,7 @@ export function Footer() {
             </Link>
             <div className="space-y-4 max-w-md">
               <p className="text-gray-400 text-lg font-light leading-relaxed">
-                Architecting the future of digital sovereignty. We synchronize high-end technology with strategic vision to empower global enterprises.
+                We are a trusted IT solutions partner providing secure, scalable technology and customizable enterprise products to support digital transformation.{/*  Our expertise covers software development, cybersecurity, and consulting to improve workflows, boost efficiency, and support long-term business growth. */}
               </p>
               <div className="flex gap-4">
                 {socialLinks.map((social, idx) => (
@@ -192,7 +192,7 @@ export function Footer() {
                 <ul className="space-y-4">
                   {service?.data?.serviceList?.slice(0, 4).map((item) => (
                     <li key={item.id}>
-                      <Link href={`/services/${item.slug}`} className="text-sm font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
+                      <Link href={`/services/${item.slug}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
                         {item.title}
                       </Link>
                     </li>

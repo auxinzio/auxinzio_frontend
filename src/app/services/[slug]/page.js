@@ -79,13 +79,13 @@ export default function ServiceDetailPage({ params }) {
                 <div className="max-w-md w-full text-center space-y-12">
                     <h1 className="text-8xl font-black text-gray-100 select-none">404</h1>
                     <div className="space-y-4">
-                        <h2 className="text-2xl font-light tracking-tight">Sync Error</h2>
-                        <p className="text-gray-400 font-light">The requested node could not be synchronized or no longer exists in our architecture.</p>
+                        <h2 className="text-2xl font-light tracking-tight">Page Not Found</h2>
+                        <p className="text-gray-400 font-light">The requested service detail could not be found.</p>
                     </div>
                     <Link href="/services" className="inline-block">
                         <Button variant="outline" className="rounded-2xl px-8 h-12 gap-3 group">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            Return to Repository
+                            Return to Services
                         </Button>
                     </Link>
                 </div>
@@ -114,7 +114,7 @@ export default function ServiceDetailPage({ params }) {
                                 <div className="w-8 h-8 rounded-full bg-[#14b88f]/10 flex items-center justify-center">
                                     <Zap size={14} className="text-[#14b88f]" fill="currentColor" />
                                 </div>
-                                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Node Type: {service.description?.short_description_title || "Enterprise"}</span>
+                                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Category: {service.description?.short_description_title || "Enterprise"}</span>
                             </motion.div>
 
                             <motion.h1
@@ -169,11 +169,11 @@ export default function ServiceDetailPage({ params }) {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <Activity size={16} className="text-[#14b88f]" />
-                                        <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Sync Status</span>
+                                        <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Service Status</span>
                                     </div>
                                     <p className="text-sm font-bold flex items-center gap-2">
                                         <span className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
-                                        Operational 100%
+                                        Active Support 100%
                                     </p>
                                 </div>
                             </motion.div>
@@ -199,7 +199,7 @@ export default function ServiceDetailPage({ params }) {
                             >
                                 <div className="flex items-center gap-4">
                                     <span className="text-[10px] font-bold text-[#14b88f]">01</span>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Architectural Overview</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Service Overview</h3>
                                 </div>
                                 <h2 className="text-4xl lg:text-5xl font-light tracking-tight text-gray-900 leading-tight">
                                     {service.description?.long_description_title || "Strategic Infrastructure"}
@@ -222,7 +222,7 @@ export default function ServiceDetailPage({ params }) {
                             >
                                 <div className="flex items-center gap-4">
                                     <span className="text-[10px] font-bold text-[#14b88f]">02</span>
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Specialized Nodes</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Key Features</h3>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-8">
                                     {(service.service_item && service.service_item.length > 0 ? service.service_item : ["Expert Consultation", "Custom Implementation", "Ongoing Support"]).map((item, i) => (
@@ -256,14 +256,14 @@ export default function ServiceDetailPage({ params }) {
                                     <div className="relative z-10 space-y-8">
                                         <h3 className="text-3xl font-light tracking-tighter leading-tight">
                                             Ready to <br />
-                                            <span className="italic text-[#14b88f]">Synchronize?</span>
+                                            <span className="italic text-[#14b88f]">Get Started?</span>
                                         </h3>
                                         <p className="text-gray-400 font-light leading-relaxed">
-                                            Initiate a deep-dive session with our lead architects to integrate this node into your ecosystem.
+                                            Schedule a detailed consultation with our technical experts to discuss your specific requirements.
                                         </p>
                                         <Link href={`/contact`} className="block">
                                             <Button variant="gradi" className="w-full h-16 rounded-[1.5rem] font-bold text-sm tracking-widest uppercase group">
-                                                Get Started <ArrowUpRight size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                                                Contact Our Team <ArrowUpRight size={18} className="ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                                             </Button>
                                         </Link>
                                         <div className="flex items-center justify-center gap-6 pt-4 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
@@ -274,10 +274,10 @@ export default function ServiceDetailPage({ params }) {
                                 </motion.div>
 
                                 <div className="p-8 border border-gray-100 rounded-[2.5rem] space-y-6">
-                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication Node</h4>
+                                    <h4 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Contact Information</h4>
                                     <div className="space-y-4">
-                                        <p className="text-sm font-medium text-gray-900">Direct Protocol: <a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
-                                        <p className="text-sm font-medium text-gray-900">Encrypted Mail: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
+                                        <p className="text-sm font-medium text-gray-900">Direct Phone: <a href={`tel:${settings.phone}`}>{settings.phone}</a></p>
+                                        <p className="text-sm font-medium text-gray-900">Office Email: <a href={`mailto:${settings.email}`}>{settings.email}</a></p>
                                     </div>
                                 </div>
                             </div>

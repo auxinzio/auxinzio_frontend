@@ -34,16 +34,16 @@ export default function CTASection() {
                         >
                             <div className="flex items-center gap-4 mb-10">
                                 <div className="w-12 h-px bg-[#14b88f]" />
-                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Convergence</span>
+                                <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Want to work with us?</span>
                             </div>
 
                             <h2 className="text-6xl lg:text-[10rem] font-light text-white leading-[0.8] tracking-tighter mb-12">
                                 Ready to <br />
-                                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-8">Synthesize?</span>
+                                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-8">Grow?</span>
                             </h2>
 
-                            <p className="text-xl lg:text-2xl text-white/40 font-light leading-relaxed max-w-xl">
-                                Translate your enterprise vision into high-performance architectural reality. Start the synthesis today.
+                            <p className="text-xl lg:text-2xl text-white/40 font-light leading-relaxed">
+                                Digitally transforming your business is key to staying competitive in today's fast-paced world. With our expertise, we help you leverage the latest technologies to streamline operations, enhance customer experiences, and boost growth. Partner with us to drive your business forward through innovative digital solutions.
                             </p>
                         </motion.div>
                     </div>

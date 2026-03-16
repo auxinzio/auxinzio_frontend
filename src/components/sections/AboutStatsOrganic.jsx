@@ -23,7 +23,7 @@ const features = [
   },
 ];
 
-export default function StatsOrganic2() {
+export default function AboutStatsOrganic() {
   return (
     <section className="w-full bg-white">
       <div className="max-w-[1400px] mx-auto px-6 lg:px-12 py-24 lg:py-32">
@@ -32,7 +32,7 @@ export default function StatsOrganic2() {
           {/* Left Side - Hero Typography Panel */}
           <div className="lg:col-span-5 flex flex-col justify-center">
             <h2 className="text-3xl lg:text-4xl font-medium text-gray-900 mb-6 leading-tight">
-              Building the Future of Enterprise Technology
+              Reliable Enterprise Technology Solutions
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p className="text-base lg:text-lg" style={{ lineHeight: '1.7' }}>

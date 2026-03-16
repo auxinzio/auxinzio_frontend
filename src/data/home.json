@@ -2,43 +2,33 @@
     "commitment":[
         {
             "title": "Innovation at Core",
-            "description": "We harness the power of AI, cloud computing, and advanced analytics to future-proof your business. Every solution we build is designed to be intuitive, scalable, and ready for tomorrow.",
+            "description": "We harness AI, cloud, and analytics to future-proof your business with intuitive apps and bold solutions.",
             "icon": "Zap"
         },
         {
             "title": "Excellence in Execution",
-            "description": "From rigorous QA testing to fully automated CI/CD pipelines, we deliver zero-downtime deployments that give you the confidence to launch fast and scale without disruption.",
+            "description": "Rigorous testing and DevOps deliver zero-downtime deployments for confident launches and effortless scaling.",
             "icon": "Cpu"
         },
         {
             "title": "Transparency & Trust",
-            "description": "We keep you informed at every project milestone with real-time dashboards and open communication — because your peace of mind matters as much as your product.",
+            "description": "Real-time updates and dashboards keep you in control of every milestone and security measure.",
             "icon": "ShieldCheck"
         },
         {
             "title": "Sustainability First",
-            "description": "We architect eco-efficient cloud solutions and optimized codebases that minimize environmental impact without compromising on performance or innovation.",
+            "description": "Eco-friendly designs optimize cloud and code, reducing your footprint without sacrificing innovation.",
             "icon": "Leaf"
         },
         {
             "title": "Continuous Learning",
-            "description": "Our team stays at the forefront of technology — from serverless computing to zero-trust security — so your solutions are always modern, relevant, and competitive.",
+            "description": "Ongoing training in serverless and zero-trust tech keeps your projects cutting-edge and agile.",
             "icon": "BookOpen"
         },
         {
             "title": "Security by Design",
-            "description": "Security is never an afterthought. We embed proactive protection into every layer of your application, infrastructure, and cloud environment to keep threats out.",
+            "description": "Proactive protocols protect apps and cloud from threats, safeguarding your operations.",
             "icon": "Code"
         }
-    ],
-    "clients": [
-    "zoho.png",
-    "Capitaland.png", 
-    "WoltersKluwers.png",
-    "VarunBevarages.png",
-    "Crompton.png",
-    "Wavetrance.png",
-    "proqol.png",
-    "dot.png"
-  ]
+    ]
 }

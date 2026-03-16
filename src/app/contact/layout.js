@@ -1,10 +1,10 @@
 export const metadata = {
-    title: "Contact Us | Get a Free IT Consultation | Auxinzio",
-    description: "Ready to transform your business? Contact Auxinzio today to discuss your IT needs, request a free consultation, or get a project quote from our expert team.",
-    keywords: ["contact Auxinzio", "IT consultation", "free project quote", "software development inquiry", "hire IT company", "digital transformation consultation", "Chennai IT company"],
+    title: "Contact Our Team | Strategic IT Consultation & Solutions",
+    description: "Get in touch with Auxinzio for expert software development and IT consulting services. Reach out today for a comprehensive consultation tailored to your business technology needs.",
+    keywords: ["contact Auxinzio", "IT consultation Chennai", "software development inquiry", "business IT support", "hire software developers India", "custom software solutions", "technological partnership", "IT strategy consultation"],
     openGraph: {
         title: "Contact Auxinzio | Get a Free IT Consultation",
-        description: "Get in touch with Auxinzio to start your digital transformation journey. Request a free consultation or project quote today.",
+        description: "Ready to grow your business? Contact us today for reliable IT solutions and software development services.",
     },
     robots: {
         index: true,

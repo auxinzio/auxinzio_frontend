@@ -8,9 +8,9 @@ import Image from "next/image";
 
 export function AboutSection() {
    const tacticalStats = [
-      { icon: Zap, label: "Execution Speed", value: "99.9%" },
-      { icon: Target, label: "Strategic Precision", value: "100%" },
-      { icon: Shield, label: "Structural Security", value: "Enterprise" }
+      { icon: Zap, label: "On-Time Delivery", value: "99.9%" },
+      { icon: Target, label: "Quality Assurance", value: "100%" },
+      { icon: Shield, label: "Enterprise Security", value: "Robust" }
    ];
 
    return (
@@ -30,9 +30,9 @@ export function AboutSection() {
                      <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{about.tag}</span>
                   </div>
                   <h2 className="text-5xl lg:text-[9rem] font-light text-gray-900 leading-[0.85] tracking-tighter">
-                     Synthesizing <br />
-                     <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital</span> <br />
-                     <span className="font-medium">Legacies</span>
+                    Building <br />
+                    <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital</span> <br />
+                    <span className="font-medium">Solutions</span>
                   </h2>
                </motion.div>
 
@@ -44,7 +44,7 @@ export function AboutSection() {
                   className="lg:col-span-4 lg:pb-8"
                >
                   <p className="text-xl text-gray-500 leading-relaxed font-light border-l-2 border-gray-100 pl-8 max-w-sm">
-                     {`empowers brands with innovative strategies, scalable solutions, and timeless digital impact for lasting growth.`}
+                     {`We empower brands with practical strategies, scalable software, and reliable IT support for long-term business success.`}
                   </p>
                </motion.div>
             </div>
@@ -79,7 +79,7 @@ export function AboutSection() {
                            {`"${about.description}"`}
                         </p>
                         <Link href="/about" className="inline-flex items-center gap-6 group">
-                           <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Our Full Narrative</span>
+                           <span className="text-sm font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">About Our Company</span>
                            <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                               <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                            </div>
@@ -108,7 +108,7 @@ export function AboutSection() {
                         {/* Floating Info Pod */}
                         <div className="absolute top-12 right-12 bg-white/90 backdrop-blur-xl px-10 py-8 rounded-[2.5rem] shadow-2xl border border-white/20 hidden lg:block translate-x-12 translate-y-12 group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-700 z-10">
                            <p className="text-4xl font-black text-gray-900 tracking-tighter mb-1">{about.experience.split(' ')[0]}+</p>
-                           <p className="text-[10px] font-bold text-[#14b88f] tracking-widest uppercase">Legacy Years</p>
+                           <p className="text-[10px] font-bold text-[#14b88f] tracking-widest uppercase">Years Experience</p>
                         </div>
                      </div>
 

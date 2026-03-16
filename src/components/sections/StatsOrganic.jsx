@@ -4,10 +4,10 @@ import { motion } from 'framer-motion';
 import { Users, Zap, Globe, Activity } from 'lucide-react';
 
 const stats = [
-  { id: 1, label: "Success Rate", value: "98.4%", icon: Activity },
-  { id: 2, label: "Global Presence", value: "12+", icon: Globe },
-  { id: 3, label: "Active Deployments", value: "500+", icon: Zap },
-  { id: 4, label: "Client Retention", value: "100%", icon: Users },
+  { id: 1, label: "Years Helping Business", value: "3 +", icon: Activity },
+  { id: 2, label: "Working Employees", value: "50 +", icon: Globe },
+  { id: 3, label: "Projects Completed", value: "100 +", icon: Zap },
+  { id: 4, label: "Happy Customers", value: "10 +", icon: Users },
 ];
 
 export function StatsOrganic() {
@@ -38,16 +38,14 @@ export function StatsOrganic() {
                 <div className="w-12 h-px bg-[#14b88f]/40 group-hover:w-20 group-hover:bg-[#14b88f] transition-all duration-700" />
 
                 <div className="space-y-4">
-                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-white/40 group-hover:text-[#14b88f]/40 transition-colors">{stat.label}</span>
+                  <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">{stat.label}</span>
                   <div className="flex items-end gap-3 justify-center lg:justify-start">
                     <h3 className="text-5xl lg:text-8xl font-light text-white tracking-tighter leading-none">
                       {stat.value}
                     </h3>
-                    <stat.icon className="w-6 h-6 text-white/10 group-hover:text-[#14b88f]/40 transition-colors mb-2" strokeWidth={1} />
+                    <stat.icon className="w-6 h-6 text-[#14b88f]/40 group-hover:text-[#14b88f]/80 transition-colors mb-2" strokeWidth={1} />
                   </div>
                 </div>
-
-                {/* <p className="text-xs text-white/20 font-medium tracking-widest uppercase group-hover:translate-x-2 transition-transform duration-500">Metric 0{stat.id}</p> */}
               </div>
             </motion.div>
           ))}

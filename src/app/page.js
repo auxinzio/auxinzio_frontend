@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AboutSection } from "@/components/sections/AboutSection";
 import ServiceSection from "@/components/sections/ServiceSection";
 import Commitments from "@/components/sections/Commitments";
@@ -22,6 +22,24 @@ export default function Home() {
   const [client, setClient] = useState("");
   const [team, setTeam] = useState("");
   const { settings } = useSettings();
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+  const rotatingWords = [
+    "Growth",
+    "Innovation",
+    "Digital Excellence",
+    "Smart Solutions",
+    "Success",
+    "Future-Ready Solutions",
+    "Intelligent Business Solutions",
+    "Business Value"
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTextIndex((prev) => (prev + 1) % rotatingWords.length);
+    }, 3000);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     if (!settings?.backend_api_url) return;
@@ -99,10 +117,21 @@ export default function Home() {
                 <div className="w-12 h-px bg-[#14b88f]" />
                 <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Your Growth Catalyst</span>
               </div>
-              <h1 className="text-6xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
-                Strategic <br />
-                <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Process</span> <br />
-                <span className="font-medium">Solutions</span>
+              <h1 className="text-6xl/8 sm:text-6xl lg:text-[7rem] font-light text-gray-900 leading-[0.8] tracking-tighter leading-[120px]">
+                Transforming Technology Into <br />
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={currentTextIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                    className="text-7xl bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 inline-block"
+                  >
+                    {rotatingWords[currentTextIndex]}
+                  </motion.span>
+                </AnimatePresence>
+                <br />
               </h1>
             </motion.div>
 
@@ -113,29 +142,19 @@ export default function Home() {
               className="max-w-xl space-y-10"
             >
               <p className="text-xl text-gray-500 leading-relaxed font-light">
-                {`Auxinzio delivers strategic digital solutions, architectural precision, and technological innovation to drive sustainable enterprise growth in a globalized economy.`}
+                {`With expertise, experienced professionals, and a commitment to excellence, we deliver IT solutions and business services that drive success.`}
               </p>
 
               <div className="flex flex-wrap items-center gap-8">
                 <Link href="/services">
                   <button className="group overflow-hidden relative px-10 py-5 bg-gray-900 text-white rounded-2xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl">
                     <span className="relative z-10 flex items-center gap-4">
-                      Explore Capabilities <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      Explore Our Services <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                     <div className="absolute inset-0 bg-[#14b88f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-2xl" />
                   </button>
                 </Link>
 
-                {/* <div className="flex -space-x-4">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="w-12 h-12 rounded-full border-4 border-white overflow-hidden bg-gray-100">
-                      <Image src={`/assets/img/teams/team${i}.webp`} alt="User" width={48} height={48} className="object-cover" />
-                    </div>
-                  ))}
-                  <div className="w-12 h-12 rounded-full border-4 border-white bg-gray-50 flex items-center justify-center text-[10px] font-bold text-gray-400">
-                    +500
-                  </div>
-                </div> */}
               </div>
             </motion.div>
           </div>

@@ -165,7 +165,7 @@ export default function Careers() {
                   Join our fast Growing Team
                 </h1>
                 <h2 className="text-4xl lg:text-5xl xl:text-6xl font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic leading-tight tracking-tight mb-12">
-                  have an outsized impact
+                  grow with our team
                 </h2>
 
                 <div className="flex flex-wrap items-center gap-8">
@@ -214,7 +214,7 @@ export default function Careers() {
                 <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">not just employees.</span>
               </h2>
               <p className="text-gray-600 text-lg lg:text-xl leading-relaxed max-w-xl mb-12">
-                Our culture is built on radical transparency, obsessed user-centricity, and the relentless pursuit of better solutions. We empower you to lead.
+                Our culture is built on open communication, user-centricity, and the relentless pursuit of effective solutions. We empower you to lead.
               </p>
 
               <div className="grid grid-cols-2 gap-8 border-t border-gray-200 pt-10">
@@ -302,7 +302,7 @@ export default function Careers() {
                     Current Openings
                   </p>
                   <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                    Join our<br /><span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-medium">collective.</span>
+                    Join our<br /><span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-medium">team.</span>
                   </h2>
 
                   <div className="grid grid-cols-2 gap-2">
