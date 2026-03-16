@@ -109,7 +109,7 @@ export function Footer() {
             </Link>
             <div className="space-y-4 max-w-md">
               <p className="text-gray-400 text-lg font-light leading-relaxed">
-                Architecting the future of digital sovereignty. We synchronize high-end technology with strategic vision to empower global enterprises.
+                We are a trusted IT solutions partner providing secure, scalable technology and customizable enterprise products to support digital transformation.{/*  Our expertise covers software development, cybersecurity, and consulting to improve workflows, boost efficiency, and support long-term business growth. */}
               </p>
               <div className="flex gap-4">
                 {socialLinks.map((social, idx) => (

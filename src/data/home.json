@@ -1,44 +1,34 @@
 {
     "commitment":[
         {
-            "title": "Innovation-Driven",
-            "description": "We apply AI and cloud technologies to solve real-world business challenges and future-proof your operations.",
+            "title": "Innovation at Core",
+            "description": "We harness AI, cloud, and analytics to future-proof your business with intuitive apps and bold solutions.",
             "icon": "Zap"
         },
         {
-            "title": "Reliable Execution",
-            "description": "Our team ensures high-quality delivery through automated testing and DevOps, providing secure and scalable deployments you can count on.",
+            "title": "Excellence in Execution",
+            "description": "Rigorous testing and DevOps deliver zero-downtime deployments for confident launches and effortless scaling.",
             "icon": "Cpu"
         },
         {
-            "title": "Transparency & Integrity",
-            "description": "We maintain open communication and provide clear reporting on project progress to build long-term trust.",
+            "title": "Transparency & Trust",
+            "description": "Real-time updates and dashboards keep you in control of every milestone and security measure.",
             "icon": "ShieldCheck"
         },
         {
-            "title": "Efficient Design",
-            "description": "We build optimized software and cloud architectures that balance high performance with resource efficiency.",
+            "title": "Sustainability First",
+            "description": "Eco-friendly designs optimize cloud and code, reducing your footprint without sacrificing innovation.",
             "icon": "Leaf"
         },
         {
-            "title": "Continuous Improvement",
-            "description": "We stay updated with the latest industry trends and security protocols to keep your technology stack modern and competitive.",
+            "title": "Continuous Learning",
+            "description": "Ongoing training in serverless and zero-trust tech keeps your projects cutting-edge and agile.",
             "icon": "BookOpen"
         },
         {
-            "title": "Security-First Approach",
-            "description": "We integrate robust security measures into every layer of your application and infrastructure to protect your business data.",
+            "title": "Security by Design",
+            "description": "Proactive protocols protect apps and cloud from threats, safeguarding your operations.",
             "icon": "Code"
         }
-    ],
-    "clients": [
-    "zoho.png",
-    "Capitaland.png", 
-    "WoltersKluwers.png",
-    "VarunBevarages.png",
-    "Crompton.png",
-    "Wavetrance.png",
-    "proqol.png",
-    "dot.png"
-  ]
+    ]
 }

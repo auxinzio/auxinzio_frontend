@@ -112,7 +112,7 @@ export function ProductFeature({ products, loading }) {
                       whileHover={{ x: 5 }}
                       className="flex items-center gap-4 text-sm font-medium tracking-[0.2em] uppercase text-gray-900 group"
                     >
-                      Explore Experience
+                      More Details
                       <ArrowRight className="w-5 h-5 text-[#14b88f] group-hover:translate-x-1 transition-transform" />
                     </motion.button>
                   </Link>

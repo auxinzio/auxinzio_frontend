@@ -167,7 +167,7 @@ export default function Services() {
                               </div>
                               <Link href={`/services/${srv.slug}`}>
                                  <button className="group flex items-center gap-6 text-gray-900 font-bold hover:text-[#14b88f] transition-all">
-                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">Service Details</span>
+                                    <span className="text-lg underline underline-offset-8 decoration-gray-100 group-hover:decoration-[#14b88f]">More Details</span>
                                     <div className="w-12 h-12 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </div>
@@ -202,7 +202,7 @@ export default function Services() {
                      <Link href="/contact">
                         <button className="group cursor-pointer relative px-12 py-6 bg-[#14b88f] rounded-2xl text-white font-bold text-lg overflow-hidden transition-all hover:scale-105 active:scale-95 shadow-xl shadow-[#14b88f]/20">
                            <span className="relative group-hover:opacity-0 z-10 flex items-center gap-4 transition-all duration-500">
-                               Book a Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                              Book a Consultation <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                            </span>
                            <div className="absolute inset-0 bg-white translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500" />
                            <span className="absolute inset-0 flex items-center justify-center text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-bold">

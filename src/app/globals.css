@@ -115,6 +115,7 @@
     @apply bg-background text-foreground antialiased selection:bg-primary/20 selection:text-primary;
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    font-family: var(--font-geist-sans);
   }
 }
 

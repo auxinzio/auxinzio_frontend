@@ -1,10 +1,9 @@
 "use client";
 
 import Commitments from "@/components/sections/Commitments";
-import StatsOrganic2 from "@/components/sections/StatsOrganic2";
+import AboutStatsOrganic from "@/components/sections/AboutStatsOrganic";
 import Teams from "@/components/sections/Teams";
 import MissionVision from "@/components/sections/MissionVision";
-import AboutSection2 from "@/components/sections/AboutSection2";
 import CTASection from "@/components/sections/CTASection";
 import ProgressBar from "@/components/ui/ProgressBar";
 import { useSettings } from "../Context/SettingsContext";
@@ -35,7 +34,7 @@ export default function About() {
       <Commitments />
 
       {/* Stats Section */}
-      <StatsOrganic2 />
+      <AboutStatsOrganic />
 
       {/* Teams Section */}
       <Teams data={teams.data} />
