@@ -186,7 +186,7 @@ export default function Products() {
                                     <p className="text-lg">
                                         Our suite of digital products is designed to bridge the gap between complex data and actionable intelligence. We build for performance, security, and effortless scale.
                                     </p>
-                                    <p>
+                                    <p className='italic'>
                                         From AI-driven analytics to robust cloud infrastructure, each solution is crafted with a focus on user experience and enterprise-grade reliability.
                                     </p>
                                 </div>
@@ -218,7 +218,7 @@ export default function Products() {
                             </div>
 
                             {/* Quick Stats Grid */}
-                            <div className="pt-10 border-t border-gray-100">
+                            {/* <div className="pt-10 border-t border-gray-100">
                                 <div className="grid grid-cols-2 gap-8">
                                     <div>
                                         <div className="text-2xl font-light text-gray-900 mb-1">99.99%</div>
@@ -229,7 +229,7 @@ export default function Products() {
                                         <div className="text-[10px] tracking-[0.2em] uppercase text-gray-400">AES Encryption</div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </motion.div>
                     </div>
                 </div>

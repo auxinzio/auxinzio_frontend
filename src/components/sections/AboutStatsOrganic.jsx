@@ -36,10 +36,10 @@ export default function AboutStatsOrganic() {
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p className="text-base lg:text-lg" style={{ lineHeight: '1.7' }}>
-                We deliver cutting-edge technology solutions that transform how businesses operate, scale, and compete in the digital economy. Our platform combines innovation with reliability to create lasting value for enterprises worldwide.
+                We deliver reliable, secure, and forward-thinking IT solutions that empower businesses to operate efficiently and grow with confidence. By combining strategic IT consulting, scalable cloud solutions, and proactive managed IT services, we help organizations optimize performance, enhance security, and reduce operational risk.
               </p>
               <p className="text-base lg:text-lg" style={{ lineHeight: '1.7' }}>
-                With a focus on security, performance, and user experience, we empower organizations to achieve their most ambitious goals while maintaining the flexibility to adapt to tomorrows challenges.
+                Our customer-focused approach ensures every solution is tailored to specific business needs, transforming technology into a powerful driver of productivity and long-term success.
               </p>
             </div>
           </div>

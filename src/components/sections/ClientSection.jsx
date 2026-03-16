@@ -45,7 +45,7 @@ export default function ClientSection({ clients }) {
                   <p className="text-xl text-gray-400 font-light leading-relaxed">
                     We collaborate with industry leaders and disruptive innovators to architect the future of digital commerce.
                   </p>
-                  <p className="text-sm text-gray-400 border-l-2 border-[#14b88f]/20 pl-6">
+                  <p className="text-base text-gray-400 border-l-2 border-[#14b88f]/20 pl-6">
                     Driving global impact through architectural precision and high-fidelity technological integration.
                   </p>
 
