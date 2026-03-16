@@ -1,11 +1,9 @@
 'use client';
-
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/Button";
 import Link from 'next/link';
 import { ShieldCheck, Lock, Eye, Database, Share2, Fingerprint, Globe, Bell, ArrowRight, ShieldAlert, HardDrive, Users, Settings, Mail } from 'lucide-react';
 import ProgressBar from '@/components/ui/ProgressBar';
-
 const privacyModules = [
   {
     icon: Database,
@@ -32,7 +30,6 @@ const privacyModules = [
     color: '#22c55e'
   }
 ];
-
 const expandedSections = [
   {
     id: 'security',
@@ -53,21 +50,17 @@ const expandedSections = [
     content: 'We use advanced tracking tokens (cookies) to maintain your session state and understand site interaction. You can manage these preferences through your architectural dashboard.',
   }
 ];
-
 export default function PrivacyPolicy() {
-
   return (
     <div className="min-h-screen bg-white selection:bg-[#14b88f]/10">
       {/* Progress Bar */}
       <ProgressBar />
-
       {/* --- HERO: THE DATA MONOLITH --- */}
       <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden bg-gray-50/20">
         {/* Background Large Text (Watermark) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none text-center lg:block hidden">
           <h1 className="text-[30vw] font-black tracking-tighter leading-none">PRIVACY</h1>
         </div>
-
         <div className="mx-auto max-w-[1600px] relative z-10 text-center">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -80,21 +73,18 @@ export default function PrivacyPolicy() {
               <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Data Protection Protocol</span>
               <div className="w-12 h-px bg-[#14b88f]" />
             </div>
-
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="italic font-normal text-[#14b88f]">Sovereignty.</span>
+              <span className="font-normal text-[#14b88f]">Policy.</span>
             </h1>
-
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
-              At Auxinzio, we treat your data as a critical asset. Our privacy framework is engineered for transparency, security, and user autonomy.
+              This Privacy Policy explains how Auxinz.io collects, uses, discloses, and safeguards your information when you visit our platform. Please read this policy carefully to understand our views and practices regarding your personal data and how we treat it.
             </p>
           </motion.div>
         </div>
       </section>
-
       {/* --- MODULAR BENTO GRID: THE CORE PILLARS --- */}
-      <section className="py-24 lg:py-40 px-6">
+      <section className="py-24 lg:py-40 lg:pt-0 pt-0 px-6">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid lg:grid-cols-3 gap-8">
             {privacyModules.map((module, idx) => (
@@ -110,11 +100,9 @@ export default function PrivacyPolicy() {
                   <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                     <module.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
-
                   <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b88f] mb-6">{module.summary}</h3>
                   <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                   <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
-
                   <div className="space-y-3">
                     {module.details.map((detail, i) => (
                       <div key={i} className="flex items-center gap-3">
@@ -124,7 +112,6 @@ export default function PrivacyPolicy() {
                     ))}
                   </div>
                 </div>
-
                 {/* Subtle Decorative Geometry */}
                 <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-10 transition-opacity duration-700 pointer-events-none">
                   <svg className="w-full h-full" viewBox="0 0 100 100">
@@ -136,12 +123,10 @@ export default function PrivacyPolicy() {
           </div>
         </div>
       </section>
-
       {/* --- SPLIT ACTION SECTION: DETAILED READING --- */}
       <section className="py-24 lg:py-40 bg-gray-900 text-white overflow-hidden relative">
         <div className="mx-auto max-w-[1600px] px-6">
           <div className="grid lg:grid-cols-12 gap-20 items-start">
-
             {/* Left Col: Static Branding */}
             <div className="lg:col-span-5 lg:sticky lg:top-32">
               <div className="space-y-12">
@@ -156,7 +141,6 @@ export default function PrivacyPolicy() {
                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                   We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
                 </p>
-
                 <div className="pt-12 border-t border-white/10 flex flex-col gap-8">
                   <div className="flex items-center gap-6">
                     <p className="text-3xl font-light">100%</p>
@@ -169,7 +153,6 @@ export default function PrivacyPolicy() {
                 </div>
               </div>
             </div>
-
             {/* Right Col: Expanded Sections */}
             <div className="lg:col-span-7 space-y-32">
               {expandedSections.map((section, idx) => (
@@ -195,25 +178,13 @@ export default function PrivacyPolicy() {
                       </button>
                     </div>
                   </div>
-
                   <div className="mt-20 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
                 </motion.div>
               ))}
-
-              <div className="bg-white/5 p-12 lg:p-16 rounded-[3rem] border border-white/10 backdrop-blur-xl">
-                <Mail className="w-12 h-12 text-[#14b88f] mb-8" />
-                <h4 className="text-2xl font-light mb-4">Request Data Audit</h4>
-                <p className="text-gray-500 mb-10 leading-relaxed font-light">Want a full report of your data stored on our servers? Our automation engine can generate a secure report for you within 24 hours.</p>
-                <Button variant="gradi" className="rounded-xl px-10 py-6 text-sm font-bold shadow-xl shadow-[#14b88f]/10">
-                  Initiate Audit
-                </Button>
-              </div>
             </div>
-
           </div>
         </div>
       </section>
-
       {/* --- FOOTER CTA: TRUST REINFORCED --- */}
       <section className="py-24 lg:py-40 bg-white">
         <div className="max-w-[1600px] mx-auto px-6 text-center">
@@ -225,15 +196,14 @@ export default function PrivacyPolicy() {
             <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
               If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.
             </p>
-
             <div className="flex flex-wrap justify-center gap-8">
               <Link href="/contact">
-                <Button variant="outline" className="rounded-2xl border-gray-100 px-12 py-8 text-base font-bold transition-all">
-                  Speak with Legal
+                <Button variant="outline" className="rounded-2xl border-gray-100 px-12 py-8 text-base font-bold transition-all cursor-pointer">
+                  Speak with Team
                 </Button>
               </Link>
               <Link href="/terms-and-conditions">
-                <Button className="rounded-2xl px-12 py-8 text-base font-bold bg-gray-900 text-white hover:bg-black transition-all">
+                <Button variant="gradi" className="rounded-2xl px-12 py-8 text-base font-bold text-white hover:text-black transition-all duration-500 cursor-pointer">
                   View Terms & Conditions
                 </Button>
               </Link>
@@ -241,7 +211,6 @@ export default function PrivacyPolicy() {
           </div>
         </div>
       </section>
-
       {/* Decorative Spacer */}
       <div className="h-20 bg-white" />
     </div>

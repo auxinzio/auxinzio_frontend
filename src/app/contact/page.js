@@ -117,9 +117,10 @@ export default function Contact() {
             <div className="flex items-center gap-3 mb-8">
               <div className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
               <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Expert Consultation Available</span>
+              <div className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-              Contact Our <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Team.</span>
+              Contact Our <br /> <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Team</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
               {`We combine technical expertise with strategic planning to build reliable digital solutions for your business.`}
@@ -142,7 +143,7 @@ export default function Contact() {
             <div className="lg:col-span-4 lg:sticky lg:top-32">
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
                 Discuss Your <br />
-                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Project.</span>
+                <span className="font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Project.</span>
               </h2>
 
               <p className="text-gray-500 mb-16 leading-relaxed">
@@ -330,7 +331,7 @@ export default function Contact() {
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-[0.9] mb-8">
                   Our <br />
-                  <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Headquarters.</span>
+                  <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Headquarters</span>
                 </h2>
                 <p className="text-xl text-gray-400 font-light leading-relaxed max-w-md">
                   Based in the Tidel Park IT hub, our office serves as the strategic center for our global software development and consulting operations.

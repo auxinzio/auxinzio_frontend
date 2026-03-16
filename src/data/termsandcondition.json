@@ -1,0 +1,148 @@
+{
+
+ "termsSections" : [
+  {
+    "id": "principles",
+    "icon": "UserCheck",
+    "title": "Principles",
+    "content": "Auxinz.io operates with a commitment to transparency, responsibility, and respect for users' rights. These core values shape all our decisions, services, and user relationships.",
+    "subpoints": [
+      "Applicable to all visitors and users",
+      "Requires legal age of consent",
+      "Electronic acceptance is binding"
+    ]
+  },
+  {
+    "id": "acceptance",
+    "icon": "Settings",
+    "title": "Acceptance",
+    "content": "By accessing or using any part of the platform or our services, you agree to be legally bound by these Terms and our other applicable policies.",
+    "subpoints": [
+      "Scope defined in specific SOWs",
+      "Professional standards commitment",
+      "Right to use sub-contractors"
+    ]
+  },
+  {
+    "id": "modifications",
+    "icon": "Copyright",
+    "title": "Modifications",
+    "content": "Auxinz.io reserves the right to revise or update these Terms at any time. Changes will be effective upon posting. Continued use after changes implies your consent to the revised terms.",
+    "subpoints": [
+      "Retention of background technology",
+      "Transfer of rights upon payment",
+      "Limited license for platform use"
+    ]
+  },
+  {
+    "id": "privacy-policy",
+    "icon": "ShieldCheck",
+    "title": "Privacy Policy",
+    "content": "Your privacy is important to us. For details on how we collect, store, and use your data, please refer to our Privacy Policy at https://auxinz.io/privacy-policy.",
+    "subpoints": [
+      "Accurate information provision",
+      "Security of login credentials",
+      "Prohibition of reverse engineering"
+    ]
+  },
+  {
+    "id": "limitation-liability",
+    "icon": "Lock",
+    "title": "Limitation to Liability",
+    "content": "To the fullest extent allowed by applicable law, Auxinz.io shall not be liable for any indirect, incidental, special, or consequential damages resulting from the use of or inability to use our services.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  },
+  {
+    "id": "governing-laws",
+    "icon": "Scale",
+    "title": "Governing Laws",
+    "content": "These Terms shall be governed by and interpreted in accordance with the laws of India. Jurisdiction over any disputes will be exclusive to the courts of Chennai, Tamil Nadu.",
+    "subpoints": [
+      "No liability for third-party interruptions",
+      "Capped liability where permitted",
+      "Force Majeure protections"
+    ]
+  },
+  {
+    "id": "policy-dnd-ndnc",
+    "icon": "Bell",
+    "title": "Policy for DND and NDNC",
+    "content": "By registering with Auxinz.io, you consent to receive service and promotional communications. We comply with TRAI regulations and offer opt-out options for users listed on DND/NDNC registries.",
+    "subpoints": [
+      "Notice periods for termination",
+      "Survival of confidentiality terms",
+      "Access revocation for breaches"
+    ]
+  },
+  {
+    "id": "other-provisions",
+    "icon": "Globe",
+    "title": "Other Provisions",
+    "content": "If any clause in these Terms is deemed invalid or unenforceable, the remaining clauses shall remain in full effect. These Terms constitute the full agreement between you and Auxinz.io.",
+    "subpoints": [
+      "Exclusive jurisdiction of local courts",
+      "Severability of invalid provisions",
+      "English language as prevailing"
+    ]
+  },
+  {
+    "id": "payment",
+    "icon": "Download",
+    "title": "Payment",
+    "content": "All payments made via Auxinz.io must be lawful and authorized. Users are responsible for maintaining valid payment information and complying with the terms of our payment gateways.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  },
+  {
+    "id": "indemnification",
+    "icon": "HelpCircle",
+    "title": "Indemnification",
+    "content": "You agree to indemnify and hold harmless Auxinz.io, its affiliates, directors, and employees from any loss, damage, or expense arising from your breach of these Terms or violation of applicable laws.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  },
+  {
+    "id": "disclaimer-of-warranties",
+    "icon": "ShieldCheck",
+    "title": "Disclaimer of Warranties",
+    "content": "All services are provided on an 'as-is' and 'as-available' basis. We do not guarantee uninterrupted access, accuracy, or error-free functionality. Use of our platform is at your own risk.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  },
+  {
+    "id": "use-of-services",
+    "icon": "ShieldCheck",
+    "title": "Use of Services",
+    "content": "Users agree not to misuse the platform. Unauthorized access, scraping, tampering, or engaging in activities that disrupt service or violate law is strictly prohibited.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  },
+  {
+    "id": "warranties",
+    "icon": "ShieldCheck",
+    "title": "Warranties",
+    "content": "Auxinz.io expressly disclaims all warranties, express or implied, including those of merchantability, fitness for a particular purpose, and non-infringement.",
+    "subpoints": [
+      "Compliance with GDPR/CCPA where applicable",
+      "Standard encryption protocols",
+      "Data retention policies"
+    ]
+  }
+]
+}
