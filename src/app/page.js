@@ -97,12 +97,12 @@ export default function Home() {
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-px bg-[#14b88f]" />
-                <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Your Growth Catalyst</span>
+                <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Digital Transformation Partner</span>
               </div>
               <h1 className="text-6xl sm:text-6xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter">
-                Strategic <br />
-                <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Process</span> <br />
-                <span className="font-medium">Solutions</span>
+                Software <br />
+                <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Development</span> <br />
+                <span className="font-medium">& IT Solutions</span>
               </h1>
             </motion.div>
 
@@ -113,14 +113,14 @@ export default function Home() {
               className="max-w-xl space-y-10"
             >
               <p className="text-xl text-gray-500 leading-relaxed font-light">
-                {`Auxinzio delivers strategic digital solutions, architectural precision, and technological innovation to drive sustainable enterprise growth in a globalized economy.`}
+                {`Auxinzio provides reliable software development, strategic IT consulting, and secure cloud solutions to help businesses optimize operations and achieve sustainable growth.`}
               </p>
 
               <div className="flex flex-wrap items-center gap-8">
                 <Link href="/services">
                   <button className="group overflow-hidden relative px-10 py-5 bg-gray-900 text-white rounded-2xl font-bold transition-all hover:scale-105 active:scale-95 shadow-2xl">
                     <span className="relative z-10 flex items-center gap-4">
-                      Explore Capabilities <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      Explore Our Services <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </span>
                     <div className="absolute inset-0 bg-[#14b88f] translate-y-full group-hover:translate-y-0 transition-transform duration-500 rounded-2xl" />
                   </button>

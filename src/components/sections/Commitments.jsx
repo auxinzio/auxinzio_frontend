@@ -34,22 +34,22 @@ export default function Commitments() {
             >
               <div className="flex items-center gap-4 mb-12">
                 <div className="w-12 h-px bg-[#14b88f]" />
-                <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Value Framework</span>
+                <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Our Core Values</span>
               </div>
 
               <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-none mb-12">
-                The <br />
-                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Principles</span> <br />
-                <span className="font-medium">of Synthesis.</span>
+                Our <br />
+                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Business</span> <br />
+                <span className="font-medium">Principles.</span>
               </h2>
 
               <p className="text-lg text-gray-500 max-w-sm leading-relaxed border-l-2 border-gray-100 pl-8">
-                {`integrate technology and strategy to build scalable, efficient, and future-ready business solutions.`}
+                {`We integrate technology and business strategy to build scalable, efficient, and reliable digital solutions.`}
               </p>
 
               <div className="pt-8">
                 <Link href="/contact" className="group inline-flex items-center gap-4 text-gray-900 font-bold hover:text-[#14b88f] transition-all">
-                  Inquire for Frameworks
+                  Get in Touch
                   <div className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                     <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                   </div>

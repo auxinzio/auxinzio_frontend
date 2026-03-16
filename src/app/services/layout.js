@@ -1,17 +1,17 @@
 export const metadata = {
-    title: "IT Services & Solutions | Web, Mobile, Cybersecurity & More",
-    description: "Explore Auxinzio's full suite of IT services — custom web & mobile apps, cybersecurity, enterprise software development, IT consulting, UI/UX design, and data-driven digital marketing.",
-    keywords: ["IT services", "web and mobile app development", "custom software development", "cybersecurity services", "IT consulting", "UI UX design services", "digital marketing", "managed IT services", "cloud solutions"],
+    title: "Our Services | Software Development & IT Consulting",
+    description: "Explore our range of IT services including custom web development, mobile app development, and strategic IT consulting for your business.",
+    keywords: ["IT services", "software development", "web development", "mobile app development", "IT consulting"],
     openGraph: {
-        title: "IT Services & Solutions | Auxinzio",
-        description: "From web & mobile development to cybersecurity and digital marketing — explore Auxinzio's full suite of enterprise IT services.",
+        title: "Our Services | Software Development & IT Solutions",
+        description: "View our full range of software development and IT consulting services designed for business growth.",
     },
     robots: {
         index: true,
         follow: true,
     },
     alternates: {
-        canonical: "https://auxinz.io/what-we-do",
+        canonical: "https://auxinz.io/services",
     },
 };
 

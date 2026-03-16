@@ -1,33 +1,33 @@
 {
     "commitment":[
         {
-            "title": "Innovation at Core",
-            "description": "We harness the power of AI, cloud computing, and advanced analytics to future-proof your business. Every solution we build is designed to be intuitive, scalable, and ready for tomorrow.",
+            "title": "Innovation-Driven",
+            "description": "We apply AI and cloud technologies to solve real-world business challenges and future-proof your operations.",
             "icon": "Zap"
         },
         {
-            "title": "Excellence in Execution",
-            "description": "From rigorous QA testing to fully automated CI/CD pipelines, we deliver zero-downtime deployments that give you the confidence to launch fast and scale without disruption.",
+            "title": "Reliable Execution",
+            "description": "Our team ensures high-quality delivery through automated testing and DevOps, providing secure and scalable deployments you can count on.",
             "icon": "Cpu"
         },
         {
-            "title": "Transparency & Trust",
-            "description": "We keep you informed at every project milestone with real-time dashboards and open communication — because your peace of mind matters as much as your product.",
+            "title": "Transparency & Integrity",
+            "description": "We maintain open communication and provide clear reporting on project progress to build long-term trust.",
             "icon": "ShieldCheck"
         },
         {
-            "title": "Sustainability First",
-            "description": "We architect eco-efficient cloud solutions and optimized codebases that minimize environmental impact without compromising on performance or innovation.",
+            "title": "Efficient Design",
+            "description": "We build optimized software and cloud architectures that balance high performance with resource efficiency.",
             "icon": "Leaf"
         },
         {
-            "title": "Continuous Learning",
-            "description": "Our team stays at the forefront of technology — from serverless computing to zero-trust security — so your solutions are always modern, relevant, and competitive.",
+            "title": "Continuous Improvement",
+            "description": "We stay updated with the latest industry trends and security protocols to keep your technology stack modern and competitive.",
             "icon": "BookOpen"
         },
         {
-            "title": "Security by Design",
-            "description": "Security is never an afterthought. We embed proactive protection into every layer of your application, infrastructure, and cloud environment to keep threats out.",
+            "title": "Security-First Approach",
+            "description": "We integrate robust security measures into every layer of your application and infrastructure to protect your business data.",
             "icon": "Code"
         }
     ],

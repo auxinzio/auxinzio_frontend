@@ -16,7 +16,7 @@ export default function MissionVision() {
                     >
                     {/* Small uppercase label */}
                     <p className="text-sm tracking-[0.2em] uppercase text-gray-500 mb-8 font-medium">
-                        Purpose & Direction
+                        Our Core Purpose
                     </p>
 
                     {/* Large refined heading */}

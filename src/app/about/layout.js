@@ -1,17 +1,17 @@
 export const metadata = {
-    title: "About Us | Trusted IT Solutions Partner for Digital Transformation",
-    description: "Learn how Auxinzio has been helping businesses grow through secure, scalable IT solutions, expert consulting, and innovative software development. Discover our vision, mission, and values.",
-    keywords: ["about Auxinzio", "IT solutions company", "digital transformation company", "software development partner", "trusted IT consulting firm", "technology partner for business growth"],
+    title: "About Us | Our Mission & Reliable IT Solutions",
+    description: "Discover our mission to provide businesses with practical IT solutions and reliable software development. Learn about our team and commitment to excellence.",
+    keywords: ["about Auxinzio", "IT solutions team", "software development company", "business technology partner"],
     openGraph: {
-        title: "About Auxinzio | Trusted IT Solutions & Digital Transformation Partner",
-        description: "Discover how Auxinzio powers business growth through secure, scalable IT solutions, expert consulting, and innovative software development.",
+        title: "About Auxinzio | Providing Reliable IT Solutions",
+        description: "Learn how we help businesses grow through secure, scalable, and practical IT solutions.",
     },
     robots: {
         index: true,
         follow: true,
     },
     alternates: {
-        canonical: "https://auxinz.io/about-us",
+        canonical: "https://auxinz.io/about",
     },
 };
 

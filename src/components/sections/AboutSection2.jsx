@@ -48,16 +48,16 @@ export default function AboutSection2() {
                 {/* Large stacked typography */}
                 <div className="space-y-2">
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
-                    Technology
+                    Reliable
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
-                    That
+                    IT
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light leading-[0.95] tracking-tight">
-                    <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Empowers</span>
+                    <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Solutions</span>
                   </h1>
                   <h1 className="text-5xl lg:text-6xl xl:text-7xl font-light text-gray-900 leading-[0.95] tracking-tight">
-                    Growth
+                    for Growth
                   </h1>
                 </div>
 

@@ -1,10 +1,10 @@
 export const metadata = {
-    title: "Enterprise IT Products | AttendX HRMS & Workforce Management",
-    description: "Discover Auxinzio's enterprise product suite — including AttendX, an AI-powered attendance and workforce management platform built for modern organizations of all sizes.",
-    keywords: ["enterprise IT products", "AttendX HRMS", "attendance management system", "workforce management software", "AI HR platform", "employee tracking system", "Auxinzio products"],
+    title: "Our Products | Business Solutions & Software Platforms",
+    description: "Discover our suite of software products designed to improve business efficiency, including our AI-powered attendance management system.",
+    keywords: ["business software", "software products", "attendance management", "HR software"],
     openGraph: {
-        title: "Enterprise IT Products | Auxinzio",
-        description: "Discover Auxinzio's enterprise product suite — including AttendX, an AI-powered attendance and workforce management platform.",
+        title: "Our Products | Business Solutions & Software Platforms",
+        description: "Practical software solutions built to improve business productivity and performance.",
     },
     robots: {
         index: true,

@@ -26,12 +26,12 @@ export default function ServiceSection({ service }) {
                      >
                         <div className="flex items-center gap-4 mb-8">
                            <div className="w-12 h-px bg-[#14b88f]" />
-                           <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesized Delivery</span>
+                           <span className="text-[10px] font-bold tracking-[0.4em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Our Services</span>
                         </div>
                         <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
-                           Transformative <br />
+                           Full-Service <br />
                            <span className="font-medium text-gray-200">Digital</span><br />
-                           <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Ecosystems.</span>
+                           <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Solutions.</span>
                         </h2>
                      </motion.div>
 
@@ -70,7 +70,7 @@ export default function ServiceSection({ service }) {
                            </div>
                            <Link href={`/services/${srv.slug}`}>
                               <div className="pt-10 flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-gray-900 group-hover:text-[#14b88f] transition-colors group/btn">
-                                 Structural Details
+                                 Service Details
                                  <ChevronRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                               </div>
                            </Link>

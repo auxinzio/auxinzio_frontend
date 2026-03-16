@@ -192,7 +192,7 @@ export function Footer() {
                 <ul className="space-y-4">
                   {service?.data?.serviceList?.slice(0, 4).map((item) => (
                     <li key={item.id}>
-                      <Link href={`/services/${item.slug}`} className="text-sm font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
+                      <Link href={`/services/${item.slug}`} className="text-base font-light text-gray-400 hover:text-[#14b88f] hover:translate-x-1 transition-all flex items-center gap-1 group">
                         {item.title}
                       </Link>
                     </li>

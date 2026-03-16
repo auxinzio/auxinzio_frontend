@@ -116,20 +116,20 @@ export default function Contact() {
           >
             <div className="flex items-center gap-3 mb-8">
               <div className="w-2 h-2 rounded-full bg-[#14b88f] animate-pulse" />
-              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Syncing with our team (24/7)</span>
+              <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-gray-400">Expert Consultation Available</span>
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
-              Get in <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Touch.</span>
+              Contact Our <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Team.</span>
             </h1>
             <p className="text-xl text-gray-500 max-w-xl leading-relaxed">
-              {`Synthesize your vision with our technical expertise. We're ready to explore new digital frontiers together.`}
+              {`We combine technical expertise with strategic planning to build reliable digital solutions for your business.`}
             </p>
           </motion.div>
         </div>
 
         {/* Background Decorative Text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none">
-          <p className="text-[20vw] font-black tracking-tighter leading-none text-center">SYNTHESIS</p>
+          <p className="text-[20vw] font-black tracking-tighter leading-none text-center">RELIABILITY</p>
         </div>
       </section>
 
@@ -141,19 +141,19 @@ export default function Contact() {
             {/* Left: Heading & Process */}
             <div className="lg:col-span-4 lg:sticky lg:top-32">
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
-                Start our <br />
-                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Inquiry Protocol.</span>
+                Discuss Your <br />
+                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Project.</span>
               </h2>
 
               <p className="text-gray-500 mb-16 leading-relaxed">
-                Provide the essential details of your project or inquiry. Our strategy team will review and respond with potential next steps.
+                Share your project requirements with us. Our technical experts will review your details and provide a comprehensive solution tailored to your business needs.
               </p>
 
               <div className="space-y-12">
                 {[
-                  { title: 'Project Discovery', desc: 'Initial review of requirements and scope alignment.' },
-                  { title: 'Technical Audit', desc: 'Detailed breakdown of necessary stacks and solutions.' },
-                  { title: 'Strategic Proposal', desc: 'Comprehensive roadmap and delivery timeline.' }
+                  { title: 'Requirements Analysis', desc: 'Initial review of requirements and scope alignment.' },
+                  { title: 'Solution Architecture', desc: 'Detailed breakdown of necessary stacks and solutions.' },
+                  { title: 'Project Roadmap', desc: 'Comprehensive roadmap and delivery timeline.' }
                 ].map((step, i) => (
                   <div key={i} className="flex gap-6">
                     <span className="text-[10px] font-bold text-[#14b88f] w-6 h-6 rounded-full bg-[#14b88f]/10 flex items-center justify-center flex-shrink-0">
@@ -199,7 +199,7 @@ export default function Contact() {
                       {errors.name && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.name}</p>}
                     </div>
                     <div className="md:col-span-1">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Electronic Mail</label>
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Email Address</label>
                       <input
                         type="email"
                         name="email"
@@ -241,14 +241,14 @@ export default function Contact() {
                       {errors.title && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.title}</p>}
                     </div>
                     <div className="md:col-span-2">
-                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Detailed Briefing</label>
+                      <label className="text-[10px] uppercase tracking-widest font-bold text-gray-400 mb-4 block">Project Details</label>
                       <textarea
                         name="description"
                         value={formState.description}
                         onChange={handleChange}
                         rows={6}
                         className={`w-full bg-transparent border-b ${errors.description ? 'border-red-400' : 'border-gray-100'} py-4 text-gray-900 focus:outline-none focus:border-[#14b88f] transition-colors resize-none placeholder:text-gray-200 text-lg`}
-                        placeholder="Describe your vision or specific system requirements..."
+                        placeholder="Describe your project vision or specific requirements..."
                         required
                       />
                       {errors.description && <p className="text-[10px] text-red-500 font-bold uppercase mt-2 tracking-widest">{errors.description}</p>}
@@ -265,7 +265,7 @@ export default function Contact() {
                           <ArrowRight className={`w-6 h-6 ${isSubmitting ? 'animate-pulse' : ''}`} />
                         </div>
                         <span className="text-2xl font-light tracking-tighter decoration-gray-200 underline-offset-[12px] group-hover:decoration-[#14b88f] transition-all">
-                          {isSubmitting ? 'Syncing...' : 'Transmit Message'}
+                          {isSubmitting ? 'Sending...' : 'Send Message'}
                         </span>
                       </button>
                     </div>
@@ -279,7 +279,7 @@ export default function Contact() {
                     <div className="w-24 h-24 rounded-full bg-[#14b88f]/10 flex items-center justify-center mb-10">
                       <CheckCircle2 className="w-12 h-12 text-[#14b88f]" />
                     </div>
-                    <h3 className="text-4xl font-light text-gray-900 mb-6">Inquiry Dispatched.</h3>
+                    <h3 className="text-4xl font-light text-gray-900 mb-6">Message Sent.</h3>
                     <p className="text-gray-400 max-w-sm text-lg">One of our specialists will reach out to your provided coordinates within 24 hours.</p>
                   </motion.div>
                 )}
@@ -326,14 +326,14 @@ export default function Contact() {
                 transition={{ duration: 0.8 }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <span className="text-[10px] font-black uppercase tracking-[0.4em] bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Interface Node</span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.4em] bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Office Location</span>
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-[0.9] mb-8">
-                  Visit our <br />
-                  <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Chennai</span> Base.
+                  Our <br />
+                  <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Headquarters.</span>
                 </h2>
                 <p className="text-xl text-gray-400 font-light leading-relaxed max-w-md">
-                  Synthesized within the Tidel Park IT corridor, our workspace serves as the architectural core for global digital operations.
+                  Based in the Tidel Park IT hub, our office serves as the strategic center for our global software development and consulting operations.
                 </p>
               </motion.div>
 
@@ -376,7 +376,7 @@ export default function Contact() {
                   rel="noopener noreferrer"
                   className="group flex items-center gap-6"
                 >
-                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Directing Coordinates</span>
+                  <span className="text-xs font-bold uppercase tracking-[0.3em] text-gray-900 group-hover:text-[#14b88f] transition-colors">Get Directions</span>
                   <div className="w-14 h-14 rounded-full border border-gray-100 flex items-center justify-center group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500 shadow-xl shadow-transparent hover:shadow-[#14b88f]/20">
                     <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
                   </div>
