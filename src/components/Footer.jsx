@@ -34,10 +34,10 @@ export function Footer() {
   }, [settings]);
 
   const socialLinks = [
-    { icon: Twitter, href: "#" },
-    { icon: Linkedin, href: "#" },
-    { icon: Instagram, href: "#" },
-    { icon: Github, href: "#" },
+    // { icon: Twitter, href: settings?.twitter_url },
+    { icon: Linkedin, href: settings?.linkedin_url },
+    { icon: Instagram, href: settings?.instagram_url },
+    // { icon: Facebook, href: settings?.facebook_url },
   ];
 
   const [email, setEmail] = useState("");
@@ -115,7 +115,7 @@ export function Footer() {
                 {socialLinks.map((social, idx) => (
                   <Link
                     key={idx}
-                    href={social.href}
+                    href={social.href || "#"}
                     className="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center hover:bg-[#14b88f] hover:border-[#14b88f] hover:text-white transition-all duration-500 group"
                   >
                     <social.icon size={18} strokeWidth={1.5} className="group-hover:scale-110 transition-transform" />
@@ -161,11 +161,8 @@ export function Footer() {
 
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-5 md:mt-0 mt-10 row-gap-10">
-
-              {/* 02 Company */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">02</span> */}
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
                 </div>
                 <ul className="space-y-4">
@@ -183,10 +180,8 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* 03 Services */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">03</span> */}
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Services</h3>
                 </div>
                 <ul className="space-y-4">
@@ -200,10 +195,8 @@ export function Footer() {
                 </ul>
               </div>
 
-              {/* 04 Products */}
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
-                  {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">04</span> */}
                   <h3 className="text-[12px] font-bold uppercase tracking-[0.3em] text-white">Products</h3>
                 </div>
                 <ul className="space-y-4">

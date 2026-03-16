@@ -39,7 +39,7 @@ export default function ClientSection({ clients }) {
                 <h2 className="text-5xl lg:text-[7rem] font-light text-gray-900 tracking-tighter leading-[0.8] mb-12">
                   Our <br />
                   <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Elite</span> <br />
-                  Network.
+                  Network
                 </h2>
                 <div className="space-y-8 max-w-sm">
                   <p className="text-xl text-gray-400 font-light leading-relaxed">
