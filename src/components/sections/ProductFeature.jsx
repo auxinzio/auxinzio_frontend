@@ -29,7 +29,7 @@ export function ProductFeature({ products, loading }) {
             </div>
             <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
               Innovation Through <br />
-              <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Precision.</span>
+              <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Precision</span>
             </h2>
           </motion.div>
 
@@ -97,7 +97,7 @@ export function ProductFeature({ products, loading }) {
                       <Zap className="w-5 h-5 text-[#14b88f]" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <span className="text-gray-900 font-medium tracking-tight block mb-1">
+                      <span className="text-gray-900 font-medium tracking-tight block mb-1 text-base">
                         {product?.description.split(".")[0]}
                       </span>
                       <div className="w-0 group-hover:w-8 h-px bg-[#22c55e]/30 transition-all duration-300" />
