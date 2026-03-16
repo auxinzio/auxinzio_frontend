@@ -1,21 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/Button";
 import { AboutSection } from "@/components/sections/AboutSection";
 import ServiceSection from "@/components/sections/ServiceSection";
 import Commitments from "@/components/sections/Commitments";
-import { clients } from "@/data/home.json";
-import Teams from "@/components/sections/Teams";
-import Image from "next/image";
-import { TrendingUp, Users, Award, Heart, Phone, Mail, ArrowRight, ChevronRight, Zap, Sparkles, Activity } from 'lucide-react';
+import { TrendingUp, ArrowRight, Zap } from 'lucide-react';
 import { StatsOrganic } from "@/components/sections/StatsOrganic";
 import ProductsSection from "@/components/sections/ProductsSection";
 import CTASection from "@/components/sections/CTASection";
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import { useSettings } from "@/app/Context/SettingsContext";
 import Link from "next/link";
-import servicesData from "@/data/services.json";
 import ProgressBar from "@/components/ui/ProgressBar";
 import ClientSection from "@/components/sections/ClientSection";
 

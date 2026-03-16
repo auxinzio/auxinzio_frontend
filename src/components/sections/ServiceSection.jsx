@@ -5,7 +5,6 @@ import { ArrowRight, ChevronRight, Layers } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSettings } from "@/app/Context/SettingsContext";
-import servicesData from "@/data/services.json";
 import GeometricIllustration from "@/components/ui/GeometricIllustration";
 
 
