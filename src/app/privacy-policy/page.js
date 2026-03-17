@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="font-normal text-[#14b88f]">Policy.</span>
+              <span className="font-normal text-[#14b88f]">Policy</span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
               This Privacy Policy explains how Auxinz.io collects, uses, discloses, and safeguards your information when you visit our platform. Please read this policy carefully to understand our views and practices regarding your personal data and how we treat it.
@@ -136,7 +136,7 @@ export default function PrivacyPolicy() {
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
                   Regulatory <br />
-                  <span className="italic font-normal text-[#14b88f]">Architecture.</span>
+                  <span className="italic font-normal text-[#14b88f]">Architecture</span>
                 </h2>
                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                   We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
@@ -191,7 +191,7 @@ export default function PrivacyPolicy() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
               Privacy is a <br />
-              <span className="text-[#14b88f] italic font-normal">Human Right.</span>
+              <span className="text-[#14b88f] italic font-normal">Human Right</span>
             </h2>
             <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
               If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.

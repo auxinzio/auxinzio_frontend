@@ -36,7 +36,7 @@ export default function JobDetailsPage() {
     const phoneRegex = /^[6-9]\d{9,14}$/;
 
     if (!formData.applicant_name || formData.applicant_name.length < 3) newErrors.applicant_name = 'Name must be at least 3 characters.';
-    
+
     if (!formData.email) {
       newErrors.email = 'Email address is required.';
     } else if (!emailRegex.test(formData.email)) {
@@ -178,7 +178,7 @@ export default function JobDetailsPage() {
                   <span className="text-[14px] font-bold tracking-[0.2em] uppercase text-[#14b88f]">Job Vacancy</span>
                 </div>
                 <h1 className="text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-8 tracking-tighter leading-tight">
-                  <span className="font-semibold">{careerData?.title} </span> 
+                  <span className="font-semibold">{careerData?.title} </span>
                 </h1>
                 <div className="flex flex-wrap items-center gap-4">
                   <span className="px-5 py-2.5 rounded-2xl text-[10px] font-bold uppercase tracking-widest bg-gray-50 border border-gray-100 text-gray-600 flex items-center gap-2">
@@ -220,7 +220,7 @@ export default function JobDetailsPage() {
               >
                 <div className="flex items-center gap-4 mb-8">
                   <div className="w-8 h-px bg-[#14b88f]/80" />
-                  <h2 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Historical Context</h2>
+                  <h2 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Job Description</h2>
                 </div>
                 <p className="text-gray-600 leading-[1.8] text-lg font-light italic">
                   &quot;{careerData?.description}&quot;
@@ -261,7 +261,7 @@ export default function JobDetailsPage() {
                   <div>
                     <div className="flex items-center gap-4 mb-10">
                       <div className="w-6 h-px bg-[#14b88f]/80" />
-                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Prerequisites</h3>
+                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Required Skills</h3>
                     </div>
                     <ul className="space-y-4">
                       {careerData?.requirements?.skill?.map((item, index) => (
@@ -276,7 +276,7 @@ export default function JobDetailsPage() {
                   <div>
                     <div className="flex items-center gap-4 mb-10">
                       <div className="w-6 h-px bg-[#14b88f]/80" />
-                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Auxiliary Nodes</h3>
+                      <h3 className="text-[14px] font-bold text-gray-900 uppercase tracking-[0.1em]">Key Responsibilities</h3>
                     </div>
                     <ul className="space-y-4">
                       {careerData?.requirements?.extra?.map((item, index) => (
@@ -299,7 +299,7 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-16 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.05)] border border-gray-100"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">Initiate Transmission</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">Apply for this Position</h2>
                   <p className="text-sm text-gray-400 font-light max-w-sm mx-auto">
                     Submit your credentials to join our global network of elite architects and innovators.
                   </p>
@@ -311,7 +311,7 @@ export default function JobDetailsPage() {
                       <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Protocol Successful</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Successful</h3>
                       <p className="text-gray-500 max-w-sm mx-auto font-light leading-relaxed">
                         Your application has been received. Our selection committee will verify your credentials shortly.
                       </p>
@@ -321,7 +321,7 @@ export default function JobDetailsPage() {
                   <form onSubmit={handleSubmit} noValidate className="space-y-10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Full Identity</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Full Name</label>
                         <input
                           type="text"
                           name="applicant_name"
@@ -334,7 +334,7 @@ export default function JobDetailsPage() {
                         {errors.applicant_name && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.applicant_name}</p>}
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Digital Address</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Email Address</label>
                         <input
                           type="email"
                           name="email"
@@ -349,7 +349,7 @@ export default function JobDetailsPage() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Phone Connection</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Phone Number</label>
                         <input
                           type="tel"
                           name="phone"
@@ -361,7 +361,7 @@ export default function JobDetailsPage() {
                         {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.phone}</p>}
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">LinkedIn Nexus</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">LinkedIn Profile</label>
                         <input
                           type="url"
                           name="linkedin"
@@ -374,7 +374,7 @@ export default function JobDetailsPage() {
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Artifact Portfolio</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Portfolio</label>
                         <input
                           type="url"
                           name="portfolio"
@@ -385,7 +385,7 @@ export default function JobDetailsPage() {
                         />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Credentials (PDF)</label>
+                        <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Resume (PDF)</label>
                         <input
                           type="file"
                           name="resume"
@@ -397,7 +397,7 @@ export default function JobDetailsPage() {
                       </div>
                     </div>
                     <div className="space-y-3">
-                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Impact Narrative</label>
+                      <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-4">Cover Letter</label>
                       <textarea
                         name="cover_letter"
                         required

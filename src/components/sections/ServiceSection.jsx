@@ -31,7 +31,7 @@ export default function ServiceSection({ service }) {
                         <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
                            Full-Service <br />
                            <span className="font-medium text-gray-200">Digital</span><br />
-                           <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Solutions.</span>
+                           <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Solutions</span>
                         </h2>
                      </motion.div>
 
