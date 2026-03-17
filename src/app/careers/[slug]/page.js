@@ -299,7 +299,7 @@ export default function JobDetailsPage() {
                 className="bg-white rounded-[2.5rem] p-10 lg:p-16 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.05)] border border-gray-100"
               >
                 <div className="text-center mb-16">
-                  <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">Apply for this Position</h2>
+                  <h2 className="text-3xl font-bold text-gray-900 tracking-tight mb-3">Take the next step</h2>
                   <p className="text-sm text-gray-400 font-light max-w-sm mx-auto">
                     Submit your credentials to join our global network of elite architects and innovators.
                   </p>
