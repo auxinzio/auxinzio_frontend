@@ -97,7 +97,7 @@ export function ProductFeature({ products, loading }) {
                       <Zap className="w-5 h-5 text-[#14b88f]" strokeWidth={1.5} />
                     </div>
                     <div>
-                      <span className="text-gray-900 font-medium tracking-tight block mb-1 text-base">
+                      <span className="text-gray-400 font-medium tracking-tight block mb-1 text-base">
                         {product?.description.split(".")[0]}
                       </span>
                       <div className="w-0 group-hover:w-8 h-px bg-[#22c55e]/30 transition-all duration-300" />
