@@ -18,14 +18,50 @@ export async function POST(request) {
     });
 
     const data = await res.json();
+    const token = data.data?.token || data.token || (data.user && data.user.token);
+    const isMfaEnabled =
+      data.data?.is_mfa_enabled === true ||
+      data.data?.is_mfa_enabled === 1 ||
+      data.data?.mfa_required === true ||
+      data.data?.mfa_required === 1;
 
     if (res.ok) {
-      const response = NextResponse.json({
+      const responseData = {
         success: true,
-        message: 'OTP sent successfully',
+        message: isMfaEnabled ? 'OTP sent successfully' : 'Logged in successfully',
         status: 200,
-        data: data.data || data.user
-      });
+        data: data.data || data.user,
+        is_mfa_enabled: isMfaEnabled
+      };
+
+      const response = NextResponse.json(responseData);
+
+      if (!isMfaEnabled && token) {
+        // Set token in cookie for direct login
+        response.cookies.set({
+          name: 'auth_token',
+          value: token,
+          httpOnly: true,
+          path: '/',
+          sameSite: 'lax',
+          secure: request.nextUrl.protocol === 'https:',
+          maxAge: 60 * 60 * 24, // 1 day
+        });
+
+        // Set user info in cookie
+        const userInfo = { ...data.data };
+        delete userInfo.token;
+
+        response.cookies.set({
+          name: 'user_info',
+          value: JSON.stringify(userInfo),
+          httpOnly: true,
+          path: '/',
+          sameSite: 'lax',
+          secure: request.nextUrl.protocol === 'https:',
+          maxAge: 60 * 60 * 24, // 1 day
+        });
+      }
 
       return response;
     }
