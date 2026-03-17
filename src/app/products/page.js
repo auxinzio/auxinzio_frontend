@@ -186,7 +186,7 @@ export default function Products() {
                                     <p className="text-lg">
                                         Our suite of digital products is designed to bridge the gap between complex data and actionable intelligence. We build for performance, security, and effortless scale.
                                     </p>
-                                    <p className='italic'>
+                                    <p className="text-base text-gray-600 border-l-2 border-[#14b88f]/20 pl-6 italic">
                                         From AI-driven analytics to robust cloud infrastructure, each solution is crafted with a focus on user experience and enterprise-grade reliability.
                                     </p>
                                 </div>
