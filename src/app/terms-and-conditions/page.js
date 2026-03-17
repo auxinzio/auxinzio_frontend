@@ -68,11 +68,11 @@ export default function TermsAndConditions() {
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
               <div className="flex items-center gap-4 mb-12">
                 <div className="w-12 h-px bg-[#14b88f]" />
-                <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Standard Operating Protocol</span>
+                <span className="text-[10px] font-bold tracking-[0.6em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Standard Operating Protocol</span>
               </div>
               <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                 Terms
-                <span className="font-normal text-[#14b88f]"> & Conditions</span>
+                <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"> & Conditions</span>
               </h1>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1, delay: 0.4 }} className="flex flex-wrap items-center gap-8 w-full">
@@ -191,7 +191,7 @@ export default function TermsAndConditions() {
                   <div className="max-w-2xl">
                     <h3 className="text-4xl lg:text-6xl font-light text-white tracking-tighter leading-[0.9] mb-12">
                       Formal Acceptance <br />
-                      <span className="text-[#14b88f] italic font-normal">of Protocol</span>
+                      <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-normal">of Protocol</span>
                     </h3>
                     <p className="text-gray-400 text-xl font-light leading-relaxed mb-16">
                       By participating in the Auxinzio ecosystem, you formally acknowledge and accept these regulatory standards in their entirety.

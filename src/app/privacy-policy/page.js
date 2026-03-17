@@ -70,12 +70,12 @@ export default function PrivacyPolicy() {
           >
             <div className="flex items-center gap-4 mb-8">
               <div className="w-12 h-px bg-[#14b88f]" />
-              <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Data Protection Protocol</span>
+              <span className="text-[10px] font-bold tracking-[0.6em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Data Protection Protocol</span>
               <div className="w-12 h-px bg-[#14b88f]" />
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="font-normal text-[#14b88f]">Policies</span>
+              <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Policies</span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
               This Privacy Policy explains how Auxinz.io collects, uses, discloses, and safeguards your information when you visit our platform. Please read this policy carefully to understand our views and practices regarding your personal data and how we treat it.
@@ -100,7 +100,7 @@ export default function PrivacyPolicy() {
                   <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b88f] group-hover:text-white transition-all duration-500">
                     <module.icon className="w-8 h-8" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b88f] mb-6">{module.summary}</h3>
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 mb-6">{module.summary}</h3>
                   <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                   <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
                   <div className="space-y-3">
@@ -132,11 +132,11 @@ export default function PrivacyPolicy() {
               <div className="space-y-12">
                 <div className="flex items-center gap-4">
                   <ShieldCheck className="w-6 h-6 text-[#14b88f]" />
-                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Compliance Standard</span>
+                  <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Compliance Standard</span>
                 </div>
                 <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
                   Regulatory <br />
-                  <span className="italic font-normal text-[#14b88f]">Architecture</span>
+                  <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Architecture</span>
                 </h2>
                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                   We adhere to GDPR, CCPA, and international data residency laws to ensure your information is treated with highest legal fidelity.
@@ -165,7 +165,7 @@ export default function PrivacyPolicy() {
                   className="relative group"
                 >
                   <div className="flex items-start gap-8">
-                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-[#14b88f] shrink-0 group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
+                    <div className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 shrink-0 group-hover:bg-[#14b88f] group-hover:text-white group-hover:border-[#14b88f] transition-all duration-500">
                       <section.icon className="w-5 h-5" strokeWidth={1.5} />
                     </div>
                     <div>
@@ -173,9 +173,9 @@ export default function PrivacyPolicy() {
                       <p className="text-gray-400 text-xl font-light leading-relaxed mb-12">
                         {section.content}
                       </p>
-                      <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                      {/* <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                         Technical Specifics <ArrowRight className="w-4 h-4" />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <div className="mt-20 h-px bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
@@ -191,7 +191,7 @@ export default function PrivacyPolicy() {
           <div className="max-w-3xl mx-auto">
             <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
               Privacy is a <br />
-              <span className="text-[#14b88f] italic font-normal">Human Right</span>
+              <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-normal">Human Rights</span>
             </h2>
             <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
               If you have any questions regarding these infrastructural protocols, please reach out to our global compliance hub.
