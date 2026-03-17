@@ -198,16 +198,33 @@ export default function App({ params }) {
           </div>
         </section>
         {/* Section 4 - Editorial Highlight Section */}
-        <section className="py-16 lg:py-24 border-t border-b border-[#e5e7eb]">
-          <div className="max-w-6xl mx-auto px-6 lg:px-12">
-            <h2 className="text-3xl font-light text-[#111827] mb-12 text-center capitalize">{product.category_name}</h2>
-            <div className="flex items-center">
-              <p className="text-[#4b5563] leading-relaxed text-lg">
-                {descriptionParts[2] || descriptionParts[1] || product.description}
-              </p>
+        {/* <section className="py-20 lg:py-28 border-t border-b border-[#e5e7eb] bg-white">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <h2 className="text-3xl lg:text-4xl font-light text-[#111827] mb-12 text-center capitalize tracking-tight">
+              {product.category_name}
+            </h2>
+            <div className="flex flex-col items-center space-y-8">
+              {product.description.split('~').map((part, index) => {
+                if(index>0){
+                  const trimmedPart = part.trim();
+                if (!trimmedPart) return null;
+                return (
+                  <motion.p 
+                    key={index}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    className="text-[#4b5563] leading-[1.8] text-lg lg:text-xl text-center font-light max-w-2xl"
+                  >
+                    {trimmedPart}
+                  </motion.p>
+                );
+                }
+              })}
             </div>
           </div>
-        </section>
+        </section> */}
         {/* Section 6 - FAQ Section */}
         {product.faqs && product.faqs.length > 0 && (
           <section className="py-16 lg:py-24 bg-[#f8fafc]">
