@@ -40,7 +40,7 @@ export default function Commitments() {
               <h2 className="text-5xl lg:text-7xl font-light text-gray-900 tracking-tighter leading-none mb-12">
                 Our <br />
                 <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Business</span> <br />
-                <span className="font-medium">Principles.</span>
+                <span className="font-medium">Principles</span>
               </h2>
 
               <p className="text-lg text-gray-500 max-w-sm leading-relaxed border-l-2 border-gray-100 pl-8">

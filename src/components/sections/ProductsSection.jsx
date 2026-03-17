@@ -31,7 +31,7 @@ export default function ProductsSection({ product }) {
                 <h2 className="text-5xl lg:text-9xl font-light text-gray-900 leading-[0.8] tracking-tighter">
                   Built for the <br />
                   <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Intelligent</span> <br />
-                  <span className="font-medium text-gray-200">Enterprise.</span>
+                  <span className="font-medium text-gray-200">Enterprise</span>
                 </h2>
               </motion.div>
 

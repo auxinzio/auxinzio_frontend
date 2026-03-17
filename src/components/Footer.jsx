@@ -161,6 +161,7 @@ export function Footer() {
 
           <div className="lg:col-span-7">
             <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:mt-0 mt-10 row-gap-10">
+
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Company</h3>
@@ -211,7 +212,7 @@ export function Footer() {
                 </ul>
               </div>
 
-              <div className="lg:col-span-3 lg:mt-7 mt-7 space-y-8">
+              <div className="lg:col-span-3 col-span-2 lg:mt-7 mt-7 space-y-8">
                 <div className="flex items-center gap-3">
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
                 </div>

@@ -171,7 +171,7 @@ export default function AdminLogin() {
             >
               <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-tight">
                 Command <br />
-                <span className="italic font-normal text-primary">Infrastucture.</span>
+                <span className="italic font-normal text-primary">Infrastucture</span>
               </h2>
               <p className="max-w-md text-gray-400 font-light text-lg leading-relaxed">
                 Access your administrative console to manage systems, monitor performance, and synchronize global resources.

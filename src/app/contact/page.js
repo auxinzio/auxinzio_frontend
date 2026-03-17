@@ -143,7 +143,7 @@ export default function Contact() {
             <div className="lg:col-span-4 lg:sticky lg:top-32">
               <h2 className="text-4xl lg:text-5xl font-light text-gray-900 mb-12 tracking-tight">
                 Discuss Your <br />
-                <span className="font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Project.</span>
+                <span className="font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Project</span>
               </h2>
 
               <p className="text-gray-500 mb-16 leading-relaxed">

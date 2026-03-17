@@ -29,7 +29,7 @@ export default function Teams({ data }) {
             <h2 className="text-5xl lg:text-8xl font-light text-gray-900 leading-[0.9] tracking-tighter">
               The Minds <br />
               <span className="font-medium">Behind the</span><br />
-              <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesis.</span>
+              <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Success</span>
             </h2>
           </motion.div>
 

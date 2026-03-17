@@ -207,11 +207,11 @@ export default function Careers() {
                 viewport={{ once: true }}
                 className="text-xs tracking-[0.25em] uppercase font-bold mb-8 bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5"
               >
-                Culture & DNA
+                Our Culture
               </motion.p>
               <h2 className="text-4xl lg:text-6xl font-bold text-gray-900 mb-8 leading-tight tracking-tight">
                 We find partners,<br />
-                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">not just employees.</span>
+                <span className="italic font-medium bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">not just employees</span>
               </h2>
               <p className="text-gray-600 text-lg lg:text-xl leading-relaxed max-w-xl mb-12">
                 Our culture is built on open communication, user-centricity, and the relentless pursuit of effective solutions. We empower you to lead.
@@ -302,7 +302,7 @@ export default function Careers() {
                     Current Openings
                   </p>
                   <h2 className="text-4xl font-light text-gray-900 mb-12 tracking-tight">
-                    Join our<br /><span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-medium">team.</span>
+                    Join our<br /><span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-medium">team</span>
                   </h2>
 
                   <div className="grid grid-cols-2 gap-2">
