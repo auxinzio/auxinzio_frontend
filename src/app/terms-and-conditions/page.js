@@ -58,7 +58,7 @@ export default function TermsAndConditions() {
       <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-40 px-6 overflow-hidden bg-white">
         {/* Background Large Text (Watermark) */}
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full opacity-[0.02] select-none pointer-events-none lg:block hidden">
-          <h1 className="text-[35vw] font-black tracking-tighter leading-none">LEGAL</h1>
+          <h1 className="text-[30vw] font-black tracking-tighter leading-none">LEGAL</h1>
         </div>
         {/* Decorative Grid */}
         <div className="absolute inset-0 opacity-[0.03] pointer-events-none"

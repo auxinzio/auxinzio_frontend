@@ -130,7 +130,7 @@ export default function Contact() {
 
         {/* Background Decorative Text */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none">
-          <p className="text-[20vw] font-black tracking-tighter leading-none text-center">RELIABILITY</p>
+          <p className="text-[18vw] font-black tracking-tighter leading-none text-center">RELIABILITY</p>
         </div>
       </section>
 

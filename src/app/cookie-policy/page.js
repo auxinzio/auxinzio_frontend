@@ -73,7 +73,7 @@ export default function CookiePolicy() {
             <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden bg-gray-50/20">
                 {/* Background Large Text (Watermark) */}
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none text-center lg:block hidden">
-                    <h1 className="text-[30vw] font-black tracking-tighter leading-none uppercase">COOKIES</h1>
+                    <h1 className="text-[25vw] font-black tracking-tighter leading-none uppercase">COOKIES</h1>
                 </div>
 
                 <div className="mx-auto max-w-[1600px] relative z-10 text-center">
