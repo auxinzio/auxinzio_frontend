@@ -23,7 +23,7 @@ export default function AdminLogin() {
   const router = useRouter()
 
   const { login, verifyLoginCode } = useAuth();
-  
+
   useEffect(() => {
     let interval;
     if (isOtpStep && timer > 0) {
@@ -64,7 +64,7 @@ export default function AdminLogin() {
   const handleOtpChange = (e, index, type) => {
     let value = e.target.value;
     if (!/^\d*$/.test(value)) return;
-    
+
     if (value.length > 1) {
       value = value.slice(-1);
     }
@@ -106,16 +106,21 @@ export default function AdminLogin() {
       if (!isOtpStep) {
         const result = await login(username, password);
         if (result.statuscode === 200 || result.status === 200 || result.success) {
-          setLoginEmail(result.data?.email || username);
-          setIsOtpStep(true);
+          if (result.is_mfa_enabled) {
+            setLoginEmail(result.data?.email || username);
+            setIsOtpStep(true);
+          } else {
+            // Success - directly redirect
+            router.push('/admin/dashboard');
+          }
         } else {
           setError(result.message || 'Verification failed. Please check your credentials.');
         }
       } else {
         const userOtpString = userOtp.join('');
         const adminOtpString = adminOtp.join('');
-        const result = await verifyLoginCode(loginEmail || username, userOtpString, adminOtpString);        
-        
+        const result = await verifyLoginCode(loginEmail || username, userOtpString, adminOtpString);
+
         if (result.statuscode === 200 || result.status === 200 || result.success) {
           router.push('/admin/dashboard');
         } else {
@@ -138,7 +143,7 @@ export default function AdminLogin() {
 
       <div className="relative z-10 flex w-full flex-col lg:flex-row">
         {/* --- LEFT SIDE: BRANDING/VISUALS --- */}
-        <motion.div 
+        <motion.div
           initial={{ x: -100, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -147,7 +152,7 @@ export default function AdminLogin() {
           {/* Animated Glow Elements */}
           <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-primary/20 blur-[120px] animate-pulse" />
           <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-green-500/10 blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
-          
+
           {/* Watermark/Background Text */}
           <div className="absolute top-1/2 left-0 -translate-y-1/2 opacity-[0.02] select-none pointer-events-none origin-left -rotate-90 hidden lg:block">
             <h1 className="text-[18vw] font-black tracking-tighter leading-none uppercase">Auxinzio</h1>
@@ -381,7 +386,7 @@ export default function AdminLogin() {
                           </p>
                         )}
                       </div>
-                      
+
                       <div className="pt-2 flex justify-center items-center">
                         <div className={cn(
                           "px-4 py-2 rounded-full text-xs font-bold transition-colors duration-300 tracking-widest",
@@ -423,7 +428,7 @@ export default function AdminLogin() {
                 </p>
               </div>
             </div>
-            
+
             <p className="mt-8 text-center text-gray-400 text-xs font-medium">
               Powered by <span className="text-primary font-bold italic">Auxinzio</span>
             </p>

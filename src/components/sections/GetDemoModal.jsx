@@ -98,6 +98,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
     }
 
     if (!formData.product_id) newErrors.product_id = 'Please select a product.';
+    if (!formData.reason) newErrors.reason = 'Please enter a reason.';
     if (!formData.objective || formData.objective.length < 5) newErrors.objective = 'Please provide an objective.';
 
     setErrors(newErrors);
@@ -352,7 +353,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                               <input
                                 type="email"
                                 required
-                                placeholder="Protocol Mail"
+                                placeholder="Enter Your Email"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.email}
                                 onChange={(e) => {
@@ -367,7 +368,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                               <input
                                 type="text"
                                 required
-                                placeholder="Mobile Link"
+                                placeholder="Mobile Number"
                                 inputMode="numeric"
                                 maxLength={10}
                                 pattern="[0-9]*"
@@ -388,28 +389,47 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
                             <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">3</span>
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Ecosystem Selection</h3>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Product Selection</h3>
                           </div>
-                          <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
-                            <select
-                              required
-                              className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
-                              value={formData.product_id}
-                              onChange={(e) => {
-                                setFormData({ ...formData, product_id: e.target.value });
-                                if (errors.product_id) setErrors({ ...errors, product_id: null });
-                              }}
-                            >
-                              <option value="" className="text-gray-400">Select Product</option>
-                              {product.map((p) => (
-                                <option key={p.id} value={p.id} className="text-gray-900">
-                                  {p.product_name}
-                                </option>
-                              ))}
-                            </select>
-                            <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
-                            {errors.product_id && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.product_id}</p>}
+                          <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+                            <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
+                              <select
+                                required
+                                className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
+                                value={formData.product_id}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, product_id: e.target.value });
+                                  if (errors.product_id) setErrors({ ...errors, product_id: null });
+                                }}
+                              >
+                                <option value="" className="text-gray-400">Select Product</option>
+                                {product.map((p) => (
+                                  <option key={p.id} value={p.id} className="text-gray-900">
+                                    {p.product_name}
+                                  </option>
+                                ))}
+                              </select>
+                              <ArrowRight size={16} className={cn("absolute right-0 top-1/2 -translate-y-1/2 rotate-90 pointer-events-none transition-colors", errors.product_id ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
+                              {errors.product_id && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.product_id}</p>}
+                            </div>
+                            <div className={cn("relative group border-b transition-all pb-1", errors.reason ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
+                              <input
+                                type="text"
+                                required
+                                placeholder="Reason for Demo"
+                                inputMode="text"
+                                className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
+                                value={formData.reason}
+                                onChange={(e) => {
+                                  setFormData({ ...formData, reason: e.target.value });
+                                  if (errors.reason) setErrors({ ...errors, reason: null });
+                                }}
+                              />
+                              <ArrowRight className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.reason ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
+                              {errors.reason && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.reason}</p>}
+                            </div>
                           </div>
+
                         </div>
 
                         {/* Section 04: Objective */}
@@ -438,7 +458,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Actions */}
                         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-8">
                           <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] max-w-[200px] text-center sm:text-left leading-relaxed">
-                            By initiating, you authorize data synchronization.
+                            By submitting, you authorize data synchronization.
                           </p>
 
                           <Button
@@ -447,7 +467,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             type="submit"
                             className="w-full sm:w-auto rounded-2xl px-10 py-6 text-xs font-bold shadow-2xl shadow-[#14b88f]/20 flex items-center justify-center gap-4 hover:scale-[1.05] transition-all active:scale-95 group disabled:opacity-50"
                           >
-                            {loading ? 'Processing...' : 'Initiate Synchronization'}
+                            {loading ? 'Processing...' : 'Submit Request'}
                             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                           </Button>
                         </div>
