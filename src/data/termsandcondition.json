@@ -95,9 +95,9 @@
     "title": "Payment",
     "content": "All payments made via Auxinz.io must be lawful and authorized. Users are responsible for maintaining valid payment information and complying with the terms of our payment gateways.",
     "subpoints": [
-      "Compliance with GDPR/CCPA where applicable",
-      "Standard encryption protocols",
-      "Data retention policies"
+      "All payments must be lawful and authorized",
+      "Users are responsible for maintaining valid payment information",
+      "Users are responsible for complying with the terms of our payment gateways"
     ]
   },
   {
@@ -106,9 +106,9 @@
     "title": "Indemnification",
     "content": "You agree to indemnify and hold harmless Auxinz.io, its affiliates, directors, and employees from any loss, damage, or expense arising from your breach of these Terms or violation of applicable laws.",
     "subpoints": [
-      "Compliance with GDPR/CCPA where applicable",
-      "Standard encryption protocols",
-      "Data retention policies"
+      "You are responsible for any claims arising from your use of the platform.",
+      "This includes legal fees and damages caused by your actions.",
+      "Your obligations continue even after termination of services."
     ]
   },
   {
@@ -117,9 +117,9 @@
     "title": "Disclaimer of Warranties",
     "content": "All services are provided on an 'as-is' and 'as-available' basis. We do not guarantee uninterrupted access, accuracy, or error-free functionality. Use of our platform is at your own risk.",
     "subpoints": [
-      "Compliance with GDPR/CCPA where applicable",
-      "Standard encryption protocols",
-      "Data retention policies"
+      "We do not guarantee that the service will always be available or secure.",
+      "Information provided may not always be accurate or up-to-date.",
+      "We are not responsible for any data loss or system failures."
     ]
   },
   {
@@ -128,9 +128,9 @@
     "title": "Use of Services",
     "content": "Users agree not to misuse the platform. Unauthorized access, scraping, tampering, or engaging in activities that disrupt service or violate law is strictly prohibited.",
     "subpoints": [
-      "Compliance with GDPR/CCPA where applicable",
-      "Standard encryption protocols",
-      "Data retention policies"
+      "Users must comply with all applicable laws while using the platform.",
+      "Attempting to hack, disrupt, or reverse-engineer the system is prohibited.",
+      "Any misuse may result in suspension or termination of access."
     ]
   },
   {
@@ -139,9 +139,9 @@
     "title": "Warranties",
     "content": "Auxinz.io expressly disclaims all warranties, express or implied, including those of merchantability, fitness for a particular purpose, and non-infringement.",
     "subpoints": [
-      "Compliance with GDPR/CCPA where applicable",
-      "Standard encryption protocols",
-      "Data retention policies"
+      "We do not provide any guarantees regarding performance or results.",
+      "Services may not meet all user expectations or requirements.",
+      "No warranty is provided for third-party integrations or services."
     ]
   }
 ]
