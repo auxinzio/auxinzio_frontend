@@ -73,17 +73,17 @@ export default function ProductsSection({ product }) {
                     </div> */}
 
                     {/* Architectural Overlay on Hover */}
-                    <div className="absolute inset-x-8 bottom-8 bg-white/10 backdrop-blur-2xl p-8 rounded-[2.5rem] border border-white/20 translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 hidden lg:block">
+                    <div className="absolute inset-x-8 bottom-8 bg-white backdrop-blur-2xl p-3 rounded-[2.5rem] border border-teal-500/50 translate-y-20 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 hidden lg:block">
                       <div className="flex justify-between items-center">
                         <div className="flex gap-4">
-                          <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                            <ShieldCheck className="w-5 h-5 text-white" strokeWidth={1.5} />
+                          <div className="w-7 h-7 rounded-sm bg-white/20 flex items-center justify-center">
+                            <ShieldCheck className="w-4 h-4 text-teal-500" strokeWidth={1.5} />
                           </div>
-                          <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center">
-                            <Activity className="w-5 h-5 text-white" strokeWidth={1.5} />
+                          <div className="w-7 h-7 rounded-sm bg-white/20 flex items-center justify-center">
+                            <Activity className="w-4 h-4 text-teal-500" strokeWidth={1.5} />
                           </div>
                         </div>
-                        <button className="flex items-center gap-3 text-white text-[10px] font-bold uppercase tracking-widest">
+                        <button className="flex items-center gap-3 text-transparent bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-[10px] font-bold uppercase tracking-widest">
                           {item.category_name} <ArrowUpRight className="w-4 h-4" />
                         </button>
                       </div>
@@ -95,7 +95,7 @@ export default function ProductsSection({ product }) {
                       <span className="text-4xl font-light text-gray-200 group-hover:text-[#14b88f] transition-colors duration-500">0{index + 1}</span>
                       <h3 className="text-4xl lg:text-5xl font-bold text-gray-900 tracking-tight leading-none group-hover:italic transition-all">{item.product_name}</h3>
                     </div>
-                    <p className="text-lg text-gray-500 leading-relaxed max-w-lg">
+                    <p className="text-lg text-gray-500 leading-relaxed max-w-lg line-clamp-3 font-light">
                       {`"${item.description.split('~')[0]}"`}
                     </p>
                     <Link href={`/products/${item.slug}`}>
