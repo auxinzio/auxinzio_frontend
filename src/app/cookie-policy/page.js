@@ -85,13 +85,13 @@ export default function CookiePolicy() {
                     >
                         <div className="flex items-center gap-4 mb-8">
                             <div className="w-12 h-px bg-[#14b88f]" />
-                            <span className="text-[10px] font-bold tracking-[0.6em] uppercase text-[#14b88f]">Tracking Protocol Hub</span>
+                            <span className="text-[10px] font-bold tracking-[0.6em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Tracking Protocol Hub</span>
                             <div className="w-12 h-px bg-[#14b88f]" />
                         </div>
 
                         <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                             Cookie <br />
-                            <span className="font-normal text-[#14b88f]">Architecture</span>
+                            <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Architecture</span>
                         </h1>
 
                         <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">
@@ -119,7 +119,7 @@ export default function CookiePolicy() {
                                         <module.icon className="w-8 h-8" strokeWidth={1.5} />
                                     </div>
 
-                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#14b88f] mb-6">{module.summary}</h3>
+                                    <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 mb-6">{module.summary}</h3>
                                     <h2 className="text-4xl font-light text-gray-900 mb-8 tracking-tight leading-none">{module.title}</h2>
                                     <p className="text-gray-500 text-lg font-light leading-relaxed mb-10">{module.content}</p>
 
@@ -155,11 +155,11 @@ export default function CookiePolicy() {
                             <div className="space-y-12">
                                 <div className="flex items-center gap-4">
                                     <Search className="w-6 h-6 text-[#14b88f]" />
-                                    <span className="text-[10px] font-bold tracking-[0.5em] uppercase text-[#14b88f]">Audit & Compliance</span>
+                                    <span className="text-[10px] font-bold tracking-[0.5em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Audit & Compliance</span>
                                 </div>
                                 <h2 className="text-5xl lg:text-7xl font-light tracking-tighter leading-none">
                                     Tracking <br />
-                                    <span className="italic font-normal text-[#14b88f]">Intelligence</span>
+                                    <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Intelligence</span>
                                 </h2>
                                 <p className="text-gray-400 text-xl font-light leading-relaxed max-w-md">
                                     Our environment is audited for tracking hygiene, ensuring that no unnecessary digital footprints are collected during your session.
@@ -198,9 +198,9 @@ export default function CookiePolicy() {
                                             <p className="text-gray-400 text-xl font-light leading-relaxed mb-12">
                                                 {section.content}
                                             </p>
-                                            <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
+                                            {/* <button className="flex items-center gap-3 text-[#14b88f] text-xs font-bold uppercase tracking-[0.2em] group-hover:gap-5 transition-all">
                                                 Management Hub <ArrowRight className="w-4 h-4" />
-                                            </button>
+                                            </button> */}
                                         </div>
                                     </div>
 
@@ -219,7 +219,7 @@ export default function CookiePolicy() {
                     <div className="max-w-3xl mx-auto">
                         <h2 className="text-5xl lg:text-7xl font-light text-gray-900 mb-12 tracking-tighter">
                             Control your <br />
-                            <span className="text-[#14b88f] italic font-normal">Digital Footprint</span>
+                            <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-normal">Digital Footprint</span>
                         </h2>
                         <p className="text-gray-500 text-xl font-light leading-relaxed mb-16">
                             Our technical support team is ready to assist with any queries regarding our tracking architectures and privacy sovereignty.
