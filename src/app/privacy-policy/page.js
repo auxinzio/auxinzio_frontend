@@ -59,7 +59,7 @@ export default function PrivacyPolicy() {
       <section className="relative pt-32 pb-20 lg:pt-56 lg:pb-32 px-6 overflow-hidden bg-gray-50/20">
         {/* Background Large Text (Watermark) */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full opacity-[0.03] select-none pointer-events-none text-center lg:block hidden">
-          <h1 className="text-[30vw] font-black tracking-tighter leading-none">PRIVACY</h1>
+          <h1 className="text-[25vw] font-black tracking-tighter leading-none">PRIVACY</h1>
         </div>
         <div className="mx-auto max-w-[1600px] relative z-10 text-center">
           <motion.div
@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="font-normal text-[#14b88f]">Policy</span>
+              <span className="font-normal text-[#14b88f]">Policies</span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
               This Privacy Policy explains how Auxinz.io collects, uses, discloses, and safeguards your information when you visit our platform. Please read this policy carefully to understand our views and practices regarding your personal data and how we treat it.

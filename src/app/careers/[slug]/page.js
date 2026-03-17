@@ -311,9 +311,9 @@ export default function JobDetailsPage() {
                       <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Successful</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">Application Submitted Successfully</h3>
                       <p className="text-gray-500 max-w-sm mx-auto font-light leading-relaxed">
-                        Your application has been received. Our selection committee will verify your credentials shortly.
+                        Your application has been received. Our selection committee will review it and get back to you soon.
                       </p>
                     </div>
                   </div>
