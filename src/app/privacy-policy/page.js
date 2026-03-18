@@ -75,7 +75,7 @@ export default function PrivacyPolicy() {
             </div>
             <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
               Privacy <br />
-              <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Policies</span>
+              <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Policy</span>
             </h1>
             <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-2xl mx-auto leading-relaxed">
               This Privacy Policy explains how Auxinz.io collects, uses, discloses, and safeguards your information when you visit our platform. Please read this policy carefully to understand our views and practices regarding your personal data and how we treat it.

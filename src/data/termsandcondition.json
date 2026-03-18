@@ -16,7 +16,7 @@
     "id": "acceptance",
     "icon": "Settings",
     "title": "Acceptance",
-    "content": "By accessing or using any part of the platform or our services, you agree to be legally bound by these Terms and our other applicable policies.",
+    "content": "By accessing or using any part of the platform or our services, you agree to be legally bound by these Terms and our other applicable policy.",
     "subpoints": [
       "Scope defined in specific SOWs",
       "Professional standards commitment",
@@ -53,7 +53,7 @@
     "subpoints": [
       "Compliance with GDPR/CCPA where applicable",
       "Standard encryption protocols",
-      "Data retention policies"
+      "Data retention policy"
     ]
   },
   {

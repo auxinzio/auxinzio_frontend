@@ -56,12 +56,12 @@ export default function ServiceSection({ service }) {
                            className="group relative bg-white p-12 lg:p-16 hover:bg-gray-50 transition-colors duration-500 min-h-[450px] flex flex-col"
                         >
                            {/* Service Index */}
-                           <span className="absolute top-12 right-12 text-6xl font-black text-gray-50 group-hover:text-[#14b88f]/40 transition-colors select-none">0{index + 1}</span>
+                           <span className="absolute top-12 right-12 text-6xl font-black bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text opacity-20 text-transparent transition-colors select-none">0{index + 1}</span>
                            <div className="relative z-10 flex-grow">
                               <div className="w-16 h-16 rounded-2xl bg-gray-50 flex items-center justify-center mb-10 group-hover:bg-[#14b88f]/10 transition-colors">
                                  <Layers className="w-6 h-6 text-gray-400 group-hover:text-[#14b88f]" />
                               </div>
-                              <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight group-hover:text-[#14b88f] transition-colors leading-tight">
+                              <h3 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-green-500 group-hover:to-cyan-600 group-hover:bg-clip-text transition-colors leading-tight">
                                  {srv.title}
                               </h3>
                               <p className="text-gray-500 leading-relaxed max-w-[280px]">
@@ -70,12 +70,12 @@ export default function ServiceSection({ service }) {
                            </div>
                            <Link href={`/services/${srv.slug}`}>
                               <div className="pt-10 flex items-center gap-4 text-xs font-bold uppercase tracking-widest text-gray-900 group-hover:text-[#14b88f] transition-colors group/btn">
-                                 Service Details
+                                 More Details...
                                  <ChevronRight className="w-3 h-3 group-hover/btn:translate-x-1 transition-transform" />
                               </div>
                            </Link>
                            {/* Hover Architectural Accent */}
-                           <div className="absolute top-0 left-0 w-1 h-0 bg-[#14b88f] group-hover:h-full transition-all duration-700" />
+                           <div className="absolute top-0 left-0 w-1 h-0 bg-gradient-to-b from-green-500 to-cyan-600 group-hover:h-full transition-all duration-700" />
                         </motion.div>
                      ))}
                   </div>
