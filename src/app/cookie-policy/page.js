@@ -91,7 +91,7 @@ export default function CookiePolicy() {
 
                         <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                             Cookie <br />
-                            <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Policies</span>
+                            <span className="font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Policy</span>
                         </h1>
 
                         <p className="text-xl lg:text-2xl text-gray-500 font-light max-w-3xl mx-auto leading-relaxed">

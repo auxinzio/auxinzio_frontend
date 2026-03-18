@@ -87,17 +87,17 @@ export function Footer() {
   };
 
   return (
-    <footer className="relative bg-gray-900 text-white overflow-hidden pt-24 pb-8">
+    <footer className="relative bg-gray-900 text-white overflow-hidden pt-14 pb-8">
       {/* Background Architectural Mark */}
       <div className="absolute -bottom-20 -left-20 pointer-events-none opacity-[0.03] select-none">
         <h1 className="text-[30vw] font-black leading-none tracking-tighter">AUXINZ</h1>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="max-w-[1600px] mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-3 lg:gap-5">
 
           {/* Brand & Manifesto */}
-          <div className="lg:col-span-5 space-y-4">
+          <div className="lg:col-span-4 space-y-4">
             <Link href="/" className="inline-block">
               <Image
                 src="/assets/img/logo.png"
@@ -133,7 +133,7 @@ export function Footer() {
                   <input
                     type="email"
                     required
-                    placeholder="Protocol mail address"
+                    placeholder="Enter Email Address"
                     className={`w-full bg-white/5 border ${subscribeStatus && !subscribeStatus.success ? 'border-red-500' : 'border-white/10'} rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-[#14b88f] transition-all placeholder:text-gray-600 font-light`}
                     value={email}
                     onChange={(e) => setEmail(e.target.value.replace(/[^a-zA-Z0-9.@]/g, ''))}
@@ -159,8 +159,8 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="lg:col-span-7">
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-5 md:mt-0 mt-10 row-gap-10">
+          <div className="lg:col-span-8">
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-5 md:mt-0 mt-10 row-gap-10">
 
               <div className="space-y-8">
                 <div className="flex items-center gap-3">
@@ -212,7 +212,7 @@ export function Footer() {
                 </ul>
               </div>
 
-              <div className="lg:col-span-3 col-span-2 lg:mt-7 mt-7 space-y-8">
+              <div className="col-span-2 space-y-8">
                 <div className="flex items-center gap-3">
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
                 </div>
@@ -241,14 +241,14 @@ export function Footer() {
         </div>
 
         {/* Global Footer Bottom */}
-        <div className="mt-20 pt-7 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+        <div className="mt-5 pt-7 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em]">
-            © {new Date().getFullYear()} {settings?.footer_company_name} - All Rights Reserved
+            © {new Date().getFullYear()} {settings?.footer_company_name} All Rights Reserved.
           </div>
           <div className="flex items-center gap-4">
-            <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policies |</Link>
-            <Link href="/terms-and-conditions" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Terms & Conditions |</Link>
-            <Link href="/cookie-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Cookie Policies</Link>
+            <Link href="/privacy-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Privacy Policy</Link>
+            <Link href="/terms-and-conditions" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Terms & Conditions</Link>
+            <Link href="/cookie-policy" className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.4em] hover:text-[#14b88f] transition-colors">Cookie Policy</Link>
           </div>
         </div>
       </div>
