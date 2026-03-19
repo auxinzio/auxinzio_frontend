@@ -329,7 +329,7 @@ export default function JobDetailsPage() {
                           value={formData.applicant_name}
                           onChange={handleChange}
                           className={`w-full bg-gray-50/50 border ${errors.applicant_name ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
-                          placeholder="John Doe"
+                          placeholder="Enter your full name"
                         />
                         {errors.applicant_name && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.applicant_name}</p>}
                       </div>
@@ -342,7 +342,7 @@ export default function JobDetailsPage() {
                           value={formData.email}
                           onChange={handleChange}
                           className={`w-full bg-gray-50/50 border ${errors.email ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
-                          placeholder="john@protocol.com"
+                          placeholder="Enter your email address"
                         />
                         {errors.email && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.email}</p>}
                       </div>
@@ -356,7 +356,7 @@ export default function JobDetailsPage() {
                           value={formData.phone}
                           onChange={handleChange}
                           className={`w-full bg-gray-50/50 border ${errors.phone ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none`}
-                          placeholder="+1 (555) 000-0000"
+                          placeholder="Enter your phone number"
                         />
                         {errors.phone && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.phone}</p>}
                       </div>
@@ -368,7 +368,7 @@ export default function JobDetailsPage() {
                           value={formData.linkedin}
                           onChange={handleChange}
                           className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none"
-                          placeholder="linkedin.com/in/profile"
+                          placeholder="Enter your linkedin profile url"
                         />
                       </div>
                     </div>
@@ -381,7 +381,7 @@ export default function JobDetailsPage() {
                           value={formData.portfolio}
                           onChange={handleChange}
                           className="w-full bg-gray-50/50 border border-gray-100 rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none"
-                          placeholder="https://portfolio.design"
+                          placeholder="Enter your portfolio url"
                         />
                       </div>
                       <div className="space-y-3">
@@ -405,7 +405,7 @@ export default function JobDetailsPage() {
                         onChange={handleChange}
                         rows={6}
                         className={`w-full bg-gray-50/50 border ${errors.cover_letter ? 'border-red-400' : 'border-gray-100'} rounded-2xl py-4 px-6 text-sm focus:bg-white focus:border-[#14b88f]/40 transition-all outline-none resize-none`}
-                        placeholder="Detail your architectural approach & core intent..."
+                        placeholder="Enter your profile summary/cover letter"
                       ></textarea>
                       {errors.cover_letter && <p className="text-[10px] text-red-500 font-bold uppercase mt-1 tracking-widest px-4">{errors.cover_letter}</p>}
                     </div>

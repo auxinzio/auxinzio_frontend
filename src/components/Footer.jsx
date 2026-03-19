@@ -44,12 +44,20 @@ export function Footer() {
   const [subscribing, setSubscribing] = useState(false);
   const [subscribeStatus, setSubscribeStatus] = useState(null);
 
+  const validateEmail = (val, isSubmit = false) => {
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
+    if (!isSubmit && (!val || val.trim().length === 0)) return null;
+    if (!val) return "Email address is required.";
+    if (!emailRegex.test(val)) return "Please enter a valid email address.";
+    return null;
+  };
+
   const handleSubscribe = async (e) => {
     e.preventDefault();
 
-    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
-    if (!emailRegex.test(email)) {
-      setSubscribeStatus({ success: false, message: "Please enter a valid email address." });
+    const error = validateEmail(email, true);
+    if (error) {
+      setSubscribeStatus({ success: false, message: error });
       setTimeout(() => setSubscribeStatus(null), 5000);
       return;
     }
@@ -73,13 +81,13 @@ export function Footer() {
       const data = await response.json();
 
       if (data.status === 'ok' || data.success) {
-        setSubscribeStatus({ success: true, message: "Subscription synchronized successfully." });
+        setSubscribeStatus({ success: true, message: "Subscription confirmed successfully." });
         setEmail("");
       } else {
-        setSubscribeStatus({ success: false, message: data.message || "Encryption error. Try again." });
+        setSubscribeStatus({ success: false, message: data.message || "Subscription error. Try again." });
       }
     } catch (err) {
-      setSubscribeStatus({ success: false, message: "Network synchronization failure." });
+      setSubscribeStatus({ success: false, message: "Network connection failure." });
     } finally {
       setSubscribing(false);
       setTimeout(() => setSubscribeStatus(null), 5000);
@@ -123,7 +131,7 @@ export function Footer() {
                 ))}
               </div>
 
-              {/* 01 Newsletter synchronization */}
+              {/* 01 Newsletter subscription */}
               <div className="space-y-6 pt-4">
                 <div className="flex items-center gap-3">
                   {/* <span className="text-[10px] font-bold text-[#14b88f] tracking-tighter">01</span> */}
@@ -136,7 +144,16 @@ export function Footer() {
                     placeholder="Enter Email Address"
                     className={`w-full bg-white/5 border ${subscribeStatus && !subscribeStatus.success ? 'border-red-500' : 'border-white/10'} rounded-xl px-6 py-4 text-sm focus:outline-none focus:border-[#14b88f] transition-all placeholder:text-gray-600 font-light`}
                     value={email}
-                    onChange={(e) => setEmail(e.target.value.replace(/[^a-zA-Z0-9.@]/g, ''))}
+                    onChange={(e) => {
+                      const val = e.target.value.replace(/[^a-zA-Z0-9.@]/g, '');
+                      setEmail(val);
+                      const error = validateEmail(val, false);
+                      if (error) {
+                        setSubscribeStatus({ success: false, message: error });
+                      } else {
+                        setSubscribeStatus(null);
+                      }
+                    }}
                   />
                   <button
                     type="submit"
@@ -212,7 +229,7 @@ export function Footer() {
                 </ul>
               </div>
 
-              <div className="col-span-2 space-y-8">
+              <div className="col-span-2 space-y-8 md:ml-[30px] ml-0">
                 <div className="flex items-center gap-3">
                   <h3 className="text-[14px] font-bold uppercase tracking-[0.3em] text-white">Address</h3>
                 </div>

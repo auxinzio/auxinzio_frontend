@@ -44,6 +44,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
     name: "",
     email: "",
     phone: "",
+    reason: "",
     objective: "",
     product_id: "",
   });
@@ -77,32 +78,67 @@ export default function GetDemoModal({ isOpen, onClose }) {
     };
   }, [isOpen]);
 
-  const validate = () => {
-    const newErrors = {};
+  const validateField = (name, value, isSubmit = false) => {
     const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
     const phoneRegex = /^[6-9]\d{9,14}$/;
 
-    if (!formData.name || formData.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
-    if (!formData.company || formData.company.length < 2) newErrors.company = 'Company must be at least 2 characters.';
+    if (!isSubmit && (!value || value.trim().length === 0)) return null;
 
-    if (!formData.email) {
-      newErrors.email = 'Email address is required.';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email address.';
+    switch (name) {
+      case 'name':
+        if (!value || value.trim().length < 3) return 'Name must be at least 3 characters.';
+        return null;
+      case 'company':
+        if (!value || value.trim().length < 2) return 'Company must be at least 2 characters.';
+        return null;
+      case 'email':
+        if (!value) return 'Email address is required.';
+        if (!emailRegex.test(value)) return 'Please enter a valid email address.';
+        return null;
+      case 'phone':
+        if (!value) return 'Phone number is required.';
+        if (!phoneRegex.test(value)) return 'Please enter a valid phone number.';
+        return null;
+      case 'product_id':
+        if (!value) return 'Please select a product.';
+        return null;
+      case 'reason':
+        if (!value || value.trim().length < 2) return 'Please enter a reason.';
+        return null;
+      case 'objective':
+        if (!value || value.trim().length < 5) return 'Please provide an objective (min 5 chars).';
+        return null;
+      default:
+        return null;
     }
+  };
 
-    if (!formData.phone) {
-      newErrors.phone = 'Phone number is required.';
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = 'Mobile number must start with 6-9 and be 10-15 digits.';
-    }
-
-    if (!formData.product_id) newErrors.product_id = 'Please select a product.';
-    if (!formData.reason) newErrors.reason = 'Please enter a reason.';
-    if (!formData.objective || formData.objective.length < 5) newErrors.objective = 'Please provide an objective.';
+  const validate = () => {
+    const newErrors = {};
+    Object.keys(formData).forEach(key => {
+      const error = validateField(key, formData[key], true);
+      if (error) newErrors[key] = error;
+    });
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    let processedValue = value;
+
+    if (name === 'name') processedValue = value.replace(/[0-9]/g, '');
+    if (name === 'phone') processedValue = value.replace(/\D/g, '');
+    if (name === 'email') processedValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
+    if (name === 'reason') processedValue = value.replace(/[0-9]/g, '');
+    if (name === 'company') processedValue = value.replace(/[0-9]/g, '');
+    if (name === 'objective') processedValue = value.replace(/[0-9]/g, '');
+
+    setFormData(prev => ({ ...prev, [name]: processedValue }));
+
+    const error = validateField(name, processedValue, false);
+    setErrors(prev => ({ ...prev, [name]: error }));
   };
 
   const handleSubmit = (e) => {
@@ -132,6 +168,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
             name: "",
             email: "",
             phone: "",
+            reason: "",
             objective: "",
             product_id: "",
           });
@@ -143,13 +180,14 @@ export default function GetDemoModal({ isOpen, onClose }) {
           }, 5000);
         } else {
           setError(true);
-          setMessage(data.message || "Synchronization failed. Please try again.");
+          setMessage(data.message || "Submission failed. Please try again.");
           // Clear form fields as requested on failure
           setFormData({
             company: "",
             name: "",
             email: "",
             phone: "",
+            reason: "",
             objective: "",
             product_id: "",
           });
@@ -157,12 +195,13 @@ export default function GetDemoModal({ isOpen, onClose }) {
       })
       .catch((err) => {
         setError(true);
-        setMessage("Connection failed. Protocol interrupted.");
+        setMessage("Connection failed. Please check your network.");
         setFormData({
           company: "",
           name: "",
           email: "",
           phone: "",
+          reason: "",
           objective: "",
           product_id: "",
         });
@@ -214,11 +253,11 @@ export default function GetDemoModal({ isOpen, onClose }) {
                 </div>
 
                 <h2 className="text-3xl lg:text-6xl font-light tracking-tighter leading-[0.95] hd:mb-8">
-                  Request <br />
-                  <span className="italic font-normal text-[#14b88f]">Synchronization</span>
+                  Book a <br />
+                  <span className="italic font-normal text-[#14b88f]">Product Demo</span>
                 </h2>
                 <p className="text-gray-400 text-sm font-light leading-relaxed mb-10 max-w-xs hidden lg:block">
-                  Secure your slot in our quarterly engineering cycle. We prioritize projects based on infrastructural complexity and vision alignment.
+                  Experience our solutions first-hand. Schedule a personalized walk-through with our product specialists to see how we can help you scale.
                 </p>
 
                 <div className="space-y-4 hidden lg:block">
@@ -259,10 +298,10 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <CheckCircle2 className="w-10 h-10 text-[#14b88f]" />
                       </div>
                       <h3 className="text-3xl font-light text-gray-900 tracking-tight">
-                        Protocol <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Synthesized</span>
+                        Request <span className="italic font-normal bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Received</span>
                       </h3>
                       <p className="text-gray-500 max-w-sm text-sm font-light leading-relaxed">
-                        {message || "One of our specialists will reach out to your provided coordinates within 24 hours."}
+                        {message || "Our team will contact you within 24 hours to schedule your personalized product demonstration."}
                       </p>
                       <div className="pt-4">
                         <div className="h-1 w-24 bg-gray-100 rounded-full overflow-hidden">
@@ -292,7 +331,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <AlertCircle size={16} className="text-red-600" />
                           </div>
                           <div>
-                            <p className="text-[10px] font-bold text-red-600 uppercase tracking-widest leading-none mb-1">Transmission Error</p>
+                            <p className="text-[10px] font-bold text-red-600 uppercase tracking-widest leading-none mb-1">Submission Error</p>
                             <p className="text-xs text-red-500 font-light">{message}</p>
                           </div>
                         </motion.div>
@@ -310,15 +349,12 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <div className={cn("relative group border-b transition-all pb-1", errors.name ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
+                                name="name"
                                 required
                                 placeholder="Your Name"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.name}
-                                onChange={(e) => {
-                                  const nameValue = e.target.value.replace(/[0-9]/g, '');
-                                  setFormData({ ...formData, name: nameValue });
-                                  if (errors.name) setErrors({ ...errors, name: null });
-                                }}
+                                onChange={handleChange}
                               />
                               <User className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.name ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.name && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.name}</p>}
@@ -326,14 +362,12 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <div className={cn("relative group border-b transition-all pb-1", errors.company ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
+                                name="company"
                                 required
                                 placeholder="Organization Name"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.company}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, company: e.target.value });
-                                  if (errors.company) setErrors({ ...errors, company: null });
-                                }}
+                                onChange={handleChange}
                               />
                               <Box className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.company ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.company && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.company}</p>}
@@ -345,21 +379,19 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
                             <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">2</span>
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication</h3>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Communication Info</h3>
                           </div>
 
                           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                             <div className={cn("relative group border-b transition-all pb-1", errors.email ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="email"
+                                name="email"
                                 required
                                 placeholder="Enter Your Email"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.email}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, email: e.target.value.replace(/[^a-zA-Z0-9.@]/g, '') });
-                                  if (errors.email) setErrors({ ...errors, email: null });
-                                }}
+                                onChange={handleChange}
                               />
                               <Mail className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.email ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.email && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.email}</p>}
@@ -367,6 +399,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <div className={cn("relative group border-b transition-all pb-1", errors.phone ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
+                                name="phone"
                                 required
                                 placeholder="Mobile Number"
                                 inputMode="numeric"
@@ -374,10 +407,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                                 pattern="[0-9]*"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.phone}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, phone: e.target.value.replace(/\D/g, '') });
-                                  if (errors.phone) setErrors({ ...errors, phone: null });
-                                }}
+                                onChange={handleChange}
                               />
                               <Phone className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.phone ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.phone && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.phone}</p>}
@@ -385,22 +415,20 @@ export default function GetDemoModal({ isOpen, onClose }) {
                           </div>
                         </div>
 
-                        {/* Section 03: Ecosystem */}
+                        {/* Section 03: Interest */}
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
                             <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">3</span>
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Product Selection</h3>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Product Interest</h3>
                           </div>
                           <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
                             <div className={cn("relative group border-b transition-all pb-1", errors.product_id ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <select
+                                name="product_id"
                                 required
                                 className="w-full bg-transparent py-3 outline-none font-light text-lg appearance-none cursor-pointer"
                                 value={formData.product_id}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, product_id: e.target.value });
-                                  if (errors.product_id) setErrors({ ...errors, product_id: null });
-                                }}
+                                onChange={handleChange}
                               >
                                 <option value="" className="text-gray-400">Select Product</option>
                                 {product.map((p) => (
@@ -415,15 +443,13 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <div className={cn("relative group border-b transition-all pb-1", errors.reason ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                               <input
                                 type="text"
+                                name="reason"
                                 required
                                 placeholder="Reason for Demo"
                                 inputMode="text"
                                 className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg pr-6"
                                 value={formData.reason}
-                                onChange={(e) => {
-                                  setFormData({ ...formData, reason: e.target.value });
-                                  if (errors.reason) setErrors({ ...errors, reason: null });
-                                }}
+                                onChange={handleChange}
                               />
                               <ArrowRight className={cn("absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 transition-colors", errors.reason ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                               {errors.reason && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.reason}</p>}
@@ -436,19 +462,17 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         <div className="space-y-4">
                           <div className="flex items-center gap-3">
                             <span className="text-[10px] font-bold text-[#14b88f] w-5 h-5 rounded-full bg-[#14b88f]/10 flex items-center justify-center">4</span>
-                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Objective</h3>
+                            <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Project Goals</h3>
                           </div>
 
                           <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                             <textarea
+                              name="objective"
                               placeholder="Project brief or specific requirements..."
                               rows={2}
                               className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
                               value={formData.objective}
-                              onChange={(e) => {
-                                setFormData({ ...formData, objective: e.target.value });
-                                if (errors.objective) setErrors({ ...errors, objective: null });
-                              }}
+                              onChange={handleChange}
                             />
                             <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
                             {errors.objective && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.objective}</p>}
@@ -458,7 +482,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
                         {/* Actions */}
                         <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-8">
                           <p className="text-[9px] text-gray-400 font-bold uppercase tracking-[0.2em] max-w-[200px] text-center sm:text-left leading-relaxed">
-                            By submitting, you authorize data synchronization.
+                            By submitting, you agree to our terms and privacy policy.
                           </p>
 
                           <Button

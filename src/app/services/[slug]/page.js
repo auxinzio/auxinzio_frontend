@@ -251,7 +251,7 @@ export default function ServiceDetailPage({ params }) {
                                         </Link>
                                         <div className="flex items-center justify-center gap-6 pt-4 text-gray-500 text-[10px] font-bold uppercase tracking-widest">
                                             <span className="flex items-center gap-2"><Globe size={12} /> Global Support</span>
-                                            <span className="flex items-center gap-2"><ShieldCheck size={12} /> Secure Protocol</span>
+                                            <span className="flex items-center gap-2"><ShieldCheck size={12} /> Secure Solutions</span>
                                         </div>
                                     </div>
                                 </motion.div>
