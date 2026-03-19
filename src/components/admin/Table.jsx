@@ -97,6 +97,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "growth_benefits", label: "Growth Benefits ('~' separated)", type: "textarea", placeholder: "Enter Growth Benefits" },
                     { name: "communication_benefits", label: "Communication Benefits ('~' separated)", type: "textarea", placeholder: "Enter Communication Benefits" },
                     { name: "logo", label: "Product Logo", type: "image", placeholder: "Upload image" },
+                    { name: "product_url", label: "Product URL", type: "text", placeholder: "Enter Product URL" },
                     { name: "image", label: "Product Image", type: "image", placeholder: "Upload image" },
                     { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
@@ -162,6 +163,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                     { name: "phone", label: "Phone", type: "text", placeholder: "Enter Phone Number" },
                     { name: "product_id", label: "Product", type: "select", placeholder: "Select product", options: productList },
                     { name: "object", label: "Object", type: "text", placeholder: "Enter Object" },
+                    { name: "reason", label: "Reason", type: "text", placeholder: "Enter Reason" },
                     // { name: "status", label: "Status", type: "select", options: ["Active", "In-active"] },
                 ];
             case "Users":
@@ -669,6 +671,13 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                 )
                                             }
                                             {
+                                                (title === "Products") && (
+                                                    <>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product URL</th>
+                                                    </>
+                                                )
+                                            }
+                                            {
                                                 title === "Careers" && (
                                                     <>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Job ID</th>
@@ -760,6 +769,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Phone</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Product</th>
                                                         <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Object</th>
+                                                        <th className="px-6 py-3 text-xs font-semibold text-gray-500 uppercase">Reason</th>
                                                     </>
                                                 )
                                             }
@@ -807,6 +817,17 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             <td className="px-6 py-4">
                                                                 <span className="py-1 text-xs font-medium">
                                                                     <Image src={`${settings?.backend_api_url}/${title === "Products" ? item.image : item.main_logo}`} alt={title} className="w-30 mx-auto" width={100} height={100} />
+                                                                </span>
+                                                            </td>
+                                                        </>
+                                                    )
+                                                }
+                                                {
+                                                    (title === "Products") && (
+                                                        <>
+                                                            <td className="px-6 py-4">
+                                                                <span className="py-1 text-xs font-medium">
+                                                                    {item.product_url ? item.product_url : "N/A"}
                                                                 </span>
                                                             </td>
                                                         </>
@@ -936,6 +957,9 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                                                             </td>
                                                             <td className="px-6 py-4">
                                                                 {item.object}
+                                                            </td>
+                                                            <td className="px-6 py-4">
+                                                                {item.reason}
                                                             </td>
                                                         </>
                                                     )
