@@ -68,7 +68,7 @@ export default function TermsAndConditions() {
             <motion.div initial={{ opacity: 0, x: -50 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 1, ease: "easeOut" }}>
               <div className="flex items-center gap-4 mb-12">
                 <div className="w-12 h-px bg-[#14b88f]" />
-                <span className="text-[10px] font-bold tracking-[0.6em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Standard Operating Protocol</span>
+                <span className="text-[10px] font-bold tracking-[0.6em] uppercase bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5">Operational Terms & Usage Policy</span>
               </div>
               <h1 className="text-7xl lg:text-[10rem] font-light text-gray-900 leading-[0.8] tracking-tighter mb-12">
                 Terms
@@ -125,7 +125,7 @@ export default function TermsAndConditions() {
                   <div className="relative z-10">
                     <HelpCircle className="w-10 h-10 text-[#14b88f] mb-8" />
                     <h4 className="text-2xl font-light text-gray-900 mb-4 tracking-tight">Need expert <span className="italic">clarification?</span></h4>
-                    <p className="text-sm text-gray-500 leading-relaxed mb-8">Our legal council is available for structured enquiries regarding these protocols.</p>
+                    <p className="text-sm text-gray-500 leading-relaxed mb-8">For structured inquiries, please reach out to our legal counsel.</p>
                   </div>
                   {/* Background Decorative */}
                   <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#14b88f]/5 rounded-full blur-3xl" />
@@ -190,8 +190,8 @@ export default function TermsAndConditions() {
                 <div className="relative z-10">
                   <div className="max-w-2xl">
                     <h3 className="text-4xl lg:text-6xl font-light text-white tracking-tighter leading-[0.9] mb-12">
-                      Formal Acceptance <br />
-                      <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-normal">of Protocol</span>
+                      Formal Acknowledgment<br />
+                      <span className="bg-gradient-to-r from-green-500 to-cyan-600 bg-clip-text text-transparent pe-5 italic font-normal">and Acceptance</span>
                     </h3>
                     <p className="text-gray-400 text-xl font-light leading-relaxed mb-16">
                       By participating in the Auxinzio ecosystem, you formally acknowledge and accept these regulatory standards in their entirety.

@@ -21,26 +21,41 @@ export default function Contact() {
   const [focusedField, setFocusedField] = useState(null);
   const [contact, setContact] = useState([]);
 
+  const validateField = (name, value, isSubmit = false) => {
+    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
+    const phoneRegex = /^[6-9]\d{9,14}$/;
+
+    if (!isSubmit && (!value || value.trim().length === 0)) return null;
+
+    switch (name) {
+      case 'name':
+        if (!value || value.trim().length < 3) return 'Name must be at least 3 characters.';
+        return null;
+      case 'email':
+        if (!value) return 'Email address is required.';
+        if (!emailRegex.test(value)) return 'Please enter a valid email address.';
+        return null;
+      case 'phone':
+        if (!value) return 'Phone number is required.';
+        if (!phoneRegex.test(value)) return 'Please enter a valid phone number.';
+        return null;
+      case 'title':
+        if (!value || value.trim().length < 3) return 'Please provide a subject.';
+        return null;
+      case 'description':
+        if (!value || value.trim().length < 10) return 'Please provide a more detailed briefing (min 10 chars).';
+        return null;
+      default:
+        return null;
+    }
+  };
+
   const validate = () => {
     const newErrors = {};
-    const emailRegex = /^(?=[^@]*[a-zA-Z])[a-zA-Z0-9.]+@[a-zA-Z.-]+\.[a-zA-Z]{2,3}$/;
-    const phoneRegex = /^[6-9]\d{9}$/;
-
-    if (!formState.name || formState.name.length < 3) newErrors.name = 'Name must be at least 3 characters.';
-    if (!formState.email) {
-      newErrors.email = 'Email address is required.';
-    } else if (!emailRegex.test(formState.email)) {
-      newErrors.email = 'Please enter a valid email address.';
-    }
-
-    if (!formState.phone) {
-      newErrors.phone = 'Phone number is required.';
-    } else if (!phoneRegex.test(formState.phone)) {
-      newErrors.phone = 'Mobile number must start with 6-9 and be 10 digits.';
-    }
-
-    if (!formState.title || formState.title.length < 3) newErrors.title = 'Please provide a subject.';
-    if (!formState.description || formState.description.length < 10) newErrors.description = 'Please provide a more detailed briefing (min 10 chars).';
+    Object.keys(formState).forEach(key => {
+      const error = validateField(key, formState[key], true);
+      if (error) newErrors[key] = error;
+    });
 
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -63,7 +78,7 @@ export default function Contact() {
         setFormState({ name: '', email: '', phone: '', title: '', description: '' });
       })
       .catch(err => {
-        setErrors({ submit: 'Transmission failed. Please try again later.' });
+        setErrors({ submit: 'Connection failed. Please check your network.' });
       })
       .finally(() => {
         setIsSubmitting(false);
@@ -76,29 +91,21 @@ export default function Contact() {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    let processedValue = value;
 
-    // Filter for email field: letters, numbers, dot (and @ for functionality)
     if (name === 'phone') {
-      const numericValue = value.replace(/\D/g, '');
-      if (numericValue.length <= 10) {
-        setFormState({ ...formState, [name]: numericValue });
-      }
+      processedValue = value.replace(/\D/g, '');
     } else if (name === 'email') {
-      // Allowing only alphanumeric, dots, and the @ symbol
-      const emailValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
-      setFormState({ ...formState, [name]: emailValue });
-    } else if (name === 'name') {
-      // Prevent numbers in the name field
-      const nameValue = value.replace(/[0-9]/g, '');
-      setFormState({ ...formState, [name]: nameValue });
-    } else {
-      setFormState({ ...formState, [name]: value });
+      processedValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
+    } else if (name === 'name' || name === 'title') {
+      // Prevent numbers in the name and title fields
+      processedValue = value.replace(/[0-9]/g, '');
     }
 
-    // Clear error when user starts typing
-    if (errors[name]) {
-      setErrors({ ...errors, [name]: null });
-    }
+    setFormState(prev => ({ ...prev, [name]: processedValue }));
+
+    const error = validateField(name, processedValue, false);
+    setErrors(prev => ({ ...prev, [name]: error }));
   };
 
   return (
