@@ -133,7 +133,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
     if (name === 'email') processedValue = value.replace(/[^a-zA-Z0-9.@]/g, '');
     if (name === 'reason') processedValue = value.replace(/[0-9]/g, '');
     if (name === 'company') processedValue = value.replace(/[0-9]/g, '');
-    if (name === 'objective') processedValue = value.replace(/[0-9]/g, '');
+    if (name === 'object') processedValue = value.replace(/[0-9]/g, '');
 
     setFormData(prev => ({ ...prev, [name]: processedValue }));
 
@@ -169,7 +169,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
             email: "",
             phone: "",
             reason: "",
-            objective: "",
+            object: "",
             product_id: "",
           });
           setErrors({});
@@ -188,7 +188,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
             email: "",
             phone: "",
             reason: "",
-            objective: "",
+            object: "",
             product_id: "",
           });
         }
@@ -202,7 +202,7 @@ export default function GetDemoModal({ isOpen, onClose }) {
           email: "",
           phone: "",
           reason: "",
-          objective: "",
+          object: "",
           product_id: "",
         });
       })
@@ -465,17 +465,17 @@ export default function GetDemoModal({ isOpen, onClose }) {
                             <h3 className="text-[10px] font-bold uppercase tracking-[0.4em] text-gray-400">Project Goals</h3>
                           </div>
 
-                          <div className={cn("relative group border-b transition-all pb-1", errors.objective ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
+                          <div className={cn("relative group border-b transition-all pb-1", errors.object ? "border-red-400" : "border-gray-100 focus-within:border-[#14b88f]")}>
                             <textarea
-                              name="objective"
+                              name="object"
                               placeholder="Project brief or specific requirements..."
                               rows={2}
                               className="w-full bg-transparent py-3 outline-none placeholder:text-gray-300 font-light text-lg resize-none pr-6"
-                              value={formData.objective}
+                              value={formData.object}
                               onChange={handleChange}
                             />
-                            <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.objective ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
-                            {errors.objective && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.objective}</p>}
+                            <MessageSquare className={cn("absolute right-0 top-4 w-4 h-4 transition-colors", errors.object ? "text-red-400" : "text-gray-200 group-focus-within:text-[#14b88f]")} />
+                            {errors.object && <p className="text-[8px] text-red-500 font-bold uppercase mt-1 tracking-widest absolute -bottom-5 left-0">{errors.object}</p>}
                           </div>
                         </div>
 
