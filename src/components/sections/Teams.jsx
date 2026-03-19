@@ -145,7 +145,7 @@ function TeamMemberCard({ index, name, role, image, linkedin, github, email, des
           src={image}
           alt={name}
           fill
-          className={`object-cover transition-all duration-1000 ease-in-out ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale'}`}
+          className={`object-cover transition-all duration-1000 ease-in-out ${isHovered ? 'scale-110 grayscale-0' : 'scale-100 grayscale-50'}`}
         />
 
         {/* Vertical Social Bar - Slides in from the left */}
