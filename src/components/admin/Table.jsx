@@ -16,6 +16,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
     const [modalMode, setModalMode] = useState('add');
     const [isApplicationModalOpen, setIsApplicationModalOpen] = useState(false);
     const [formData, setFormData] = useState({});
+    const [isSubmitting, setIsSubmitting] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isDragging, setIsDragging] = useState(false);
     const [formErrors, setFormErrors] = useState({});
@@ -256,6 +257,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         setSelectedItem(null);
         setFormErrors({});
         setShowPassword(false);
+        setIsSubmitting(false);
     };
 
     const handleInputChange = (e) => {
@@ -448,6 +450,7 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
             dataToSave.is_mfa_enabled = formData.is_mfa_enabled === "Enabled" ? 1 : 0;
         }
         dataToSave.status = formData.status === "Active" ? 1 : 0;
+        setIsSubmitting(true);
         await handleSave(modalMode, dataToSave, title);
     };
 
@@ -526,6 +529,8 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
         } catch (error) {
             console.error(`Error saving ${title}:`, error);
             toast.error(error.message || `Failed to save ${title}`);
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -1326,10 +1331,15 @@ export default function Table({ title, searchTerm, handleSearchChange, totalCoun
                         </button>
                         <button
                             type="submit"
-                            className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                            disabled={isSubmitting}
+                            className={`flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : ''}`}
                         >
-                            <Save size={16} />
-                            Save Changes
+                            {isSubmitting ? (
+                                <Loader2 className="w-4 h-4 animate-spin" />
+                            ) : (
+                                <Save size={16} />
+                            )}
+                            {isSubmitting ? 'Saving...' : 'Save Changes'}
                         </button>
                     </div>
                 </form>
